@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 01
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 01
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      August 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        Opening the Spyder IDE:
+        <ul>
+         <li>
+          Introduction to interactive Python.
+         </li>
+         <li>
+          Getting help in Python.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Types of data:
+        <ul>
+         <li>
+          The programming view.
+         </li>
+         <li>
+          The statistical view.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Storing data in variables.
+       </li>
+       <li>
+        Data structures.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="using-the-spyder-ide">
+      <h1>
+       Using the Spyder IDE
+      </h1>
+     </section>
+     <section class="slide level2" id="spyder">
+      <h2>
+       Spyder
+      </h2>
+      <ul>
+       <li>
+        The Anaconda Python distribution comes with the Spyder IDE
+(Integrated Development Environment).
+       </li>
+       <li>
+        The IDE can make your coding experience more productive and less
+painful!
+       </li>
+       <li>
+        Here’s where to find Spyder on a Windows computer:
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/where_is_spyder.png" height="293" width="303"/>
+      </p>
+     </section>
+     <section class="slide level2" id="the-interactive-python-console">
+      <h2>
+       The interactive Python console
+      </h2>
+      <ul>
+       <li>
+        At the bottom right hand side of the IDE is the
+        <em>
+         interactive
+Python console
+        </em>
+        .
+       </li>
+       <li>
+        You can “play around” with Python in the terminal.
+       </li>
+       <li>
+        This is what the console looks like before typing in any
+commands:
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/ipython_console.png" height="300" width="400"/>
+      </p>
+     </section>
+     <section class="slide level2" id="using-the-console-as-a-calculator">
+      <h2>
+       Using the console as a calculator
+      </h2>
+      <ul>
+       <li>
+        We can do basic math operations in the console, using it like a
+calculator.
+       </li>
+       <li>
+        Try typing the following commands into the console, each followed by
+the
+        <em>
+         enter
+        </em>
+        key.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb1">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="co"># Addition</span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a><span class="co"># Subtraction</span></span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a><span class="dv">8</span> <span class="op">-</span> <span class="dv">12</span></span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a><span class="co"># Multiplication</span></span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a><span class="dv">4</span> <span class="op">*</span> <span class="dv">3</span></span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a><span class="co"># Regular division</span></span>
+<span id="cb1-8"><a aria-hidden="true" href="#cb1-8" tabindex="-1"></a><span class="dv">15</span> <span class="op">/</span> <span class="dv">6</span></span>
+<span id="cb1-9"><a aria-hidden="true" href="#cb1-9" tabindex="-1"></a><span class="co"># Integer division (How many times 6 goes into 15)</span></span>
+<span id="cb1-10"><a aria-hidden="true" href="#cb1-10" tabindex="-1"></a><span class="dv">15</span> <span class="op">//</span> <span class="dv">6</span></span>
+<span id="cb1-11"><a aria-hidden="true" href="#cb1-11" tabindex="-1"></a><span class="co"># The remainder term from division</span></span>
+<span id="cb1-12"><a aria-hidden="true" href="#cb1-12" tabindex="-1"></a><span class="dv">15</span> <span class="op">%</span> <span class="dv">6</span></span>
+<span id="cb1-13"><a aria-hidden="true" href="#cb1-13" tabindex="-1"></a><span class="co"># Raising a number to the power</span></span>
+<span id="cb1-14"><a aria-hidden="true" href="#cb1-14" tabindex="-1"></a><span class="dv">2</span> <span class="op">**</span> <span class="dv">10</span></span>
+<span id="cb1-15"><a aria-hidden="true" href="#cb1-15" tabindex="-1"></a><span class="co"># Finding the square root of a number</span></span>
+<span id="cb1-16"><a aria-hidden="true" href="#cb1-16" tabindex="-1"></a><span class="dv">81</span> <span class="op">**</span> <span class="fl">0.5</span></span></code></pre>
+      </div>
+      <pre><code>9.0</code></pre>
+     </section>
+     <section class="slide level2" id="what-you-should-get-as-output">
+      <h2>
+       What you should get as output
+      </h2>
+      <p>
+       <img data-src="images/first_calcs.png" height="300" width="400"/>
+      </p>
+     </section>
+     <section class="slide level2" id="more-complicated-math-functions">
+      <h2>
+       More complicated math functions
+      </h2>
+      <ul>
+       <li>
+        The most common mathematical functions used in data analysis are the
+        <em>
+         natural log
+        </em>
+        and the
+        <em>
+         exponential
+        </em>
+        functions.
+       </li>
+       <li>
+        We’ll just type these into the console and hope for the best.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb3">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>log(<span class="dv">10</span>)</span></code></pre>
+      </div>
+      <pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+Cell In[2], line 1
+----&gt; 1 log(10)
+
+
+NameError: name 'log' is not defined</code></pre>
+     </section>
+     <section class="slide level2" id="why-the-error">
+      <h2>
+       Why the error?
+      </h2>
+      <ul>
+       <li>
+        As you can see the log function is not found, which is because it is
+not a part of the Python core.
+       </li>
+       <li>
+        But it (along with many other math functions) are available from the
+built-in Python
+        <em>
+         math
+        </em>
+        module.
+       </li>
+       <li>
+        You can get additional functionality in Python by using
+        <em>
+         modules
+        </em>
+        .
+       </li>
+       <li>
+        A
+        <em>
+         module
+        </em>
+        is like another Python file that contains a set of
+functions and definitions and can be read into (imported) the current
+IPython session.
+       </li>
+       <li>
+        The basic syntax to include a module is
+        <code>
+         import module_name
+        </code>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="importing-the-math-module">
+      <h2>
+       Importing the math module
+      </h2>
+      <div class="sourceCode" id="cb5">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a><span class="co">#import the math module</span></span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a><span class="co"># But this still does not work.</span></span>
+<span id="cb5-4"><a aria-hidden="true" href="#cb5-4" tabindex="-1"></a>log(<span class="dv">10</span>)</span></code></pre>
+      </div>
+      <pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+Cell In[3], line 4
+      2 import math
+      3 # But this still does not work.
+----&gt; 4 log(10)
+
+
+NameError: name 'log' is not defined</code></pre>
+      <div class="sourceCode" id="cb7">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a><span class="co"># But this one does! You need to tell Python in which module to find the function</span></span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a>math.log(<span class="dv">10</span>)</span></code></pre>
+      </div>
+      <pre><code>2.302585092994046</code></pre>
+     </section>
+     <section class="slide level2" id="some-other-useful-math-functions">
+      <h2>
+       Some other useful math functions
+      </h2>
+      <div style="text-align: left">
+       <ul>
+        <li>
+         <span style="font-family:Courier">
+          math.log
+         </span>
+         # The natural
+log
+        </li>
+        <li>
+         <span style="font-family:Courier">
+          math.log10
+         </span>
+         # The log base
+10
+        </li>
+        <li>
+         <span style="font-family:Courier">
+          math.exp
+         </span>
+         # The exponential
+function
+        </li>
+        <li>
+         <span style="font-family:Courier">
+          math.ceil
+         </span>
+         # Round up to the
+next integer
+        </li>
+        <li>
+         <span style="font-family:Courier">
+          math.floor
+         </span>
+         # Round
+down
+        </li>
+       </ul>
+      </div>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="tab-completion-and-help">
+      <h1>
+       Tab completion and help
+      </h1>
+     </section>
+     <section class="slide level2" id="tab-completion">
+      <h2>
+       Tab completion
+      </h2>
+      <ul>
+       <li>
+        Once you have imported the math module you can see all the functions
+inside it by using
+        <em>
+         tab completion
+        </em>
+        .
+       </li>
+       <li>
+        In the console type “math.” and then press the tab key. Here’s what
+you will see:
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/tab_completion.png" height="200" width="200"/>
+      </p>
+      <ul>
+       <li>
+        You don’t have to remember all the available functions.
+       </li>
+       <li>
+        And you can also use tab completion more generally in IPython to
+search for available variables and functions.
+       </li>
+       <li>
+        Try typing in just the letter
+        <em>
+         a
+        </em>
+        , followed by a tab. You
+will see everything on the search path that starts with
+        <em>
+         a
+        </em>
+        .
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="getting-help-about-variables">
+      <h2>
+       Getting help about variables
+      </h2>
+      <ul>
+       <li>
+        Typing in the question mark “?” before or after a variable gives you
+some help on it.
+       </li>
+       <li>
+        Typing in two question marks “??” may give even more
+information.
+       </li>
+       <li>
+        And syntax like
+        <code>
+         math.*y*?
+        </code>
+        would list all functions in
+the math package that contained the letter “y”.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb9">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>math.log10?</span></code></pre>
+      </div>
+      <p>
+       <img data-src="images/help_question_mark.png" height="61" width="355"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="data-types">
+      <h1>
+       Data types
+      </h1>
+     </section>
+     <section class="slide level2" id="data-types-1">
+      <h2>
+       Data types
+      </h2>
+      <ul>
+       <li>
+        Data isn’t always numeric, and Python has other “types” to handle
+this.
+       </li>
+       <li>
+        Numeric data can be of an integer (whole number) or float (not a
+whole number) type.
+       </li>
+       <li>
+        Text data is called “string” type.
+       </li>
+       <li>
+        Logical variables take on the values of True or False and are called
+“boolean” type.
+       </li>
+       <li>
+        There are other special data types for dates and times that we will
+see later.
+       </li>
+       <li>
+        You can convert between variable types, which is called
+“casting”.
+       </li>
+       <li>
+        Using the function “type()” will tell you the type of object you are
+looking at.
+       </li>
+       <li>
+        Using the function “isinstance” will check to see if your variable
+is of a specific type.
+       </li>
+       <li>
+        There is also a special type called “None”, which is known as a null
+value and you can think of as indicating that there is nothing
+there.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="investigating-which-type-a-variable-is">
+      <h2>
+       Investigating which type a variable is
+      </h2>
+      <ul>
+       <li>
+        The key command here is ‘type()’
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb10">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="co"># An integer type</span></span>
+<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a><span class="bu">type</span>(<span class="dv">6</span>)</span>
+<span id="cb10-3"><a aria-hidden="true" href="#cb10-3" tabindex="-1"></a><span class="co"># A float type</span></span>
+<span id="cb10-4"><a aria-hidden="true" href="#cb10-4" tabindex="-1"></a><span class="bu">type</span>(<span class="fl">3.14</span>)</span>
+<span id="cb10-5"><a aria-hidden="true" href="#cb10-5" tabindex="-1"></a><span class="co"># A string type -- you can use single or double quotes to delineate a string</span></span>
+<span id="cb10-6"><a aria-hidden="true" href="#cb10-6" tabindex="-1"></a><span class="bu">type</span>(<span class="st">"Hello 7770 Students!"</span>)</span>
+<span id="cb10-7"><a aria-hidden="true" href="#cb10-7" tabindex="-1"></a><span class="co"># A boolean type</span></span>
+<span id="cb10-8"><a aria-hidden="true" href="#cb10-8" tabindex="-1"></a><span class="bu">type</span>(<span class="va">True</span>)</span></code></pre>
+      </div>
+      <pre><code>bool</code></pre>
+     </section>
+     <section class="slide level2" id="changing-a-variables-type">
+      <h2>
+       Changing a variable’s type
+      </h2>
+      <ul>
+       <li>
+        The type name can be used as a function to change (cast) a
+variable’s type.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb12">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a><span class="co"># Cast between variable types</span></span>
+<span id="cb12-2"><a aria-hidden="true" href="#cb12-2" tabindex="-1"></a><span class="bu">int</span>(<span class="fl">13.123</span>) <span class="co"># Turn this number into an integer</span></span>
+<span id="cb12-3"><a aria-hidden="true" href="#cb12-3" tabindex="-1"></a><span class="bu">str</span>(<span class="fl">98.4</span>) <span class="co"># Turn this number into a string</span></span>
+<span id="cb12-4"><a aria-hidden="true" href="#cb12-4" tabindex="-1"></a><span class="bu">float</span>(<span class="dv">3</span>) <span class="co"># Turn this integer into a float</span></span>
+<span id="cb12-5"><a aria-hidden="true" href="#cb12-5" tabindex="-1"></a><span class="bu">int</span>(<span class="st">'4'</span>) <span class="co"># Turn the string, 4, into an integer</span></span>
+<span id="cb12-6"><a aria-hidden="true" href="#cb12-6" tabindex="-1"></a><span class="bu">int</span>(<span class="va">True</span>) <span class="co"># Turn a logical into an integer</span></span></code></pre>
+      </div>
+      <pre><code>1</code></pre>
+     </section>
+     <section class="slide level2" id="checking-if-a-variable-is-of-a-particular-type">
+      <h2>
+       Checking if a variable is of a particular type
+      </h2>
+      <ul>
+       <li>
+        The key command is ‘isinstance’
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb14">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a><span class="co"># Check out the type of a variable</span></span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">isinstance</span>(a, <span class="bu">int</span>)) <span class="co"># Check for an integer type</span></span>
+<span id="cb14-4"><a aria-hidden="true" href="#cb14-4" tabindex="-1"></a>b <span class="op">=</span> <span class="st">"Hello"</span></span>
+<span id="cb14-5"><a aria-hidden="true" href="#cb14-5" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">isinstance</span>(b, <span class="bu">bool</span>)) <span class="co"># Check for a boolean type</span></span>
+<span id="cb14-6"><a aria-hidden="true" href="#cb14-6" tabindex="-1"></a>c <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb14-7"><a aria-hidden="true" href="#cb14-7" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">isinstance</span>(c, <span class="bu">bool</span>)) <span class="co"># Check for a boolean type</span></span></code></pre>
+      </div>
+      <pre><code>True
+False
+True</code></pre>
+     </section>
+     <section class="slide level2" id="assigning-a-value-to-a-variable">
+      <h2>
+       Assigning a value to a variable
+      </h2>
+      <ul>
+       <li>
+        You can store values in a variable using the “=” sign, which is
+called the assignment operator.
+       </li>
+       <li>
+        There are many different conventions for naming variables but not
+too long and descriptive is ideal.
+       </li>
+       <li>
+        You can check out the Google Python style guide
+        <a href="http://google.github.io/styleguide/pyguide.html">
+         here
+        </a>
+        .
+       </li>
+       <li>
+        Python is case sensitive, so that “a” and “A” mean different things
+to Python!
+       </li>
+       <li>
+        Variable names:
+        <ul>
+         <li>
+          Start with a letter or underscore.
+         </li>
+         <li>
+          Can only contain alphanumeric [a-Z, 0-9] characters and
+underscores.
+         </li>
+         <li>
+          Are case sensitive.
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb16">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">31.2</span>       <span class="co"># Assign the value 3.12 to the variable called "a"</span></span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">4</span>          <span class="co"># Assign the value 4 to the variable called "b"</span></span>
+<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">+</span> b)   <span class="co"># Add them up and print the result</span></span>
+<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a>part_one <span class="op">=</span> <span class="st">"Good"</span> <span class="co"># Do the same for strings. </span></span>
+<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a>part_two <span class="op">=</span> <span class="st">"news"</span></span>
+<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a><span class="bu">print</span>(part_one <span class="op">+</span> part_two) <span class="co"># Adding two strings concatenates them</span></span></code></pre>
+      </div>
+      <pre><code>35.2
+Goodnews</code></pre>
+     </section>
+     <section class="slide level2" id="assigning-one-variables-value-to-another-variable">
+      <h2>
+       Assigning one variable’s value to another variable
+      </h2>
+      <ul>
+       <li>
+        You can assign one variable to another:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb18">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a><span class="co"># Recall that the variable 'a' contains the number 31.2</span></span>
+<span id="cb18-2"><a aria-hidden="true" href="#cb18-2" tabindex="-1"></a>c <span class="op">=</span> a</span>
+<span id="cb18-3"><a aria-hidden="true" href="#cb18-3" tabindex="-1"></a><span class="bu">print</span>(c)</span></code></pre>
+      </div>
+      <pre><code>31.2</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="data-structures">
+      <h1>
+       Data structures
+      </h1>
+     </section>
+     <section class="slide level2" id="containers-hold-objects-and-data">
+      <h2>
+       Containers hold objects and data
+      </h2>
+      <ul>
+       <li>
+        So far all the variables we have looked at have had a single value,
+which is known as a
+        <em>
+         scalar
+        </em>
+        .
+       </li>
+       <li>
+        But if we are dealing with more than one item, it is useful to
+collect them into a container (just like a suitcase when you
+travel).
+       </li>
+       <li>
+        Python comes with built-in containers:
+        <ul>
+         <li>
+          list
+         </li>
+         <li>
+          dict
+         </li>
+         <li>
+          tuple
+         </li>
+         <li>
+          set
+         </li>
+        </ul>
+       </li>
+       <li>
+        The choice of data structure depends on the type of task you are
+performing.
+        <br/>
+       </li>
+       <li>
+        These core data structures will be supplemented with ones from
+add-on packages.
+       </li>
+       <li>
+        One data structure we will spend a lot of time on later, is called a
+“DataFrame” from the pandas package.
+       </li>
+       <li>
+        And we will see the “ndarray” container from the numpy package, used
+for holding mathematical objects like vectors and matrices.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="lists">
+      <h2>
+       Lists
+      </h2>
+      <ul>
+       <li>
+        A list is a variable length container, within which the elements can
+be modified (mutable – compare to a tuple later).
+       </li>
+       <li>
+        It can contain a mix of variable types.
+       </li>
+       <li>
+        It can be “nested”, where elements inside the list are themselves
+other containers.
+       </li>
+       <li>
+        List elements can be accessed by position (starting at 0).
+       </li>
+       <li>
+        You make a list by enclosing the elements in square brackets [], or
+by using the “list” function.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb20">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a><span class="co"># Create a list containing a float, integer, string and logical</span></span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a>list_one <span class="op">=</span> [<span class="fl">3.14</span>, <span class="dv">10</span>, <span class="st">'Fantastic'</span>, <span class="va">True</span>]</span>
+<span id="cb20-3"><a aria-hidden="true" href="#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a aria-hidden="true" href="#cb20-4" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(list_one))</span>
+<span id="cb20-5"><a aria-hidden="true" href="#cb20-5" tabindex="-1"></a><span class="bu">print</span>(list_one)</span></code></pre>
+      </div>
+      <pre><code>&lt;class 'list'&gt;
+[3.14, 10, 'Fantastic', True]</code></pre>
+     </section>
+     <section class="slide level2" id="manipulating-lists">
+      <h2>
+       Manipulating lists
+      </h2>
+      <ul>
+       <li>
+        To find out the actions you can take on a list, type in list_one.
+and then the tab key.
+       </li>
+       <li>
+        You will see: append, clear, copy, count, extend, insert, index,
+pop, remove, reverse, sort.
+       </li>
+       <li>
+        To find the length of a list, you use the built-in function
+“len”
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb22">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" href="#cb22-1" tabindex="-1"></a><span class="co"># Finding the length of the list</span></span>
+<span id="cb22-2"><a aria-hidden="true" href="#cb22-2" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(list_one))</span>
+<span id="cb22-3"><a aria-hidden="true" href="#cb22-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The length of the list is:"</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">len</span>(list_one)))</span>
+<span id="cb22-4"><a aria-hidden="true" href="#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a aria-hidden="true" href="#cb22-5" tabindex="-1"></a><span class="co"># Stick a new element on the end of the list:</span></span>
+<span id="cb22-6"><a aria-hidden="true" href="#cb22-6" tabindex="-1"></a>list_one.append(<span class="st">"new element at end"</span>)</span>
+<span id="cb22-7"><a aria-hidden="true" href="#cb22-7" tabindex="-1"></a><span class="bu">print</span>(list_one)</span>
+<span id="cb22-8"><a aria-hidden="true" href="#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a aria-hidden="true" href="#cb22-9" tabindex="-1"></a><span class="co"># Insert an element at position two (that's the third slot)</span></span>
+<span id="cb22-10"><a aria-hidden="true" href="#cb22-10" tabindex="-1"></a>list_one.insert(<span class="dv">2</span>,<span class="st">"Inserted!"</span>)</span>
+<span id="cb22-11"><a aria-hidden="true" href="#cb22-11" tabindex="-1"></a><span class="bu">print</span>(list_one)</span></code></pre>
+      </div>
+      <pre><code>4
+The length of the list is:4
+[3.14, 10, 'Fantastic', True, 'new element at end']
+[3.14, 10, 'Inserted!', 'Fantastic', True, 'new element at end']</code></pre>
+     </section>
+     <section class="slide level2" id="more-list-activities">
+      <h2>
+       More list activities
+      </h2>
+      <div class="sourceCode" id="cb24">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" href="#cb24-1" tabindex="-1"></a><span class="co"># Remove an element and store it in a variable:</span></span>
+<span id="cb24-2"><a aria-hidden="true" href="#cb24-2" tabindex="-1"></a>new_var <span class="op">=</span> list_one.pop(<span class="dv">2</span>)</span>
+<span id="cb24-3"><a aria-hidden="true" href="#cb24-3" tabindex="-1"></a><span class="bu">print</span>(list_one) <span class="co"># Note the element has disappeared</span></span>
+<span id="cb24-4"><a aria-hidden="true" href="#cb24-4" tabindex="-1"></a><span class="bu">print</span>(new_var)  <span class="co"># Here it is, stored in a variable.</span></span></code></pre>
+      </div>
+      <pre><code>[3.14, 10, 'Fantastic', True, 'new element at end']
+Inserted!</code></pre>
+      <div class="sourceCode" id="cb26">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" href="#cb26-1" tabindex="-1"></a><span class="co"># Combine (concatenate two lists using the "+" operator)</span></span>
+<span id="cb26-2"><a aria-hidden="true" href="#cb26-2" tabindex="-1"></a>list_two <span class="op">=</span> [<span class="va">False</span>, <span class="dv">62</span>, <span class="dv">55</span>, <span class="st">"Bobby"</span>]</span>
+<span id="cb26-3"><a aria-hidden="true" href="#cb26-3" tabindex="-1"></a><span class="bu">print</span>(list_one <span class="op">+</span> list_two)</span></code></pre>
+      </div>
+      <pre><code>[3.14, 10, 'Fantastic', True, 'new element at end', False, 62, 55, 'Bobby']</code></pre>
+     </section>
+     <section class="slide level2" id="slice-notation">
+      <h2>
+       Slice notation “:”
+      </h2>
+      <ul>
+       <li>
+        To pull out pieces of a list we use the slice notation, which is
+[start:stop], e.g. [3:6]
+       </li>
+       <li>
+        The first possible position is 0, and the slice will get elements up
+to, but not including stop.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb28">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" href="#cb28-1" tabindex="-1"></a><span class="co"># A list with the letters of the alphabet:</span></span>
+<span id="cb28-2"><a aria-hidden="true" href="#cb28-2" tabindex="-1"></a>alphabet <span class="op">=</span> [<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>,<span class="st">'d'</span>,<span class="st">'e'</span>,<span class="st">'f'</span>,<span class="st">'g'</span>,<span class="st">'h'</span>,<span class="st">'i'</span>,<span class="st">'j'</span>,<span class="st">'k'</span>,<span class="st">'l'</span>,<span class="st">'m'</span>,<span class="st">'n'</span>,<span class="st">'o'</span>,<span class="st">'p'</span>,<span class="st">'q'</span>,<span class="st">'r'</span>,<span class="st">'s'</span>,<span class="st">'t'</span>,<span class="st">'u'</span>,<span class="st">'v'</span>,<span class="st">'w'</span>,<span class="st">'x'</span>,<span class="st">'y'</span>,<span class="st">'z'</span>]</span>
+<span id="cb28-3"><a aria-hidden="true" href="#cb28-3" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(alphabet)) <span class="co"># A good check!</span></span></code></pre>
+      </div>
+      <pre><code>26</code></pre>
+      <div class="sourceCode" id="cb30">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" href="#cb30-1" tabindex="-1"></a><span class="bu">print</span>(alphabet[<span class="dv">0</span>])    <span class="co"># The first element</span></span>
+<span id="cb30-2"><a aria-hidden="true" href="#cb30-2" tabindex="-1"></a><span class="bu">print</span>(alphabet[<span class="dv">3</span>:<span class="dv">6</span>])  <span class="co"># d through f</span></span>
+<span id="cb30-3"><a aria-hidden="true" href="#cb30-3" tabindex="-1"></a><span class="co"># Using minus notation lets you work backwards:</span></span>
+<span id="cb30-4"><a aria-hidden="true" href="#cb30-4" tabindex="-1"></a><span class="bu">print</span>(alphabet[<span class="op">-</span><span class="dv">6</span>:<span class="op">-</span><span class="dv">3</span>]) <span class="co"># The sixth from the end, to the fourth from the end</span></span></code></pre>
+      </div>
+      <pre><code>a
+['d', 'e', 'f']
+['u', 'v', 'w']</code></pre>
+     </section>
+     <section class="slide level2" id="step-size-of-the-slice">
+      <h2>
+       Step size of the slice
+      </h2>
+      <div class="sourceCode" id="cb32">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a><span class="co"># If you use a second colon you can control the step length</span></span>
+<span id="cb32-2"><a aria-hidden="true" href="#cb32-2" tabindex="-1"></a><span class="bu">print</span>(alphabet[::<span class="dv">4</span>]) <span class="co"># Every fourth letter from the start</span></span>
+<span id="cb32-3"><a aria-hidden="true" href="#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a aria-hidden="true" href="#cb32-4" tabindex="-1"></a><span class="bu">print</span>(alphabet[::<span class="op">-</span><span class="dv">1</span>]) <span class="co"># Reverse a list</span></span></code></pre>
+      </div>
+      <pre><code>['a', 'e', 'i', 'm', 'q', 'u', 'y']
+['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']</code></pre>
+     </section>
+     <section class="slide level2" id="zipping-up-two-lists">
+      <h2>
+       Zipping up two lists
+      </h2>
+      <ul>
+       <li>
+        If you have two lists you can join up the elements in pairs
+(tuples).
+       </li>
+       <li>
+        These pairs can be put into their own list
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb34">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" href="#cb34-1" tabindex="-1"></a>list_en <span class="op">=</span> [<span class="st">"one"</span>,<span class="st">"two"</span>,<span class="st">"three"</span>]</span>
+<span id="cb34-2"><a aria-hidden="true" href="#cb34-2" tabindex="-1"></a>list_fr <span class="op">=</span> [<span class="st">"un"</span>, <span class="st">"deux"</span>,<span class="st">"troi"</span>]</span>
+<span id="cb34-3"><a aria-hidden="true" href="#cb34-3" tabindex="-1"></a></span>
+<span id="cb34-4"><a aria-hidden="true" href="#cb34-4" tabindex="-1"></a>translate <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(list_en, list_fr)) <span class="co"># zip the lists together)</span></span>
+<span id="cb34-5"><a aria-hidden="true" href="#cb34-5" tabindex="-1"></a><span class="bu">print</span>(translate)     <span class="co"># Print the whole list:</span></span>
+<span id="cb34-6"><a aria-hidden="true" href="#cb34-6" tabindex="-1"></a><span class="bu">print</span>(translate[<span class="dv">2</span>])  <span class="co"># Just the element in the third position</span></span></code></pre>
+      </div>
+      <pre><code>[('one', 'un'), ('two', 'deux'), ('three', 'troi')]
+('three', 'troi')</code></pre>
+     </section>
+     <section class="slide level2" id="sorting-a-list">
+      <h2>
+       Sorting a list
+      </h2>
+      <ul>
+       <li>
+        Lists have a “sort” method and you can also control which metric,
+elements are sorted by.
+       </li>
+       <li>
+        This is an “in-place” sort, as the original list is itself changed.
+It does not create a new copy.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb36">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a aria-hidden="true" href="#cb36-1" tabindex="-1"></a><span class="co"># My family</span></span>
+<span id="cb36-2"><a aria-hidden="true" href="#cb36-2" tabindex="-1"></a>family <span class="op">=</span> [<span class="st">"Richard"</span>, <span class="st">"Lisa"</span>, <span class="st">"David"</span>, <span class="st">"Thomas"</span>, <span class="st">"Alex"</span>]</span>
+<span id="cb36-3"><a aria-hidden="true" href="#cb36-3" tabindex="-1"></a>family.sort() <span class="co"># A plain sort</span></span>
+<span id="cb36-4"><a aria-hidden="true" href="#cb36-4" tabindex="-1"></a><span class="bu">print</span>(family)</span>
+<span id="cb36-5"><a aria-hidden="true" href="#cb36-5" tabindex="-1"></a></span>
+<span id="cb36-6"><a aria-hidden="true" href="#cb36-6" tabindex="-1"></a>family.sort(key <span class="op">=</span> <span class="bu">len</span>) <span class="co"># Sort based on the length of the name</span></span>
+<span id="cb36-7"><a aria-hidden="true" href="#cb36-7" tabindex="-1"></a><span class="bu">print</span>(family)</span></code></pre>
+      </div>
+      <pre><code>['Alex', 'David', 'Lisa', 'Richard', 'Thomas']
+['Alex', 'Lisa', 'David', 'Thomas', 'Richard']</code></pre>
+     </section>
+     <section class="slide level2" id="how-to-copy-a-list">
+      <h2>
+       How to copy a list
+      </h2>
+      <ul>
+       <li>
+        When you assign a list to a variable, it creates a reference (view
+into) the list.
+       </li>
+       <li>
+        This means that if you update the “new” list you are infact updating
+the orginal at the same time.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb38">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>old_list <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="co"># The original list</span></span>
+<span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a>new_list <span class="op">=</span> old_list <span class="co"># A reference to the original </span></span>
+<span id="cb38-3"><a aria-hidden="true" href="#cb38-3" tabindex="-1"></a>new_list[<span class="dv">4</span>] <span class="op">=</span> <span class="st">'Really?'</span> <span class="co"># Update an element in the new_list</span></span>
+<span id="cb38-4"><a aria-hidden="true" href="#cb38-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Here's the new list:"</span>, new_list) <span class="co"># As expected</span></span>
+<span id="cb38-5"><a aria-hidden="true" href="#cb38-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"And here is the original list:"</span>, old_list) <span class="co"># Realize that this list has been updated too.</span></span></code></pre>
+      </div>
+      <pre><code>Here's the new list: [0, 1, 2, 3, 'Really?', 5]
+And here is the original list: [0, 1, 2, 3, 'Really?', 5]</code></pre>
+     </section>
+     <section class="slide level2" id="copying-a-list">
+      <h2>
+       Copying a list
+      </h2>
+      <ul>
+       <li>
+        There is a list copy method “.copy()” that will give you a “fresh”
+copy of the original list.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb40">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a aria-hidden="true" href="#cb40-1" tabindex="-1"></a>old_list <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="co"># The original list</span></span>
+<span id="cb40-2"><a aria-hidden="true" href="#cb40-2" tabindex="-1"></a>new_list <span class="op">=</span> old_list.copy() <span class="co"># A genuine, independent new list</span></span>
+<span id="cb40-3"><a aria-hidden="true" href="#cb40-3" tabindex="-1"></a>new_list[<span class="dv">4</span>] <span class="op">=</span> <span class="st">'Really?'</span> <span class="co"># Update an element in the new_list</span></span>
+<span id="cb40-4"><a aria-hidden="true" href="#cb40-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Here's the new list:"</span>, new_list) <span class="co"># As expected</span></span>
+<span id="cb40-5"><a aria-hidden="true" href="#cb40-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"And here is the original list:"</span>, old_list) <span class="co"># The original list is still intact</span></span></code></pre>
+      </div>
+      <pre><code>Here's the new list: [0, 1, 2, 3, 'Really?', 5]
+And here is the original list: [0, 1, 2, 3, 4, 5]</code></pre>
+     </section>
+     <section class="slide level2" id="the-dict-data-structure">
+      <h2>
+       The dict data structure
+      </h2>
+      <ul>
+       <li>
+        The dict data structure is an extremely useful container.
+       </li>
+       <li>
+        A dict contains “key-value” pairs.
+       </li>
+       <li>
+        You don’t access a dict by position (unlike a list), but rather by
+the name of the key.
+       </li>
+       <li>
+        This can be much more efficient for looking up values, rather than
+maintaining and searching lists.
+       </li>
+       <li>
+        To create a dict directly use curly braces {}.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb42">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a aria-hidden="true" href="#cb42-1" tabindex="-1"></a><span class="co"># A "dict" structure with a key (state abbreviation) and value: a list with full state name and capital city.</span></span>
+<span id="cb42-2"><a aria-hidden="true" href="#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a aria-hidden="true" href="#cb42-3" tabindex="-1"></a>states <span class="op">=</span> {<span class="st">'PA'</span>: [<span class="st">"Pennsylvania"</span>, <span class="st">"Harrisburg"</span>], </span>
+<span id="cb42-4"><a aria-hidden="true" href="#cb42-4" tabindex="-1"></a>          <span class="st">'MD'</span>: [<span class="st">"Maryland"</span>, <span class="st">"Annapolis"</span>], </span>
+<span id="cb42-5"><a aria-hidden="true" href="#cb42-5" tabindex="-1"></a>          <span class="st">'FL'</span>: [<span class="st">"Florida"</span>, <span class="st">"Tallahassee"</span>]}</span>
+<span id="cb42-6"><a aria-hidden="true" href="#cb42-6" tabindex="-1"></a><span class="bu">print</span>(states)</span></code></pre>
+      </div>
+      <pre><code>{'PA': ['Pennsylvania', 'Harrisburg'], 'MD': ['Maryland', 'Annapolis'], 'FL': ['Florida', 'Tallahassee']}</code></pre>
+     </section>
+     <section class="slide level2" id="accessing-the-elements-of-a-dict">
+      <h2>
+       Accessing the elements of a dict
+      </h2>
+      <ul>
+       <li>
+        By using the key name, you can get at the value.
+       </li>
+       <li>
+        To see if a key is in the dict, use the “in” command, which returns
+a logical value.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb44">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a aria-hidden="true" href="#cb44-1" tabindex="-1"></a><span class="bu">print</span>(states[<span class="st">'MD'</span>]) <span class="co"># Returns the relevant list.</span></span>
+<span id="cb44-2"><a aria-hidden="true" href="#cb44-2" tabindex="-1"></a><span class="bu">print</span>(states[<span class="st">'MD'</span>][<span class="dv">1</span>]) <span class="co"># Drills down on the returned list.</span></span>
+<span id="cb44-3"><a aria-hidden="true" href="#cb44-3" tabindex="-1"></a><span class="co">'CA'</span> <span class="kw">in</span> states <span class="co"># Looks to see if one of the keys is called 'CA' </span></span></code></pre>
+      </div>
+      <pre><code>['Maryland', 'Annapolis']
+Annapolis
+
+
+
+
+
+False</code></pre>
+     </section>
+     <section class="slide level2" id="adding-and-removing-elements-to-the-dict">
+      <h2>
+       Adding and removing elements to the ‘dict’
+      </h2>
+      <ul>
+       <li>
+        Using a key that does not yet exist, automatically creates a new
+key-value.
+       </li>
+       <li>
+        The del
+        <em>
+         keyword
+        </em>
+        and pop method, delete and extract
+values.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb46">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a aria-hidden="true" href="#cb46-1" tabindex="-1"></a><span class="co"># Add a new element</span></span>
+<span id="cb46-2"><a aria-hidden="true" href="#cb46-2" tabindex="-1"></a>states[<span class="st">'OR'</span>] <span class="op">=</span> [<span class="st">"Oregon"</span>, <span class="st">"Eugene"</span>]</span>
+<span id="cb46-3"><a aria-hidden="true" href="#cb46-3" tabindex="-1"></a><span class="bu">print</span>(states)</span>
+<span id="cb46-4"><a aria-hidden="true" href="#cb46-4" tabindex="-1"></a><span class="kw">del</span> states[<span class="st">'MD'</span>] <span class="co"># Delete the 'MD' element using the "del" Python keyword.</span></span>
+<span id="cb46-5"><a aria-hidden="true" href="#cb46-5" tabindex="-1"></a><span class="bu">print</span>(states)</span>
+<span id="cb46-6"><a aria-hidden="true" href="#cb46-6" tabindex="-1"></a>states.pop(<span class="st">'PA'</span>) <span class="co"># Remove and return the PA element</span></span></code></pre>
+      </div>
+      <pre><code>{'PA': ['Pennsylvania', 'Harrisburg'], 'MD': ['Maryland', 'Annapolis'], 'FL': ['Florida', 'Tallahassee'], 'OR': ['Oregon', 'Eugene']}
+{'PA': ['Pennsylvania', 'Harrisburg'], 'FL': ['Florida', 'Tallahassee'], 'OR': ['Oregon', 'Eugene']}
+
+
+
+
+
+['Pennsylvania', 'Harrisburg']</code></pre>
+     </section>
+     <section class="slide level2" id="getting-all-the-keys-or-values-in-a-dict">
+      <h2>
+       Getting all the keys or values in a ‘dict’
+      </h2>
+      <ul>
+       <li>
+        To get at all the keys in a dict use the .keys() method.
+       </li>
+       <li>
+        To get at all the values in a dict, use the .values() method.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb48">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a aria-hidden="true" href="#cb48-1" tabindex="-1"></a><span class="co"># The keys of the dict, contained in a list.</span></span>
+<span id="cb48-2"><a aria-hidden="true" href="#cb48-2" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(states.keys()))</span>
+<span id="cb48-3"><a aria-hidden="true" href="#cb48-3" tabindex="-1"></a></span>
+<span id="cb48-4"><a aria-hidden="true" href="#cb48-4" tabindex="-1"></a><span class="co"># The values of the dict, contained in a list.</span></span>
+<span id="cb48-5"><a aria-hidden="true" href="#cb48-5" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(states.values()))</span></code></pre>
+      </div>
+      <pre><code>['FL', 'OR']
+[['Florida', 'Tallahassee'], ['Oregon', 'Eugene']]</code></pre>
+     </section>
+     <section class="slide level2" id="editing-a-value-in-the-dict">
+      <h2>
+       Editing a value in the dict
+      </h2>
+      <ul>
+       <li>
+        The capital of Oregon is ‘Salem’, not ‘Eugene’.
+       </li>
+       <li>
+        We can drill down into the dict and assign it the new value:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb50">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a aria-hidden="true" href="#cb50-1" tabindex="-1"></a><span class="co"># The key is 'OR', and the capital city is in the second slot in the list:</span></span>
+<span id="cb50-2"><a aria-hidden="true" href="#cb50-2" tabindex="-1"></a>states[<span class="st">'OR'</span>][<span class="dv">1</span>] <span class="op">=</span> <span class="st">'Salem'</span></span>
+<span id="cb50-3"><a aria-hidden="true" href="#cb50-3" tabindex="-1"></a><span class="bu">print</span>(states)</span></code></pre>
+      </div>
+      <pre><code>{'FL': ['Florida', 'Tallahassee'], 'OR': ['Oregon', 'Salem']}</code></pre>
+     </section>
+     <section class="slide level2" id="tuples">
+      <h2>
+       tuples
+      </h2>
+      <ul>
+       <li>
+        tuples are quite similar to lists, in that you access elements by
+position, but they are “fixed”.
+       </li>
+       <li>
+        You can’t change the number of elements in the tuple.
+       </li>
+       <li>
+        You can’t change the objects stored in each slot.
+       </li>
+       <li>
+        The formal term is that they are “immutable”. It is like they are
+set in concrete.
+       </li>
+       <li>
+        You can create them just by using a comma separated set of values,
+or use the parentheses() for readability.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb52">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a aria-hidden="true" href="#cb52-1" tabindex="-1"></a><span class="co"># A tuple with four elements</span></span>
+<span id="cb52-2"><a aria-hidden="true" href="#cb52-2" tabindex="-1"></a>tuple_one <span class="op">=</span> <span class="fl">2.1</span>, <span class="st">'pi'</span>, <span class="st">"hello"</span>, <span class="va">False</span></span>
+<span id="cb52-3"><a aria-hidden="true" href="#cb52-3" tabindex="-1"></a><span class="bu">print</span>(tuple_one)</span>
+<span id="cb52-4"><a aria-hidden="true" href="#cb52-4" tabindex="-1"></a></span>
+<span id="cb52-5"><a aria-hidden="true" href="#cb52-5" tabindex="-1"></a><span class="co"># Accessing elements (2 and 3) by position:</span></span>
+<span id="cb52-6"><a aria-hidden="true" href="#cb52-6" tabindex="-1"></a><span class="bu">print</span>(tuple_one[<span class="dv">1</span>:<span class="dv">3</span>])</span>
+<span id="cb52-7"><a aria-hidden="true" href="#cb52-7" tabindex="-1"></a><span class="bu">print</span>(tuple_one[<span class="op">-</span><span class="dv">2</span>:<span class="op">-</span><span class="dv">1</span>]) <span class="co"># The penultimate element.</span></span>
+<span id="cb52-8"><a aria-hidden="true" href="#cb52-8" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(tuple_one)) <span class="co"># The number of elements in the tuple.</span></span></code></pre>
+      </div>
+      <pre><code>(2.1, 'pi', 'hello', False)
+('pi', 'hello')
+('hello',)
+4</code></pre>
+     </section>
+     <section class="slide level2" id="assignment-of-tuples">
+      <h2>
+       Assignment of tuples
+      </h2>
+      <ul>
+       <li>
+        You can take the elements of a tuple and store them in
+variables.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb54">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a aria-hidden="true" href="#cb54-1" tabindex="-1"></a>a, b, c, d <span class="op">=</span> tuple_one <span class="co"># Unpack the tuple to variables</span></span>
+<span id="cb54-2"><a aria-hidden="true" href="#cb54-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The variable 'b' contains the value: "</span> <span class="op">+</span> b)</span>
+<span id="cb54-3"><a aria-hidden="true" href="#cb54-3" tabindex="-1"></a>e, f <span class="op">=</span> tuple_one <span class="co"># If there aren't enough variables the assignment fails.</span></span></code></pre>
+      </div>
+      <pre><code>The variable 'b' contains the value: pi
+
+
+
+---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+Cell In[28], line 3
+      1 a, b, c, d = tuple_one # Unpack the tuple to variables
+      2 print("The variable 'b' contains the value: " + b)
+----&gt; 3 e, f = tuple_one # If there aren't enough variables the assignment fails.
+
+
+ValueError: too many values to unpack (expected 2)</code></pre>
+     </section>
+     <section class="slide level2" id="collecting-the-tuple-assignment-left-overs">
+      <h2>
+       Collecting the tuple assignment left-overs
+      </h2>
+      <div class="sourceCode" id="cb56">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a aria-hidden="true" href="#cb56-1" tabindex="-1"></a><span class="co"># The below syntax will collect all remaining elements into a catch-all variable.</span></span>
+<span id="cb56-2"><a aria-hidden="true" href="#cb56-2" tabindex="-1"></a><span class="co"># Note the "*" in front of the left_overs variable, which means it can accept any number of variables.</span></span>
+<span id="cb56-3"><a aria-hidden="true" href="#cb56-3" tabindex="-1"></a>e, f, <span class="op">*</span>left_overs <span class="op">=</span> tuple_one </span>
+<span id="cb56-4"><a aria-hidden="true" href="#cb56-4" tabindex="-1"></a><span class="bu">print</span>(left_overs)</span></code></pre>
+      </div>
+      <pre><code>['hello', False]</code></pre>
+     </section>
+     <section class="slide level2" id="the-set-container">
+      <h2>
+       The set container
+      </h2>
+      <ul>
+       <li>
+        The set container has
+        <em>
+         no ordering
+        </em>
+        (so you can’t access it
+by position), and its elements are unique.
+       </li>
+       <li>
+        Which is the same as a
+        <em>
+         set
+        </em>
+        in mathematics.
+       </li>
+       <li>
+        Like a dict, they can be created using the curly brackets {}.
+       </li>
+       <li>
+        They can also be created by using the set function.
+       </li>
+       <li>
+        The set is mutable, but its elements must be immutable.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb58">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a aria-hidden="true" href="#cb58-1" tabindex="-1"></a><span class="co"># Make a first set</span></span>
+<span id="cb58-2"><a aria-hidden="true" href="#cb58-2" tabindex="-1"></a>set_one <span class="op">=</span> {<span class="st">'a'</span>, <span class="st">'d'</span>, <span class="st">'d'</span>, <span class="st">'yes'</span>, <span class="va">True</span>, <span class="fl">3.13</span>, <span class="st">'d'</span>}</span>
+<span id="cb58-3"><a aria-hidden="true" href="#cb58-3" tabindex="-1"></a><span class="bu">print</span>(set_one) <span class="co"># Note how duplicate values are discarded.</span></span>
+<span id="cb58-4"><a aria-hidden="true" href="#cb58-4" tabindex="-1"></a><span class="co"># And now a second one</span></span>
+<span id="cb58-5"><a aria-hidden="true" href="#cb58-5" tabindex="-1"></a>set_two <span class="op">=</span> <span class="bu">set</span>([<span class="st">'fifteen'</span>, <span class="st">'yes'</span>, <span class="fl">42.3</span>, <span class="fl">42.3</span>, <span class="fl">3.13</span>, <span class="st">'fifteen'</span>, <span class="st">'a'</span>])</span>
+<span id="cb58-6"><a aria-hidden="true" href="#cb58-6" tabindex="-1"></a><span class="bu">print</span>(set_two)</span></code></pre>
+      </div>
+      <pre><code>{True, 3.13, 'd', 'yes', 'a'}
+{3.13, 'fifteen', 42.3, 'yes', 'a'}</code></pre>
+     </section>
+     <section class="slide level2" id="operations-on-sets">
+      <h2>
+       Operations on sets
+      </h2>
+      <ul>
+       <li>
+        The two main operations on sets are to find their union and their
+intersection.
+       </li>
+       <li>
+        The union comprises all elements in the two sets.
+       </li>
+       <li>
+        The intersection are those elements that appear in both sets.
+       </li>
+       <li>
+        You can also find the number of elements in a set using the len
+command again.
+       </li>
+       <li>
+        To see all the operations on sets use tab completion, type in
+set_one. and then hit the tab key.
+       </li>
+       <li>
+        Another useful set method is “difference”, which shows you which
+elements are in one set, but not the other.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb60">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a aria-hidden="true" href="#cb60-1" tabindex="-1"></a><span class="bu">print</span>(set_one.union(set_two))         <span class="co"># The union of two sets</span></span>
+<span id="cb60-2"><a aria-hidden="true" href="#cb60-2" tabindex="-1"></a><span class="bu">print</span>(set_one.intersection(set_two))  <span class="co"># The intersection of the two sets</span></span>
+<span id="cb60-3"><a aria-hidden="true" href="#cb60-3" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(set_one))                   <span class="co"># The number of elements in set_one</span></span></code></pre>
+      </div>
+      <pre><code>{True, 3.13, 'a', 'fifteen', 42.3, 'yes', 'd'}
+{3.13, 'a', 'yes'}
+5</code></pre>
+     </section>
+     <section class="slide level2" id="an-example-using-sets">
+      <h2>
+       An example using sets
+      </h2>
+      <div class="sourceCode" id="cb62">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a aria-hidden="true" href="#cb62-1" tabindex="-1"></a>class_list <span class="op">=</span> {<span class="st">'Mary'</span>, <span class="st">'Bridget'</span>, <span class="st">'Bill'</span>, <span class="st">'Andreas'</span>, <span class="st">'Matt'</span>, <span class="st">'Cecilia'</span>}</span>
+<span id="cb62-2"><a aria-hidden="true" href="#cb62-2" tabindex="-1"></a>test_takers <span class="op">=</span> {<span class="st">'Bill'</span>, <span class="st">'Bridget'</span>, <span class="st">'Andreas'</span>, <span class="st">'Bruno'</span>}</span>
+<span id="cb62-3"><a aria-hidden="true" href="#cb62-3" tabindex="-1"></a><span class="co"># 1. Who is in the class and took the test?</span></span>
+<span id="cb62-4"><a aria-hidden="true" href="#cb62-4" tabindex="-1"></a><span class="co"># 2. Who is in the class, but didn't take the test?</span></span>
+<span id="cb62-5"><a aria-hidden="true" href="#cb62-5" tabindex="-1"></a><span class="co"># 3. Who took the test, but isn't registered for the class?</span></span>
+<span id="cb62-6"><a aria-hidden="true" href="#cb62-6" tabindex="-1"></a></span>
+<span id="cb62-7"><a aria-hidden="true" href="#cb62-7" tabindex="-1"></a><span class="bu">print</span> (class_list.intersection(test_takers))</span>
+<span id="cb62-8"><a aria-hidden="true" href="#cb62-8" tabindex="-1"></a><span class="bu">print</span> (class_list.difference(test_takers))</span>
+<span id="cb62-9"><a aria-hidden="true" href="#cb62-9" tabindex="-1"></a><span class="bu">print</span> (test_takers.difference(class_list))</span></code></pre>
+      </div>
+      <pre><code>{'Andreas', 'Bill', 'Bridget'}
+{'Mary', 'Cecilia', 'Matt'}
+{'Bruno'}</code></pre>
+     </section>
+     <section class="slide level2" id="which-container-should-you-use">
+      <h2>
+       Which container should you use?
+      </h2>
+      <ul>
+       <li>
+        This will be very dependent on the objective of the problem.
+       </li>
+       <li>
+        A dictionary is going to be useful when you are frequently looking
+up values by name.
+       </li>
+       <li>
+        A list will be useful, when there is an ordered type structure to
+the underlying data and you are looking things up by position.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="summary">
+      <h1>
+       Summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary-1">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        Got to know the Spyder IDE.
+       </li>
+       <li>
+        Used the console for interactive Python activities.
+       </li>
+       <li>
+        Aware of various data types.
+       </li>
+       <li>
+        Introduced to four built-in Python data structures.
+       </li>
+       <li>
+        Accessed lists and dicts through
+        <em>
+         slicing
+        </em>
+        .
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        More Python essentials:
+        <ul>
+         <li>
+          Control flow
+          <ul>
+           <li>
+            Branching
+           </li>
+           <li>
+            Iteration
+           </li>
+          </ul>
+         </li>
+         <li>
+          List comprehensions
+         </li>
+        </ul>
+       </li>
+       <li>
+        Jupyter notebooks
+       </li>
+       <li>
+        Markdown
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
