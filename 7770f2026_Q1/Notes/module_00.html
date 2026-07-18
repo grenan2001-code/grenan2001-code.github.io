@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 00
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 00
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      August 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="welcome-to-the-course">
+      <h1>
+       Welcome to the course
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        Learn how to code Python.
+       </li>
+       <li>
+        Focus on applications for data science.
+       </li>
+       <li>
+        Familiarize with popular data science libraries.
+       </li>
+       <li>
+        Learn about the statistical underpinnings of the analyses.
+       </li>
+       <li>
+        Have some fun!
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="syllabus-review">
+      <h2>
+       Syllabus review
+      </h2>
+      <ul>
+       <li>
+        You read it.
+       </li>
+       <li>
+        I’ll review it.
+       </li>
+       <li>
+        Resources, including Canvas.
+       </li>
+       <li>
+        Deliverables.
+       </li>
+       <li>
+        Schedule.
+       </li>
+       <li>
+        Grading.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="python-and-data-science">
+      <h1>
+       Python and “Data Science”
+      </h1>
+     </section>
+     <section class="slide level2" id="what-is-data-science-anyway">
+      <h2>
+       What is Data Science anyway?
+      </h2>
+      <ul>
+       <li>
+        A Data Scientist is usually involved in various parts of the
+analytics pipeline:
+        <ul>
+         <li>
+          Data capture.
+         </li>
+         <li>
+          Data maintenance.
+         </li>
+         <li>
+          Data exploration and analysis.
+         </li>
+         <li>
+          Reporting and presentation.
+         </li>
+        </ul>
+       </li>
+       <li>
+        What’s the difference between a data scientist and a
+statistician?
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="top-ten-reasons-for-liking-python">
+      <h2>
+       Top ten reasons for liking Python
+      </h2>
+      <ol type="1">
+       <li>
+        The most popular language for data science (R is great too).
+       </li>
+       <li>
+        In demand/preferred skill.
+       </li>
+       <li>
+        All purpose software engineering framework (good at many different
+things).
+       </li>
+       <li>
+        Great for scientific computing (e.g. using numpy and machine
+learning libraries).
+       </li>
+       <li>
+        Scripting (formalizing a set of repetitive/boring tasks).
+       </li>
+      </ol>
+     </section>
+     <section class="slide level2" id="top-ten-reasons-for-liking-python-ctd.">
+      <h2>
+       Top ten reasons for liking Python (ctd.)
+      </h2>
+      <ol start="6" type="1">
+       <li>
+        Open source (good price).
+       </li>
+       <li>
+        Extensible (add-on packages for specific activities, e.g
+visualization).
+       </li>
+       <li>
+        Large support community.
+       </li>
+       <li>
+        Generous learning curve.
+       </li>
+       <li>
+        At least 10 more reasons!
+       </li>
+      </ol>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="by-the-end-of-the-course">
+      <h1>
+       By the end of the course …
+      </h1>
+     </section>
+     <section class="slide level2" id="code-some-python">
+      <h2>
+       Code some python
+      </h2>
+      <p>
+       <img data-src="images/spyder.png" height="360" width="640"/>
+      </p>
+     </section>
+     <section class="slide level2" id="in-6-weeks-the-code-below-should-make-sense">
+      <h2>
+       In 6 weeks, the code below should make sense!
+      </h2>
+      <div class="sourceCode" id="cb1">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="co"># Recode the levels of a categorical variable</span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="bu">print</span>(carTable[<span class="st">'Transmission'</span>].value_counts())</span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>recodes <span class="op">=</span> {<span class="st">'A'</span>:<span class="st">'Automatic'</span>,<span class="st">'AS'</span>:<span class="st">'Automatic'</span>,<span class="st">'AV'</span>:<span class="st">'Automatic'</span>, <span class="st">'M'</span>:<span class="st">'Manual'</span>}</span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a>carTable[<span class="st">'Transmission'</span>] <span class="op">=</span> carTable[<span class="st">'Transmission'</span>].<span class="bu">map</span>(recodes)</span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a><span class="bu">print</span>(carTable.Transmission.value_counts())</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="retrieve-data-from-various-sources">
+      <h2>
+       Retrieve data (from various sources)
+      </h2>
+      <div class="sourceCode" id="cb2">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> tree</span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a><span class="co"># This is where the data lives:</span></span>
+<span id="cb2-6"><a aria-hidden="true" href="#cb2-6" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">7770f2026_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>)</span>
+<span id="cb2-7"><a aria-hidden="true" href="#cb2-7" tabindex="-1"></a><span class="co">#print(os.getcwd())</span></span>
+<span id="cb2-8"><a aria-hidden="true" href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a aria-hidden="true" href="#cb2-9" tabindex="-1"></a>carTable <span class="op">=</span> pd.read_csv(<span class="st">"Car08_just_499.csv"</span>)</span>
+<span id="cb2-10"><a aria-hidden="true" href="#cb2-10" tabindex="-1"></a><span class="bu">print</span>(carTable)</span></code></pre>
+      </div>
+      <pre><code>     Make/Model  MPG_City  MPG_Hwy  Weight(lb)  Seating  Horsepower  HP/Pound  \
+0      Acura_RL        16       24        4014        5         290  0.072247   
+1      Acura_TL        17       26        3674        5         286  0.077844   
+2      Acura_TL        18       27        3559        5         286  0.080360   
+3     Acura_TSX        20       28        3345        5         205  0.061285   
+4     Acura_TSX        19       28        3257        5         205  0.062941   
+..          ...       ...      ...         ...      ...         ...       ...   
+494   Volvo_V50        20       28        3321        5         168  0.050587   
+495   Volvo_V70        16       24        3527        5         235  0.066629   
+496  Volvo_XC90        14       20        4356        5         235  0.053949   
+497  Volvo_XC70        15       22        4092        5         235  0.057429   
+498  Volvo_XC90        13       19        4826        7         311  0.064443   
+
+     Displacement  Cylinders  Origin Transmission     EPA_Class  Length Fuel  \
+0             3.5          6       3           AS       midsize   193.6  gas   
+1             3.5          6       3           AS       midsize   189.3  gas   
+2             3.5          6       3            M       midsize   189.3  gas   
+3             2.4          4       3           AS       compact   186.2  gas   
+4             2.4          4       3            M       compact   186.2  gas   
+..            ...        ...     ...          ...           ...     ...  ...   
+494           2.4          5       2           AS    smallwagon   178.0  gas   
+495           3.2          6       2           AS  midsizewagon   189.9  gas   
+496           3.2          6       2           AS          suv2   189.3  gas   
+497           3.2          6       2           AS          suv4   190.5  gas   
+498           4.4          8       2           AS          suv4   189.3  gas   
+
+    HEV Turbocharger   Make Model  GP1000M_City  GP1000M_Hwy  
+0    no           no  Acura    RL     62.500000    41.666667  
+1    no           no  Acura    TL     58.823529    38.461539  
+2    no           no  Acura    TL     55.555556    37.037037  
+3    no           no  Acura   TSX     50.000000    35.714286  
+4    no           no  Acura   TSX     52.631579    35.714286  
+..   ..          ...    ...   ...           ...          ...  
+494  no           no  Volvo   V50     50.000000    35.714286  
+495  no           no  Volvo   V70     62.500000    41.666667  
+496  no           no  Volvo  XC90     71.428571    50.000000  
+497  no           no  Volvo  XC70     66.666667    45.454546  
+498  no           no  Volvo  XC90     76.923077    52.631579  
+
+[499 rows x 20 columns]</code></pre>
+     </section>
+     <section class="slide level2" id="retrieve-from-a-data-base">
+      <h2>
+       Retrieve from a data base
+      </h2>
+      <div class="sourceCode" id="cb4">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="co"># In the terminal or powershell type 'pip install pymysql', to install mysql connector</span></span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb4-3"><a aria-hidden="true" href="#cb4-3" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>) <span class="co"># Turn off warnings</span></span>
+<span id="cb4-4"><a aria-hidden="true" href="#cb4-4" tabindex="-1"></a><span class="im">import</span> pymysql</span>
+<span id="cb4-5"><a aria-hidden="true" href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a aria-hidden="true" href="#cb4-6" tabindex="-1"></a>conn <span class="op">=</span> pymysql.<span class="ex">connect</span>(</span>
+<span id="cb4-7"><a aria-hidden="true" href="#cb4-7" tabindex="-1"></a>                host<span class="op">=</span><span class="st">'mathmba.com'</span>,          <span class="co"># Hostname for local machine</span></span>
+<span id="cb4-8"><a aria-hidden="true" href="#cb4-8" tabindex="-1"></a>                user<span class="op">=</span><span class="st">'stat705_student'</span>,      <span class="co"># Replace with your MySQL username</span></span>
+<span id="cb4-9"><a aria-hidden="true" href="#cb4-9" tabindex="-1"></a>                password<span class="op">=</span><span class="st">'$[h0CC*TtKO~'</span>,  <span class="co"># Replace with your MySQL password</span></span>
+<span id="cb4-10"><a aria-hidden="true" href="#cb4-10" tabindex="-1"></a>                database<span class="op">=</span><span class="st">'STAT705X'</span>         <span class="co"># Replace with your database name</span></span>
+<span id="cb4-11"><a aria-hidden="true" href="#cb4-11" tabindex="-1"></a>                )</span>
+<span id="cb4-12"><a aria-hidden="true" href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a aria-hidden="true" href="#cb4-13" tabindex="-1"></a>survey_from_db <span class="op">=</span> pd.read_sql(<span class="st">"SELECT * FROM RESPONSES"</span>, conn, index_col<span class="op">=</span><span class="st">'MYID'</span>)</span>
+<span id="cb4-14"><a aria-hidden="true" href="#cb4-14" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(survey_from_db)) <span class="co"># Confirm we have a data frame.</span></span>
+<span id="cb4-15"><a aria-hidden="true" href="#cb4-15" tabindex="-1"></a>    </span></code></pre>
+      </div>
+      <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
+     </section>
+     <section class="slide level2" id="reviewing-the-downloaded-data">
+      <h2>
+       Reviewing the downloaded data
+      </h2>
+      <div class="sourceCode" id="cb6">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a><span class="bu">print</span>(survey_from_db.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>          Q1    Q2   Q3
+MYID                   
+98616981   B  EAST  YES
+31004395   A  EAST   NO
+42889147  A-  EAST   NO
+3215038    A  EAST   NO
+21698690  B+  EAST   NO</code></pre>
+     </section>
+     <section class="slide level2" id="learn-some-core-stats-ideas">
+      <h2>
+       Learn some core stats ideas
+      </h2>
+      <p>
+       Making inferences:
+      </p>
+      <p>
+       <img data-src="images/emp_rule.png" height="360" width="540"/>
+      </p>
+     </section>
+     <section class="slide level2" id="clean-and-wrangle-data">
+      <h2>
+       Clean and wrangle data
+      </h2>
+      <div class="sourceCode" id="cb8">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a><span class="co"># Recode the levels of a categorical variable</span></span>
+<span id="cb8-2"><a aria-hidden="true" href="#cb8-2" tabindex="-1"></a><span class="bu">print</span>(carTable[<span class="st">'Transmission'</span>].value_counts())</span>
+<span id="cb8-3"><a aria-hidden="true" href="#cb8-3" tabindex="-1"></a>recodes <span class="op">=</span> {<span class="st">'A'</span>:<span class="st">'Automatic'</span>,<span class="st">'AS'</span>:<span class="st">'Automatic'</span>,<span class="st">'AV'</span>:<span class="st">'Automatic'</span>, <span class="st">'M'</span>:<span class="st">'Manual'</span>}</span>
+<span id="cb8-4"><a aria-hidden="true" href="#cb8-4" tabindex="-1"></a>carTable[<span class="st">'Transmission'</span>] <span class="op">=</span> carTable[<span class="st">'Transmission'</span>].<span class="bu">map</span>(recodes)</span>
+<span id="cb8-5"><a aria-hidden="true" href="#cb8-5" tabindex="-1"></a><span class="bu">print</span>(carTable.Transmission.value_counts())</span></code></pre>
+      </div>
+      <pre><code>Transmission
+A     217
+AS    129
+M     122
+AV     31
+Name: count, dtype: int64
+Transmission
+Automatic    377
+Manual       122
+Name: count, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="graphical-exploration-of-data">
+      <h2>
+       Graphical exploration of data
+      </h2>
+      <div class="sourceCode" id="cb10">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb10-3"><a aria-hidden="true" href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a aria-hidden="true" href="#cb10-4" tabindex="-1"></a>sns.boxplot(x <span class="op">=</span> <span class="st">'Transmission'</span>, y <span class="op">=</span> <span class="st">'GP1000M_City'</span>, data <span class="op">=</span> carTable)</span>
+<span id="cb10-5"><a aria-hidden="true" href="#cb10-5" tabindex="-1"></a>plt.title(<span class="st">'Fuel economy by transmission type'</span>)</span></code></pre>
+      </div>
+      <pre><code>Text(0.5, 1.0, 'Fuel economy by transmission type')</code></pre>
+      <p>
+       <img data-src="module_00_files/module_00_21_1.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="bivariate-relationships">
+      <h2>
+       Bivariate relationships
+      </h2>
+      <div class="sourceCode" id="cb12">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> <span class="st">'Weight(lb)'</span>, y <span class="op">=</span> <span class="st">'GP1000M_City'</span>, hue<span class="op">=</span><span class="st">'Transmission'</span>, data<span class="op">=</span>carTable, style<span class="op">=</span><span class="st">'Transmission'</span>, </span>
+<span id="cb12-2"><a aria-hidden="true" href="#cb12-2" tabindex="-1"></a>                    palette<span class="op">=</span>[<span class="st">'green'</span>,<span class="st">'orange'</span>], legend<span class="op">=</span><span class="st">'full'</span>)<span class="op">;</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_00_files/module_00_23_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="create-predictive-models">
+      <h2>
+       Create predictive models
+      </h2>
+      <div class="sourceCode" id="cb13">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a><span class="co"># A scatterplot with the linear regression line and confidence bands</span></span>
+<span id="cb13-2"><a aria-hidden="true" href="#cb13-2" tabindex="-1"></a>sns.regplot(x<span class="op">=</span>carTable[<span class="st">'Weight(lb)'</span>], y<span class="op">=</span>carTable[<span class="st">'GP1000M_City'</span>], color <span class="op">=</span><span class="st">'blue'</span>)<span class="op">;</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_00_files/module_00_25_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="fit-a-regression-tree">
+      <h2>
+       Fit a regression tree
+      </h2>
+      <div class="sourceCode" id="cb14">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a>X <span class="op">=</span> carTable[[<span class="st">'Weight(lb)'</span>, <span class="st">'Displacement'</span>, <span class="st">'Horsepower'</span>]]</span>
+<span id="cb14-4"><a aria-hidden="true" href="#cb14-4" tabindex="-1"></a>y <span class="op">=</span> carTable[<span class="st">'GP1000M_City'</span>]</span>
+<span id="cb14-5"><a aria-hidden="true" href="#cb14-5" tabindex="-1"></a>regtree <span class="op">=</span> tree.DecisionTreeRegressor(max_leaf_nodes <span class="op">=</span> <span class="dv">7</span>)</span>
+<span id="cb14-6"><a aria-hidden="true" href="#cb14-6" tabindex="-1"></a>regtree <span class="op">=</span> regtree.fit(X, y,)</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="visualize-models">
+      <h2>
+       Visualize models
+      </h2>
+      <div class="sourceCode" id="cb15">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">7770f2026_Q1</span><span class="ch">\\</span><span class="st">Notes'</span>)</span>
+<span id="cb15-2"><a aria-hidden="true" href="#cb15-2" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(num<span class="op">=</span><span class="va">None</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">9</span>), dpi<span class="op">=</span><span class="dv">80</span>, facecolor<span class="op">=</span><span class="st">'w'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb15-3"><a aria-hidden="true" href="#cb15-3" tabindex="-1"></a>plot_tree(regtree, filled<span class="op">=</span><span class="va">True</span>, feature_names<span class="op">=</span><span class="bu">list</span>(X.columns))</span>
+<span id="cb15-4"><a aria-hidden="true" href="#cb15-4" tabindex="-1"></a>plt.savefig(<span class="st">'images/tree_01.png'</span>,  bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb15-5"><a aria-hidden="true" href="#cb15-5" tabindex="-1"></a>plt.close(fig)</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="visualize-models-1">
+      <h2>
+       Visualize models
+      </h2>
+      <p>
+       <img data-src="images/tree_01.png" height="447" width="608"/>
+      </p>
+     </section>
+     <section class="slide level2" id="scientific-computing">
+      <h2>
+       Scientific computing
+      </h2>
+      <div class="sourceCode" id="cb16">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># The key library</span></span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image <span class="co"># PIL is an image processing library</span></span>
+<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">4770f2025_Q1</span><span class="ch">\\</span><span class="st">Notes</span><span class="ch">\\</span><span class="st">images'</span>)</span>
+<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">"sophy_bw.bmp"</span>) <span class="co"># Open up Sophy's image.</span></span>
+<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a>sophy <span class="op">=</span> np.array(im) <span class="co"># Turn Sophy's image into a numpy array.</span></span>
+<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a><span class="bu">print</span>(sophy.shape) <span class="co"># Confirm her shape.</span></span>
+<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a>sophy[<span class="dv">128</span>:<span class="dv">160</span>, <span class="dv">128</span>:<span class="dv">160</span>] <span class="co"># Review a small piece of Sophy </span></span></code></pre>
+      </div>
+      <pre><code>(256, 256)
+
+
+
+
+
+array([[False, False, False, ...,  True,  True,  True],
+       [False, False, False, ...,  True,  True,  True],
+       [False, False, False, ...,  True,  True,  True],
+       ...,
+       [ True,  True,  True, ...,  True,  True,  True],
+       [ True,  True,  True, ...,  True,  True,  True],
+       [ True,  True,  True, ...,  True,  True,  True]], shape=(32, 32))</code></pre>
+     </section>
+     <section class="slide level2" id="poor-sophy">
+      <h2>
+       Poor Sophy!
+      </h2>
+      <ul>
+       <li>
+        Below we have Sophy’s logical not (the negative of the image), and
+her transpose.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/sophy_reverse.png" height="256" width="256"/>
+       <img data-src="images/sophy_transpose.png" height="256" width="256"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="class-summary">
+      <h1>
+       Class summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        Objectives.
+       </li>
+       <li>
+        Syllabus review.
+       </li>
+       <li>
+        Deliverables.
+       </li>
+       <li>
+        Resources.
+       </li>
+       <li>
+        Reasons why Python is so popular.
+       </li>
+       <li>
+        Got a sense of the types of data activities we will learn to
+do.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        Opening the Spyder IDE
+        <ul>
+         <li>
+          Introduction to interactive Python
+         </li>
+         <li>
+          Getting help
+         </li>
+        </ul>
+       </li>
+       <li>
+        Types of data
+       </li>
+       <li>
+        Storing data in variables
+       </li>
+       <li>
+        Data structures
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
