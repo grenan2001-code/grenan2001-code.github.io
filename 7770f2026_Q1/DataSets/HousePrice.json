@@ -1,0 +1,42 @@
+[
+ {
+  "HousePrice" : 66803,
+  "Name" : "Collindale"
+ },
+ {
+  "HousePrice" : 104923,
+  "Name" : "Downingtown"
+ },
+ {
+  "HousePrice" : 114233,
+  "Name" : "Falls Town"
+ },
+ {
+  "HousePrice" : 114572,
+  "Name" : "Hatboro"
+ },
+ {
+  "HousePrice" : 112471,
+  "Name" : "Lansdale"
+ },
+ {
+  "HousePrice" : 99843,
+  "Name" : "Norwood"
+ },
+ {
+  "HousePrice" : 74308,
+  "Name" : "Sharon Hill"
+ },
+ {
+  "HousePrice" : 147176,
+  "Name" : "Springfield"
+ },
+ {
+  "HousePrice" : 199065,
+  "Name" : "Upper Darby"
+ },
+ {
+  "HousePrice" : 130953,
+  "Name" : "Yardley"
+ }
+]
