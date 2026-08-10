@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 02
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 02
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      August 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        Jupyter notebooks
+       </li>
+       <li>
+        Markdown
+       </li>
+       <li>
+        More Python essentials:
+        <ul>
+         <li>
+          Control flow
+          <ul>
+           <li>
+            Branching
+           </li>
+           <li>
+            Iteration
+           </li>
+          </ul>
+         </li>
+         <li>
+          List comprehensions
+         </li>
+        </ul>
+       </li>
+       <li>
+        Summary
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="jupyter-notebooks">
+      <h1>
+       Jupyter notebooks
+      </h1>
+     </section>
+     <section class="slide level2" id="jupyter-notebooks-1">
+      <h2>
+       Jupyter notebooks
+      </h2>
+      <ul>
+       <li>
+        Jupyter notebooks are a popular way of facilitating interactive
+computing and sharing code and results with others.
+       </li>
+       <li>
+        You can turn your Jupyter notebook into a slide show (that’s how I
+make these slides).
+       </li>
+       <li>
+        It’s a preferred platform for producing and sharing data science and
+scientific computing code and results.
+       </li>
+       <li>
+        It encourages an interactive exploration of your data.
+       </li>
+       <li>
+        It also encourages
+        <em>
+         reproducible research
+        </em>
+        by closely binding
+data, analyses and results.
+       </li>
+       <li>
+        It isn’t just used for Python, so if you use learn other computing
+languages, you can still probably use Jupyter notebooks.
+       </li>
+       <li>
+        You can think of a notebook as an interactive, multimedia script
+file.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="a-first-look-at-a-notebook-and-the-interface">
+      <h2>
+       A first look at a notebook and the interface
+      </h2>
+      <ul>
+       <li>
+        Our first task will be to create a new notebook.
+       </li>
+       <li>
+        Once created we will look at some basic notebook functionality.
+       </li>
+       <li>
+        The key idea is that of “cells”.
+       </li>
+       <li>
+        Cells can contain Python code or markdown (a narrative cell).
+       </li>
+       <li>
+        Starting the notebook server will take you to a dashboard from which
+you can create a new notebook.
+        <br/>
+       </li>
+       <li>
+        If you already have a notebook on your computer, you can navigate to
+it via the dashboard and then open it.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="create-a-folder-to-store-your-notebooks">
+      <h2>
+       Create a folder to store your notebooks
+      </h2>
+      <ul>
+       <li>
+        I have a folder called “Stat_7770_Example_Notebooks” that I will
+navigate to through the notebooks dashboard.
+       </li>
+       <li>
+        Once in the folder, I’ll create a new notebook called
+“example_one”.
+       </li>
+       <li>
+        We’ll do a bit of work in the notebook, create a code cell, some
+markdown cells, save it, then create a quick presentation.
+       </li>
+       <li>
+        As we use the notebooks in subsequent classes, we’ll discuss more
+functionality.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="cells-can-be-in-one-of-two-states">
+      <h2>
+       Cells can be in one of two states
+      </h2>
+      <ul>
+       <li>
+        A cell can either be in the
+        <em>
+         edit
+        </em>
+        or
+        <em>
+         command
+        </em>
+        state.
+       </li>
+       <li>
+        When it is in edit state, the border is green.
+       </li>
+       <li>
+        When it is in command state, the border is blue.
+       </li>
+       <li>
+        You can toggle between states by pressing “enter” and “esc”.
+       </li>
+       <li>
+        Clicking either in the cell itself, or the border will have the same
+effect.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="keyboard-short-cuts">
+      <h2>
+       Keyboard short cuts
+      </h2>
+      <ul>
+       <li>
+        Depending on a cell’s state, the keyboard keys will perform
+different actions.
+       </li>
+       <li>
+        In command mode you can navigate through the notebook, via the arrow
+keys.
+        <ul>
+         <li>
+          You can add a cell above or below the current cell with “a” and
+“b”.
+         </li>
+         <li>
+          Delete a cell with d d (or x).
+         </li>
+         <li>
+          And bring it back (undo) by pressing z.
+         </li>
+         <li>
+          Make it a markdown cell by pressing m.
+         </li>
+         <li>
+          Make it a code cell by pressing y.
+         </li>
+        </ul>
+       </li>
+       <li>
+        In edit mode:
+        <ul>
+         <li>
+          The shortcut to run a cell’s content is Ctr-Enter. (Control
+enter).
+         </li>
+         <li>
+          Ctr Shift - will split the current cell.
+          <br/>
+         </li>
+        </ul>
+       </li>
+       <li>
+        All this functionality is available via the menus too.
+       </li>
+       <li>
+        Save the notebook with Ctr-s.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-jupyter-notebook-dashboard">
+      <h2>
+       The Jupyter notebook dashboard
+      </h2>
+      <ul>
+       <li>
+        Navigate to the desired directory and create a new notebook.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/jupyter_dashboard_02.png" height="133" width="600"/>
+      </p>
+      <p>
+       <img data-src="images/select_kernel.png" height="351" width="600"/>
+      </p>
+     </section>
+     <section class="slide level2" id="first-tasks">
+      <h2>
+       First tasks
+      </h2>
+      <ul>
+       <li>
+        Rename the notebook as “example_one”.
+       </li>
+       <li>
+        Create an initial markdown cell.
+       </li>
+       <li>
+        Add a code cell.
+       </li>
+       <li>
+        Run the code cell.
+       </li>
+       <li>
+        Add another markdown cell.
+       </li>
+       <li>
+        Save the notebook with File -&gt; Save Notebook
+       </li>
+       <li>
+        To get a presentation:
+        <ul>
+         <li>
+          Click on the View -&gt; Open in JupyterLab
+         </li>
+         <li>
+          Click on the gears icon onthe right-hand side
+         </li>
+         <li>
+          Open ‘Common tools’ and assign a slide type to each cell
+         </li>
+         <li>
+          To see the slide show, click File -&gt; Save and export notebook as
+-&gt; Reveal.js Slides
+         </li>
+         <li>
+          The presentation will be in your downloads folder.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="markdown">
+      <h1>
+       Markdown
+      </h1>
+     </section>
+     <section class="slide level2" id="markdown-1">
+      <h2>
+       Markdown
+      </h2>
+      <ul>
+       <li>
+        Markdown is a light-weight markup language with various flavors for
+different computing environments.
+       </li>
+       <li>
+        It consists of identifiers (tags), that tell how text and images
+should be later rendered.
+       </li>
+       <li>
+        It relies on another program (engine) to actually create the final
+rendered output.
+       </li>
+       <li>
+        Typical markdown elements include:
+        <ul>
+         <li>
+          Headers.
+         </li>
+         <li>
+          Images and links.
+         </li>
+         <li>
+          Lists.
+         </li>
+         <li>
+          Mathematical symbols and equations:
+          <span class="math inline">
+           \(A =
+\pi r^2\)
+          </span>
+          .
+         </li>
+         <li>
+          Tables.
+         </li>
+         <li>
+          Word decorations, e.g.
+          <em>
+           italic
+          </em>
+          ,
+          <strong>
+           bold
+          </strong>
+          ,
+          <strong>
+           <em>
+            emphasis
+           </em>
+          </strong>
+          .
+         </li>
+        </ul>
+       </li>
+       <li>
+        You can render markdown in a Jupyter notebook markdown cell by
+pressing Ctr-Enter.
+       </li>
+       <li>
+        We will use basic markdown. You don’t have to make the output look
+pretty for the homeworks!
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="example-markdown-cell">
+      <h2>
+       Example markdown cell
+      </h2>
+      <ul>
+       <li>
+        Here is the markdown version of the previous slide:
+       </li>
+      </ul>
+      <pre><code>## Markdown
+* Markdown is a light-weight markup language with various flavors for different computing environments.
+* It consists of identifiers (tags), that tell how text and images should be later rendered.
+* It relies on another program (engine) to actually create the final rendered output.
+* Typical markdown elements include:
+  * Headers.
+  * Images and links.
+  * Lists.
+  * Mathematical symbols and equations: $A = \pi r^2$.
+  * Tables.
+  * Word decorations, e.g. *italic*, **bold**, ***emphasis***.
+  * Tables.
+* You can render markdown in a Jupyter notebook markdown cell by pressing Ctr-Enter.
+* We will use basic markdown. You don't have to make the output look pretty for the homeworks!</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="control-flow">
+      <h1>
+       Control flow
+      </h1>
+     </section>
+     <section class="slide level2" id="control-flow-and-branching">
+      <h2>
+       Control flow and branching
+      </h2>
+      <ul>
+       <li>
+        It is common to want the actions of a program to depend on its
+inputs, that is, to allow it to
+        <em>
+         branch
+        </em>
+        .
+       </li>
+       <li>
+        For example, we may want to perform one action if a variable is a
+float, and another if it is a string.
+       </li>
+       <li>
+        The key command for this conditional execution is “if”.
+       </li>
+       <li>
+        It is also common to want to repeat the same action many times,
+often iterating over each value in some container.
+       </li>
+       <li>
+        The key command to do this is “for”.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="the-if-statement">
+      <h1>
+       The “if” statement
+      </h1>
+     </section>
+     <section class="slide level2" id="if-statement-schematic">
+      <h2>
+       If statement schematic
+      </h2>
+      <p>
+       <img data-src="images/if_condition.png" height="345" width="345"/>
+      </p>
+     </section>
+     <section class="slide level2" id="branching-programs-with-the-if-statement">
+      <h2>
+       Branching programs with the if statement
+      </h2>
+      <ul>
+       <li>
+        Recall the two logical/boolean variable values, True and False.
+       </li>
+       <li>
+        The if statement checks a logical condition and if it is True,
+executes a block of code.
+       </li>
+       <li>
+        It can optionally be followed by other checks, using the “elif”
+(else if) statement, which if True will execute their own block.
+       </li>
+       <li>
+        Finally, an optional finishing “else” statement will execute when
+all of the previous conditions are False.
+        <br/>
+       </li>
+       <li>
+        Syntax-wise, the logical conditions are followed by a colon “:”, and
+the code block(s) must be indented.
+       </li>
+       <li>
+        Many other programs use parentheses to capture a block of code.
+Python is a bit unusual in using indentation.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-anatomy-of-an-if-statement">
+      <h2>
+       The anatomy of an if statement
+      </h2>
+      <p>
+       <img data-src="images/if_statement.png" height="216" width="500"/>
+      </p>
+     </section>
+     <section class="slide level2" id="example-using-an-if-statement">
+      <h2>
+       Example using an “if” statement
+      </h2>
+      <ul>
+       <li>
+        The following code looks at a string variable, and if its length
+(number of characters) is greater than 8, prints a statement to that
+effect.
+       </li>
+       <li>
+        If the word length is not greater than 8, it prints an alternative
+statement.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb2">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"Soliloquy"</span></span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">8</span>:</span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a>    <span class="bu">print</span>(word <span class="op">+</span> <span class="st">" is a long word."</span>)</span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a><span class="cf">else</span>: </span>
+<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a>    <span class="bu">print</span>(word <span class="op">+</span> <span class="st">" is NOT a long word."</span>)</span></code></pre>
+      </div>
+      <pre><code>Soliloquy is a long word.</code></pre>
+     </section>
+     <section class="slide level2" id="failing-to-indent">
+      <h2>
+       Failing to indent
+      </h2>
+      <ul>
+       <li>
+        If the code block is not indented, an error occurs, so this is not
+optional!
+       </li>
+       <li>
+        Using an IDE will help you avoid this mistake because it will alert
+you to the problem.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb4">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">8</span>:</span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a><span class="bu">print</span>(word <span class="op">+</span> <span class="st">" is a long word."</span>)</span></code></pre>
+      </div>
+      <pre><code>  Cell In[2], line 2
+    print(word + " is a long word.")
+    ^
+IndentationError: expected an indented block after 'if' statement on line 1</code></pre>
+     </section>
+     <section class="slide level2" id="a-review-of-logical-operations">
+      <h2>
+       A review of logical operations
+      </h2>
+      <ul>
+       <li>
+        We often need to check a number of logical conditions.
+       </li>
+       <li>
+        The conditions can be grouped together, most often using the “and”
+as well as the “or” logical operators.
+       </li>
+       <li>
+        For example, we may want to execute a code block if two conditions
+are simultaneously true (“and”).
+       </li>
+       <li>
+        Other times, it may be enough for at least one of the conditions to
+be true (or).
+       </li>
+       <li>
+        The logical operators are “and”, “or” and “not”.
+       </li>
+       <li>
+        You may see code written with “&amp;” and “|” in place of
+        <em>
+         and
+        </em>
+        and
+        <em>
+         or
+        </em>
+        . These are “bitwise” operators, but will
+produce the same results if the elements on either side are the
+booleans, True and False.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="visualizing-the-and-operation">
+      <h2>
+       Visualizing the “and” operation
+      </h2>
+      <p>
+       <img data-src="images/venn_a_and_b.png" height="260" width="360"/>
+      </p>
+      <ul>
+       <li>
+        The shaded area corresponds to A and B being true
+simultaneously.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-truth-table-for-and">
+      <h2>
+       The truth table for “and”
+      </h2>
+      <ul>
+       <li>
+        A truth table indicates the outcome of applying a logical
+operator.
+       </li>
+       <li>
+        The “and” truth table is given by:
+       </li>
+      </ul>
+      <table>
+       <thead>
+        <tr class="header">
+         <th style="text-align: left;">
+          X
+         </th>
+         <th style="text-align: left;">
+          Y
+         </th>
+         <th style="text-align: left;">
+          X and Y
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="odd">
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+        </tr>
+        <tr class="odd">
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </section>
+     <section class="slide level2" id="visualizing-the-or-operation">
+      <h2>
+       Visualizing the “or” operation
+      </h2>
+      <p>
+       <img data-src="images/venn_a_or_b.png" height="260" width="360"/>
+      </p>
+      <ul>
+       <li>
+        The shaded area corresponds to A or B being true and possibly
+both.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-truth-table-for-or">
+      <h2>
+       The truth table for “or”
+      </h2>
+      <ul>
+       <li>
+        A truth table indicates the outcome of applying a logical
+operator.
+       </li>
+       <li>
+        The “or” truth table is given by:
+       </li>
+      </ul>
+      <table>
+       <thead>
+        <tr class="header">
+         <th style="text-align: left;">
+          X
+         </th>
+         <th style="text-align: left;">
+          Y
+         </th>
+         <th style="text-align: left;">
+          X or Y
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="odd">
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+        </tr>
+        <tr class="odd">
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+         <td style="text-align: left;">
+          True
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+         <td style="text-align: left;">
+          False
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </section>
+     <section class="slide level2" id="verifying-the-tables">
+      <h2>
+       Verifying the tables
+      </h2>
+      <ul>
+       <li>
+        The following code uses two constructions that are coming up
+soon.
+       </li>
+       <li>
+        “for loops”, and “list comprehension”.
+       </li>
+       <li>
+        For now, the idea is to confirm that the truth table is valid! We’ll
+look at the code more carefully later.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb6">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>X <span class="op">=</span> [<span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>]</span>
+<span id="cb6-2"><a aria-hidden="true" href="#cb6-2" tabindex="-1"></a>Y <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>]</span>
+<span id="cb6-3"><a aria-hidden="true" href="#cb6-3" tabindex="-1"></a><span class="bu">print</span>([i <span class="kw">and</span> j <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(X, Y)]) <span class="co"># The "and" (&amp;) truth table</span></span></code></pre>
+      </div>
+      <pre><code>[True, False, False, False]</code></pre>
+      <div class="sourceCode" id="cb8">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a><span class="bu">print</span>([i <span class="kw">or</span> j <span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">zip</span>(X, Y)]) <span class="co"># The "or" (|) truth table</span></span></code></pre>
+      </div>
+      <pre><code>[True, True, True, False]</code></pre>
+     </section>
+     <section class="slide level2" id="the-not-operator">
+      <h2>
+       The not operator
+      </h2>
+      <ul>
+       <li>
+        To turn a True to False, and a False to True, use the “not”
+operator.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb10">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="bu">print</span> (<span class="kw">not</span> <span class="va">True</span>)</span></code></pre>
+      </div>
+      <pre><code>False</code></pre>
+      <div class="sourceCode" id="cb12">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a><span class="bu">print</span>(<span class="kw">not</span> <span class="va">False</span>)</span></code></pre>
+      </div>
+      <pre><code>True</code></pre>
+     </section>
+     <section class="slide level2" id="comparison-relational-operators">
+      <h2>
+       Comparison (relational) operators
+      </h2>
+      <ul>
+       <li>
+        It is common to want to compare two numbers, and sometimes
+strings.
+       </li>
+       <li>
+        The following functions will return a logical value, True or False,
+so often appear within an
+        <em>
+         if
+        </em>
+        statement.
+        <ul>
+         <li>
+          Are two numbers the same (==).
+         </li>
+         <li>
+          Are two numbers not the same (different) (!=).
+         </li>
+         <li>
+          Is one number greater than the other (&gt;).
+         </li>
+         <li>
+          Is one number greater than or equal to the other (&gt;=).
+         </li>
+         <li>
+          Is one number less than the other (&lt;).
+         </li>
+         <li>
+          Is one number less than or equal to the other (&lt;=).
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="examples">
+      <h2>
+       Examples
+      </h2>
+      <div class="sourceCode" id="cb14">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a>a, b, c, d <span class="op">=</span> <span class="fl">5.1</span>, <span class="fl">12.2</span>, <span class="op">-</span><span class="dv">4</span>, <span class="fl">12.2</span> <span class="co"># Assign four numbers at once. The right-hand side is a 4-tuple</span></span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">==</span> b)</span>
+<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">!=</span> c)</span>
+<span id="cb14-4"><a aria-hidden="true" href="#cb14-4" tabindex="-1"></a><span class="bu">print</span>(b <span class="op">&gt;</span> d)</span>
+<span id="cb14-5"><a aria-hidden="true" href="#cb14-5" tabindex="-1"></a><span class="bu">print</span>(b <span class="op">&gt;=</span> d)</span>
+<span id="cb14-6"><a aria-hidden="true" href="#cb14-6" tabindex="-1"></a><span class="bu">print</span>(c <span class="op">&lt;</span> a)</span>
+<span id="cb14-7"><a aria-hidden="true" href="#cb14-7" tabindex="-1"></a><span class="bu">print</span>(d <span class="op">&lt;=</span> c)</span></code></pre>
+      </div>
+      <pre><code>False
+True
+False
+True
+True
+False</code></pre>
+     </section>
+     <section class="slide level2" id="another-if-example">
+      <h2>
+       Another “if” example
+      </h2>
+      <ul>
+       <li>
+        Try the following code, but change what is in the word
+variable.
+       </li>
+       <li>
+        The “elif” block below stands for “else if” and allows for secondary
+conditions to be checked.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb16">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"Reasonable"</span></span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a><span class="cf">if</span> (<span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">8</span>) <span class="kw">and</span> (word[<span class="dv">0</span>] <span class="op">==</span> <span class="st">"Y"</span>):</span>
+<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"A long word beginning with Y"</span>)</span>
+<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a><span class="cf">elif</span>  (<span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">8</span>) <span class="kw">and</span> (word[<span class="dv">0</span>] <span class="op">!=</span> <span class="st">"Y"</span>):</span>
+<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"A long word not beginning with Y"</span>)</span>
+<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Not a long word"</span>)</span></code></pre>
+      </div>
+      <pre><code>A long word not beginning with Y</code></pre>
+     </section>
+     <section class="slide level2" id="an-alternative-if-else-construct">
+      <h2>
+       An alternative if else construct
+      </h2>
+      <ul>
+       <li>
+        There is a shorthand for an if-else block, that allows the statement
+to be written in a single line.
+       </li>
+       <li>
+        This is useful if the code block is short.
+       </li>
+       <li>
+        The command surrounds the if statement with one expression
+indicating what to do if it’s True (on the left) and another with what
+to do if it’s False (on the right).
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb18">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a>word <span class="op">=</span> <span class="st">'supercalifragilisticexpialidocious'</span></span>
+<span id="cb18-2"><a aria-hidden="true" href="#cb18-2" tabindex="-1"></a><span class="co">'long word'</span> <span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">10</span> <span class="cf">else</span> <span class="st">'short word'</span></span></code></pre>
+      </div>
+      <pre><code>'long word'</code></pre>
+      <div class="sourceCode" id="cb20">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a>word <span class="op">=</span> <span class="st">'super'</span></span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a><span class="co">'long word'</span> <span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">10</span> <span class="cf">else</span> <span class="st">'short word'</span></span></code></pre>
+      </div>
+      <pre><code>'short word'</code></pre>
+     </section>
+     <section class="slide level2" id="anatomy-of-the-ternary-ifelse">
+      <h2>
+       Anatomy of the
+       <em>
+        ternary
+       </em>
+       if/else
+      </h2>
+      <p>
+       <img data-src="images/ternary_if_else.png" height="95" width="500"/>
+      </p>
+      <ol type="1">
+       <li>
+        The expression to evaluate if the logical clause is True.
+       </li>
+       <li>
+        The logical clause.
+       </li>
+       <li>
+        The expression to evaluate if the logical clause is false.
+       </li>
+      </ol>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="the-for-statement">
+      <h1>
+       The “for” statement
+      </h1>
+     </section>
+     <section class="slide level2" id="for-statement-schematic">
+      <h2>
+       For statement schematic
+      </h2>
+      <p>
+       <img data-src="images/for_loop_diagram.png" height="459" width="561"/>
+      </p>
+     </section>
+     <section class="slide level2" id="anatomy-of-a-for-loop">
+      <h2>
+       Anatomy of a for loop
+      </h2>
+      <p>
+       The basic for loop structure looks like this:
+      </p>
+      <p>
+       <img data-src="images/for_loop_anatomy.png" height="265" width="464"/>
+      </p>
+      <ol type="1">
+       <li>
+        It starts with the “for” command.
+       </li>
+       <li>
+        The variable
+        <em>
+         i
+        </em>
+        takes on the values in the collection or
+iterator (3).
+       </li>
+       <li>
+        The collection or iterator.
+       </li>
+       <li>
+        A colon to indicate that the code block comes next.
+       </li>
+       <li>
+        The code block within the for loop, evaluated as i takes on each
+value in the container.
+       </li>
+      </ol>
+     </section>
+     <section class="slide level2" id="example-of-a-for-loop">
+      <h2>
+       Example of a for loop
+      </h2>
+      <ul>
+       <li>
+        The square root data transformation:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb22">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" href="#cb22-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">12</span>] <span class="co"># Data contained in a list</span></span>
+<span id="cb22-2"><a aria-hidden="true" href="#cb22-2" tabindex="-1"></a>transformed_data <span class="op">=</span> []        <span class="co"># An empty container to accept the transformed data</span></span>
+<span id="cb22-3"><a aria-hidden="true" href="#cb22-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data)):   <span class="co"># i will take on integer values, 0, 1, ... 5</span></span>
+<span id="cb22-4"><a aria-hidden="true" href="#cb22-4" tabindex="-1"></a>    transformed_data.append(data[i] <span class="op">**</span> <span class="fl">0.5</span>) <span class="co"># This is the square root transformation</span></span>
+<span id="cb22-5"><a aria-hidden="true" href="#cb22-5" tabindex="-1"></a><span class="bu">print</span>(transformed_data) <span class="co"># Take a look at what we have created.</span></span></code></pre>
+      </div>
+      <pre><code>[2.6457513110645907, 3.605551275463989, 4.58257569495584, 1.7320508075688772, 2.8284271247461903, 3.4641016151377544]</code></pre>
+     </section>
+     <section class="slide level2" id="keeping-track-of-the-iteration-number">
+      <h2>
+       Keeping track of the iteration number
+      </h2>
+      <ul>
+       <li>
+        The function “enumerate” will return a sequence, where each element
+has both the position in the list and its value at the same time.
+       </li>
+       <li>
+        It turns out to be a handy construct, as we will see later.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb24">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" href="#cb24-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">12</span>] <span class="co"># Data contained in a list</span></span>
+<span id="cb24-2"><a aria-hidden="true" href="#cb24-2" tabindex="-1"></a>transformed_data <span class="op">=</span> []</span>
+<span id="cb24-3"><a aria-hidden="true" href="#cb24-3" tabindex="-1"></a><span class="cf">for</span> i, value <span class="kw">in</span> <span class="bu">enumerate</span>(data): <span class="co"># note that two components are being returned, i and value.</span></span>
+<span id="cb24-4"><a aria-hidden="true" href="#cb24-4" tabindex="-1"></a>    <span class="bu">print</span> (<span class="st">"Looking at "</span> <span class="op">+</span> <span class="bu">str</span>(value) <span class="op">+</span> <span class="st">" in position "</span> <span class="op">+</span> <span class="bu">str</span>(i))</span>
+<span id="cb24-5"><a aria-hidden="true" href="#cb24-5" tabindex="-1"></a>    transformed_data.append(value <span class="op">**</span> <span class="fl">0.5</span> )</span>
+<span id="cb24-6"><a aria-hidden="true" href="#cb24-6" tabindex="-1"></a><span class="bu">print</span>(transformed_data)</span></code></pre>
+      </div>
+      <pre><code>Looking at 7 in position 0
+Looking at 13 in position 1
+Looking at 21 in position 2
+Looking at 3 in position 3
+Looking at 8 in position 4
+Looking at 12 in position 5
+[2.6457513110645907, 3.605551275463989, 4.58257569495584, 1.7320508075688772, 2.8284271247461903, 3.4641016151377544]</code></pre>
+     </section>
+     <section class="slide level2" id="combining-for-loops-and-if-commands">
+      <h2>
+       Combining for loops and if commands
+      </h2>
+      <ul>
+       <li>
+        This construct is really the beginning of Monte Carlo
+simulation.
+       </li>
+       <li>
+        One way to estimate the probability that an event of interest
+happens is to simulate many instances of a process.
+       </li>
+       <li>
+        For each instance you see if the event happens.
+       </li>
+       <li>
+        The number of times that the event happens, divided by the number of
+instances you simulate is an estimate of the probability that the event
+occurs.
+       </li>
+       <li>
+        As the number of instances get large, then the
+        <em>
+         Law of Large
+Numbers
+        </em>
+        says that this estimated probability approaches the true
+probability.
+       </li>
+       <li>
+        In this way, we can answer lots of questions for which theoretical
+approaches are not feasible.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-probability-of-two-aces">
+      <h2>
+       The probability of two aces
+      </h2>
+      <ul>
+       <li>
+        If I shuffle a deck of cards and pull off the top two cards, then
+what is the probability that they are both aces?
+       </li>
+       <li>
+        The code below solves this problem, and we will subsequently dissect
+it.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb26">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" href="#cb26-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># We will use numpy to help shuffle the deck</span></span>
+<span id="cb26-2"><a aria-hidden="true" href="#cb26-2" tabindex="-1"></a><span class="co"># Build a card deck (not worrying about the suit)</span></span>
+<span id="cb26-3"><a aria-hidden="true" href="#cb26-3" tabindex="-1"></a>card_deck <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span> ,<span class="dv">8</span> , <span class="dv">9</span>, <span class="dv">10</span>, <span class="st">'J'</span>,<span class="st">'Q'</span>,<span class="st">'K'</span>, <span class="st">'A'</span>] <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb26-4"><a aria-hidden="true" href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a aria-hidden="true" href="#cb26-5" tabindex="-1"></a><span class="co"># A variable for the number of iterations in the simulation.</span></span>
+<span id="cb26-6"><a aria-hidden="true" href="#cb26-6" tabindex="-1"></a>num_its <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb26-7"><a aria-hidden="true" href="#cb26-7" tabindex="-1"></a><span class="co"># A counter to track the number of times the condition (the first two cards are both aces) is true.</span></span>
+<span id="cb26-8"><a aria-hidden="true" href="#cb26-8" tabindex="-1"></a>counter <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb26-9"><a aria-hidden="true" href="#cb26-9" tabindex="-1"></a><span class="co"># The for loop</span></span>
+<span id="cb26-10"><a aria-hidden="true" href="#cb26-10" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_its):</span>
+<span id="cb26-11"><a aria-hidden="true" href="#cb26-11" tabindex="-1"></a>    new_deck <span class="op">=</span> np.random.permutation(card_deck) <span class="co"># shuffle the deck. </span></span>
+<span id="cb26-12"><a aria-hidden="true" href="#cb26-12" tabindex="-1"></a>    <span class="cf">if</span> ((new_deck[<span class="dv">0</span>] <span class="op">==</span> <span class="st">"A"</span>) <span class="kw">and</span> (new_deck[<span class="dv">1</span>] <span class="op">==</span> <span class="st">"A"</span>)):</span>
+<span id="cb26-13"><a aria-hidden="true" href="#cb26-13" tabindex="-1"></a>        counter <span class="op">=</span> counter <span class="op">+</span> <span class="dv">1</span> </span>
+<span id="cb26-14"><a aria-hidden="true" href="#cb26-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The estimated probability of two aces is "</span>, counter<span class="op">/</span>num_its)</span></code></pre>
+      </div>
+      <pre><code>The estimated probability of two aces is  0.004</code></pre>
+     </section>
+     <section class="slide level2" id="comments-on-the-previous-code">
+      <h2>
+       Comments on the previous code
+      </h2>
+      <ul>
+       <li>
+        numpy is a key library for scientific computing.
+       </li>
+       <li>
+        The card deck construction takes advantage of the “*” operation
+(replicate).
+       </li>
+       <li>
+        The event counter is started at 0, prior to the loop.
+       </li>
+       <li>
+        A
+        <em>
+         permutation
+        </em>
+        of a set/list rearranges its order.
+       </li>
+       <li>
+        A
+        <em>
+         random permutation
+        </em>
+        essentially shuffles the list.
+       </li>
+       <li>
+        numpy has a random permutation function.
+       </li>
+       <li>
+        The subtlety here is that “new_deck” is a numpy container type
+called an
+        <em>
+         array
+        </em>
+        , which can only include one type of variable,
+so the numbers (2 - 10) get turned into strings.
+       </li>
+       <li>
+        But that doesn’t impact the answer because we are just looking for
+the ace (‘A’) value.
+       </li>
+       <li>
+        If we use the “+” sign for string concatenation, then the elements
+on both sides need to be strings, so we
+        <em>
+         cast
+        </em>
+        the numerical
+answer to a string.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="breaking-out-of-a-loop">
+      <h2>
+       Breaking out of a loop
+      </h2>
+      <ul>
+       <li>
+        Sometimes it is important to be able to break out of a loop.
+       </li>
+       <li>
+        The command to do this is
+        <em>
+         break
+        </em>
+        .
+       </li>
+       <li>
+        If you have
+        <em>
+         nested
+        </em>
+        loops, then it breaks out of its loop,
+not all loops.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb28">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" href="#cb28-1" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">5</span>): <span class="co"># The numbers 1 through 4 (outer loop)</span></span>
+<span id="cb28-2"><a aria-hidden="true" href="#cb28-2" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">5</span>): <span class="co"># The inner loop.</span></span>
+<span id="cb28-3"><a aria-hidden="true" href="#cb28-3" tabindex="-1"></a>        total <span class="op">=</span> i <span class="op">+</span> j </span>
+<span id="cb28-4"><a aria-hidden="true" href="#cb28-4" tabindex="-1"></a>        <span class="cf">if</span> total <span class="op">&gt;</span> <span class="dv">4</span>: <span class="co"># break out of the inner loop if the total is greater than 4</span></span>
+<span id="cb28-5"><a aria-hidden="true" href="#cb28-5" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb28-6"><a aria-hidden="true" href="#cb28-6" tabindex="-1"></a>        <span class="bu">print</span> (<span class="st">"Outer is </span><span class="sc">{0}</span><span class="st">, inner is </span><span class="sc">{1}</span><span class="st">, total is </span><span class="sc">{2}</span><span class="st">"</span>.<span class="bu">format</span>(i,j,total)) <span class="co"># More on string formats later.</span></span></code></pre>
+      </div>
+      <pre><code>Outer is 0, inner is 1, total is 1
+Outer is 0, inner is 2, total is 2
+Outer is 0, inner is 3, total is 3
+Outer is 0, inner is 4, total is 4
+Outer is 1, inner is 1, total is 2
+Outer is 1, inner is 2, total is 3
+Outer is 1, inner is 3, total is 4
+Outer is 2, inner is 1, total is 3
+Outer is 2, inner is 2, total is 4
+Outer is 3, inner is 1, total is 4</code></pre>
+     </section>
+     <section class="slide level2" id="the-continue-command">
+      <h2>
+       The
+       <em>
+        continue
+       </em>
+       command
+      </h2>
+      <ul>
+       <li>
+        If you want to skip the rest of the current iteration, you use the
+        <em>
+         continue
+        </em>
+        command.
+       </li>
+       <li>
+        This could be useful if you know that you don’t want to execute the
+remainder of the code block.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb30">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" href="#cb30-1" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">9</span>):</span>
+<span id="cb30-2"><a aria-hidden="true" href="#cb30-2" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">%</span> <span class="dv">2</span>) <span class="op">==</span> <span class="dv">0</span>: <span class="co"># Skip the even numbers.</span></span>
+<span id="cb30-3"><a aria-hidden="true" href="#cb30-3" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb30-4"><a aria-hidden="true" href="#cb30-4" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code></pre>
+      </div>
+      <pre><code>1
+3
+5
+7</code></pre>
+     </section>
+     <section class="slide level2" id="while-statements.">
+      <h2>
+       <em>
+        while
+       </em>
+       statements.
+      </h2>
+      <ul>
+       <li>
+        An alternative to the
+        <em>
+         for
+        </em>
+        statement, is the
+        <em>
+         while
+        </em>
+        statement.
+       </li>
+       <li>
+        <em>
+         while
+        </em>
+        looks at a logical condition and executes its code
+block so long as the condition is true.
+       </li>
+       <li>
+        As soon as the condition is false it terminates.
+       </li>
+       <li>
+        If the condition is never false, you will have an
+        <em>
+         infinite
+loop
+        </em>
+        on your hands!
+       </li>
+       <li>
+        Here’s the address of the Apple computer company’s old HQ:
+       </li>
+      </ul>
+      <blockquote>
+       <p>
+        One Infinite Loop, Cupertino, CA 95014
+       </p>
+      </blockquote>
+      <p>
+       <img data-src="images/apple_hq.jpg" height="255" width="444"/>
+      </p>
+     </section>
+     <section class="slide level2" id="example-while-statement">
+      <h2>
+       Example
+       <em>
+        while
+       </em>
+       statement
+      </h2>
+      <div class="sourceCode" id="cb32">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb32-2"><a aria-hidden="true" href="#cb32-2" tabindex="-1"></a><span class="cf">while</span> x <span class="op">&lt;</span> <span class="dv">6</span>:</span>
+<span id="cb32-3"><a aria-hidden="true" href="#cb32-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Keep going, I rolled a </span><span class="sc">{}</span><span class="st">!'</span>.<span class="bu">format</span>(x)) <span class="co"># Note the .format method for the string.</span></span>
+<span id="cb32-4"><a aria-hidden="true" href="#cb32-4" tabindex="-1"></a>    x <span class="op">=</span> np.random.randint(<span class="dv">1</span>,<span class="dv">7</span>) <span class="co"># This line of code rolls a six-sided die.</span></span></code></pre>
+      </div>
+      <pre><code>Keep going, I rolled a 0!
+Keep going, I rolled a 2!</code></pre>
+      <ul>
+       <li>
+        This
+        <em>
+         while
+        </em>
+        loop will keep going until we roll a six.
+       </li>
+       <li>
+        At that point the logical condition is false, and the loop
+terminates.
+       </li>
+       <li>
+        In simulation modeling, the
+        <em>
+         while
+        </em>
+        loop can be a useful
+construct to find out how long it takes until an event of interest
+happens.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="estimating-the-expected-waiting-time-until-an-ace-occurs">
+      <h2>
+       Estimating the expected waiting time until an ace occurs
+      </h2>
+      <ul>
+       <li>
+        Shuffle a deck of cards.
+       </li>
+       <li>
+        Deal cards from the top of the deck.
+       </li>
+       <li>
+        How many cards do you expect to deal in order to see the first ace
+(including the ace itself)?
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb34">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" href="#cb34-1" tabindex="-1"></a>results <span class="op">=</span> [] <span class="co"># start with an empty list to store the results of the experiment.</span></span>
+<span id="cb34-2"><a aria-hidden="true" href="#cb34-2" tabindex="-1"></a>num_its <span class="op">=</span> <span class="dv">10000</span> <span class="co"># The number of simulation iterations</span></span>
+<span id="cb34-3"><a aria-hidden="true" href="#cb34-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_its):</span>
+<span id="cb34-4"><a aria-hidden="true" href="#cb34-4" tabindex="-1"></a>    new_deck <span class="op">=</span> np.random.permutation(card_deck) <span class="co"># shuffle the deck. </span></span>
+<span id="cb34-5"><a aria-hidden="true" href="#cb34-5" tabindex="-1"></a>    counter <span class="op">=</span> <span class="dv">1</span> <span class="co"># a counter for how many cards until the ace is first seen.</span></span>
+<span id="cb34-6"><a aria-hidden="true" href="#cb34-6" tabindex="-1"></a>    <span class="cf">while</span> new_deck[counter <span class="op">-</span> <span class="dv">1</span>] <span class="op">!=</span> <span class="st">'A'</span>:</span>
+<span id="cb34-7"><a aria-hidden="true" href="#cb34-7" tabindex="-1"></a>        counter <span class="op">=</span> counter <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb34-8"><a aria-hidden="true" href="#cb34-8" tabindex="-1"></a>    results.append(counter)</span>
+<span id="cb34-9"><a aria-hidden="true" href="#cb34-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The expected waiting time to the first ace is"</span>, <span class="bu">sum</span>(results)<span class="op">/</span>num_its, <span class="st">"cards"</span>)</span></code></pre>
+      </div>
+      <pre><code>The expected waiting time to the first ace is 10.4829 cards</code></pre>
+     </section>
+     <section class="slide level2" id="comments-on-the-code">
+      <h2>
+       Comments on the code
+      </h2>
+      <ul>
+       <li>
+        <em>
+         results
+        </em>
+        is a list container into which we will append the
+number of cards drawn, for each iteration.
+       </li>
+       <li>
+        <em>
+         num_its
+        </em>
+        is the number of iterations in the simulation.
+       </li>
+       <li>
+        <em>
+         new_deck
+        </em>
+        was defined earlier, and we shuffle it with the
+help of the
+        <em>
+         numpy
+        </em>
+        package.
+       </li>
+       <li>
+        <em>
+         counter
+        </em>
+        will record which sequence number in the deck we
+are looking at.
+       </li>
+       <li>
+        The effect of the inner while loop is that if we don’t see an Ace,
+then we go keep on going and look at the next card.
+       </li>
+       <li>
+        Once we are out of the while loop, we append the counter value to
+the results container.
+       </li>
+       <li>
+        Finally we find the
+        <strong>
+         average
+        </strong>
+        of the simulations
+runs, by summing the results list and dividing by the number of
+iterations.
+       </li>
+       <li>
+        Why do we need to subtract 1 from the counter when looking up the
+card?
+        <ul>
+         <li>
+          Because the index of the first element in the list is 0, not 1!
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="comprehensions">
+      <h1>
+       Comprehensions
+      </h1>
+     </section>
+     <section class="slide level2" id="list-comprehensions">
+      <h2>
+       List comprehensions
+      </h2>
+      <ul>
+       <li>
+        List comprehensions are a way of generating lists in an “elegant”
+manner.
+       </li>
+       <li>
+        They are popular with Python programmers, so you need to be aware of
+this idiom!
+       </li>
+       <li>
+        First we will look at some simple code, review its output, then dig
+into its parts in more detail.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb36">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a aria-hidden="true" href="#cb36-1" tabindex="-1"></a>result_1 <span class="op">=</span> [i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)] <span class="co"># The first 10 square numbers.</span></span>
+<span id="cb36-2"><a aria-hidden="true" href="#cb36-2" tabindex="-1"></a><span class="bu">print</span>(result_1)</span>
+<span id="cb36-3"><a aria-hidden="true" href="#cb36-3" tabindex="-1"></a>result_2 <span class="op">=</span> [i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>) <span class="cf">if</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>)] <span class="co"># Squares of even numbers.</span></span>
+<span id="cb36-4"><a aria-hidden="true" href="#cb36-4" tabindex="-1"></a><span class="bu">print</span>(result_2)</span></code></pre>
+      </div>
+      <pre><code>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+[0, 4, 16, 36, 64]</code></pre>
+      <ul>
+       <li>
+        As you can see above, the code generates a list, possibly subject to
+a condition (filter).
+       </li>
+       <li>
+        It accomplishes the same task as a “for” loop does, but is more
+compact stylistically.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="anatomy-of-the-list-comprehension">
+      <h2>
+       Anatomy of the list comprehension
+      </h2>
+      <p>
+       <img data-src="images/list_comprehension.png" height="90" width="600"/>
+      </p>
+      <ol type="1">
+       <li>
+        This is the
+        <em>
+         expression
+        </em>
+        that transforms the raw inputs.
+       </li>
+       <li>
+        The for loop generates the inputs.
+       </li>
+       <li>
+        There is an optional
+        <em>
+         if
+        </em>
+        statement that filters the raw
+inputs.
+       </li>
+      </ol>
+     </section>
+     <section class="slide level2" id="another-example-of-a-list-comprehension">
+      <h2>
+       Another example of a list comprehension
+      </h2>
+      <div class="sourceCode" id="cb38">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">"This"</span>, <span class="st">"is"</span>, <span class="st">"a"</span>, <span class="st">"list"</span>, <span class="st">"of"</span>, <span class="st">"key"</span>, <span class="st">"words"</span>]</span>
+<span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a><span class="bu">print</span>([word[::<span class="op">-</span><span class="dv">1</span>] <span class="cf">for</span> word <span class="kw">in</span> words <span class="cf">if</span> <span class="bu">len</span>(word) <span class="op">&gt;</span> <span class="dv">3</span>])</span></code></pre>
+      </div>
+      <pre><code>['sihT', 'tsil', 'sdrow']</code></pre>
+      <ul>
+       <li>
+        This code iterates over the words list, assigning each element in
+turn to the variable “word”.
+       </li>
+       <li>
+        If the length of the word is greater than 3, then:
+        <ul>
+         <li>
+          the
+          <em>
+           expression
+          </em>
+          reverses the order of the letters in the
+word.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Finally, it prints out the new list.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="summary">
+      <h1>
+       Summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary-1">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        Jupyter notebook introduction.
+       </li>
+       <li>
+        A first look at markdown.
+       </li>
+       <li>
+        Control flow
+        <ul>
+         <li>
+          Branching with if statements.
+         </li>
+         <li>
+          Logical and relational/comparison operators.
+         </li>
+         <li>
+          Iteration with for and while loops.
+         </li>
+        </ul>
+       </li>
+       <li>
+        List comprehensions.
+       </li>
+       <li>
+        Monte Carlo simulations.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        A first look at the pandas library.
+       </li>
+       <li>
+        The Series container:
+        <ul>
+         <li>
+          Selecting components of a Series.
+         </li>
+         <li>
+          Statistical summaries.
+         </li>
+        </ul>
+       </li>
+       <li>
+        The DataFrame container:
+        <ul>
+         <li>
+          Components of a dataframe.
+         </li>
+         <li>
+          Creating a dataframe from a dict structure.
+         </li>
+         <li>
+          Selecting components of a dataframe (rows and columns).
+         </li>
+         <li>
+          Creating more complex logical filters.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
