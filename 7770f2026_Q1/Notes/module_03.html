@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 03
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 03
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      August 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        A first look at the pandas library.
+       </li>
+       <li>
+        The Series container:
+        <ul>
+         <li>
+          Selecting components of a Series:
+          <ul>
+           <li>
+            By position.
+           </li>
+           <li>
+            By name.
+           </li>
+           <li>
+            By logical filter.
+           </li>
+          </ul>
+         </li>
+         <li>
+          Statistical summaries.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="objectives-cont.">
+      <h2>
+       Objectives (cont.)
+      </h2>
+      <ul>
+       <li>
+        The DataFrame container:
+        <ul>
+         <li>
+          Components of a data frame.
+         </li>
+         <li>
+          Creating a data frame from a dict structure.
+         </li>
+         <li>
+          Selecting components of a data frame (rows and columns):
+          <ul>
+           <li>
+            By position.
+           </li>
+           <li>
+            By name.
+           </li>
+           <li>
+            By logical filter.
+           </li>
+           <li>
+            Using the “.loc” and “.iloc” methods.
+           </li>
+          </ul>
+         </li>
+         <li>
+          Creating more complex logical filters.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="the-pandas-library">
+      <h1>
+       The pandas library
+      </h1>
+     </section>
+     <section class="slide level2" id="the-pandas-library-1">
+      <h2>
+       The pandas library
+      </h2>
+      <ul>
+       <li>
+        This is the most popular Python library for data science.
+       </li>
+       <li>
+        It provides tools to simplify many parts of the data science
+workflow.
+       </li>
+       <li>
+        We will look at two special data structures in pandas:
+        <ul>
+         <li>
+          Series
+         </li>
+         <li>
+          DataFrame
+         </li>
+        </ul>
+       </li>
+       <li>
+        The DataFrame is ideally suited for holding statistical data,
+because it works in a row/column fashion just like a spreadsheet, and
+can contain different data types. In particular both numeric and
+categorical data.
+       </li>
+       <li>
+        You can think of a data frame schematically like an Excel or Google
+Sheets spreadsheet, but you manipulate it programatically, rather than
+through a graphical user interface (GUI).
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="the-series-container">
+      <h1>
+       The Series container
+      </h1>
+     </section>
+     <section class="slide level2" id="the-series-container-1">
+      <h2>
+       The Series container
+      </h2>
+      <ul>
+       <li>
+        A series is similar to a Python list structure, but it also has a
+label for each element, known as the “index”.
+       </li>
+       <li>
+        As well as identifying elements by position, you can access them via
+their labels, or via a logical filter.
+       </li>
+       <li>
+        If you don’t specify an index then a default numeric one will be
+created (starting at 0). Think of it as the row number.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb1">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="co"># This will be the standard way of importing the pandas library and aliasing it to "pd" </span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a><span class="co"># Create some data in place (later we will import from various sources).</span></span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a><span class="co"># These are median house prices from various locations around Philadelphia.</span></span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a>house_data <span class="op">=</span> pd.Series([<span class="dv">66803</span>, <span class="dv">104923</span>, <span class="dv">114233</span>, <span class="dv">114572</span>, <span class="dv">112471</span>, <span class="dv">99843</span>, <span class="dv">74308</span>, <span class="dv">147176</span>, <span class="dv">199065</span>, <span class="dv">130953</span>],</span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a>                      index <span class="op">=</span>[<span class="st">'Collindale'</span>,<span class="st">'Downingtown'</span>, <span class="st">'Falls Town'</span>, <span class="st">'Hatboro'</span>, <span class="st">'Lansdale'</span>,</span>
+<span id="cb1-8"><a aria-hidden="true" href="#cb1-8" tabindex="-1"></a>                              <span class="st">'Norwood'</span>, <span class="st">'Sharon Hill'</span>, <span class="st">'Springfield'</span>, <span class="st">'Upper Darby'</span>, <span class="st">'Yardley'</span>])</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="review-the-series-object">
+      <h2>
+       Review the Series object
+      </h2>
+      <ul>
+       <li>
+        Note that the index is printed along with the house prices.
+       </li>
+       <li>
+        The data type, (here int64, means a 64 bit integer) is indicated at
+the bottom (This is a numeric variable).
+       </li>
+       <li>
+        Knowing the data type is useful because the relevant statistical
+summaries and methods will depend on the data type.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb2">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="bu">print</span>(house_data)</span></code></pre>
+      </div>
+      <pre><code>Collindale      66803
+Downingtown    104923
+Falls Town     114233
+Hatboro        114572
+Lansdale       112471
+Norwood         99843
+Sharon Hill     74308
+Springfield    147176
+Upper Darby    199065
+Yardley        130953
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="obtaining-just-the-series-values-or-just-the-index">
+      <h2>
+       Obtaining just the Series values or just the index
+      </h2>
+      <ul>
+       <li>
+        Use the .values and .index properties/attributes (There are no
+parentheses after them.)
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb4">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>house_data.values <span class="co"># Look at the values in the Series</span></span></code></pre>
+      </div>
+      <pre><code>array([ 66803, 104923, 114233, 114572, 112471,  99843,  74308, 147176,
+       199065, 130953])</code></pre>
+      <div class="sourceCode" id="cb6">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>house_data.index <span class="co"># Look at the index itself</span></span></code></pre>
+      </div>
+      <pre><code>Index(['Collindale', 'Downingtown', 'Falls Town', 'Hatboro', 'Lansdale',
+       'Norwood', 'Sharon Hill', 'Springfield', 'Upper Darby', 'Yardley'],
+      dtype='object')</code></pre>
+     </section>
+     <section class="slide level2" id="accessing-elements-in-the-series">
+      <h2>
+       Accessing elements in the Series
+      </h2>
+      <ul>
+       <li>
+        Using pandas there are three ways of accessing the Series elements:
+        <ol type="1">
+         <li>
+          By position.
+         </li>
+         <li>
+          By name.
+         </li>
+         <li>
+          By logical filter.
+         </li>
+        </ol>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="by-position">
+      <h2>
+       By position:
+      </h2>
+      <ul>
+       <li>
+        You can identify arbitrary elements in the Series by position:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb8">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>house_data[[<span class="dv">0</span>,<span class="dv">7</span>,<span class="dv">3</span>]] <span class="co"># Identify elements in positions 0, 7 and 3 (note the [[]] brackets).</span></span></code></pre>
+      </div>
+      <pre><code>C:\Users\water\AppData\Local\Temp\ipykernel_960\4251852872.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  house_data[[0,7,3]] # Identify elements in positions 0, 7 and 3 (note the [[]] brackets).
+
+
+
+
+
+Collindale      66803
+Springfield    147176
+Hatboro        114572
+dtype: int64</code></pre>
+      <ul>
+       <li>
+        If you tried using this notation with a plain list rather than a
+Series, then …
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb10">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a>list_a <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>)) <span class="co"># Make a list</span></span>
+<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a>list_a[[<span class="dv">0</span>,<span class="dv">7</span>,<span class="dv">3</span>]] <span class="co"># This does not work!</span></span></code></pre>
+      </div>
+      <pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[6], line 2
+      1 list_a = list(range(10)) # Make a list
+----&gt; 2 list_a[[0,7,3]] # This does not work!
+
+
+TypeError: list indices must be integers or slices, not list</code></pre>
+     </section>
+     <section class="slide level2" id="by-position-as-indicated-by-the-slice-notation.">
+      <h2>
+       By position as indicated by the slice notation.
+      </h2>
+      <div class="sourceCode" id="cb12">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a>house_data[<span class="dv">2</span>:<span class="dv">5</span>] <span class="co"># Recall the slice notation and note the single [] bracket.</span></span></code></pre>
+      </div>
+      <pre><code>Falls Town    114233
+Hatboro       114572
+Lansdale      112471
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="by-index-label">
+      <h2>
+       By index label
+      </h2>
+      <ul>
+       <li>
+        Look at the difference in output between using one square bracket
+and using two square brackets:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb14">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a>house_data[<span class="st">'Downingtown'</span>] <span class="co"># Returns just the value of the Downingtown element.</span></span></code></pre>
+      </div>
+      <pre><code>np.int64(104923)</code></pre>
+      <div class="sourceCode" id="cb16">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a>house_data[[<span class="st">'Downingtown'</span>]] <span class="co"># returns a Series containing the Downingtown element.</span></span></code></pre>
+      </div>
+      <pre><code>Downingtown    104923
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="getting-more-than-one-element-by-name">
+      <h2>
+       Getting more than one element by name
+      </h2>
+      <ul>
+       <li>
+        You can obtain arbitrary elements by name:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb18">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a>house_data[[<span class="st">'Downingtown'</span>, <span class="st">'Lansdale'</span>, <span class="st">'Upper Darby'</span>, <span class="st">'Falls Town'</span>]]</span></code></pre>
+      </div>
+      <pre><code>Downingtown    104923
+Lansdale       112471
+Upper Darby    199065
+Falls Town     114233
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="by-logical-filter">
+      <h2>
+       By logical filter
+      </h2>
+      <ul>
+       <li>
+        Rather than using a name or position to extract an element in the
+Series, you can use a list with logical (True/False) values.
+       </li>
+       <li>
+        So long as the list is the same length as the Series, those elements
+corresponding to a True are selected.
+       </li>
+       <li>
+        Think of a logical filter like a sieve, and only those elements
+lining up with Trues get through.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/logical_filter.png" height="210" width="640"/>
+      </p>
+     </section>
+     <section class="slide level2" id="example">
+      <h2>
+       Example
+      </h2>
+      <div class="sourceCode" id="cb20">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a>raw_data <span class="op">=</span> pd.Series([<span class="dv">31</span>,<span class="dv">16</span>,<span class="dv">12</span>,<span class="dv">27</span>,<span class="dv">28</span>,<span class="dv">9</span>],</span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a>                      index <span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>,<span class="st">'f'</span>])</span>
+<span id="cb20-3"><a aria-hidden="true" href="#cb20-3" tabindex="-1"></a>logic_filter <span class="op">=</span> [<span class="va">False</span>, <span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>]</span>
+<span id="cb20-4"><a aria-hidden="true" href="#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a aria-hidden="true" href="#cb20-5" tabindex="-1"></a><span class="bu">print</span>(raw_data[logic_filter])</span></code></pre>
+      </div>
+      <pre><code>b    16
+c    12
+f     9
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="selection-by-filter-for-the-housing-data">
+      <h2>
+       Selection by filter for the housing data
+      </h2>
+      <div class="sourceCode" id="cb22">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" href="#cb22-1" tabindex="-1"></a><span class="co"># A list containing Trues in positions, 0,3,7,8</span></span>
+<span id="cb22-2"><a aria-hidden="true" href="#cb22-2" tabindex="-1"></a>logical_list <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>]</span>
+<span id="cb22-3"><a aria-hidden="true" href="#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a aria-hidden="true" href="#cb22-4" tabindex="-1"></a>house_data[logical_list]</span></code></pre>
+      </div>
+      <pre><code>Collindale      66803
+Hatboro        114572
+Springfield    147176
+Upper Darby    199065
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="create-the-logical-filter-using-comparison-operators">
+      <h2>
+       Create the logical filter using comparison operators
+      </h2>
+      <ul>
+       <li>
+        Find all the locations where the price is greater than
+$110,000.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb24">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" href="#cb24-1" tabindex="-1"></a>expensive <span class="op">=</span> house_data <span class="op">&gt;</span> <span class="dv">110000</span> <span class="co"># A logical comparison returning another Series, but this time of logicals.</span></span>
+<span id="cb24-2"><a aria-hidden="true" href="#cb24-2" tabindex="-1"></a><span class="bu">print</span>(expensive)</span></code></pre>
+      </div>
+      <pre><code>Collindale     False
+Downingtown    False
+Falls Town      True
+Hatboro         True
+Lansdale        True
+Norwood        False
+Sharon Hill    False
+Springfield     True
+Upper Darby     True
+Yardley         True
+dtype: bool</code></pre>
+     </section>
+     <section class="slide level2" id="selecting-the-expensive-areas">
+      <h2>
+       Selecting the expensive areas
+      </h2>
+      <div class="sourceCode" id="cb26">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" href="#cb26-1" tabindex="-1"></a><span class="bu">type</span>(expensive)</span></code></pre>
+      </div>
+      <pre><code>pandas.core.series.Series</code></pre>
+      <div class="sourceCode" id="cb28">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" href="#cb28-1" tabindex="-1"></a>house_data[expensive] <span class="co"># Just those rows where the price is greater than $110,000.</span></span></code></pre>
+      </div>
+      <pre><code>Falls Town     114233
+Hatboro        114572
+Lansdale       112471
+Springfield    147176
+Upper Darby    199065
+Yardley        130953
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="a-second-example-all-on-one-line">
+      <h2>
+       A second example, all on one line
+      </h2>
+      <ul>
+       <li>
+        Find those areas with prices between 90000 and 110000.
+       </li>
+       <li>
+        The logical statement can be created within the [] parenthesis as
+well.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb30">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" href="#cb30-1" tabindex="-1"></a>house_data[(house_data <span class="op">&gt;</span> <span class="dv">90000</span>) <span class="op">&amp;</span> (house_data <span class="op">&lt;</span> <span class="dv">110000</span>)]</span></code></pre>
+      </div>
+      <pre><code>Downingtown    104923
+Norwood         99843
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="statistical-summaries-with-pandas">
+      <h2>
+       Statistical summaries with pandas
+      </h2>
+      <ul>
+       <li>
+        pandas provides many built in statistical summaries as methods, like
+mean and median (to be discussed).
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb32">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a>house_data.mean() <span class="co"># The average of the prices.</span></span></code></pre>
+      </div>
+      <pre><code>np.float64(116434.7)</code></pre>
+      <div class="sourceCode" id="cb34">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" href="#cb34-1" tabindex="-1"></a>house_data.median() <span class="co"># The median of the prices.</span></span></code></pre>
+      </div>
+      <pre><code>113352.0</code></pre>
+      <div class="sourceCode" id="cb36">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a aria-hidden="true" href="#cb36-1" tabindex="-1"></a>house_data.quantile([<span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>]) <span class="co"># The 25th, 50th and 75 percentiles.</span></span></code></pre>
+      </div>
+      <pre><code>0.25    101113.00
+0.50    113352.00
+0.75    126857.75
+dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="overwriting-elements-of-the-series">
+      <h2>
+       Overwriting elements of the series
+      </h2>
+      <ul>
+       <li>
+        If you can identify parts of a Series, then you can edit/overwrite
+them using the assignment operator.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb38">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>house_data[<span class="dv">2</span>] <span class="op">=</span> <span class="dv">123456</span> <span class="co"># Overwrite a single element.</span></span>
+<span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a><span class="bu">print</span>(house_data)</span></code></pre>
+      </div>
+      <pre><code>Collindale      66803
+Downingtown    104923
+Falls Town     123456
+Hatboro        114572
+Lansdale       112471
+Norwood         99843
+Sharon Hill     74308
+Springfield    147176
+Upper Darby    199065
+Yardley        130953
+dtype: int64
+
+
+C:\Users\water\AppData\Local\Temp\ipykernel_960\2138629545.py:1: FutureWarning: Series.__setitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To set a value by position, use `ser.iloc[pos] = value`
+  house_data[2] = 123456 # Overwrite a single element.</code></pre>
+     </section>
+     <section class="slide level2" id="overwriting-elements-of-the-series-ctd.">
+      <h2>
+       Overwriting elements of the series, ctd.
+      </h2>
+      <div class="sourceCode" id="cb40">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a aria-hidden="true" href="#cb40-1" tabindex="-1"></a>house_data[<span class="dv">4</span>:<span class="dv">6</span>] <span class="op">=</span> [<span class="dv">999999</span>, <span class="dv">8888888</span>] <span class="co"># Overwrite using a slice,</span></span>
+<span id="cb40-2"><a aria-hidden="true" href="#cb40-2" tabindex="-1"></a><span class="bu">print</span>(house_data)</span></code></pre>
+      </div>
+      <pre><code>Collindale       66803
+Downingtown     104923
+Falls Town      123456
+Hatboro         114572
+Lansdale        999999
+Norwood        8888888
+Sharon Hill      74308
+Springfield     147176
+Upper Darby     199065
+Yardley         130953
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="overwriting-elements-of-the-series-ctd.-1">
+      <h2>
+       Overwriting elements of the series, ctd.
+      </h2>
+      <div class="sourceCode" id="cb42">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a aria-hidden="true" href="#cb42-1" tabindex="-1"></a>house_data[house_data <span class="op">&lt;</span> <span class="dv">100000</span>] <span class="op">=</span> <span class="dv">0</span> <span class="co"># Overwrite using a logical filter to identify, and a repeated value to populate.</span></span>
+<span id="cb42-2"><a aria-hidden="true" href="#cb42-2" tabindex="-1"></a><span class="bu">print</span>(house_data)</span></code></pre>
+      </div>
+      <pre><code>Collindale           0
+Downingtown     104923
+Falls Town      123456
+Hatboro         114572
+Lansdale        999999
+Norwood        8888888
+Sharon Hill          0
+Springfield     147176
+Upper Darby     199065
+Yardley         130953
+dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="object-orientated-terminology">
+      <h2>
+       Object orientated terminology
+      </h2>
+      <ul>
+       <li>
+        pandas provides a
+        <strong>
+         <em>
+          class
+         </em>
+        </strong>
+        called Series. It
+is like an abstract blue print for this data structure.
+       </li>
+       <li>
+        Any Series that we create is an
+        <strong>
+         <em>
+          object
+         </em>
+        </strong>
+        of
+type Series.
+       </li>
+       <li>
+        When we built the specific house_data Series, it is an
+        <strong>
+         <em>
+          instance
+         </em>
+        </strong>
+        of the Series class.
+       </li>
+       <li>
+        The class comes with
+        <strong>
+         <em>
+          attributes
+         </em>
+        </strong>
+        that are
+        <em>
+         variables
+        </em>
+        defined in the class.
+       </li>
+       <li>
+        The class comes with
+        <strong>
+         <em>
+          methods
+         </em>
+        </strong>
+        that are
+        <em>
+         functions
+        </em>
+        defined in the class.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="the-dataframe-container">
+      <h1>
+       The DataFrame container
+      </h1>
+     </section>
+     <section class="slide level2" id="the-dataframe-container-1">
+      <h2>
+       The DataFrame container
+      </h2>
+      <ul>
+       <li>
+        The DataFrame container is a rectangular data structure/container,
+with rows and columns.
+       </li>
+       <li>
+        The columns are usually named, and the rows have an Index.
+       </li>
+       <li>
+        Almost all statistical analysis programs use such a structure.
+       </li>
+       <li>
+        An important feature of this container is that it can have different
+data types (numeric, string etc.) in different columns.
+       </li>
+       <li>
+        In this way it is able to hold realistic datasets, which are usually
+of mixed variable types.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-components-of-a-data-frame">
+      <h2>
+       The components of a data frame
+      </h2>
+      <p>
+       <img data-src="images/dataframe_structure.png" height="339" width="600"/>
+      </p>
+     </section>
+     <section class="slide level2" id="creating-a-dataframe">
+      <h2>
+       Creating a DataFrame
+      </h2>
+      <ul>
+       <li>
+        There are a variety of ways to populate a data frame with data, and
+we will subsequently learn how to read from an external source like a
+file or database.
+       </li>
+       <li>
+        For our first data frame we will input the data ourselves and create
+the data frame directly.
+       </li>
+       <li>
+        The data will come from a dict of lists.
+       </li>
+       <li>
+        The keys in the dict will become the column names and the values in
+the lists will become the entries for each column.
+       </li>
+       <li>
+        The data comes from a hospital outpatient clinic, where each row is
+a patient, the columns are patient attributes and the key variable of
+interest is
+        <em>
+         Status
+        </em>
+        which indicates whether a patient showed up
+for their visit.
+       </li>
+       <li>
+        Later on we will use a bigger version of this dataset to create a
+predictive model of whether a patient shows up for their visit.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-raw-data">
+      <h2>
+       The raw data
+      </h2>
+      <div class="sourceCode" id="cb44">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a aria-hidden="true" href="#cb44-1" tabindex="-1"></a><span class="co">#A dict structure containing the raw data and column names: </span></span>
+<span id="cb44-2"><a aria-hidden="true" href="#cb44-2" tabindex="-1"></a>raw_data <span class="op">=</span> {<span class="st">'Sex'</span>: [<span class="st">'male'</span>,<span class="st">'female'</span>,<span class="st">'female'</span>,<span class="st">'male'</span>,<span class="st">'female'</span>,<span class="st">'male'</span>,<span class="st">'male'</span>,<span class="st">'female'</span>,<span class="st">'female'</span>,<span class="st">'male'</span>],</span>
+<span id="cb44-3"><a aria-hidden="true" href="#cb44-3" tabindex="-1"></a>           <span class="st">'Age'</span>: [<span class="dv">4</span>,<span class="dv">40</span>,<span class="dv">23</span>,<span class="dv">22</span>,<span class="dv">60</span>,<span class="dv">50</span>,<span class="dv">55</span>,<span class="dv">70</span>,<span class="dv">58</span>,<span class="dv">28</span>],</span>
+<span id="cb44-4"><a aria-hidden="true" href="#cb44-4" tabindex="-1"></a>           <span class="st">'Schedule lag'</span>: [<span class="dv">41</span>,<span class="dv">29</span>,<span class="dv">5</span>,<span class="dv">18</span>,<span class="dv">1</span>,<span class="dv">17</span>,<span class="dv">29</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>],</span>
+<span id="cb44-5"><a aria-hidden="true" href="#cb44-5" tabindex="-1"></a>           <span class="st">'Schedule minutes'</span>:[<span class="dv">30</span>,<span class="dv">15</span>,<span class="dv">30</span>,<span class="dv">30</span>,<span class="dv">15</span>,<span class="dv">10</span>,<span class="dv">30</span>,<span class="dv">30</span>,<span class="dv">15</span>,<span class="dv">30</span>],</span>
+<span id="cb44-6"><a aria-hidden="true" href="#cb44-6" tabindex="-1"></a>           <span class="st">'Status'</span>: [<span class="st">'No show'</span>, <span class="st">'No show'</span>, <span class="st">'No show'</span>, <span class="st">'No show'</span>, <span class="st">'Show'</span>, <span class="st">'Show'</span>, <span class="st">'No show'</span>, <span class="st">'No show'</span>, <span class="st">'Show'</span>, <span class="st">'No show'</span>]}</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="populating-the-data-frame">
+      <h2>
+       Populating the data frame
+      </h2>
+      <div class="sourceCode" id="cb45">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a aria-hidden="true" href="#cb45-1" tabindex="-1"></a>patient_data <span class="op">=</span> pd.DataFrame(data <span class="op">=</span> raw_data) <span class="co"># pd.DataFrame() when passed the raw data will create the new data frame.  </span></span>
+<span id="cb45-2"><a aria-hidden="true" href="#cb45-2" tabindex="-1"></a><span class="bu">print</span>(patient_data) </span></code></pre>
+      </div>
+      <pre><code>      Sex  Age  Schedule lag  Schedule minutes   Status
+0    male    4            41                30  No show
+1  female   40            29                15  No show
+2  female   23             5                30  No show
+3    male   22            18                30  No show
+4  female   60             1                15     Show
+5    male   50            17                10     Show
+6    male   55            29                30  No show
+7  female   70             3                30  No show
+8  female   58             4                15     Show
+9    male   28             2                30  No show</code></pre>
+     </section>
+     <section class="slide level2" id="finding-the-size-of-the-data-frame-and-the-types-of-variables-included">
+      <h2>
+       Finding the size of the data frame and the types of variables
+included
+      </h2>
+      <div class="sourceCode" id="cb47">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a aria-hidden="true" href="#cb47-1" tabindex="-1"></a>patient_data.shape <span class="co"># The number of rows and columns (.shape).</span></span></code></pre>
+      </div>
+      <pre><code>(10, 5)</code></pre>
+      <div class="sourceCode" id="cb49">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a aria-hidden="true" href="#cb49-1" tabindex="-1"></a>patient_data.dtypes <span class="co"># The data types in the data frame (.dtypes).</span></span></code></pre>
+      </div>
+      <pre><code>Sex                 object
+Age                  int64
+Schedule lag         int64
+Schedule minutes     int64
+Status              object
+dtype: object</code></pre>
+      <ul>
+       <li>
+        When the data type is listed as “object” this means it is being
+treated as a string type, so statistically, the column will be viewed as
+a categorical variable.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="review-the-column-names">
+      <h2>
+       Review the column names
+      </h2>
+      <ul>
+       <li>
+        We already know the column names of this data frame, but when you
+read in from an external source that is not always the case.
+       </li>
+       <li>
+        The column names can be identified through the .columns
+attribute.
+       </li>
+       <li>
+        Notice the names are in what is called an “Index” object. An index
+contains information about the rows or columns, for example, their
+names.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb51">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a aria-hidden="true" href="#cb51-1" tabindex="-1"></a><span class="co">## Get just the names of the columns in the data frame with the .columns attribute.</span></span>
+<span id="cb51-2"><a aria-hidden="true" href="#cb51-2" tabindex="-1"></a><span class="bu">print</span>( patient_data.columns) </span></code></pre>
+      </div>
+      <pre><code>Index(['Sex', 'Age', 'Schedule lag', 'Schedule minutes', 'Status'], dtype='object')</code></pre>
+     </section>
+     <section class="slide level2" id="selecting-pieces-of-the-data-frame">
+      <h2>
+       Selecting pieces of the data frame
+      </h2>
+      <ul>
+       <li>
+        We will be interested in subsetting by rows and subsetting by
+column, or possibly both.
+       </li>
+       <li>
+        The most basic operation is to get at a specific column, and here is
+a direct way to do it:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb53">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a aria-hidden="true" href="#cb53-1" tabindex="-1"></a><span class="co"># Get the Age column by name as we would if the data structure were a dict.</span></span>
+<span id="cb53-2"><a aria-hidden="true" href="#cb53-2" tabindex="-1"></a><span class="bu">print</span>(patient_data[<span class="st">'Age'</span>])</span></code></pre>
+      </div>
+      <pre><code>0     4
+1    40
+2    23
+3    22
+4    60
+5    50
+6    55
+7    70
+8    58
+9    28
+Name: Age, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="getting-at-the-column-using-the-name-as-an-attribute">
+      <h2>
+       Getting at the column, using the name as an attribute
+      </h2>
+      <div class="sourceCode" id="cb55">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a aria-hidden="true" href="#cb55-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.Age) <span class="co"># This gets at the same column, but by "attribute" name.</span></span></code></pre>
+      </div>
+      <pre><code>0     4
+1    40
+2    23
+3    22
+4    60
+5    50
+6    55
+7    70
+8    58
+9    28
+Name: Age, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="adding-an-index-for-the-rows">
+      <h2>
+       Adding an index for the rows
+      </h2>
+      <ul>
+       <li>
+        The data frame was created with default row names, the numbers 0
+through 9.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb57">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a aria-hidden="true" href="#cb57-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.index) <span class="co"># This shows the index: by default here the numbers 0 through 9.</span></span></code></pre>
+      </div>
+      <pre><code>RangeIndex(start=0, stop=10, step=1)</code></pre>
+     </section>
+     <section class="slide level2" id="creating-the-new-index">
+      <h2>
+       Creating the new index
+      </h2>
+      <ul>
+       <li>
+        If we had patient identifiers we could use these instead for the row
+index.
+       </li>
+       <li>
+        Below, we create some patient identifiers and add them to the data
+frame as an index.
+       </li>
+       <li>
+        We also give a name “Patient ID” to the new index.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb59">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a aria-hidden="true" href="#cb59-1" tabindex="-1"></a>patient_ids <span class="op">=</span> [<span class="st">'P456'</span>, <span class="st">'P126'</span>,<span class="st">'P563'</span>, <span class="st">'P884'</span>,<span class="st">'P102'</span>, <span class="st">'P067'</span>,<span class="st">'P120'</span>, <span class="st">'P943'</span>,<span class="st">'P496'</span>, <span class="st">'P805'</span>] <span class="co"># Patient identifiers.</span></span>
+<span id="cb59-2"><a aria-hidden="true" href="#cb59-2" tabindex="-1"></a>patient_data.index <span class="op">=</span> patient_ids <span class="co"># Assign a new index.</span></span>
+<span id="cb59-3"><a aria-hidden="true" href="#cb59-3" tabindex="-1"></a>patient_data.index.name <span class="op">=</span> <span class="st">'Patient ID'</span> <span class="co"># Give the new index a name.</span></span>
+<span id="cb59-4"><a aria-hidden="true" href="#cb59-4" tabindex="-1"></a><span class="bu">print</span>(patient_data) <span class="co"># Check out the data frame.</span></span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P456          male    4            41                30  No show
+P126        female   40            29                15  No show
+P563        female   23             5                30  No show
+P884          male   22            18                30  No show
+P102        female   60             1                15     Show
+P067          male   50            17                10     Show
+P120          male   55            29                30  No show
+P943        female   70             3                30  No show
+P496        female   58             4                15     Show
+P805          male   28             2                30  No show</code></pre>
+     </section>
+     <section class="slide level2" id="selecting-rows-and-columns">
+      <h2>
+       Selecting rows and columns
+      </h2>
+      <ul>
+       <li>
+        There are a variety of ways of selecting rows and columns from the
+data frame.
+       </li>
+       <li>
+        Some are similar to techniques we have seen earlier, but the .loc
+and .iloc methods are new.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb61">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a aria-hidden="true" href="#cb61-1" tabindex="-1"></a><span class="bu">print</span>(patient_data[<span class="dv">3</span>:<span class="dv">6</span>]) <span class="co"># Use the slice operator to identify by row number.</span></span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P884          male   22            18                30  No show
+P102        female   60             1                15     Show
+P067          male   50            17                10     Show</code></pre>
+     </section>
+     <section class="slide level2" id="selecting-rows-and-columns-1">
+      <h2>
+       Selecting rows and columns
+      </h2>
+      <div class="sourceCode" id="cb63">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a aria-hidden="true" href="#cb63-1" tabindex="-1"></a><span class="bu">print</span>(patient_data[:<span class="dv">6</span>:<span class="op">-</span><span class="dv">1</span>]) <span class="co"># Use the slice operator to identify by row number.</span></span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P805          male   28             2                30  No show
+P496        female   58             4                15     Show
+P943        female   70             3                30  No show</code></pre>
+      <div class="sourceCode" id="cb65">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a aria-hidden="true" href="#cb65-1" tabindex="-1"></a><span class="bu">print</span>(patient_data[[<span class="st">'Sex'</span>, <span class="st">'Status'</span>]]) <span class="co"># Identifying a set of columns.</span></span></code></pre>
+      </div>
+      <pre><code>               Sex   Status
+Patient ID                 
+P456          male  No show
+P126        female  No show
+P563        female  No show
+P884          male  No show
+P102        female     Show
+P067          male     Show
+P120          male  No show
+P943        female  No show
+P496        female     Show
+P805          male  No show</code></pre>
+     </section>
+     <section class="slide level2" id="using-the-locate-methods">
+      <h2>
+       Using the locate methods
+      </h2>
+      <ul>
+       <li>
+        The first, “.loc” allows to identify by name, and the second “.iloc”
+by integer location.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb67">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a aria-hidden="true" href="#cb67-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.loc[[<span class="st">'P120'</span>, <span class="st">'P805'</span>]])  <span class="co"># Identify the rows by name.</span></span></code></pre>
+      </div>
+      <pre><code>             Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                    
+P120        male   55            29                30  No show
+P805        male   28             2                30  No show</code></pre>
+      <div class="sourceCode" id="cb69">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a aria-hidden="true" href="#cb69-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.loc[[<span class="st">'P120'</span>, <span class="st">'P805'</span>],  [<span class="st">'Sex'</span>, <span class="st">'Status'</span>]]) <span class="co"># Identify rows and columns by name.</span></span></code></pre>
+      </div>
+      <pre><code>             Sex   Status
+Patient ID               
+P120        male  No show
+P805        male  No show</code></pre>
+     </section>
+     <section class="slide level2" id="identifying-by-position">
+      <h2>
+       Identifying by position
+      </h2>
+      <ul>
+       <li>
+        The two statements below look very similar, but one has [] and the
+other [[]].
+       </li>
+       <li>
+        The first returns a Series and the other one, a single column
+DataFrame.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb71">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a aria-hidden="true" href="#cb71-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.iloc[<span class="dv">1</span>]) <span class="co"># The second row returned as a Series, with index of column names. </span></span></code></pre>
+      </div>
+      <pre><code>Sex                  female
+Age                      40
+Schedule lag             29
+Schedule minutes         15
+Status              No show
+Name: P126, dtype: object</code></pre>
+      <div class="sourceCode" id="cb73">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a aria-hidden="true" href="#cb73-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.iloc[[<span class="dv">1</span>]]) <span class="co"># The second row returned as a DataFrame. </span></span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P126        female   40            29                15  No show</code></pre>
+     </section>
+     <section class="slide level2" id="selecting-the-first-and-last-rows-of-the-data-frame">
+      <h2>
+       Selecting the first and last rows of the data frame
+      </h2>
+      <div class="sourceCode" id="cb75">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a aria-hidden="true" href="#cb75-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.iloc[[<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>]])</span></code></pre>
+      </div>
+      <pre><code>             Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                    
+P456        male    4            41                30  No show
+P805        male   28             2                30  No show</code></pre>
+     </section>
+     <section class="slide level2" id="selecting-multiple-rows-and-columns">
+      <h2>
+       Selecting multiple rows and columns
+      </h2>
+      <div class="sourceCode" id="cb77">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a aria-hidden="true" href="#cb77-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.iloc[[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>],[<span class="dv">2</span>,<span class="dv">3</span>]]) <span class="co"># Rows 2, 4 and 6, with columns 3 and 4.</span></span></code></pre>
+      </div>
+      <pre><code>            Schedule lag  Schedule minutes
+Patient ID                                
+P126                  29                15
+P884                  18                30
+P067                  17                10</code></pre>
+      <div class="sourceCode" id="cb79">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a aria-hidden="true" href="#cb79-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.iloc[:<span class="dv">2</span>,<span class="dv">3</span>:]) <span class="co"># Slice notation works too.</span></span></code></pre>
+      </div>
+      <pre><code>            Schedule minutes   Status
+Patient ID                           
+P456                      30  No show
+P126                      15  No show</code></pre>
+     </section>
+     <section class="slide level2" id="using-logical-filters">
+      <h2>
+       Using logical filters
+      </h2>
+      <ul>
+       <li>
+        Just like with Series, it can be important to select rows from a
+data frame with specific attributes.
+       </li>
+       <li>
+        For example, just select the males, or just select the females.
+       </li>
+       <li>
+        This can be done in the same was we did for the Series data
+structure.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb81">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a aria-hidden="true" href="#cb81-1" tabindex="-1"></a>patient_data.Sex <span class="op">==</span> <span class="st">"female"</span> <span class="co"># A series where the trues are for females and the falses for males.</span></span>
+<span id="cb81-2"><a aria-hidden="true" href="#cb81-2" tabindex="-1"></a><span class="bu">print</span>(patient_data.Sex <span class="op">==</span> <span class="st">"female"</span>)</span></code></pre>
+      </div>
+      <pre><code>Patient ID
+P456    False
+P126     True
+P563     True
+P884    False
+P102     True
+P067    False
+P120    False
+P943     True
+P496     True
+P805    False
+Name: Sex, dtype: bool</code></pre>
+     </section>
+     <section class="slide level2" id="selecting-just-the-female-rows-from-the-data-frame">
+      <h2>
+       Selecting just the female rows from the data frame
+      </h2>
+      <div class="sourceCode" id="cb83">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a aria-hidden="true" href="#cb83-1" tabindex="-1"></a><span class="bu">print</span>(patient_data[patient_data.Sex <span class="op">==</span> <span class="st">"female"</span>]) <span class="co"># Select only the females</span></span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P126        female   40            29                15  No show
+P563        female   23             5                30  No show
+P102        female   60             1                15     Show
+P943        female   70             3                30  No show
+P496        female   58             4                15     Show</code></pre>
+      <div class="sourceCode" id="cb85">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a aria-hidden="true" href="#cb85-1" tabindex="-1"></a><span class="co"># A compound selection of females who showed up. The "&amp;" here performs the logical "and". </span></span>
+<span id="cb85-2"><a aria-hidden="true" href="#cb85-2" tabindex="-1"></a><span class="co"># It works elementwise on the two boolean Series. </span></span>
+<span id="cb85-3"><a aria-hidden="true" href="#cb85-3" tabindex="-1"></a><span class="bu">print</span>(patient_data[(patient_data.Sex <span class="op">==</span> <span class="st">"female"</span>) <span class="op">&amp;</span> (patient_data.Status <span class="op">==</span> <span class="st">"Show"</span>)])</span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes Status
+Patient ID                                                    
+P102        female   60             1                15   Show
+P496        female   58             4                15   Show</code></pre>
+     </section>
+     <section class="slide level2" id="logical-selection-together-with-column-extraction">
+      <h2>
+       Logical selection together with column extraction
+      </h2>
+      <ul>
+       <li>
+        We could combine logical selection with column selection, to get at
+specific columns for which conditions hold true on other columns.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb87">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a aria-hidden="true" href="#cb87-1" tabindex="-1"></a><span class="co"># Get the schedule lag for females who showed up. </span></span>
+<span id="cb87-2"><a aria-hidden="true" href="#cb87-2" tabindex="-1"></a><span class="bu">print</span>(patient_data[(patient_data.Sex <span class="op">==</span> <span class="st">"female"</span>) <span class="op">&amp;</span> (patient_data.Status <span class="op">==</span> <span class="st">"Show"</span>)].iloc[:, [<span class="dv">2</span>]])</span></code></pre>
+      </div>
+      <pre><code>            Schedule lag
+Patient ID              
+P102                   1
+P496                   4</code></pre>
+     </section>
+     <section class="slide level2" id="editingoverwriting-parts-of-a-data-frame">
+      <h2>
+       Editing/overwriting parts of a data frame
+      </h2>
+      <ul>
+       <li>
+        As with Series, if you can select a part of a data frame, you can
+edit through assignment.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb89">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a aria-hidden="true" href="#cb89-1" tabindex="-1"></a><span class="bu">print</span>(patient_data.iloc[<span class="dv">2</span>,<span class="dv">0</span>]) <span class="co"># Sex of the third patient.</span></span>
+<span id="cb89-2"><a aria-hidden="true" href="#cb89-2" tabindex="-1"></a>patient_data.iloc[<span class="dv">2</span>,<span class="dv">0</span>] <span class="op">=</span> <span class="st">'male'</span> <span class="co"># Overwrite from female to male.</span></span>
+<span id="cb89-3"><a aria-hidden="true" href="#cb89-3" tabindex="-1"></a><span class="bu">print</span>(patient_data.iloc[<span class="dv">2</span>,<span class="dv">0</span>])</span></code></pre>
+      </div>
+      <pre><code>female
+male</code></pre>
+     </section>
+     <section class="slide level2" id="editing-a-row-slice">
+      <h2>
+       Editing a row slice
+      </h2>
+      <div class="sourceCode" id="cb91">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a aria-hidden="true" href="#cb91-1" tabindex="-1"></a>patient_data.iloc[<span class="dv">2</span>:<span class="dv">4</span>,<span class="dv">1</span>] <span class="op">=</span> <span class="dv">19</span></span>
+<span id="cb91-2"><a aria-hidden="true" href="#cb91-2" tabindex="-1"></a><span class="bu">print</span>(patient_data)</span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P456          male    4            41                30  No show
+P126        female   40            29                15  No show
+P563          male   19             5                30  No show
+P884          male   19            18                30  No show
+P102        female   60             1                15     Show
+P067          male   50            17                10     Show
+P120          male   55            29                30  No show
+P943        female   70             3                30  No show
+P496        female   58             4                15     Show
+P805          male   28             2                30  No show</code></pre>
+     </section>
+     <section class="slide level2" id="editing-rows-and-columns-simultaneously">
+      <h2>
+       Editing rows and columns simultaneously
+      </h2>
+      <ul>
+       <li>
+        Note the nested lists being used for each row.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb93">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a aria-hidden="true" href="#cb93-1" tabindex="-1"></a>patient_data.loc[[<span class="st">'P456'</span>, <span class="st">'P884'</span>],[<span class="st">'Sex'</span>, <span class="st">'Age'</span>]] <span class="op">=</span> [[<span class="st">'NA'</span>,<span class="dv">99</span>],[<span class="st">'NA'</span>,<span class="dv">99</span>]]</span>
+<span id="cb93-2"><a aria-hidden="true" href="#cb93-2" tabindex="-1"></a><span class="bu">print</span>(patient_data)</span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P456            NA   99            41                30  No show
+P126        female   40            29                15  No show
+P563          male   19             5                30  No show
+P884            NA   99            18                30  No show
+P102        female   60             1                15     Show
+P067          male   50            17                10     Show
+P120          male   55            29                30  No show
+P943        female   70             3                30  No show
+P496        female   58             4                15     Show
+P805          male   28             2                30  No show</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="class-summary">
+      <h1>
+       Class summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        A first look at the pandas library.
+       </li>
+       <li>
+        The Series container:
+        <ul>
+         <li>
+          Selecting components of a Series.
+         </li>
+         <li>
+          Statistical summaries.
+         </li>
+        </ul>
+       </li>
+       <li>
+        The DataFrame container:
+        <ul>
+         <li>
+          Components of a data frame.
+         </li>
+         <li>
+          Creating a data frame from a dict structure.
+         </li>
+         <li>
+          Selecting components of a data frame (rows and columns).
+         </li>
+         <li>
+          Creating more complex logical filters.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        Importing data to Python:
+        <ul>
+         <li>
+          Data file types.
+         </li>
+         <li>
+          CSV.
+         </li>
+         <li>
+          HTML.
+         </li>
+         <li>
+          JSON.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Data locations:
+        <ul>
+         <li>
+          A local file.
+         </li>
+         <li>
+          A remote (web) resource.
+         </li>
+         <li>
+          A database.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Joining datasets.
+       </li>
+       <li>
+        Dates and times
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
