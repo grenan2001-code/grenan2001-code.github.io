@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File Index</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { max-width: 56rem; margin: 2rem auto; padding: 0 1rem; }
+    h1 { margin-bottom: .35rem; }
+    #filter { box-sizing: border-box; width: 100%; padding: .7rem; font: inherit; }
+    #count { color: #777; }
+    ul { columns: 2 18rem; padding-left: 1.5rem; }
+    li { break-inside: avoid; margin: .35rem 0; }
+    a { overflow-wrap: anywhere; }
+    @media (max-width: 42rem) { ul { columns: 1; } }
+  </style>
+</head>
+<body>
+  <h1>File Index</h1>
+  <p id="count"></p>
+  <label for="filter">Filter files</label>
+  <input id="filter" type="search" placeholder="Type part of a filename…" autocomplete="off">
+  <ul id="files"></ul>
+
+  <script>
+    const filenames = `aapl_var.jpg
+aapl_var.png
+AB_mosaic.jpg
+AB_two_t.jpg
+actual_sound.jpg
+all_dice.png
+all_dice_small.png
+Altisource_Logo.jpg
+anscombe.png
+anscombe_numeric.png
+appl_summ_stats.png
+appl_summ_stats_quantiles.png
+attrition_ci.png
+bell_curve.png
+boxplots.jpg
+c06_liquor_02.png
+categorical02.png
+check_mark.jpg
+check_mark.png
+CImean.png
+CImean_no_outlier.png
+clt.jpg
+clt_curve.png
+clt_dice_Distribution.png
+correlation_diamonds.jpg
+corr_0_illust.png
+corr_30_illust.png
+corr_70_illust.png
+corr_99_illust.png
+corr_intuition.png
+cross.jpg
+cross_mark.png
+current_model.png
+diamonds_raw.png
+diamonds_summary.jpg
+diamond_tree.png
+diamond_tree_graph.png
+display_linear.png
+display_log_scale.png
+dlom_ci.png
+dummy_var_parallel.png
+emprule.gif
+emprule.png
+file_names.txt
+fire_alarm.jpg
+four_dice.jpg
+graphs.png
+grid.png
+grid_01.png
+jmp_icon.jpeg
+jmp_icon.png
+johnson_logo.jpg
+kdc.jpg
+kim-dotcom.jpg
+Leaders.png
+ln_ci_mean.png
+location_mixture.png
+logistic_attrition.jpg
+logistic_lift.jpg
+logistic_roc.jpg
+log_log_diamonds.png
+ls_means_manager.png
+ls_means_prodtime.png
+madoff.jpg
+mah01.png
+mah02.png
+mah03.png
+mah04.png
+mah05.png
+mahalanobis.jpg
+mah_plot.png
+manager_no_center.png
+Many_polls_and_MoE.png
+median_CI_binom.png
+mrm_cat.png
+mrm_cat_effect_test.png
+mrm_cat_explore.jpg
+mrm_cat_explore.png
+mrm_cat_interaction.jpg
+mrm_cat_interaction.png
+mrm_cat_output.jpg
+mrm_dialog.jpg
+mrm_dialog.png
+mrm_effect_interaction_test.jpg
+mrm_effect_test.jpg
+mrm_indirect.jpg
+mrm_indirect.png
+mrm_leverage.jpg
+mrm_leverage.png
+mrm_multicat.png
+mrm_multicat_explore.jpg
+mrm_multicat_explore.png
+mrm_multicat_output.jpg
+mrm_output.jpg
+mrm_output.png
+mrm_press.png
+mrm_stepwise_dialog.png
+mrm_tukey_hsd.jpg
+mrm_tukey_hsd.png
+multi_box_plots.png
+mute_sound.jpg
+normal.jpg
+no_fire.jpg
+nqp_water_1.png
+nqp_water_2.png
+OneSampleTtest.png
+one_die.jpg
+one_prop.jpg
+orings.gif
+orings.png
+p-value.png
+p-value_pic.png
+partition_classification_tree.jpg
+partition_menu.jpg
+partition_regression_tree.jpg
+pop_sample.jpg
+portugal_fire.jpg
+power.png
+prod_dev.jpg
+prop_ci_categorical.png
+prop_ci_categorical_small_sample_size.png
+prop_ci_zero_one.PNG
+prop_ci_zero_one_90.png
+q_a_norm.png
+q_b_norm.png
+scale_mixture.png
+scatterplot.jpg
+scatterplot.png
+sd_zones.PNG
+shaft.png
+shaftdia.png
+smooth_diamonds.png
+special_causes.PNG
+srm_ci.jpg
+srm_ci.png
+srm_diamonds.jpg
+srm_ksmooth.png
+srm_log_display.jpg
+srm_outlier_diamond.jpg
+srm_prediction.jpg
+srm_prediction.png
+srm_prism.jpg
+srm_prism_quintiles.jpg
+srm_prism_resids.jpg
+srm_prism_resids_saved.jpg
+srm_resids.png
+srm_resids_saved.png
+srm_scatterplot.png
+srm_spline.jpg
+srm_summaries.png
+ss1.png
+ss2.png
+target6.png
+three_dice.jpg
+three_regressions.png
+two_dice.jpg
+two_prop.jpg
+two_tab.jpg
+two_types_of_error.png
+two_t_boxplots.jpg
+two_t_test.jpg
+two_wilcoxon.jpg
+t_10.png
+t_3.png
+t_30.png
+var_norm.png`.split('\n');
+
+    const list = document.querySelector('#files');
+    const count = document.querySelector('#count');
+    const filter = document.querySelector('#filter');
+
+    function render(query = '') {
+      const matches = filenames.filter(name => name.toLowerCase().includes(query.toLowerCase()));
+      list.replaceChildren(...matches.map(name => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = encodeURIComponent(name);
+        link.textContent = name;
+        item.append(link);
+        return item;
+      }));
+      count.textContent = `${matches.length} of ${filenames.length} files`;
+    }
+
+    filter.addEventListener('input', () => render(filter.value));
+    render();
+  </script>
+</body>
+</html>
