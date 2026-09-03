@@ -8,7 +8,6 @@
     :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
     body { max-width: 56rem; margin: 2rem auto; padding: 0 1rem; }
     h1 { margin-bottom: .35rem; }
-    #filter { box-sizing: border-box; width: 100%; padding: .7rem; font: inherit; }
     #count { color: #777; }
     ul { columns: 2 18rem; padding-left: 1.5rem; }
     li { break-inside: avoid; margin: .35rem 0; }
@@ -18,198 +17,174 @@
 </head>
 <body>
   <h1>File Index</h1>
-  <p id="count"></p>
-  <label for="filter">Filter files</label>
-  <input id="filter" type="search" placeholder="Type part of a filename…" autocomplete="off">
-  <ul id="files"></ul>
-
-  <script>
-    const filenames = `aapl_var.jpg
-aapl_var.png
-AB_mosaic.jpg
-AB_two_t.jpg
-actual_sound.jpg
-all_dice.png
-all_dice_small.png
-Altisource_Logo.jpg
-anscombe.png
-anscombe_numeric.png
-appl_summ_stats.png
-appl_summ_stats_quantiles.png
-attrition_ci.png
-bell_curve.png
-boxplots.jpg
-c06_liquor_02.png
-categorical02.png
-check_mark.jpg
-check_mark.png
-CImean.png
-CImean_no_outlier.png
-clt.jpg
-clt_curve.png
-clt_dice_Distribution.png
-correlation_diamonds.jpg
-corr_0_illust.png
-corr_30_illust.png
-corr_70_illust.png
-corr_99_illust.png
-corr_intuition.png
-cross.jpg
-cross_mark.png
-current_model.png
-diamonds_raw.png
-diamonds_summary.jpg
-diamond_tree.png
-diamond_tree_graph.png
-display_linear.png
-display_log_scale.png
-dlom_ci.png
-dummy_var_parallel.png
-emprule.gif
-emprule.png
-file_names.txt
-fire_alarm.jpg
-four_dice.jpg
-graphs.png
-grid.png
-grid_01.png
-jmp_icon.jpeg
-jmp_icon.png
-johnson_logo.jpg
-kdc.jpg
-kim-dotcom.jpg
-Leaders.png
-ln_ci_mean.png
-location_mixture.png
-logistic_attrition.jpg
-logistic_lift.jpg
-logistic_roc.jpg
-log_log_diamonds.png
-ls_means_manager.png
-ls_means_prodtime.png
-madoff.jpg
-mah01.png
-mah02.png
-mah03.png
-mah04.png
-mah05.png
-mahalanobis.jpg
-mah_plot.png
-manager_no_center.png
-Many_polls_and_MoE.png
-median_CI_binom.png
-mrm_cat.png
-mrm_cat_effect_test.png
-mrm_cat_explore.jpg
-mrm_cat_explore.png
-mrm_cat_interaction.jpg
-mrm_cat_interaction.png
-mrm_cat_output.jpg
-mrm_dialog.jpg
-mrm_dialog.png
-mrm_effect_interaction_test.jpg
-mrm_effect_test.jpg
-mrm_indirect.jpg
-mrm_indirect.png
-mrm_leverage.jpg
-mrm_leverage.png
-mrm_multicat.png
-mrm_multicat_explore.jpg
-mrm_multicat_explore.png
-mrm_multicat_output.jpg
-mrm_output.jpg
-mrm_output.png
-mrm_press.png
-mrm_stepwise_dialog.png
-mrm_tukey_hsd.jpg
-mrm_tukey_hsd.png
-multi_box_plots.png
-mute_sound.jpg
-normal.jpg
-no_fire.jpg
-nqp_water_1.png
-nqp_water_2.png
-OneSampleTtest.png
-one_die.jpg
-one_prop.jpg
-orings.gif
-orings.png
-p-value.png
-p-value_pic.png
-partition_classification_tree.jpg
-partition_menu.jpg
-partition_regression_tree.jpg
-pop_sample.jpg
-portugal_fire.jpg
-power.png
-prod_dev.jpg
-prop_ci_categorical.png
-prop_ci_categorical_small_sample_size.png
-prop_ci_zero_one.PNG
-prop_ci_zero_one_90.png
-q_a_norm.png
-q_b_norm.png
-scale_mixture.png
-scatterplot.jpg
-scatterplot.png
-sd_zones.PNG
-shaft.png
-shaftdia.png
-smooth_diamonds.png
-special_causes.PNG
-srm_ci.jpg
-srm_ci.png
-srm_diamonds.jpg
-srm_ksmooth.png
-srm_log_display.jpg
-srm_outlier_diamond.jpg
-srm_prediction.jpg
-srm_prediction.png
-srm_prism.jpg
-srm_prism_quintiles.jpg
-srm_prism_resids.jpg
-srm_prism_resids_saved.jpg
-srm_resids.png
-srm_resids_saved.png
-srm_scatterplot.png
-srm_spline.jpg
-srm_summaries.png
-ss1.png
-ss2.png
-target6.png
-three_dice.jpg
-three_regressions.png
-two_dice.jpg
-two_prop.jpg
-two_tab.jpg
-two_types_of_error.png
-two_t_boxplots.jpg
-two_t_test.jpg
-two_wilcoxon.jpg
-t_10.png
-t_3.png
-t_30.png
-var_norm.png`.split('\n');
-
-    const list = document.querySelector('#files');
-    const count = document.querySelector('#count');
-    const filter = document.querySelector('#filter');
-
-    function render(query = '') {
-      const matches = filenames.filter(name => name.toLowerCase().includes(query.toLowerCase()));
-      list.replaceChildren(...matches.map(name => {
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = encodeURIComponent(name);
-        link.textContent = name;
-        item.append(link);
-        return item;
-      }));
-      count.textContent = `${matches.length} of ${filenames.length} files`;
-    }
-
-    filter.addEventListener('input', () => render(filter.value));
-    render();
-  </script>
+  <p id="count">166 files</p>
+  <ul id="files">
+    <li><a href="aapl_var.jpg">aapl_var.jpg</a></li>
+    <li><a href="aapl_var.png">aapl_var.png</a></li>
+    <li><a href="AB_mosaic.jpg">AB_mosaic.jpg</a></li>
+    <li><a href="AB_two_t.jpg">AB_two_t.jpg</a></li>
+    <li><a href="actual_sound.jpg">actual_sound.jpg</a></li>
+    <li><a href="all_dice.png">all_dice.png</a></li>
+    <li><a href="all_dice_small.png">all_dice_small.png</a></li>
+    <li><a href="Altisource_Logo.jpg">Altisource_Logo.jpg</a></li>
+    <li><a href="anscombe.png">anscombe.png</a></li>
+    <li><a href="anscombe_numeric.png">anscombe_numeric.png</a></li>
+    <li><a href="appl_summ_stats.png">appl_summ_stats.png</a></li>
+    <li><a href="appl_summ_stats_quantiles.png">appl_summ_stats_quantiles.png</a></li>
+    <li><a href="attrition_ci.png">attrition_ci.png</a></li>
+    <li><a href="bell_curve.png">bell_curve.png</a></li>
+    <li><a href="boxplots.jpg">boxplots.jpg</a></li>
+    <li><a href="c06_liquor_02.png">c06_liquor_02.png</a></li>
+    <li><a href="categorical02.png">categorical02.png</a></li>
+    <li><a href="check_mark.jpg">check_mark.jpg</a></li>
+    <li><a href="check_mark.png">check_mark.png</a></li>
+    <li><a href="CImean.png">CImean.png</a></li>
+    <li><a href="CImean_no_outlier.png">CImean_no_outlier.png</a></li>
+    <li><a href="clt.jpg">clt.jpg</a></li>
+    <li><a href="clt_curve.png">clt_curve.png</a></li>
+    <li><a href="clt_dice_Distribution.png">clt_dice_Distribution.png</a></li>
+    <li><a href="correlation_diamonds.jpg">correlation_diamonds.jpg</a></li>
+    <li><a href="corr_0_illust.png">corr_0_illust.png</a></li>
+    <li><a href="corr_30_illust.png">corr_30_illust.png</a></li>
+    <li><a href="corr_70_illust.png">corr_70_illust.png</a></li>
+    <li><a href="corr_99_illust.png">corr_99_illust.png</a></li>
+    <li><a href="corr_intuition.png">corr_intuition.png</a></li>
+    <li><a href="cross.jpg">cross.jpg</a></li>
+    <li><a href="cross_mark.png">cross_mark.png</a></li>
+    <li><a href="current_model.png">current_model.png</a></li>
+    <li><a href="diamonds_raw.png">diamonds_raw.png</a></li>
+    <li><a href="diamonds_summary.jpg">diamonds_summary.jpg</a></li>
+    <li><a href="diamond_tree.png">diamond_tree.png</a></li>
+    <li><a href="diamond_tree_graph.png">diamond_tree_graph.png</a></li>
+    <li><a href="display_linear.png">display_linear.png</a></li>
+    <li><a href="display_log_scale.png">display_log_scale.png</a></li>
+    <li><a href="dlom_ci.png">dlom_ci.png</a></li>
+    <li><a href="dummy_var_parallel.png">dummy_var_parallel.png</a></li>
+    <li><a href="emprule.gif">emprule.gif</a></li>
+    <li><a href="emprule.png">emprule.png</a></li>
+    <li><a href="file_names.txt">file_names.txt</a></li>
+    <li><a href="fire_alarm.jpg">fire_alarm.jpg</a></li>
+    <li><a href="four_dice.jpg">four_dice.jpg</a></li>
+    <li><a href="graphs.png">graphs.png</a></li>
+    <li><a href="grid.png">grid.png</a></li>
+    <li><a href="grid_01.png">grid_01.png</a></li>
+    <li><a href="jmp_icon.jpeg">jmp_icon.jpeg</a></li>
+    <li><a href="jmp_icon.png">jmp_icon.png</a></li>
+    <li><a href="johnson_logo.jpg">johnson_logo.jpg</a></li>
+    <li><a href="kdc.jpg">kdc.jpg</a></li>
+    <li><a href="kim-dotcom.jpg">kim-dotcom.jpg</a></li>
+    <li><a href="Leaders.png">Leaders.png</a></li>
+    <li><a href="ln_ci_mean.png">ln_ci_mean.png</a></li>
+    <li><a href="location_mixture.png">location_mixture.png</a></li>
+    <li><a href="logistic_attrition.jpg">logistic_attrition.jpg</a></li>
+    <li><a href="logistic_lift.jpg">logistic_lift.jpg</a></li>
+    <li><a href="logistic_roc.jpg">logistic_roc.jpg</a></li>
+    <li><a href="log_log_diamonds.png">log_log_diamonds.png</a></li>
+    <li><a href="ls_means_manager.png">ls_means_manager.png</a></li>
+    <li><a href="ls_means_prodtime.png">ls_means_prodtime.png</a></li>
+    <li><a href="madoff.jpg">madoff.jpg</a></li>
+    <li><a href="mah01.png">mah01.png</a></li>
+    <li><a href="mah02.png">mah02.png</a></li>
+    <li><a href="mah03.png">mah03.png</a></li>
+    <li><a href="mah04.png">mah04.png</a></li>
+    <li><a href="mah05.png">mah05.png</a></li>
+    <li><a href="mahalanobis.jpg">mahalanobis.jpg</a></li>
+    <li><a href="mah_plot.png">mah_plot.png</a></li>
+    <li><a href="manager_no_center.png">manager_no_center.png</a></li>
+    <li><a href="Many_polls_and_MoE.png">Many_polls_and_MoE.png</a></li>
+    <li><a href="median_CI_binom.png">median_CI_binom.png</a></li>
+    <li><a href="mrm_cat.png">mrm_cat.png</a></li>
+    <li><a href="mrm_cat_effect_test.png">mrm_cat_effect_test.png</a></li>
+    <li><a href="mrm_cat_explore.jpg">mrm_cat_explore.jpg</a></li>
+    <li><a href="mrm_cat_explore.png">mrm_cat_explore.png</a></li>
+    <li><a href="mrm_cat_interaction.jpg">mrm_cat_interaction.jpg</a></li>
+    <li><a href="mrm_cat_interaction.png">mrm_cat_interaction.png</a></li>
+    <li><a href="mrm_cat_output.jpg">mrm_cat_output.jpg</a></li>
+    <li><a href="mrm_dialog.jpg">mrm_dialog.jpg</a></li>
+    <li><a href="mrm_dialog.png">mrm_dialog.png</a></li>
+    <li><a href="mrm_effect_interaction_test.jpg">mrm_effect_interaction_test.jpg</a></li>
+    <li><a href="mrm_effect_test.jpg">mrm_effect_test.jpg</a></li>
+    <li><a href="mrm_indirect.jpg">mrm_indirect.jpg</a></li>
+    <li><a href="mrm_indirect.png">mrm_indirect.png</a></li>
+    <li><a href="mrm_leverage.jpg">mrm_leverage.jpg</a></li>
+    <li><a href="mrm_leverage.png">mrm_leverage.png</a></li>
+    <li><a href="mrm_multicat.png">mrm_multicat.png</a></li>
+    <li><a href="mrm_multicat_explore.jpg">mrm_multicat_explore.jpg</a></li>
+    <li><a href="mrm_multicat_explore.png">mrm_multicat_explore.png</a></li>
+    <li><a href="mrm_multicat_output.jpg">mrm_multicat_output.jpg</a></li>
+    <li><a href="mrm_output.jpg">mrm_output.jpg</a></li>
+    <li><a href="mrm_output.png">mrm_output.png</a></li>
+    <li><a href="mrm_press.png">mrm_press.png</a></li>
+    <li><a href="mrm_stepwise_dialog.png">mrm_stepwise_dialog.png</a></li>
+    <li><a href="mrm_tukey_hsd.jpg">mrm_tukey_hsd.jpg</a></li>
+    <li><a href="mrm_tukey_hsd.png">mrm_tukey_hsd.png</a></li>
+    <li><a href="multi_box_plots.png">multi_box_plots.png</a></li>
+    <li><a href="mute_sound.jpg">mute_sound.jpg</a></li>
+    <li><a href="normal.jpg">normal.jpg</a></li>
+    <li><a href="no_fire.jpg">no_fire.jpg</a></li>
+    <li><a href="nqp_water_1.png">nqp_water_1.png</a></li>
+    <li><a href="nqp_water_2.png">nqp_water_2.png</a></li>
+    <li><a href="OneSampleTtest.png">OneSampleTtest.png</a></li>
+    <li><a href="one_die.jpg">one_die.jpg</a></li>
+    <li><a href="one_prop.jpg">one_prop.jpg</a></li>
+    <li><a href="orings.gif">orings.gif</a></li>
+    <li><a href="orings.png">orings.png</a></li>
+    <li><a href="p-value.png">p-value.png</a></li>
+    <li><a href="p-value_pic.png">p-value_pic.png</a></li>
+    <li><a href="partition_classification_tree.jpg">partition_classification_tree.jpg</a></li>
+    <li><a href="partition_menu.jpg">partition_menu.jpg</a></li>
+    <li><a href="partition_regression_tree.jpg">partition_regression_tree.jpg</a></li>
+    <li><a href="pop_sample.jpg">pop_sample.jpg</a></li>
+    <li><a href="portugal_fire.jpg">portugal_fire.jpg</a></li>
+    <li><a href="power.png">power.png</a></li>
+    <li><a href="prod_dev.jpg">prod_dev.jpg</a></li>
+    <li><a href="prop_ci_categorical.png">prop_ci_categorical.png</a></li>
+    <li><a href="prop_ci_categorical_small_sample_size.png">prop_ci_categorical_small_sample_size.png</a></li>
+    <li><a href="prop_ci_zero_one.PNG">prop_ci_zero_one.PNG</a></li>
+    <li><a href="prop_ci_zero_one_90.png">prop_ci_zero_one_90.png</a></li>
+    <li><a href="q_a_norm.png">q_a_norm.png</a></li>
+    <li><a href="q_b_norm.png">q_b_norm.png</a></li>
+    <li><a href="scale_mixture.png">scale_mixture.png</a></li>
+    <li><a href="scatterplot.jpg">scatterplot.jpg</a></li>
+    <li><a href="scatterplot.png">scatterplot.png</a></li>
+    <li><a href="sd_zones.PNG">sd_zones.PNG</a></li>
+    <li><a href="shaft.png">shaft.png</a></li>
+    <li><a href="shaftdia.png">shaftdia.png</a></li>
+    <li><a href="smooth_diamonds.png">smooth_diamonds.png</a></li>
+    <li><a href="special_causes.PNG">special_causes.PNG</a></li>
+    <li><a href="srm_ci.jpg">srm_ci.jpg</a></li>
+    <li><a href="srm_ci.png">srm_ci.png</a></li>
+    <li><a href="srm_diamonds.jpg">srm_diamonds.jpg</a></li>
+    <li><a href="srm_ksmooth.png">srm_ksmooth.png</a></li>
+    <li><a href="srm_log_display.jpg">srm_log_display.jpg</a></li>
+    <li><a href="srm_outlier_diamond.jpg">srm_outlier_diamond.jpg</a></li>
+    <li><a href="srm_prediction.jpg">srm_prediction.jpg</a></li>
+    <li><a href="srm_prediction.png">srm_prediction.png</a></li>
+    <li><a href="srm_prism.jpg">srm_prism.jpg</a></li>
+    <li><a href="srm_prism_quintiles.jpg">srm_prism_quintiles.jpg</a></li>
+    <li><a href="srm_prism_resids.jpg">srm_prism_resids.jpg</a></li>
+    <li><a href="srm_prism_resids_saved.jpg">srm_prism_resids_saved.jpg</a></li>
+    <li><a href="srm_resids.png">srm_resids.png</a></li>
+    <li><a href="srm_resids_saved.png">srm_resids_saved.png</a></li>
+    <li><a href="srm_scatterplot.png">srm_scatterplot.png</a></li>
+    <li><a href="srm_spline.jpg">srm_spline.jpg</a></li>
+    <li><a href="srm_summaries.png">srm_summaries.png</a></li>
+    <li><a href="ss1.png">ss1.png</a></li>
+    <li><a href="ss2.png">ss2.png</a></li>
+    <li><a href="target6.png">target6.png</a></li>
+    <li><a href="three_dice.jpg">three_dice.jpg</a></li>
+    <li><a href="three_regressions.png">three_regressions.png</a></li>
+    <li><a href="two_dice.jpg">two_dice.jpg</a></li>
+    <li><a href="two_prop.jpg">two_prop.jpg</a></li>
+    <li><a href="two_tab.jpg">two_tab.jpg</a></li>
+    <li><a href="two_types_of_error.png">two_types_of_error.png</a></li>
+    <li><a href="two_t_boxplots.jpg">two_t_boxplots.jpg</a></li>
+    <li><a href="two_t_test.jpg">two_t_test.jpg</a></li>
+    <li><a href="two_wilcoxon.jpg">two_wilcoxon.jpg</a></li>
+    <li><a href="t_10.png">t_10.png</a></li>
+    <li><a href="t_3.png">t_3.png</a></li>
+    <li><a href="t_30.png">t_30.png</a></li>
+    <li><a href="var_norm.png">var_norm.png</a></li>
+  </ul>
 </body>
 </html>
