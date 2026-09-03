@@ -1,0 +1,111 @@
+﻿HousePrice,CrimeRate,MilesPhila,PopChg,Name,County
+140463.0,29.7,10.0,-1.0,Abington,Montgome
+113033.0,24.1,18.0,4.0,Ambler,Montgome
+124186.0,19.5,25.0,8.0,Aston,Delaware
+110490.0,49.4,25.0,2.7,Bensalem,Bucks
+79124.0,54.1,19.0,3.9,Bristol B.,Bucks
+92634.0,48.6,20.0,0.6,Bristol T.,Bucks
+89246.0,30.8,15.0,-2.6,Brookhaven,Delaware
+195145.0,10.8,20.0,-3.5,Bryn Athyn,Montgome
+297342.0,20.2,14.0,0.6,Bryn Mawr,Montgome
+264298.0,20.4,26.0,6.0,Buckingham,Bucks
+134342.0,17.3,31.0,4.2,Chalfont,Bucks
+284432.0,,31.0,-2.1,Charlestowne,Chester
+147600.0,50.3,9.0,-1.0,Cheltenham,Montgome
+77370.0,34.2,10.0,-1.2,Clifton,Delaware
+170822.0,33.7,32.0,2.4,Collegeville,Montgome
+66803.0,,12.0,-0.9,Collindale,Delaware
+92285.0,,16.0,3.2,Conshohocken,Montgome
+40642.0,45.7,15.0,0.0,Darby Bor.,Delaware
+71359.0,22.3,8.0,1.6,Darby Town,Delaware
+104923.0,48.1,21.0,6.9,Downingtown,Chester
+190317.0,19.4,26.0,1.9,Doylestown,Bucks
+215512.0,71.9,26.0,5.8,E. Bradford,Chester
+178105.0,45.1,25.0,2.3,E. Goshen,Chester
+131025.0,31.3,19.0,-1.8,E. Norriton,Montgome
+149844.0,24.9,22.0,6.4,E. Pikeland,Chester
+170556.0,27.2,30.0,4.6,E. Whiteland,Chester
+280969.0,17.7,14.0,2.9,Easttown,Chester
+114233.0,29.0,30.0,1.3,Falls Town,Bucks
+74502.0,21.4,15.0,-3.2,Follcroft,Delaware
+475112.0,28.6,12.0,,Gladwyne,Montgome
+97167.0,29.3,10.0,0.2,Glenolden,Delaware
+114572.0,17.5,20.0,5.2,Hatboro,Montgome
+436348.0,16.5,10.0,-0.7,Haverford,Delaware
+389302.0,17.8,20.0,1.5,Horsham,Montgome
+122392.0,17.3,10.0,1.9,Jenkintown,Montgome
+130436.0,31.2,17.0,-0.4,L Southampton,Delaware
+272790.0,14.5,20.0,-5.1,L. Gwynedd,Montgome
+194435.0,15.7,32.0,15.0,L. Makefield,Bucks
+299621.0,28.6,10.0,1.4,L. Merion,Montgome
+210884.0,20.8,20.0,0.1,L. Moreland,Montgome
+135525.0,,23.0,15.5,Langhorn,Bucks
+150833.0,,23.0,6.8,Langhorn M.,Bucks
+112471.0,29.3,35.0,3.4,Lansdale,Montgome
+93738.0,19.3,7.0,-0.4,Lansdown,Delaware
+121024.0,39.5,35.0,26.9,Limerick,Montgome
+156035.0,13.0,23.0,6.3,Malvern,Chester
+185404.0,24.1,10.0,0.9,Marple,Delaware
+126160.0,38.0,20.0,-2.4,Media,Delaware
+179908.0,,15.0,-1.1,Middletown,Delaware
+143072.0,40.1,23.0,1.6,Middletown,Bucks
+96769.0,36.1,15.0,5.1,Morrisville,Bucks
+94014.0,26.6,14.0,0.5,Morton,Delaware
+118214.0,25.1,25.0,5.7,N. Wales,Montgome
+157446.0,14.6,15.0,3.1,Narberth,Montgome
+150283.0,18.2,15.0,0.9,Nether,Delaware
+153842.0,15.3,23.0,8.5,Newtown,Bucks
+197214.0,15.2,25.0,2.1,Newtown B.,Bucks
+206127.0,17.4,15.0,2.7,Newtown T.,Delaware
+71981.0,73.3,19.0,4.9,Norristown,Montgome
+169401.0,7.1,22.0,1.5,Northampton,Bucks
+99843.0,12.5,12.0,-3.7,Norwood,Delaware
+117530.0,,42.0,10.3,Perkiomen,Montgome
+60000.0,45.8,18.0,-1.4,"Phila, Far NE",Phila
+28000.0,44.9,5.5,-8.4,"Phila, N",Phila
+60000.0,65.0,9.0,-4.9,"Phila, NE",Phila
+61800.0,49.9,9.0,-6.4,"Phila, NW",Phila
+38000.0,54.8,4.5,-5.1,"Phila, SW",Phila
+38000.0,53.5,2.0,-9.2,"Phila, South",Phila
+42000.0,69.9,4.0,-5.7,"Phila, West",Phila
+96200.0,366.1,0.0,4.8,"Phila,CC",Phila
+103087.0,24.6,24.0,3.9,Phoenixville,Chester
+147720.0,58.6,25.0,1.5,Plymouth,Montgome
+78175.0,53.2,41.0,2.2,Pottstown,Montgome
+92215.0,17.4,14.0,7.8,Prospect Park,Delaware
+271804.0,15.5,17.0,1.2,Radnor,Delaware
+119566.0,14.5,12.0,-2.9,Ridley Park,Delaware
+100231.0,24.1,15.0,1.9,Ridley Town,Delaware
+284833.0,,18.0,-1.3,Rose Valley,Delaware
+95831.0,21.2,32.0,3.2,Royersford,Montgome
+123900.0,,15.0,5.6,Rutledge,Delaware
+229711.0,9.8,22.0,5.3,Schuylkill,Chester
+74308.0,29.9,7.0,1.8,Sharon Hill,Delaware
+259506.0,7.2,40.0,17.4,Solebury,Bucks
+159573.0,19.4,15.0,-2.1,Springfield,Montgome
+147176.0,41.1,12.0,-1.7,Springfield,Delaware
+205732.0,11.2,12.0,-0.2,Swarthmore,Delaware
+215783.0,21.2,20.0,1.1,Tredyffin,Chester
+116710.0,42.8,20.0,12.9,U. Chichester,Delaware
+359112.0,9.4,36.0,4.0,U. Makefield,Bucks
+189959.0,61.7,22.0,-2.1,U. Merion,Montgome
+133198.0,19.4,22.0,-2.0,U. Moreland,Montgome
+242821.0,6.6,21.0,1.6,U. Providence,Delaware
+142811.0,15.9,20.0,-1.6,U. Southampton,Bucks
+200498.0,18.8,36.0,11.0,U. Uwchlan,Chester
+199065.0,13.2,20.0,7.8,Upper Darby,Montgome
+93648.0,34.5,8.0,-0.7,Upper Darby,Delaware
+163001.0,22.1,50.0,8.0,Uwchlan T.,Chester
+436348.0,22.1,15.0,1.3,Villanova,Montgome
+124478.0,71.9,22.0,4.6,W. Chester,Chester
+168276.0,31.9,26.0,5.9,W. Goshen,Chester
+276744.0,,33.0,6.1,W. Pikeland,Chester
+114157.0,44.6,38.0,14.6,W. Whiteland,Chester
+130088.0,28.6,19.0,-0.2,Warminster,Bucks
+152624.0,24.0,19.0,23.1,Warrington,Bucks
+174232.0,13.8,25.0,4.7,Westtown,Chester
+196515.0,29.9,16.0,1.8,Whitemarsh,Montgome
+247330.0,,14.0,13.2,Whitpain,Montgome
+232714.0,9.9,21.0,0.2,Willistown,Chester
+245920.0,22.6,10.0,0.3,Wynnewood,Montgome
+130953.0,13.0,24.0,5.2,Yardley,Bucks
