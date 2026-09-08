@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 04
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 04
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      September 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        Importing data into Python:
+        <ul>
+         <li>
+          Data file types:
+          <ul>
+           <li>
+            CSV.
+           </li>
+           <li>
+            HTML.
+           </li>
+           <li>
+            JSON.
+           </li>
+          </ul>
+         </li>
+         <li>
+          Data locations:
+          <ul>
+           <li>
+            A local file.
+           </li>
+           <li>
+            A remote (web) resource.
+           </li>
+           <li>
+            A database.
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </li>
+       <li>
+        Joining datasets.
+       </li>
+       <li>
+        Dates and times.
+       </li>
+       <li>
+        The ‘groupby’ function.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="data-formats">
+      <h1>
+       Data formats
+      </h1>
+     </section>
+     <section class="slide level2" id="data-formats-1">
+      <h2>
+       Data formats
+      </h2>
+      <ul>
+       <li>
+        Though typing data into Python directly will work, it is not a
+realistic exercise for a large data set.
+       </li>
+       <li>
+        Typically the data will be stored in an external resource, such as a
+file or a database.
+       </li>
+       <li>
+        It can also be stored in various data file formats.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="csv-files">
+      <h2>
+       CSV files
+      </h2>
+      <ul>
+       <li>
+        This is a very popular and portable file format.
+       </li>
+       <li>
+        It stands for “comma separated values”.
+       </li>
+       <li>
+        Data is stored as plain text.
+       </li>
+       <li>
+        Each row of the CSV file corresponds to a
+case/subject/observation.
+       </li>
+       <li>
+        The first row of the file is usually termed a “header” and contains
+the column/variable names (variable is being used here in a statistical
+sense).
+       </li>
+       <li>
+        For each row the values of the variables are separated by
+commas.
+       </li>
+       <li>
+        Things can get tricky when the data itself contains commas and
+special characters, and then the strings are quoted to avoid
+ambiguity.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="example-raw-data-in-csv-format">
+      <h2>
+       Example raw data in CSV format
+      </h2>
+      <pre class="csv"><code>Patient ID,Sex,Age,Schedule lag,Schedule minutes,Status
+P456,male,4,41,30,No show
+P126,female,40,29,15,No show
+P563,female,23,5,30,No show
+P884,male,22,18,30,No show
+P102,female,60,1,15,Show
+P067,male,50,17,10,Show
+P120,male,55,29,30,No show
+P943,female,70,3,30,No show
+P496,female,58,4,15,Show
+P805,male,28,2,30,No show</code></pre>
+     </section>
+     <section class="slide level2" id="html-format">
+      <h2>
+       HTML format
+      </h2>
+      <ul>
+       <li>
+        This is the format for web page content.
+       </li>
+       <li>
+        HTML stands for Hyper Text Markup Language and along with the “http”
+(Hypertext Transfer Protocol) protocol provided the foundation for the
+world wide web.
+       </li>
+       <li>
+        HTML documents are written in plain text.
+       </li>
+       <li>
+        Elements in an HTML document are identified with “tags”.
+       </li>
+       <li>
+        Tags can be provided with more information via “attributes”.
+       </li>
+       <li>
+        Here is a very simple HTML document and it is “rendered” on the next
+slide:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb2">
+       <pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="kw">&lt;html</span> <span class="er">lang</span><span class="ot">=</span><span class="st">"en"</span><span class="kw">&gt;</span></span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a><span class="kw">&lt;meta</span> <span class="er">charset</span><span class="ot">=</span><span class="st">"utf-8"</span><span class="kw">&gt;</span></span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a><span class="kw">&lt;title&gt;</span>Hello Stat Students!<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb2-6"><a aria-hidden="true" href="#cb2-6" tabindex="-1"></a>   <span class="kw">&lt;h1&gt;</span>Important information<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb2-7"><a aria-hidden="true" href="#cb2-7" tabindex="-1"></a>   <span class="kw">&lt;p&gt;</span>Work hard.<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb2-8"><a aria-hidden="true" href="#cb2-8" tabindex="-1"></a>   <span class="kw">&lt;p&gt;</span>Do well.<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb2-9"><a aria-hidden="true" href="#cb2-9" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb2-10"><a aria-hidden="true" href="#cb2-10" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="this-is-how-the-html-is-rendered">
+      <h2>
+       This is how the HTML is rendered
+      </h2>
+      <h1>
+       Important information
+      </h1>
+      <p>
+       Work hard.
+      </p>
+      <p>
+       Do well.
+      </p>
+     </section>
+     <section class="slide level2" id="the-table-element">
+      <h2>
+       The “table” element
+      </h2>
+      <ul>
+       <li>
+        <strong>
+         <em>
+          Web scraping
+         </em>
+        </strong>
+        is the term applied when you
+pull down a web page(s) for subsequent analysis.
+       </li>
+       <li>
+        You may be interested in an entire web page, but more likely you are
+interested in some data that the page contains.
+       </li>
+       <li>
+        If you are lucky the data is contained in an HTML element called
+“table”.
+       </li>
+       <li>
+        The basic web scraping workflow is:
+        <ul>
+         <li>
+          Download the page.
+         </li>
+         <li>
+          Parse the page.
+         </li>
+         <li>
+          Identify table elements.
+          <br/>
+         </li>
+         <li>
+          Extract table information into a data frame.
+         </li>
+        </ul>
+       </li>
+       <li>
+        The parsing can sometimes be very hard, partly because the html
+itself is a nested/hierarchical structure, and partly because the table
+may be hard to isolate.
+       </li>
+       <li>
+        There are tools in Python, in particular the
+        <em>
+         BeautifulSoup
+        </em>
+        package that help to do this.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-outpatient-data-as-an-html-table">
+      <h2>
+       The outpatient data as an HTML table
+      </h2>
+      <ul>
+       <li>
+        Below is an extract of the first row of the outpatient clinic data
+in an HTML table. Note the elements “tr” and “td”. They enclose a table
+        <em>
+         row
+        </em>
+        and a table
+        <em>
+         data
+        </em>
+        point respectively.
+       </li>
+       <li>
+        The tags “thead” and “tbody” delineate the table head and body
+respectively.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb3">
+       <pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="kw">&lt;table</span> <span class="er">border</span><span class="ot">=</span><span class="st">"1"</span> <span class="er">id</span><span class="ot">=</span><span class="st">"patient_data"</span><span class="kw">&gt;</span></span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a>  <span class="kw">&lt;thead&gt;</span></span>
+<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a>    <span class="kw">&lt;tr</span> <span class="er">style</span><span class="ot">=</span><span class="st">"text-align: right;"</span><span class="kw">&gt;</span></span>
+<span id="cb3-4"><a aria-hidden="true" href="#cb3-4" tabindex="-1"></a>      <span class="kw">&lt;th&gt;&lt;/th&gt;</span></span>
+<span id="cb3-5"><a aria-hidden="true" href="#cb3-5" tabindex="-1"></a>      <span class="kw">&lt;th&gt;</span>Sex<span class="kw">&lt;/th&gt;</span></span>
+<span id="cb3-6"><a aria-hidden="true" href="#cb3-6" tabindex="-1"></a>      <span class="kw">&lt;th&gt;</span>Age<span class="kw">&lt;/th&gt;</span></span>
+<span id="cb3-7"><a aria-hidden="true" href="#cb3-7" tabindex="-1"></a>      <span class="kw">&lt;th&gt;</span>Schedule lag<span class="kw">&lt;/th&gt;</span></span>
+<span id="cb3-8"><a aria-hidden="true" href="#cb3-8" tabindex="-1"></a>      <span class="kw">&lt;th&gt;</span>Schedule minutes<span class="kw">&lt;/th&gt;</span></span>
+<span id="cb3-9"><a aria-hidden="true" href="#cb3-9" tabindex="-1"></a>      <span class="kw">&lt;th&gt;</span>Status<span class="kw">&lt;/th&gt;</span></span>
+<span id="cb3-10"><a aria-hidden="true" href="#cb3-10" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb3-11"><a aria-hidden="true" href="#cb3-11" tabindex="-1"></a>  <span class="kw">&lt;/thead&gt;</span></span>
+<span id="cb3-12"><a aria-hidden="true" href="#cb3-12" tabindex="-1"></a>  <span class="kw">&lt;tbody&gt;</span></span>
+<span id="cb3-13"><a aria-hidden="true" href="#cb3-13" tabindex="-1"></a>    <span class="kw">&lt;tr&gt;</span></span>
+<span id="cb3-14"><a aria-hidden="true" href="#cb3-14" tabindex="-1"></a>      <span class="kw">&lt;th&gt;</span>P456<span class="kw">&lt;/th&gt;</span></span>
+<span id="cb3-15"><a aria-hidden="true" href="#cb3-15" tabindex="-1"></a>      <span class="kw">&lt;td&gt;</span>male<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb3-16"><a aria-hidden="true" href="#cb3-16" tabindex="-1"></a>      <span class="kw">&lt;td&gt;</span>4<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb3-17"><a aria-hidden="true" href="#cb3-17" tabindex="-1"></a>      <span class="kw">&lt;td&gt;</span>41<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb3-18"><a aria-hidden="true" href="#cb3-18" tabindex="-1"></a>      <span class="kw">&lt;td&gt;</span>30<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb3-19"><a aria-hidden="true" href="#cb3-19" tabindex="-1"></a>      <span class="kw">&lt;td&gt;</span>No show<span class="kw">&lt;/td&gt;</span></span>
+<span id="cb3-20"><a aria-hidden="true" href="#cb3-20" tabindex="-1"></a>    <span class="kw">&lt;/tr&gt;</span></span>
+<span id="cb3-21"><a aria-hidden="true" href="#cb3-21" tabindex="-1"></a><span class="kw">&lt;/tbody&gt;&lt;/table&gt;</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="comments">
+      <h2>
+       Comments
+      </h2>
+      <ul>
+       <li>
+        Note how the table tag has an attribute.
+       </li>
+       <li>
+        The attribute here is called “id”.
+       </li>
+       <li>
+        Tags can have more than one attribute.
+       </li>
+       <li>
+        There is no requirement to have an “id” attribute but if there is
+one, and the id is unique, it can make for a straightforward way of
+identifying the right table in a big web page.
+       </li>
+       <li>
+        To see the raw html behind a rendered web page you can do so
+directly in the web browser using the “View source” option.
+       </li>
+       <li>
+        You could also download the web page and open it up in a text
+editor.
+       </li>
+       <li>
+        You will have to browse and search the html source looking for the
+tags of interest.
+       </li>
+       <li>
+        Web scraping can be quite frustrating, and sometimes because the raw
+html might be malformed, close to impossible!
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-json-format.">
+      <h2>
+       The json format.
+      </h2>
+      <ul>
+       <li>
+        json stands for JavaScript Object Notation.
+       </li>
+       <li>
+        It can be used for storing and exchanging data between
+programs.
+       </li>
+       <li>
+        When a web browser interacts with a web server, it is quite likely
+that both are using JavaScript to perform tasks and exchange objects and
+data.
+       </li>
+       <li>
+        json then becomes a natural format for such an exchange.
+       </li>
+       <li>
+        json files are in plain text format which makes them portable.
+       </li>
+       <li>
+        Because json can be used to represent data, it doesn’t have to be
+used in the context of a server.
+       </li>
+       <li>
+        In fact, Jupyter notebooks are saved as json files. Open one with a
+text editor and have a look!
+       </li>
+       <li>
+        pandas can read json files into a data frame using the “read_json”
+function.
+       </li>
+       <li>
+        On the next slide is the json representation of the outpatient data
+which looks very much like a Python dict with key value pairs.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="example-data-file-stored-using-the-json-format">
+      <h2>
+       Example data file, stored using the json format
+      </h2>
+      <div class="sourceCode" id="cb4">
+       <pre class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="fu">{</span><span class="dt">"Sex"</span><span class="fu">:{</span><span class="dt">"0"</span><span class="fu">:</span><span class="st">"male"</span><span class="fu">,</span><span class="dt">"1"</span><span class="fu">:</span><span class="st">"female"</span><span class="fu">,</span><span class="dt">"2"</span><span class="fu">:</span><span class="st">"female"</span><span class="fu">,</span><span class="dt">"3"</span><span class="fu">:</span><span class="st">"male"</span><span class="fu">,</span><span class="dt">"4"</span><span class="fu">:</span><span class="st">"female"</span><span class="fu">,</span><span class="dt">"5"</span><span class="fu">:</span><span class="st">"male"</span><span class="fu">,</span><span class="dt">"6"</span><span class="fu">:</span><span class="st">"male"</span><span class="fu">,</span><span class="dt">"7"</span><span class="fu">:</span><span class="st">"female"</span><span class="fu">,</span><span class="dt">"8"</span><span class="fu">:</span><span class="st">"female"</span><span class="fu">,</span><span class="dt">"9"</span><span class="fu">:</span><span class="st">"male"</span><span class="fu">},</span></span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a><span class="dt">"Age"</span><span class="fu">:{</span><span class="dt">"0"</span><span class="fu">:</span><span class="dv">4</span><span class="fu">,</span><span class="dt">"1"</span><span class="fu">:</span><span class="dv">40</span><span class="fu">,</span><span class="dt">"2"</span><span class="fu">:</span><span class="dv">23</span><span class="fu">,</span><span class="dt">"3"</span><span class="fu">:</span><span class="dv">22</span><span class="fu">,</span><span class="dt">"4"</span><span class="fu">:</span><span class="dv">60</span><span class="fu">,</span><span class="dt">"5"</span><span class="fu">:</span><span class="dv">50</span><span class="fu">,</span><span class="dt">"6"</span><span class="fu">:</span><span class="dv">55</span><span class="fu">,</span><span class="dt">"7"</span><span class="fu">:</span><span class="dv">70</span><span class="fu">,</span><span class="dt">"8"</span><span class="fu">:</span><span class="dv">58</span><span class="fu">,</span><span class="dt">"9"</span><span class="fu">:</span><span class="dv">28</span><span class="fu">},</span></span>
+<span id="cb4-3"><a aria-hidden="true" href="#cb4-3" tabindex="-1"></a><span class="dt">"Schedule lag"</span><span class="fu">:{</span><span class="dt">"0"</span><span class="fu">:</span><span class="dv">41</span><span class="fu">,</span><span class="dt">"1"</span><span class="fu">:</span><span class="dv">29</span><span class="fu">,</span><span class="dt">"2"</span><span class="fu">:</span><span class="dv">5</span><span class="fu">,</span><span class="dt">"3"</span><span class="fu">:</span><span class="dv">18</span><span class="fu">,</span><span class="dt">"4"</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">"5"</span><span class="fu">:</span><span class="dv">17</span><span class="fu">,</span><span class="dt">"6"</span><span class="fu">:</span><span class="dv">29</span><span class="fu">,</span><span class="dt">"7"</span><span class="fu">:</span><span class="dv">3</span><span class="fu">,</span><span class="dt">"8"</span><span class="fu">:</span><span class="dv">4</span><span class="fu">,</span><span class="dt">"9"</span><span class="fu">:</span><span class="dv">2</span><span class="fu">},</span></span>
+<span id="cb4-4"><a aria-hidden="true" href="#cb4-4" tabindex="-1"></a><span class="dt">"Scheduled Minutes"</span><span class="fu">:{</span><span class="dt">"0"</span><span class="fu">:</span><span class="dv">30</span><span class="fu">,</span><span class="dt">"1"</span><span class="fu">:</span><span class="dv">15</span><span class="fu">,</span><span class="dt">"2"</span><span class="fu">:</span><span class="dv">30</span><span class="fu">,</span><span class="dt">"3"</span><span class="fu">:</span><span class="dv">30</span><span class="fu">,</span><span class="dt">"4"</span><span class="fu">:</span><span class="dv">15</span><span class="fu">,</span><span class="dt">"5"</span><span class="fu">:</span><span class="dv">10</span><span class="fu">,</span><span class="dt">"6"</span><span class="fu">:</span><span class="dv">30</span><span class="fu">,</span><span class="dt">"7"</span><span class="fu">:</span><span class="dv">30</span><span class="fu">,</span><span class="dt">"8"</span><span class="fu">:</span><span class="dv">15</span><span class="fu">,</span><span class="dt">"9"</span><span class="fu">:</span><span class="dv">30</span><span class="fu">},</span></span>
+<span id="cb4-5"><a aria-hidden="true" href="#cb4-5" tabindex="-1"></a><span class="dt">"Status"</span><span class="fu">:{</span><span class="dt">"0"</span><span class="fu">:</span><span class="st">"No show"</span><span class="fu">,</span><span class="dt">"1"</span><span class="fu">:</span><span class="st">"No show"</span><span class="fu">,</span><span class="dt">"2"</span><span class="fu">:</span><span class="st">"No show"</span><span class="fu">,</span><span class="dt">"3"</span><span class="fu">:</span><span class="st">"No show"</span><span class="fu">,</span><span class="dt">"4"</span><span class="fu">:</span><span class="st">"Show"</span><span class="fu">,</span><span class="dt">"5"</span><span class="fu">:</span><span class="st">"Show"</span><span class="fu">,</span><span class="dt">"6"</span><span class="fu">:</span><span class="st">"No show"</span><span class="fu">,</span><span class="dt">"7"</span><span class="fu">:</span><span class="st">"No show"</span><span class="fu">,</span><span class="dt">"8"</span><span class="fu">:</span><span class="st">"Show"</span><span class="fu">,</span><span class="dt">"9"</span><span class="fu">:</span><span class="st">"No show"</span><span class="fu">}}</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="databases">
+      <h2>
+       Databases
+      </h2>
+      <ul>
+       <li>
+        When companies have large amounts of data to manage they will almost
+always store the data in a
+        <em>
+         database
+        </em>
+        .
+       </li>
+       <li>
+        At the top level, a database is simply a structured set of data
+stored on a computer.
+       </li>
+       <li>
+        But it will be stored in a fashion to optimize retrieval and
+updating.
+       </li>
+       <li>
+        There are different types of database, but the type we will look at
+is very popular and called a “relational database”.
+       </li>
+       <li>
+        In this class, we are not learning how to create and maintain
+databases, but rather, how to extract data from a database for
+subsequent analysis.
+       </li>
+       <li>
+        The particular type of database we will interact with is called
+“MySQL” and is an open source database.
+       </li>
+       <li>
+        There are proprietary databases available from the likes of
+Microsoft, Oracle and Amazon etc.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="database-structure">
+      <h2>
+       Database structure
+      </h2>
+      <ul>
+       <li>
+        A database is made up of a collection of tables.
+       </li>
+       <li>
+        Each table has a set of rows and columns.
+       </li>
+       <li>
+        One column will act as a “key”.
+       </li>
+       <li>
+        If the tables share a common key, then they can be merged (joined)
+by using this key.
+       </li>
+       <li>
+        The language used to interact with a relational database is called
+SQL (Structure Query Language).
+       </li>
+       <li>
+        We will see just enough SQL to pull data from a database, issuing
+the commands from within Python and storing the table in a pandas data
+frame.
+       </li>
+       <li>
+        In order to interact with a database you typically need to know:
+        <ul>
+         <li>
+          The location of the database.
+         </li>
+         <li>
+          The name of the database.
+         </li>
+         <li>
+          The names of the table(s).
+         </li>
+         <li>
+          Be authorized to access the database by having a username and
+password.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="a-view-of-a-database">
+      <h2>
+       A view of a database
+      </h2>
+      <ul>
+       <li>
+        On the next slide is a view of the databases hosted on the “mathmba”
+site.
+       </li>
+       <li>
+        The database of interest to us is called Stat705X.
+       </li>
+       <li>
+        It has a table called “Responses”.
+       </li>
+       <li>
+        The table contains columns called “MYID”, “Q1”, “Q2”, “Q3”.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="interface-for-database-management">
+      <h2>
+       Interface for database management
+      </h2>
+      <ul>
+       <li>
+        Below you can see the interface for managing the databases.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/db_image.png" height="252" width="615"/>
+      </p>
+     </section>
+     <section class="slide level2" id="populating-the-database">
+      <h2>
+       Populating the database
+      </h2>
+      <ul>
+       <li>
+        You can add to the database by going to the web page:
+        <a href="http://mathmba.com/question.html">
+         survey site
+        </a>
+        .
+       </li>
+       <li>
+        When you submit this form a script on the server inserts the form
+data into the database.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/survey_site.png" height="420" width="608"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="data-locations">
+      <h1>
+       Data locations
+      </h1>
+     </section>
+     <section class="slide level2" id="data-locations-1">
+      <h2>
+       Data locations
+      </h2>
+      <ul>
+       <li>
+        The data files can be stored either:
+        <ul>
+         <li>
+          Locally, or
+         </li>
+         <li>
+          Remotely.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Locally usually means as a file on your
+        <strong>
+         own
+        </strong>
+        computer.
+       </li>
+       <li>
+        Remotely usually means as a file on
+        <strong>
+         another
+        </strong>
+        computer.
+       </li>
+       <li>
+        Likewise, a database could be running on your own computer or more
+likely on another computer.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="local-retrieval">
+      <h2>
+       Local retrieval
+      </h2>
+      <ul>
+       <li>
+        I have three versions of the same outpatient data file on my
+computer (you can download them from Canvas):
+        <ul>
+         <li>
+          no_show_10.csv
+         </li>
+         <li>
+          no_show_10.htm
+         </li>
+         <li>
+          no_show_10.json
+         </li>
+        </ul>
+       </li>
+       <li>
+        We will use pandas commands to read then into Python.
+        <br/>
+       </li>
+       <li>
+        They will always be imported into a data frame.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/data_directory.png" height="223" width="427"/>
+      </p>
+     </section>
+     <section class="slide level2" id="pandas-read_csv-command">
+      <h2>
+       pandas “read_csv” command
+      </h2>
+      <ul>
+       <li>
+        Because this is such a popular data file format, pandas has a
+specific command to read in such data.
+       </li>
+       <li>
+        It is “read_csv” and will read a csv file right into a pandas data
+frame.
+       </li>
+       <li>
+        The command has a large number of arguments that you can use to get
+control over how exactly the file is read in.
+       </li>
+       <li>
+        This control is important because there may be date columns or
+numeric columns with commas and special characters, for example
+$1,000,000.00, that need to be filtered.
+       </li>
+       <li>
+        Date and time variables may also need to be formatted so they are
+read in correctly.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="csv-import">
+      <h2>
+       CSV import
+      </h2>
+      <div class="sourceCode" id="cb5">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a aria-hidden="true" href="#cb5-4" tabindex="-1"></a><span class="co"># Change the working directory to where the datasets are stored.</span></span>
+<span id="cb5-5"><a aria-hidden="true" href="#cb5-5" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">7770f2026_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>) </span>
+<span id="cb5-6"><a aria-hidden="true" href="#cb5-6" tabindex="-1"></a>no_show_01 <span class="op">=</span> pd.read_csv(<span class="st">"no_show_10.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>) <span class="co"># The read_csv command. Use the first column as index.</span></span>
+<span id="cb5-7"><a aria-hidden="true" href="#cb5-7" tabindex="-1"></a><span class="bu">print</span>(no_show_01)</span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P456          male    4            41                30  No show
+P126        female   40            29                15  No show
+P563        female   23             5                30  No show
+P884          male   22            18                30  No show
+P102        female   60             1                15     Show
+P067          male   50            17                10     Show
+P120          male   55            29                30  No show
+P943        female   70             3                30  No show
+P496        female   58             4                15     Show
+P805          male   28             2                30  No show</code></pre>
+     </section>
+     <section class="slide level2" id="html-import">
+      <h2>
+       HTML import
+      </h2>
+      <ul>
+       <li>
+        pandas will look through the html file, returning a
+        <strong>
+         <em>
+          list
+         </em>
+        </strong>
+        that contains data frames, one for each
+“table” it finds.
+       </li>
+       <li>
+        There happens to be only one table in this file, so we need the data
+frame from the list in position 0.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb7">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>no_show_02 <span class="op">=</span> pd.read_html(<span class="st">"no_show_10.htm"</span>,index_col<span class="op">=</span><span class="dv">0</span>)[<span class="dv">0</span>] <span class="co"># The [0] pulls off the first (and only) data frame.</span></span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a>no_show_02.index.name <span class="op">=</span> <span class="st">'Patient ID'</span> <span class="co"># Give the index a name.</span></span>
+<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a><span class="bu">print</span>(no_show_02)</span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P456          male    4            41                30  No show
+P126        female   40            29                15  No show
+P563        female   23             5                30  No show
+P884          male   22            18                30  No show
+P102        female   60             1                15     Show
+P067          male   50            17                10     Show
+P120          male   55            29                30  No show
+P943        female   70             3                30  No show
+P496        female   58             4                15     Show
+P805          male   28             2                30  No show</code></pre>
+     </section>
+     <section class="slide level2" id="json-import">
+      <h2>
+       JSON import
+      </h2>
+      <ul>
+       <li>
+        This one uses the “read_json” command.
+       </li>
+       <li>
+        This format can be tricky because there are different ways to
+represent the data frame, for example by row, or by column.
+       </li>
+       <li>
+        The read_json command takes an optional argument “orient” that you
+can use to specify the data structure of the json file.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb9">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>no_show_03 <span class="op">=</span> pd.read_json(<span class="st">'no_show_10.json'</span>) </span>
+<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a>no_show_03.index.name <span class="op">=</span> <span class="st">'Patient ID'</span> <span class="co"># Give the index a name.</span></span>
+<span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a><span class="bu">print</span>(no_show_03)</span></code></pre>
+      </div>
+      <pre><code>               Sex  Age  Schedule lag  Schedule minutes   Status
+Patient ID                                                      
+P456          male    4            41                30  No show
+P126        female   40            29                15  No show
+P563        female   23             5                30  No show
+P884          male   22            18                30  No show
+P102        female   60             1                15     Show
+P067          male   50            17                10     Show
+P120          male   55            29                30  No show
+P943        female   70             3                30  No show
+P496        female   58             4                15     Show
+P805          male   28             2                30  No show</code></pre>
+     </section>
+     <section class="slide level2" id="opening-data-from-a-remote-resource">
+      <h2>
+       Opening data from a remote resource
+      </h2>
+      <ul>
+       <li>
+        The three data files are also in a directory accessible through a
+web site whose url is “http://mathmba.com/data/”.
+       </li>
+       <li>
+        This can be used as the “file path” in the “read” command, instead
+of the local location:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb11">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a>no_show_04 <span class="op">=</span> pd.read_csv(<span class="st">"https://grenan2001-code.github.io/7770f2026_Q1/DataSets/no_show_10.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a><span class="bu">print</span>(no_show_04.shape) <span class="co"># "shape" gives you the dimensions of the data frame, the number of rows and columns.</span></span>
+<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a>no_show_05 <span class="op">=</span> pd.read_html(<span class="st">"https://grenan2001-code.github.io/7770f2026_Q1/DataSets/no_show_10.htm"</span>,index_col<span class="op">=</span><span class="dv">0</span>)[<span class="dv">0</span>]</span>
+<span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a><span class="bu">print</span>(no_show_05.shape)</span>
+<span id="cb11-5"><a aria-hidden="true" href="#cb11-5" tabindex="-1"></a>no_show_06 <span class="op">=</span> pd.read_json(<span class="st">"https://grenan2001-code.github.io/7770f2026_Q1/DataSets/no_show_10.json"</span>)</span>
+<span id="cb11-6"><a aria-hidden="true" href="#cb11-6" tabindex="-1"></a><span class="bu">print</span>(no_show_06.shape)</span></code></pre>
+      </div>
+      <pre><code>(10, 5)
+(10, 5)
+(10, 5)</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="reading-from-a-data-base">
+      <h1>
+       Reading from a data base
+      </h1>
+     </section>
+     <section class="slide level2" id="reading-from-a-database">
+      <h2>
+       Reading from a database
+      </h2>
+      <ul>
+       <li>
+        You need to install the “pymysql” package to make the database
+connection.
+       </li>
+       <li>
+        You only have to do the following setup once:
+        <ul>
+         <li>
+          Open the Anaconda Powershell prompt.
+         </li>
+         <li>
+          Type in: pip install pymysql
+         </li>
+        </ul>
+       </li>
+       <li>
+        You may need to restart the Python kernel if you have Jupyter
+notebooks or Spyder already running.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="whats-needed-to-connect-to-and-query-the-database">
+      <h2>
+       What’s needed to connect to and query the database
+      </h2>
+      <ul>
+       <li>
+        To connect to a database you will typically need to know:
+       </li>
+      </ul>
+      <table>
+       <thead>
+        <tr class="header">
+         <th style="text-align: left;">
+          Component
+         </th>
+         <th style="text-align: left;">
+          Value
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="odd">
+         <td style="text-align: left;">
+          hostname
+         </td>
+         <td style="text-align: left;">
+          mathmba.com
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: left;">
+          Database name
+         </td>
+         <td style="text-align: left;">
+          STAT705X
+         </td>
+        </tr>
+        <tr class="odd">
+         <td style="text-align: left;">
+          user id
+         </td>
+         <td style="text-align: left;">
+          stat705_student
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: left;">
+          password
+         </td>
+         <td style="text-align: left;">
+          $[h0CC*TtKO~
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </section>
+     <section class="slide level2" id="connecting-to-the-database">
+      <h2>
+       Connecting to the database
+      </h2>
+      <ul>
+       <li>
+        The following code includes the credentials to connect to the
+database.
+       </li>
+       <li>
+        It requires the hostname, username, password and the name of the
+database.
+       </li>
+       <li>
+        pandas will be able to read the retrieved table straight into a data
+frame.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb13">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a><span class="im">from</span> sqlalchemy <span class="im">import</span> create_engine <span class="co"># The database toolkit.</span></span>
+<span id="cb13-2"><a aria-hidden="true" href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a aria-hidden="true" href="#cb13-3" tabindex="-1"></a><span class="co"># An "engine" is set up to establish a connection to the database when the time comes.</span></span>
+<span id="cb13-4"><a aria-hidden="true" href="#cb13-4" tabindex="-1"></a>sqlEngine <span class="op">=</span> create_engine(<span class="st">'mysql+pymysql://stat705_student:$[h0CC*TtKO~@mathmba.com/STAT705X'</span>)</span>
+<span id="cb13-5"><a aria-hidden="true" href="#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a aria-hidden="true" href="#cb13-6" tabindex="-1"></a><span class="co"># The connect method makes the connection.</span></span>
+<span id="cb13-7"><a aria-hidden="true" href="#cb13-7" tabindex="-1"></a>dbConnection <span class="op">=</span> sqlEngine.<span class="ex">connect</span>()</span>
+<span id="cb13-8"><a aria-hidden="true" href="#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a aria-hidden="true" href="#cb13-9" tabindex="-1"></a><span class="co"># The key pandas command to put the results from the query right into a data frame is "read_sql".</span></span>
+<span id="cb13-10"><a aria-hidden="true" href="#cb13-10" tabindex="-1"></a><span class="co"># It sends the query "SELECT * FROM RESPONSES" over the connection.</span></span>
+<span id="cb13-11"><a aria-hidden="true" href="#cb13-11" tabindex="-1"></a>survey_from_db <span class="op">=</span> pd.read_sql(<span class="st">"SELECT * FROM RESPONSES"</span>, dbConnection, index_col<span class="op">=</span><span class="st">'MYID'</span>)</span>
+<span id="cb13-12"><a aria-hidden="true" href="#cb13-12" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(survey_from_db)) <span class="co"># Confirm we have a data frame.</span></span>
+<span id="cb13-13"><a aria-hidden="true" href="#cb13-13" tabindex="-1"></a>dbConnection.close() <span class="co"># Close the connection to conserve resources.</span></span></code></pre>
+      </div>
+      <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
+     </section>
+     <section class="slide level2" id="reviewing-the-retrieved-data">
+      <h2>
+       Reviewing the retrieved data
+      </h2>
+      <ul>
+       <li>
+        Note the “head” method to show just a few lines from the data
+frame.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb15">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a><span class="bu">print</span>(survey_from_db.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>          Q1    Q2   Q3
+MYID                   
+98616981   B  EAST  YES
+31004395   A  EAST   NO
+42889147  A-  EAST   NO
+3215038    A  EAST   NO
+21698690  B+  EAST   NO</code></pre>
+     </section>
+     <section class="slide level2" id="a-more-complex-query">
+      <h2>
+       A more complex query
+      </h2>
+      <ul>
+       <li>
+        If you know some SQL you can do a lot of work on the database
+itself, which may be more efficient than doing the same thing using
+Python.
+       </li>
+       <li>
+        Below is a more complex SQL query (we can also achieve the same
+result using Python directly).
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb17">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a><span class="co"># A more complex query.</span></span>
+<span id="cb17-2"><a aria-hidden="true" href="#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a aria-hidden="true" href="#cb17-3" tabindex="-1"></a>dbConnection <span class="op">=</span> sqlEngine.<span class="ex">connect</span>()</span>
+<span id="cb17-4"><a aria-hidden="true" href="#cb17-4" tabindex="-1"></a>db_summary <span class="op">=</span>  pd.read_sql(<span class="st">"SELECT Q1, COUNT(Q1) FROM RESPONSES GROUP BY Q1"</span>, dbConnection)</span>
+<span id="cb17-5"><a aria-hidden="true" href="#cb17-5" tabindex="-1"></a>dbConnection.close()</span>
+<span id="cb17-6"><a aria-hidden="true" href="#cb17-6" tabindex="-1"></a><span class="bu">print</span>(db_summary)</span></code></pre>
+      </div>
+      <pre><code>   Q1  COUNT(Q1)
+0             13
+1   A        139
+2  A+         89
+3  A-         56
+4   B         26
+5  B+         40
+6  B-          6
+7   C          6
+8  C+          7
+9  C-         12</code></pre>
+     </section>
+     <section class="slide level2" id="using-pandas-for-the-same-goal">
+      <h2>
+       Using pandas for the same goal
+      </h2>
+      <ul>
+       <li>
+        The .value_counts() method will do a frequency tabulation of a
+column.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb19">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a aria-hidden="true" href="#cb19-1" tabindex="-1"></a>survey_from_db.Q1.value_counts()</span></code></pre>
+      </div>
+      <pre><code>Q1
+A     139
+A+     89
+A-     56
+B+     40
+B      26
+       13
+C-     12
+C+      7
+C       6
+B-      6
+Name: count, dtype: int64</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="merging-data-frames">
+      <h1>
+       Merging data frames
+      </h1>
+     </section>
+     <section class="slide level2" id="merging-data-frames-1">
+      <h2>
+       Merging data frames
+      </h2>
+      <ul>
+       <li>
+        One of the most essential tasks that you quickly come across in
+practice is to “join/merge” data frames.
+       </li>
+       <li>
+        This happens because often the data set you want to analyze, needs
+to be built from separate pieces.
+       </li>
+       <li>
+        For example, you may need to combine marketing data with finance
+data.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="merging-data-frames-2">
+      <h2>
+       Merging data frames
+      </h2>
+      <ul>
+       <li>
+        We will obtain two data sets and explore how to merge them using
+pandas.
+       </li>
+       <li>
+        The underlying business problem that the data addresses is to
+predict whether a web site is compromised, based on features of the web
+site.
+       </li>
+       <li>
+        The features (x-variables) and compromise
+        <strong>
+         Status
+        </strong>
+        (y-variable) happen to be in two separate files, and will need to be
+joined before a predictive model can be built.
+       </li>
+       <li>
+        The key to successful joining is that there is a
+        <strong>
+         <em>
+          key
+         </em>
+        </strong>
+        that is common to both data sets:
+       </li>
+       <li>
+        Examples:
+        <ul>
+         <li>
+          Social security number.
+         </li>
+         <li>
+          DEA number.
+         </li>
+         <li>
+          Account ID.
+         </li>
+        </ul>
+       </li>
+       <li>
+        If there isn’t a suitable key, then there will need to be a fuzzy
+match which is a potential time-sink/nightmare.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="obtain-the-data">
+      <h2>
+       Obtain the data
+      </h2>
+      <ul>
+       <li>
+        The
+        <em>
+         key
+        </em>
+        we will use to join the data sets is
+“ACCOUNTID”.
+       </li>
+       <li>
+        This has nothing to do with a
+        <em>
+         key
+        </em>
+        in a Python dict
+structure!
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb21">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" href="#cb21-1" tabindex="-1"></a><span class="co"># Read in the data sets using pandas. They are both csv files, residing on the web.</span></span>
+<span id="cb21-2"><a aria-hidden="true" href="#cb21-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-3"><a aria-hidden="true" href="#cb21-3" tabindex="-1"></a>x_data <span class="op">=</span> pd.read_csv(<span class="st">"https://grenan2001-code.github.io/7770f2026_Q1/DataSets/x_var_join.csv"</span>)</span>
+<span id="cb21-4"><a aria-hidden="true" href="#cb21-4" tabindex="-1"></a>y_data <span class="op">=</span> pd.read_csv(<span class="st">"https://grenan2001-code.github.io/7770f2026_Q1/DataSets/y_var_join.csv"</span>)</span>
+<span id="cb21-5"><a aria-hidden="true" href="#cb21-5" tabindex="-1"></a><span class="bu">print</span>(x_data.head(<span class="dv">3</span>))</span>
+<span id="cb21-6"><a aria-hidden="true" href="#cb21-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows and columns are "</span>,  x_data.shape)</span>
+<span id="cb21-7"><a aria-hidden="true" href="#cb21-7" tabindex="-1"></a><span class="bu">print</span>(y_data.head(<span class="dv">3</span>))</span>
+<span id="cb21-8"><a aria-hidden="true" href="#cb21-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows and columns are "</span>,  y_data.shape)</span></code></pre>
+      </div>
+      <pre><code>   SocialMediaIndex WordPress ACCOUNTID
+0                 1       YES     INF85
+1                 0        NO     JEM10
+2                12        NO     CYN02
+Rows and columns are  (9, 3)
+
+
+  AccountID  Status
+0     NDE65       1
+1     INF85       1
+2     JEM10       0
+Rows and columns are  (7, 2)</code></pre>
+     </section>
+     <section class="slide level2" id="using-the-pandas-merge-operation.">
+      <h2>
+       Using the pandas “merge” operation.
+      </h2>
+      <ul>
+       <li>
+        The pandas “merge” operation provides the ability to join data
+frames.
+       </li>
+       <li>
+        You can specify the merge key using the “on” argument.
+       </li>
+       <li>
+        It is possible to use the index (row names) as the key as well.
+       </li>
+       <li>
+        Unfortunately, the below code fails.
+       </li>
+       <li>
+        Can you see why?
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb23">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a aria-hidden="true" href="#cb23-1" tabindex="-1"></a>pd.merge(x_data,y_data, on <span class="op">=</span> <span class="st">'ACCOUNTID'</span>)</span></code></pre>
+      </div>
+      <pre><code>---------------------------------------------------------------------------
+
+KeyError                                  Traceback (most recent call last)
+
+~\AppData\Local\Temp\ipykernel_8588\2383930161.py in ?()
+----&gt; 1 pd.merge(x_data,y_data, on = 'ACCOUNTID')
+
+
+~\anaconda3\Lib\site-packages\pandas\core\reshape\merge.py in ?(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)
+    166             validate=validate,
+    167             copy=copy,
+    168         )
+    169     else:
+--&gt; 170         op = _MergeOperation(
+    171             left_df,
+    172             right_df,
+    173             how=how,
+
+
+~\anaconda3\Lib\site-packages\pandas\core\reshape\merge.py in ?(self, left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, indicator, validate)
+    790             self.right_join_keys,
+    791             self.join_names,
+    792             left_drop,
+    793             right_drop,
+--&gt; 794         ) = self._get_merge_keys()
+    795 
+    796         if left_drop:
+    797             self.left = self.left._drop_labels_or_levels(left_drop)
+
+
+~\anaconda3\Lib\site-packages\pandas\core\reshape\merge.py in ?(self)
+   1294                         # Then we're either Hashable or a wrong-length arraylike,
+   1295                         #  the latter of which will raise
+   1296                         rk = cast(Hashable, rk)
+   1297                         if rk is not None:
+-&gt; 1298                             right_keys.append(right._get_label_or_level_values(rk))
+   1299                         else:
+   1300                             # work-around for merge_asof(right_index=True)
+   1301                             right_keys.append(right.index._values)
+
+
+~\anaconda3\Lib\site-packages\pandas\core\generic.py in ?(self, key, axis)
+   1910             values = self.xs(key, axis=other_axes[0])._values
+   1911         elif self._is_level_reference(key, axis=axis):
+   1912             values = self.axes[axis].get_level_values(key)._values
+   1913         else:
+-&gt; 1914             raise KeyError(key)
+   1915 
+   1916         # Check for duplicates
+   1917         if values.ndim &gt; 1:
+
+
+KeyError: 'ACCOUNTID'</code></pre>
+     </section>
+     <section class="slide level2" id="merging-the-data-frames">
+      <h2>
+       Merging the data frames
+      </h2>
+      <ul>
+       <li>
+        The reason the command failed was that the Account ID was all upper
+case in one data frame and lower case in the other.
+       </li>
+       <li>
+        We could rename one of the columns, so that the key’s name agrees
+across the data frames or use a more explicit version of the merge
+command. We will do both.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb25">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a aria-hidden="true" href="#cb25-1" tabindex="-1"></a><span class="co"># Below we specify the name of the key in each data frame with "left_on" and "right_on".</span></span>
+<span id="cb25-2"><a aria-hidden="true" href="#cb25-2" tabindex="-1"></a>inner_join_data <span class="op">=</span> pd.merge(x_data,y_data, left_on <span class="op">=</span> <span class="st">'ACCOUNTID'</span>, right_on <span class="op">=</span> <span class="st">'AccountID'</span>)</span>
+<span id="cb25-3"><a aria-hidden="true" href="#cb25-3" tabindex="-1"></a><span class="bu">print</span>(inner_join_data)</span>
+<span id="cb25-4"><a aria-hidden="true" href="#cb25-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows and columns are"</span>,  inner_join_data.shape)</span></code></pre>
+      </div>
+      <pre><code>   SocialMediaIndex WordPress ACCOUNTID AccountID  Status
+0                 1       YES     INF85     INF85       1
+1                 0        NO     JEM10     JEM10       0
+2                 5        NO     ASC53     ASC53       1
+3                12       YES     QUT35     QUT35       0
+4                34        NO     XCT80     XCT80       0
+Rows and columns are (5, 5)</code></pre>
+     </section>
+     <section class="slide level2" id="different-types-of-joins">
+      <h2>
+       Different types of joins
+      </h2>
+      <ul>
+       <li>
+        Notice how only the IDs that exist in both data frames are
+returned.
+       </li>
+       <li>
+        This is called an “inner join” in database speak.
+       </li>
+       <li>
+        The other types of joins are called “left”, “right” and
+“outer”.
+       </li>
+       <li>
+        The yellow piece in the below graphic shows the rows returned with
+the different joins.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/various_joins.png" height="517" width="710"/>
+      </p>
+     </section>
+     <section class="slide level2" id="different-types-of-joins-1">
+      <h2>
+       Different types of joins
+      </h2>
+      <ul>
+       <li>
+        left ensures that all IDs from the left table are in the join,
+entering NaN if there is no match for the key in the right table.
+       </li>
+       <li>
+        right ensures that all IDs from the right table are in the join,
+entering NaN if there is no match in the left table.
+       </li>
+       <li>
+        outer ensures that all IDs from both tables are in the join.
+       </li>
+       <li>
+        We use the argument “how” to specify the type of join we want.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="left-join">
+      <h2>
+       Left join
+      </h2>
+      <div class="sourceCode" id="cb27">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" href="#cb27-1" tabindex="-1"></a><span class="co"># Note the 'how="left"' argument.</span></span>
+<span id="cb27-2"><a aria-hidden="true" href="#cb27-2" tabindex="-1"></a>left_join_data <span class="op">=</span> pd.merge(x_data,y_data, left_on <span class="op">=</span> <span class="st">'ACCOUNTID'</span>, right_on <span class="op">=</span> <span class="st">'AccountID'</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb27-3"><a aria-hidden="true" href="#cb27-3" tabindex="-1"></a><span class="bu">print</span>(left_join_data)</span>
+<span id="cb27-4"><a aria-hidden="true" href="#cb27-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows and columns are"</span>,  left_join_data.shape)</span></code></pre>
+      </div>
+      <pre><code>   SocialMediaIndex WordPress ACCOUNTID AccountID  Status
+0                 1       YES     INF85     INF85     1.0
+1                 0        NO     JEM10     JEM10     0.0
+2                12        NO     CYN02       NaN     NaN
+3                 5        NO     ASC53     ASC53     1.0
+4                12       YES     QUT35     QUT35     0.0
+5                76        NO     DIU03       NaN     NaN
+6                34        NO     XCT80     XCT80     0.0
+7                18        NO     WCV02       NaN     NaN
+8                21        NO     PYT29       NaN     NaN
+Rows and columns are (9, 5)</code></pre>
+      <ul>
+       <li>
+        Every row in x is in the resulting data frame, so it has nine rows
+just as the x-data has.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="right-join">
+      <h2>
+       Right join
+      </h2>
+      <div class="sourceCode" id="cb29">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a aria-hidden="true" href="#cb29-1" tabindex="-1"></a><span class="co"># Note the 'how="right"' argument.</span></span>
+<span id="cb29-2"><a aria-hidden="true" href="#cb29-2" tabindex="-1"></a>right_join_data <span class="op">=</span> pd.merge(x_data,y_data, left_on <span class="op">=</span> <span class="st">'ACCOUNTID'</span>, right_on <span class="op">=</span> <span class="st">'AccountID'</span>, how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb29-3"><a aria-hidden="true" href="#cb29-3" tabindex="-1"></a><span class="bu">print</span>(right_join_data)</span>
+<span id="cb29-4"><a aria-hidden="true" href="#cb29-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows and columns are"</span>,  right_join_data.shape)</span></code></pre>
+      </div>
+      <pre><code>   SocialMediaIndex WordPress ACCOUNTID AccountID  Status
+0               NaN       NaN       NaN     NDE65       1
+1               1.0       YES     INF85     INF85       1
+2               0.0        NO     JEM10     JEM10       0
+3               5.0        NO     ASC53     ASC53       1
+4              12.0       YES     QUT35     QUT35       0
+5               NaN       NaN       NaN     XRO15       0
+6              34.0        NO     XCT80     XCT80       0
+Rows and columns are (7, 5)</code></pre>
+      <ul>
+       <li>
+        Every row in y is in the resulting data frame, so it has seven rows
+just as the y-data has.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="outer-join">
+      <h2>
+       Outer join
+      </h2>
+      <div class="sourceCode" id="cb31">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" href="#cb31-1" tabindex="-1"></a><span class="co"># Note the 'how="outer"' argument.</span></span>
+<span id="cb31-2"><a aria-hidden="true" href="#cb31-2" tabindex="-1"></a>outer_join_data <span class="op">=</span> pd.merge(x_data,y_data, left_on <span class="op">=</span> <span class="st">'ACCOUNTID'</span>, right_on <span class="op">=</span> <span class="st">'AccountID'</span>, how<span class="op">=</span><span class="st">"outer"</span>)</span>
+<span id="cb31-3"><a aria-hidden="true" href="#cb31-3" tabindex="-1"></a><span class="bu">print</span>(outer_join_data)</span>
+<span id="cb31-4"><a aria-hidden="true" href="#cb31-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rows and columns are "</span>,  outer_join_data.shape)</span></code></pre>
+      </div>
+      <pre><code>    SocialMediaIndex WordPress ACCOUNTID AccountID  Status
+0                5.0        NO     ASC53     ASC53     1.0
+1               12.0        NO     CYN02       NaN     NaN
+2               76.0        NO     DIU03       NaN     NaN
+3                1.0       YES     INF85     INF85     1.0
+4                0.0        NO     JEM10     JEM10     0.0
+5                NaN       NaN       NaN     NDE65     1.0
+6               21.0        NO     PYT29       NaN     NaN
+7               12.0       YES     QUT35     QUT35     0.0
+8               18.0        NO     WCV02       NaN     NaN
+9               34.0        NO     XCT80     XCT80     0.0
+10               NaN       NaN       NaN     XRO15     0.0
+Rows and columns are  (11, 5)</code></pre>
+     </section>
+     <section class="slide level2" id="duplicate-keys-values">
+      <h2>
+       Duplicate keys values
+      </h2>
+      <ul>
+       <li>
+        If you have the same key value twice, the join will match both
+instances.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb33">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a aria-hidden="true" href="#cb33-1" tabindex="-1"></a><span class="co"># Insert a new row in the data frame with the .append method.</span></span>
+<span id="cb33-2"><a aria-hidden="true" href="#cb33-2" tabindex="-1"></a>new_x_data <span class="op">=</span> pd.concat([x_data, </span>
+<span id="cb33-3"><a aria-hidden="true" href="#cb33-3" tabindex="-1"></a>                        pd.DataFrame({<span class="st">'SocialMediaIndex'</span>: [<span class="dv">0</span>], <span class="st">'WordPress'</span>: [<span class="st">'NO'</span>],<span class="st">'ACCOUNTID'</span>:[<span class="st">'INF85'</span>]})],</span>
+<span id="cb33-4"><a aria-hidden="true" href="#cb33-4" tabindex="-1"></a>                       ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-5"><a aria-hidden="true" href="#cb33-5" tabindex="-1"></a></span>
+<span id="cb33-6"><a aria-hidden="true" href="#cb33-6" tabindex="-1"></a><span class="co"># Now do an inner join and note how "INF85" is in the new data frame twice.:</span></span>
+<span id="cb33-7"><a aria-hidden="true" href="#cb33-7" tabindex="-1"></a><span class="bu">print</span>(pd.merge(new_x_data,y_data, left_on <span class="op">=</span> <span class="st">'ACCOUNTID'</span>, right_on <span class="op">=</span> <span class="st">'AccountID'</span>)) </span></code></pre>
+      </div>
+      <pre><code>   SocialMediaIndex WordPress ACCOUNTID AccountID  Status
+0                 1       YES     INF85     INF85       1
+1                 0        NO     JEM10     JEM10       0
+2                 5        NO     ASC53     ASC53       1
+3                12       YES     QUT35     QUT35       0
+4                34        NO     XCT80     XCT80       0
+5                 0        NO     INF85     INF85       1</code></pre>
+     </section>
+     <section class="slide level2" id="renaming-a-column">
+      <h2>
+       Renaming a column
+      </h2>
+      <ul>
+       <li>
+        Recall that the columns that were used as keys had different
+names.
+       </li>
+       <li>
+        We will rename the “AccountID” column in y_data as “ACCOUNTID”.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb35">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a aria-hidden="true" href="#cb35-1" tabindex="-1"></a><span class="co"># Rename a column. The "inplace" overwrites the existing data frame.</span></span>
+<span id="cb35-2"><a aria-hidden="true" href="#cb35-2" tabindex="-1"></a><span class="co"># The axis argument specifies if it is the rows or column index you wish to change. 0 = rows, 1 = columns.</span></span>
+<span id="cb35-3"><a aria-hidden="true" href="#cb35-3" tabindex="-1"></a><span class="co"># The old and new names are specified in a dict structure.</span></span>
+<span id="cb35-4"><a aria-hidden="true" href="#cb35-4" tabindex="-1"></a>y_data.rename({<span class="st">'AccountID'</span>: <span class="st">'ACCOUNTID'</span>}, axis <span class="op">=</span> <span class="dv">1</span>, inplace <span class="op">=</span> <span class="va">True</span>) </span>
+<span id="cb35-5"><a aria-hidden="true" href="#cb35-5" tabindex="-1"></a><span class="bu">print</span>(y_data)</span></code></pre>
+      </div>
+      <pre><code>  ACCOUNTID  Status
+0     NDE65       1
+1     INF85       1
+2     JEM10       0
+3     ASC53       1
+4     QUT35       0
+5     XRO15       0
+6     XCT80       0</code></pre>
+     </section>
+     <section class="slide level2" id="a-simpler-merge-statement">
+      <h2>
+       A simpler merge statement
+      </h2>
+      <ul>
+       <li>
+        With the column names for the two keys the same, the inner join can
+be accomplished with just:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb37">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a aria-hidden="true" href="#cb37-1" tabindex="-1"></a><span class="co"># pandas looks for the common column name and uses that as the merge key automatically.</span></span>
+<span id="cb37-2"><a aria-hidden="true" href="#cb37-2" tabindex="-1"></a><span class="bu">print</span>(pd.merge(x_data, y_data)) </span></code></pre>
+      </div>
+      <pre><code>   SocialMediaIndex WordPress ACCOUNTID  Status
+0                 1       YES     INF85       1
+1                 0        NO     JEM10       0
+2                 5        NO     ASC53       1
+3                12       YES     QUT35       0
+4                34        NO     XCT80       0</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="dates-and-times">
+      <h1>
+       Dates and times
+      </h1>
+     </section>
+     <section class="slide level2" id="date-and-times">
+      <h2>
+       Date and times
+      </h2>
+      <ul>
+       <li>
+        Being able to read and manipulate dates and times is an essential
+skill, especially with business data.
+       </li>
+       <li>
+        Dates can be quite challenging because of the many representations
+and conventions that can differ within and across countries.
+       </li>
+       <li>
+        For example, what day is “070820’?
+       </li>
+       <li>
+        The problem is that it depends on the convention you are
+following.
+       </li>
+       <li>
+        It could be July 8th, 2020.
+       </li>
+       <li>
+        it could be August 7th, 2020.
+       </li>
+       <li>
+        It could even be August 20, 1907!
+       </li>
+       <li>
+        Clearly we need some way of standardizing dates and being able to
+move between formats.
+       </li>
+       <li>
+        Pandas will give us these tools.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-internal-representation-of-a-point-in-time">
+      <h2>
+       The internal representation of a point in time
+      </h2>
+      <ul>
+       <li>
+        We will use the datetime library that will give us plenty of date
+and time functionality.
+       </li>
+       <li>
+        You can ask Python for the current date and time.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb39">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a aria-hidden="true" href="#cb39-1" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, date</span>
+<span id="cb39-2"><a aria-hidden="true" href="#cb39-2" tabindex="-1"></a></span>
+<span id="cb39-3"><a aria-hidden="true" href="#cb39-3" tabindex="-1"></a>today <span class="op">=</span> date.today()</span>
+<span id="cb39-4"><a aria-hidden="true" href="#cb39-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Today's date:"</span>, today)</span>
+<span id="cb39-5"><a aria-hidden="true" href="#cb39-5" tabindex="-1"></a></span>
+<span id="cb39-6"><a aria-hidden="true" href="#cb39-6" tabindex="-1"></a>now <span class="op">=</span> datetime.now()</span>
+<span id="cb39-7"><a aria-hidden="true" href="#cb39-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Now ="</span>, now)</span></code></pre>
+      </div>
+      <pre><code>Today's date: 2026-09-08
+Now = 2026-09-08 15:33:30.151099</code></pre>
+     </section>
+     <section class="slide level2" id="the-epoch">
+      <h2>
+       The epoch
+      </h2>
+      <ul>
+       <li>
+        Many computer systems define time as the number of seconds from
+1970-1-1 00:00:00, which is know as epoch time.
+       </li>
+       <li>
+        Here’s a link to an epoch time converter:
+        <a class="uri" href="https://www.epochconverter.com/">
+         https://www.epochconverter.com/
+        </a>
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb41">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a aria-hidden="true" href="#cb41-1" tabindex="-1"></a><span class="co"># The the .timestamp method returns the number of seconds since 1970-1-1 00:00:00</span></span>
+<span id="cb41-2"><a aria-hidden="true" href="#cb41-2" tabindex="-1"></a>epoch_time <span class="op">=</span> datetime.now().timestamp()</span>
+<span id="cb41-3"><a aria-hidden="true" href="#cb41-3" tabindex="-1"></a><span class="bu">print</span>(epoch_time)</span></code></pre>
+      </div>
+      <pre><code>1788896010.155944</code></pre>
+     </section>
+     <section class="slide level2" id="reading-dates-with-pandas">
+      <h2>
+       Reading dates with pandas
+      </h2>
+      <ul>
+       <li>
+        To create a datetime object we can use the pandas “to_datetime”
+method.
+       </li>
+       <li>
+        The critical element is the format argument, which tells Python how
+to interpret the date string.
+       </li>
+       <li>
+        In this instance is says the first two numbers are the month (%m),
+then the next two the day of the month (%m) and finally the 4 digit year
+(%Y)
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb43">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a aria-hidden="true" href="#cb43-1" tabindex="-1"></a>time_one <span class="op">=</span> pd.to_datetime(<span class="st">'03211989'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"%m</span><span class="sc">%d</span><span class="st">%Y"</span>)</span>
+<span id="cb43-2"><a aria-hidden="true" href="#cb43-2" tabindex="-1"></a><span class="bu">print</span>(time_one)</span>
+<span id="cb43-3"><a aria-hidden="true" href="#cb43-3" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(time_one)) <span class="co"># It is of type "Timestamp" </span></span>
+<span id="cb43-4"><a aria-hidden="true" href="#cb43-4" tabindex="-1"></a></span>
+<span id="cb43-5"><a aria-hidden="true" href="#cb43-5" tabindex="-1"></a>time_two <span class="op">=</span> pd.to_datetime(<span class="st">'01272022'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"%m</span><span class="sc">%d</span><span class="st">%Y"</span>)</span>
+<span id="cb43-6"><a aria-hidden="true" href="#cb43-6" tabindex="-1"></a><span class="bu">print</span>(time_two)</span></code></pre>
+      </div>
+      <pre><code>1989-03-21 00:00:00
+&lt;class 'pandas._libs.tslibs.timestamps.Timestamp'&gt;
+2022-01-27 00:00:00</code></pre>
+     </section>
+     <section class="slide level2" id="the-difference-between-two-times">
+      <h2>
+       The difference between two times
+      </h2>
+      <ul>
+       <li>
+        By storing dates and times internally as seconds from the epoch, it
+is easy to find out how far two dates are from one another, simply using
+subtraction:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb45">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a aria-hidden="true" href="#cb45-1" tabindex="-1"></a><span class="bu">print</span>(time_two <span class="op">-</span> time_one) </span>
+<span id="cb45-2"><a aria-hidden="true" href="#cb45-2" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(time_two <span class="op">-</span> time_one)) <span class="co"># It is of type "Timedelta" </span></span></code></pre>
+      </div>
+      <pre><code>12000 days 00:00:00
+&lt;class 'pandas._libs.tslibs.timedeltas.Timedelta'&gt;</code></pre>
+     </section>
+     <section class="slide level2" id="using-an-alternative-time-format">
+      <h2>
+       Using an alternative time format
+      </h2>
+      <ul>
+       <li>
+        Time can come in different formats, for example ‘Jan 13, 2020’.
+       </li>
+       <li>
+        But using appropriate formating, we can create a date time object
+here too.
+       </li>
+       <li>
+        All the formatting rules can be found here:
+        <a class="uri" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">
+         https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
+        </a>
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb47">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a aria-hidden="true" href="#cb47-1" tabindex="-1"></a><span class="co"># The time format used by Yahoo Finance stock data downlaods (see homework 2).</span></span>
+<span id="cb47-2"><a aria-hidden="true" href="#cb47-2" tabindex="-1"></a>time_three <span class="op">=</span> pd.to_datetime(<span class="st">'Jan 13, 2020'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">"%b </span><span class="sc">%d</span><span class="st">, %Y"</span>)</span>
+<span id="cb47-3"><a aria-hidden="true" href="#cb47-3" tabindex="-1"></a><span class="bu">print</span>(time_three)</span></code></pre>
+      </div>
+      <pre><code>2020-01-13 00:00:00</code></pre>
+     </section>
+     <section class="slide level2" id="obtain-the-full-outpatient-data-set">
+      <h2>
+       Obtain the full outpatient data set
+      </h2>
+      <ul>
+       <li>
+        The data set is called “Outpatient.csv” and is available for
+download from the Canvas site.
+       </li>
+       <li>
+        Our goal is to find the average Schedule lag, where schedule lag is
+defined as the difference between appointment date and schedule
+date.
+       </li>
+       <li>
+        For example, if the appointment is made on January 01 2020, for
+February 28, 2020 then the schedule lag is 58 days (30 + 28).
+       </li>
+       <li>
+        Note that the dates have been read in as type = object, which means
+they are currently viewed as strings and not dates.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="reviewing-the-outpatient-dataset">
+      <h2>
+       Reviewing the outpatient dataset
+      </h2>
+      <ul>
+       <li>
+        It is a good idea to get a sense of the dimensions and data types in
+the DataFrame:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb49">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a aria-hidden="true" href="#cb49-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb49-2"><a aria-hidden="true" href="#cb49-2" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">7770f2026_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>) </span>
+<span id="cb49-3"><a aria-hidden="true" href="#cb49-3" tabindex="-1"></a>outpatient_data <span class="op">=</span> pd.read_csv(<span class="st">"Outpatient.csv"</span>, )</span>
+<span id="cb49-4"><a aria-hidden="true" href="#cb49-4" tabindex="-1"></a></span>
+<span id="cb49-5"><a aria-hidden="true" href="#cb49-5" tabindex="-1"></a><span class="co"># Basic top level data summaries.</span></span>
+<span id="cb49-6"><a aria-hidden="true" href="#cb49-6" tabindex="-1"></a><span class="bu">print</span>(outpatient_data.shape) <span class="co"># Rows and columns.</span></span>
+<span id="cb49-7"><a aria-hidden="true" href="#cb49-7" tabindex="-1"></a><span class="bu">print</span>(outpatient_data.columns) <span class="co"># Column names.</span></span>
+<span id="cb49-8"><a aria-hidden="true" href="#cb49-8" tabindex="-1"></a><span class="bu">print</span>(outpatient_data.dtypes) <span class="co"># Column data types.</span></span></code></pre>
+      </div>
+      <pre><code>(3699, 9)
+Index(['PID', 'SchedDate', 'ApptDate', 'Dept', 'Language', 'Sex', 'Age',
+       'Race', 'Status'],
+      dtype='object')
+PID          object
+SchedDate    object
+ApptDate     object
+Dept         object
+Language     object
+Sex          object
+Age          object
+Race         object
+Status       object
+dtype: object</code></pre>
+     </section>
+     <section class="slide level2" id="the-parse_dates-argument">
+      <h2>
+       The parse_dates argument
+      </h2>
+      <ul>
+       <li>
+        When you know you have a date(s) column, it is always worth trying
+the “parse_dates” argument to read_csv.
+       </li>
+       <li>
+        It will attempt to discern the date format and read in the date data
+as a datetime object.
+       </li>
+       <li>
+        It is successful here, but not always.
+       </li>
+       <li>
+        You may have to use the ‘pd.to_datetime’ function when the
+optimistic approach fails.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb51">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a aria-hidden="true" href="#cb51-1" tabindex="-1"></a>outpatient_data <span class="op">=</span> pd.read_csv(<span class="st">"Outpatient.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">'SchedDate'</span>, <span class="st">'ApptDate'</span>]) <span class="co"># Pass in the date columns.</span></span>
+<span id="cb51-2"><a aria-hidden="true" href="#cb51-2" tabindex="-1"></a><span class="bu">print</span>(outpatient_data.dtypes) <span class="co"># This looks better!</span></span></code></pre>
+      </div>
+      <pre><code>PID                  object
+SchedDate    datetime64[ns]
+ApptDate     datetime64[ns]
+Dept                 object
+Language             object
+Sex                  object
+Age                  object
+Race                 object
+Status               object
+dtype: object</code></pre>
+     </section>
+     <section class="slide level2" id="finding-the-schedule-lag">
+      <h2>
+       Finding the schedule lag
+      </h2>
+      <ul>
+       <li>
+        Because pandas uses “vectorized” functions, we can find the schedule
+lag for all the rows without the need for a “for” loop:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb53">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a aria-hidden="true" href="#cb53-1" tabindex="-1"></a>outpatient_data[<span class="st">'ScheduleLag'</span>]  <span class="op">=</span> outpatient_data[<span class="st">'ApptDate'</span>] <span class="op">-</span> outpatient_data[<span class="st">'SchedDate'</span>]</span>
+<span id="cb53-2"><a aria-hidden="true" href="#cb53-2" tabindex="-1"></a></span>
+<span id="cb53-3"><a aria-hidden="true" href="#cb53-3" tabindex="-1"></a><span class="co"># What is the average schedule lag? It is about a month.</span></span>
+<span id="cb53-4"><a aria-hidden="true" href="#cb53-4" tabindex="-1"></a>outpatient_data[<span class="st">'ScheduleLag'</span>].mean()</span></code></pre>
+      </div>
+      <pre><code>Timedelta('33 days 11:31:46.569343065')</code></pre>
+     </section>
+     <section class="slide level2" id="day-of-the-week-and-month-of-the-year-extractions">
+      <h2>
+       Day-of-the-week and month-of-the-year extractions
+      </h2>
+      <ul>
+       <li>
+        It is very common to want to find the day of the week, or month of
+the year.
+       </li>
+       <li>
+        pandas has methods to do this:
+        <em>
+         dt.day_name
+        </em>
+        and
+        <em>
+         dt.month_name
+        </em>
+        .
+       </li>
+       <li>
+        By using the “locale” argument, you can even specify a
+language.
+       </li>
+       <li>
+        Below I am using French.
+       </li>
+       <li>
+        If you don’t specify a
+        <em>
+         locale
+        </em>
+        , Python will use whatever
+default your computer is set to.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb55">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a aria-hidden="true" href="#cb55-1" tabindex="-1"></a>outpatient_data[<span class="st">'ApptDayOfWeek'</span>] <span class="op">=</span>  outpatient_data[<span class="st">'ApptDate'</span>].dt.day_name(locale<span class="op">=</span><span class="st">'fr'</span>)</span>
+<span id="cb55-2"><a aria-hidden="true" href="#cb55-2" tabindex="-1"></a>outpatient_data[<span class="st">'ApptMonthOfYear'</span>] <span class="op">=</span>  outpatient_data[<span class="st">'ApptDate'</span>].dt.month_name(locale<span class="op">=</span><span class="st">'fr'</span>)</span>
+<span id="cb55-3"><a aria-hidden="true" href="#cb55-3" tabindex="-1"></a><span class="bu">print</span>(outpatient_data.columns)</span></code></pre>
+      </div>
+      <pre><code>Index(['PID', 'SchedDate', 'ApptDate', 'Dept', 'Language', 'Sex', 'Age',
+       'Race', 'Status', 'ScheduleLag', 'ApptDayOfWeek', 'ApptMonthOfYear'],
+      dtype='object')</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="basic-summaries-on-the-data-frame">
+      <h1>
+       Basic summaries on the data frame
+      </h1>
+     </section>
+     <section class="slide level2" id="basic-summaries-on-the-data-frame-1">
+      <h2>
+       Basic summaries on the data frame
+      </h2>
+      <ul>
+       <li>
+        The value_counts() method, which we have seen before counts the
+frequency of the values in a column.
+       </li>
+       <li>
+        The code below tells you how many appointments there are on each day
+of the week.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb57">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a aria-hidden="true" href="#cb57-1" tabindex="-1"></a>outpatient_data[<span class="st">'ApptDayOfWeek'</span>].value_counts()</span></code></pre>
+      </div>
+      <pre><code>ApptDayOfWeek
+Mercredi    590
+Jeudi       569
+Dimanche    544
+Lundi       539
+Mardi       518
+Vendredi    513
+Samedi      426
+Name: count, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="a-first-look-at-the-groupby-command">
+      <h2>
+       A first look at the groupby command
+      </h2>
+      <ul>
+       <li>
+        One of the fundamental tasks of pandas is to make summarizing and
+reviewing data as simple and flexible is possible.
+       </li>
+       <li>
+        A key command is “groupby” which will identify which rows are in
+each level of a column.
+       </li>
+       <li>
+        These rows can then be summarized in some fashion, for example with
+their count or average.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb59">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a aria-hidden="true" href="#cb59-1" tabindex="-1"></a><span class="co"># This will count the number of appointments in each Status level. </span></span>
+<span id="cb59-2"><a aria-hidden="true" href="#cb59-2" tabindex="-1"></a><span class="bu">print</span>(outpatient_data.Status.value_counts())</span></code></pre>
+      </div>
+      <pre><code>Status
+Arrived        2167
+Cancelled       796
+No Show         526
+Bumped          209
+Rescheduled       1
+Name: count, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="the-number-of-appointments-in-each-status-category-by-day-of-week">
+      <h2>
+       The number of appointments in each Status category by day of
+week
+      </h2>
+      <ul>
+       <li>
+        By using the
+        <em>
+         groupby
+        </em>
+        function, we can do the same
+calculation, but now by day-of-the-week:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb61">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a aria-hidden="true" href="#cb61-1" tabindex="-1"></a><span class="co"># Using groupby gives the value counts by day of the week.</span></span>
+<span id="cb61-2"><a aria-hidden="true" href="#cb61-2" tabindex="-1"></a>outpatient_data.groupby(<span class="st">'ApptDayOfWeek'</span>).Status.value_counts()</span></code></pre>
+      </div>
+      <pre><code>ApptDayOfWeek  Status     
+Dimanche       Arrived        319
+               Cancelled      109
+               No Show         88
+               Bumped          28
+Jeudi          Arrived        328
+               Cancelled      133
+               No Show         79
+               Bumped          29
+Lundi          Arrived        309
+               Cancelled      122
+               No Show         79
+               Bumped          29
+Mardi          Arrived        280
+               Cancelled      130
+               No Show         77
+               Bumped          30
+               Rescheduled      1
+Mercredi       Arrived        369
+               Cancelled      111
+               No Show         73
+               Bumped          37
+Samedi         Arrived        265
+               Cancelled       88
+               No Show         52
+               Bumped          21
+Vendredi       Arrived        297
+               Cancelled      103
+               No Show         78
+               Bumped          35
+Name: count, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="obtaining-percentages-rather-than-frequencies">
+      <h2>
+       Obtaining percentages rather than frequencies
+      </h2>
+      <div class="sourceCode" id="cb63">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a aria-hidden="true" href="#cb63-1" tabindex="-1"></a><span class="co"># The optional argument, "normalize" will return a proportion. They add to 1 for each day of the week.</span></span>
+<span id="cb63-2"><a aria-hidden="true" href="#cb63-2" tabindex="-1"></a>outpatient_data.groupby(<span class="st">'ApptDayOfWeek'</span>).Status.value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+      </div>
+      <pre><code>ApptDayOfWeek  Status     
+Dimanche       Arrived        0.586397
+               Cancelled      0.200368
+               No Show        0.161765
+               Bumped         0.051471
+Jeudi          Arrived        0.576450
+               Cancelled      0.233743
+               No Show        0.138840
+               Bumped         0.050967
+Lundi          Arrived        0.573284
+               Cancelled      0.226345
+               No Show        0.146568
+               Bumped         0.053803
+Mardi          Arrived        0.540541
+               Cancelled      0.250965
+               No Show        0.148649
+               Bumped         0.057915
+               Rescheduled    0.001931
+Mercredi       Arrived        0.625424
+               Cancelled      0.188136
+               No Show        0.123729
+               Bumped         0.062712
+Samedi         Arrived        0.622066
+               Cancelled      0.206573
+               No Show        0.122066
+               Bumped         0.049296
+Vendredi       Arrived        0.578947
+               Cancelled      0.200780
+               No Show        0.152047
+               Bumped         0.068226
+Name: proportion, dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="a-look-at-the-index">
+      <h2>
+       A look at the index
+      </h2>
+      <ul>
+       <li>
+        Recall that the row index can be thought of as simply the row
+names.
+       </li>
+       <li>
+        But after the groupby, it is known as a “MultiIndex”.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb65">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a aria-hidden="true" href="#cb65-1" tabindex="-1"></a><span class="co"># Save the result into a Series object with a MultiIndex.</span></span>
+<span id="cb65-2"><a aria-hidden="true" href="#cb65-2" tabindex="-1"></a>category_props <span class="op">=</span> outpatient_data.groupby(<span class="st">'ApptDayOfWeek'</span>).Status.value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb65-3"><a aria-hidden="true" href="#cb65-3" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(category_props))</span>
+<span id="cb65-4"><a aria-hidden="true" href="#cb65-4" tabindex="-1"></a><span class="bu">print</span>(category_props.index)</span></code></pre>
+      </div>
+      <pre><code>&lt;class 'pandas.core.series.Series'&gt;
+MultiIndex([('Dimanche',     'Arrived'),
+            ('Dimanche',   'Cancelled'),
+            ('Dimanche',     'No Show'),
+            ('Dimanche',      'Bumped'),
+            (   'Jeudi',     'Arrived'),
+            (   'Jeudi',   'Cancelled'),
+            (   'Jeudi',     'No Show'),
+            (   'Jeudi',      'Bumped'),
+            (   'Lundi',     'Arrived'),
+            (   'Lundi',   'Cancelled'),
+            (   'Lundi',     'No Show'),
+            (   'Lundi',      'Bumped'),
+            (   'Mardi',     'Arrived'),
+            (   'Mardi',   'Cancelled'),
+            (   'Mardi',     'No Show'),
+            (   'Mardi',      'Bumped'),
+            (   'Mardi', 'Rescheduled'),
+            ('Mercredi',     'Arrived'),
+            ('Mercredi',   'Cancelled'),
+            ('Mercredi',     'No Show'),
+            ('Mercredi',      'Bumped'),
+            (  'Samedi',     'Arrived'),
+            (  'Samedi',   'Cancelled'),
+            (  'Samedi',     'No Show'),
+            (  'Samedi',      'Bumped'),
+            ('Vendredi',     'Arrived'),
+            ('Vendredi',   'Cancelled'),
+            ('Vendredi',     'No Show'),
+            ('Vendredi',      'Bumped')],
+           names=['ApptDayOfWeek', 'Status'])</code></pre>
+     </section>
+     <section class="slide level2" id="extracting-elements-when-there-is-a-multiindex">
+      <h2>
+       Extracting elements when there is a MultiIndex
+      </h2>
+      <ul>
+       <li>
+        Say we want to pull out just the ‘Cancelled’ proportions from each
+day-of-the-week.
+       </li>
+       <li>
+        This a cross section of the result, where we are zooming in on just
+the “Cancelled” values.
+       </li>
+       <li>
+        This can be achieved through the ‘.xs’ method:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb67">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a aria-hidden="true" href="#cb67-1" tabindex="-1"></a><span class="co"># xs stands for "cross section" and 'level' specifies which level of the MultiIndex to look in. </span></span>
+<span id="cb67-2"><a aria-hidden="true" href="#cb67-2" tabindex="-1"></a>category_props.xs(<span class="st">'Cancelled'</span>, level<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
+      </div>
+      <pre><code>ApptDayOfWeek
+Dimanche    0.200368
+Jeudi       0.233743
+Lundi       0.226345
+Mardi       0.250965
+Mercredi    0.188136
+Samedi      0.206573
+Vendredi    0.200780
+Name: proportion, dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="an-alternative-approach-using-crosstabs">
+      <h2>
+       An alternative approach using crosstabs
+      </h2>
+      <ul>
+       <li>
+        Remember there are always a 101 ways to do the same thing.
+       </li>
+       <li>
+        pandas has a crosstabs function (cross-tabulation) that will
+cross-classify the levels of two categorical variables.
+       </li>
+       <li>
+        The ‘normalize’ argument, controls whether you normalize by overall
+total, column total or row total.
+       </li>
+       <li>
+        In the argument to crosstab, ‘index’ identifies which variable will
+correspond to the rows of the table and ‘columns’ which one will be in
+the columns.
+       </li>
+       <li>
+        Below, we normalize by ‘column’, so the proportions in a column add
+to 1.
+       </li>
+       <li>
+        The command will produce appointment status by day of the week.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="crosstabs-output">
+      <h2>
+       Crosstabs output
+      </h2>
+      <div class="sourceCode" id="cb69">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a aria-hidden="true" href="#cb69-1" tabindex="-1"></a>pd.set_option(<span class="st">'display.precision'</span>, <span class="dv">3</span>) <span class="co"># Control output formatting for floats to 3 digits of precision.</span></span>
+<span id="cb69-2"><a aria-hidden="true" href="#cb69-2" tabindex="-1"></a><span class="bu">print</span>(pd.crosstab(index <span class="op">=</span> outpatient_data.Status, columns <span class="op">=</span> outpatient_data.ApptDayOfWeek, normalize <span class="op">=</span> <span class="st">'columns'</span>))</span></code></pre>
+      </div>
+      <pre><code>ApptDayOfWeek  Dimanche  Jeudi  Lundi  Mardi  Mercredi  Samedi  Vendredi
+Status                                                                  
+Arrived           0.586  0.576  0.573  0.541     0.625   0.622     0.579
+Bumped            0.051  0.051  0.054  0.058     0.063   0.049     0.068
+Cancelled         0.200  0.234  0.226  0.251     0.188   0.207     0.201
+No Show           0.162  0.139  0.147  0.149     0.124   0.122     0.152
+Rescheduled       0.000  0.000  0.000  0.002     0.000   0.000     0.000</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="class-summary">
+      <h1>
+       Class summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        Importing data into Python:
+        <ul>
+         <li>
+          Data file types.
+          <ul>
+           <li>
+            CSV.
+           </li>
+           <li>
+            HTML.
+           </li>
+           <li>
+            JSON.
+           </li>
+          </ul>
+         </li>
+         <li>
+          Data locations:
+          <ul>
+           <li>
+            A local file.
+           </li>
+           <li>
+            A remote (web) resource.
+           </li>
+           <li>
+            A database.
+           </li>
+          </ul>
+         </li>
+        </ul>
+       </li>
+       <li>
+        Joining datasets.
+       </li>
+       <li>
+        Dates and times.
+       </li>
+       <li>
+        The ‘groupby’ function.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        Writing basic functions.
+       </li>
+       <li>
+        Common data cleaning activities.
+       </li>
+       <li>
+        More on the “groupby” command.
+       </li>
+       <li>
+        From transactional to behavioral data sets.
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
