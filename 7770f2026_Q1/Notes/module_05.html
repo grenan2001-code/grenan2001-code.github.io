@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 05
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 05
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      September 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        Writing basic functions.
+       </li>
+       <li>
+        Common data cleaning activities.
+       </li>
+       <li>
+        More on the “groupby” command.
+       </li>
+       <li>
+        From transactional to behavioral data sets.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="writing-basic-functions">
+      <h1>
+       Writing basic functions
+      </h1>
+     </section>
+     <section class="slide level2" id="writing-basic-functions-1">
+      <h2>
+       Writing basic functions
+      </h2>
+      <ul>
+       <li>
+        If you find yourself using almost identical blocks of code in
+different parts of your program, then you probably should write a
+“function”.
+       </li>
+       <li>
+        A function helps you organize and reuse code.
+       </li>
+       <li>
+        In math, a function
+        <span class="math inline">
+         \(f\)
+        </span>
+        is a rule
+that takes an input
+        <span class="math inline">
+         \(x\)
+        </span>
+        and provides
+a unique output,
+        <span class="math inline">
+         \(y\)
+        </span>
+        .
+       </li>
+       <li>
+        We write:
+        <span class="math inline">
+         \(y = f(x)\)
+        </span>
+        .
+       </li>
+       <li>
+        When we write Python code for a function, we have to define the
+inputs and create the rule that makes the output.
+       </li>
+       <li>
+        Functions will be useful to us when we do data analysis, because we
+are often repeating the same activity on different data sets, or even
+the same activity within a dataset.
+       </li>
+       <li>
+        These activities, could be data cleaning, merging, summarizing and
+so on.
+       </li>
+       <li>
+        We will learn how to write a function, then later see how they can
+be applied to data.
+       </li>
+       <li>
+        There is a special type of function in Python called a “lambda
+function” that is useful to create very simple functions.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="components-of-a-function">
+      <h2>
+       Components of a function
+      </h2>
+      <ul>
+       <li>
+        The Python keyword to create a function is ‘def’.
+       </li>
+       <li>
+        The keyword to end a function and return its result is
+‘return’.
+       </li>
+       <li>
+        The body of a function needs to be indented.
+       </li>
+       <li>
+        The function can take multiple inputs (parameters/arguments).
+       </li>
+       <li>
+        These inputs can be specified as either positional inputs or keyword
+inputs.
+       </li>
+       <li>
+        The keyword inputs are typically used for those arguments that take
+default values or are optional.
+       </li>
+       <li>
+        We will write some functions to illustrate the structure.
+       </li>
+       <li>
+        The function is
+        <em>
+         called
+        </em>
+        (run) by using its name and then
+parentheses().
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="degrees-celsius-to-fahrenheit">
+      <h2>
+       Degrees Celsius to Fahrenheit
+      </h2>
+      <ul>
+       <li>
+        We will write a function, called ‘tconvert’, that takes a single
+input and converts Celsius to Fahrenheit.
+       </li>
+       <li>
+        The conversion formula is
+        <span class="math inline">
+         \(f(c) = 32 +
+(9/5) c\)
+        </span>
+        , where
+        <span class="math inline">
+         \(c\)
+        </span>
+        is the
+input temperature.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb1">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="kw">def</span> tconvert(x):</span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">32</span> <span class="op">+</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span> x</span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a><span class="co"># Call the function a couple of times </span></span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">22</span>))</span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">100</span>)) </span></code></pre>
+      </div>
+      <pre><code>71.6
+212.0</code></pre>
+     </section>
+     <section class="slide level2" id="anatomy-of-the-function">
+      <h2>
+       Anatomy of the function
+      </h2>
+      <p>
+       <img data-src="images/function.png" height="341" width="627"/>
+      </p>
+     </section>
+     <section class="slide level2" id="anatomy-of-the-function-ctd.">
+      <h2>
+       Anatomy of the function (ctd.)
+      </h2>
+      <ol type="1">
+       <li>
+        The keyword “def” signals a function is about to be defined.
+       </li>
+       <li>
+        This particular function is named
+        <em>
+         tconvert
+        </em>
+        .
+       </li>
+       <li>
+        The
+        <em>
+         parameter
+        </em>
+        to be input is called “x”.
+       </li>
+       <li>
+        The colon indicates we are about to get an indented code block.
+       </li>
+       <li>
+        The
+        <em>
+         body
+        </em>
+        of the function.
+       </li>
+       <li>
+        The keyword “return” statement.
+       </li>
+       <li>
+        The value to be returned by the function.
+       </li>
+      </ol>
+     </section>
+     <section class="slide level2" id="adding-a-docstring-to-the-function">
+      <h2>
+       Adding a docstring to the function
+      </h2>
+      <ul>
+       <li>
+        The docstring describes the action of the function.
+       </li>
+       <li>
+        If it is there, then it is the first string right after the function
+definition.
+       </li>
+       <li>
+        Using three quotes, ’’’, allows you the potential to create a
+multiline string.
+       </li>
+       <li>
+        You can print the docstring using the ‘.__doc__’ attribute as
+below.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb3">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="kw">def</span> tconvert(x):</span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a>    <span class="co">'''Takes in a number x, returns the converted temperature of x.'''</span></span>
+<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a>    y <span class="op">=</span> <span class="dv">32</span> <span class="op">+</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span> x</span>
+<span id="cb3-4"><a aria-hidden="true" href="#cb3-4" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb3-5"><a aria-hidden="true" href="#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a aria-hidden="true" href="#cb3-6" tabindex="-1"></a><span class="bu">print</span>(tconvert.__doc__)</span></code></pre>
+      </div>
+      <pre><code>Takes in a number x, returns the converted temperature of x.</code></pre>
+     </section>
+     <section class="slide level2" id="checking-the-input-type">
+      <h2>
+       Checking the input type
+      </h2>
+      <ul>
+       <li>
+        Look what happens if we call this function on a string input:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb5">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="st">"It's hot!"</span>))</span></code></pre>
+      </div>
+      <pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[3], line 1
+----&gt; 1 print(tconvert("It's hot!"))
+
+
+Cell In[2], line 3, in tconvert(x)
+      1 def tconvert(x):
+      2     '''Takes in a number x, returns the converted temperature of x.'''
+----&gt; 3     y = 32 + 9/5 * x
+      4     return y
+
+
+TypeError: can't multiply sequence by non-int of type 'float'</code></pre>
+     </section>
+     <section class="slide level2" id="checking-the-input-type-1">
+      <h2>
+       Checking the input type
+      </h2>
+      <ul>
+       <li>
+        It makes sense to only have the function work if it has a numeric
+input.
+       </li>
+       <li>
+        One way to check the input type is using the “isinstance”
+command.
+       </li>
+       <li>
+        You can also use the try/except paradigm, or the ‘raise’ command
+(which we won’t discuss).
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb7">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a><span class="kw">def</span> tconvert(x):</span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a>    <span class="co">'''Takes in a number x, returns the converted temperature of x.'''</span></span>
+<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">isinstance</span>(x, (<span class="bu">int</span>, <span class="bu">float</span>)) <span class="kw">and</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, (<span class="bu">bool</span>))):  <span class="co">#Booleans are also ints! </span></span>
+<span id="cb7-4"><a aria-hidden="true" href="#cb7-4" tabindex="-1"></a>        y <span class="op">=</span> <span class="dv">32</span> <span class="op">+</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span> x</span>
+<span id="cb7-5"><a aria-hidden="true" href="#cb7-5" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb7-6"><a aria-hidden="true" href="#cb7-6" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-7"><a aria-hidden="true" href="#cb7-7" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"This function only works with numbers."</span></span>
+<span id="cb7-8"><a aria-hidden="true" href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a aria-hidden="true" href="#cb7-9" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">3</span>))</span>
+<span id="cb7-10"><a aria-hidden="true" href="#cb7-10" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="fl">21.2</span>))</span>
+<span id="cb7-11"><a aria-hidden="true" href="#cb7-11" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="va">True</span>))</span>
+<span id="cb7-12"><a aria-hidden="true" href="#cb7-12" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="st">"It's hot!"</span>))</span></code></pre>
+      </div>
+      <pre><code>37.4
+70.16
+This function only works with numbers.
+This function only works with numbers.</code></pre>
+     </section>
+     <section class="slide level2" id="multiple-parameters">
+      <h2>
+       Multiple parameters
+      </h2>
+      <ul>
+       <li>
+        We will give the function an additional argument, that allows the
+possibility of going from ‘f2c’ or ‘c2f’.
+       </li>
+       <li>
+        We check that it takes on one of the two valid values.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb9">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a><span class="kw">def</span> tconvert(x, direction):</span>
+<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a>    <span class="co">'''Takes in a number x, returns the converted temperature of x.'''</span></span>
+<span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a>    </span>
+<span id="cb9-4"><a aria-hidden="true" href="#cb9-4" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ( (direction <span class="op">==</span> <span class="st">"f2c"</span>) <span class="kw">or</span> (direction <span class="op">==</span> <span class="st">"c2f"</span>)):</span>
+<span id="cb9-5"><a aria-hidden="true" href="#cb9-5" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Direction must be 'c2f' or 'f2c'."</span></span>
+<span id="cb9-6"><a aria-hidden="true" href="#cb9-6" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ( <span class="bu">isinstance</span>(x, (<span class="bu">int</span>, <span class="bu">float</span>)) <span class="kw">and</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, (<span class="bu">bool</span>))): <span class="co"># Booleans are also ints! </span></span>
+<span id="cb9-7"><a aria-hidden="true" href="#cb9-7" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"This function only works with numbers."</span></span>
+<span id="cb9-8"><a aria-hidden="true" href="#cb9-8" tabindex="-1"></a>      </span>
+<span id="cb9-9"><a aria-hidden="true" href="#cb9-9" tabindex="-1"></a>    <span class="cf">if</span> direction <span class="op">==</span> <span class="st">"c2f"</span>:</span>
+<span id="cb9-10"><a aria-hidden="true" href="#cb9-10" tabindex="-1"></a>        y <span class="op">=</span> <span class="dv">32</span> <span class="op">+</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span> x</span>
+<span id="cb9-11"><a aria-hidden="true" href="#cb9-11" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb9-12"><a aria-hidden="true" href="#cb9-12" tabindex="-1"></a>    <span class="cf">if</span> direction <span class="op">==</span> <span class="st">"f2c"</span>:</span>
+<span id="cb9-13"><a aria-hidden="true" href="#cb9-13" tabindex="-1"></a>        y <span class="op">=</span> (x <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
+<span id="cb9-14"><a aria-hidden="true" href="#cb9-14" tabindex="-1"></a>        <span class="cf">return</span> y     </span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="using-the-improved-function">
+      <h2>
+       Using the improved function
+      </h2>
+      <div class="sourceCode" id="cb10">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="fl">0.0</span>, <span class="st">"c2f"</span>))</span>
+<span id="cb10-2"><a aria-hidden="true" href="#cb10-2" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">71</span>, <span class="st">"f2c"</span>))</span>
+<span id="cb10-3"><a aria-hidden="true" href="#cb10-3" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">71</span>, <span class="st">"a2b"</span>)) <span class="co"># Break it on purpose.</span></span>
+<span id="cb10-4"><a aria-hidden="true" href="#cb10-4" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">225</span>,<span class="st">"c2f"</span>))</span></code></pre>
+      </div>
+      <pre><code>32.0
+21.666666666666668
+Direction must be 'c2f' or 'f2c'.
+437.0</code></pre>
+     </section>
+     <section class="slide level2" id="keyword-arguments">
+      <h2>
+       Keyword arguments
+      </h2>
+      <ul>
+       <li>
+        You can also provide arguments with the key = value syntax.
+       </li>
+       <li>
+        This way, if there are multiple arguments, the order of the
+arguments does not matter.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb12">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a><span class="bu">print</span>(tconvert(direction <span class="op">=</span> <span class="st">"f2c"</span>, x <span class="op">=</span> <span class="dv">21</span>))</span></code></pre>
+      </div>
+      <pre><code>-6.111111111111111</code></pre>
+     </section>
+     <section class="slide level2" id="keyword-arguments-cant-come-before-positional-arguments">
+      <h2>
+       Keyword arguments can’t come before positional arguments
+      </h2>
+      <ul>
+       <li>
+        There are rules for the order of the arguments.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb14">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a><span class="bu">print</span>(tconvert(direction <span class="op">=</span> <span class="st">"f2c"</span>, <span class="dv">212</span>)) <span class="co"># This is illegal.</span></span></code></pre>
+      </div>
+      <pre><code>  Cell In[8], line 1
+    print(tconvert(direction = "f2c", 212)) # This is illegal.
+                                         ^
+SyntaxError: positional argument follows keyword argument</code></pre>
+     </section>
+     <section class="slide level2" id="default-values">
+      <h2>
+       Default values
+      </h2>
+      <ul>
+       <li>
+        When a function has many arguments it makes sense to give the less
+used ones, default values.
+       </li>
+       <li>
+        Using the ‘parameter = value’ syntax will do this.
+       </li>
+       <li>
+        We will assume that the user wants to go from c2f, unless they say
+otherwise.
+       </li>
+       <li>
+        Note the ‘direction = “c2f”’ in the argument list below.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb16">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a><span class="kw">def</span> tconvert(x, direction <span class="op">=</span> <span class="st">"c2f"</span>):</span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a>    <span class="co">'''Takes in a number x, returns the converted temperature of x.'''</span></span>
+<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a>    </span>
+<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ( (direction <span class="op">==</span> <span class="st">"f2c"</span>) <span class="kw">or</span> (direction <span class="op">==</span> <span class="st">"c2f"</span>)):</span>
+<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Direction must be 'c2f' or 'f2c'."</span></span>
+<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> ( <span class="bu">isinstance</span>(x, (<span class="bu">int</span>, <span class="bu">float</span>)) <span class="kw">and</span> <span class="kw">not</span> <span class="bu">isinstance</span>(x, (<span class="bu">bool</span>))): <span class="co"># Booleans are also ints! </span></span>
+<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"This function only works with numbers."</span></span>
+<span id="cb16-8"><a aria-hidden="true" href="#cb16-8" tabindex="-1"></a>      </span>
+<span id="cb16-9"><a aria-hidden="true" href="#cb16-9" tabindex="-1"></a>    <span class="cf">if</span> direction <span class="op">==</span> <span class="st">"c2f"</span>:</span>
+<span id="cb16-10"><a aria-hidden="true" href="#cb16-10" tabindex="-1"></a>        y <span class="op">=</span> <span class="dv">32</span> <span class="op">+</span> <span class="dv">9</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span> x</span>
+<span id="cb16-11"><a aria-hidden="true" href="#cb16-11" tabindex="-1"></a>        <span class="cf">return</span> y</span>
+<span id="cb16-12"><a aria-hidden="true" href="#cb16-12" tabindex="-1"></a>    <span class="cf">if</span> direction <span class="op">==</span> <span class="st">"f2c"</span>:</span>
+<span id="cb16-13"><a aria-hidden="true" href="#cb16-13" tabindex="-1"></a>        y <span class="op">=</span> (x <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
+<span id="cb16-14"><a aria-hidden="true" href="#cb16-14" tabindex="-1"></a>        <span class="cf">return</span> y</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="calling-the-function-with-the-default-parameter">
+      <h2>
+       Calling the function with the default parameter
+      </h2>
+      <div class="sourceCode" id="cb17">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">10</span>)) <span class="co"># No need for the direction parameter, if happy with 'c2f'</span></span>
+<span id="cb17-2"><a aria-hidden="true" href="#cb17-2" tabindex="-1"></a><span class="bu">print</span>(tconvert(<span class="dv">200</span>))</span></code></pre>
+      </div>
+      <pre><code>50.0
+392.0</code></pre>
+     </section>
+     <section class="slide level2" id="returning-more-than-one-value">
+      <h2>
+       Returning more than one value
+      </h2>
+      <ul>
+       <li>
+        You can return multiple values from a function as a ‘tuple’.
+       </li>
+       <li>
+        The function below takes a pandas series and returns the top 3
+occurring levels (pandas does have a .nlargest function for this).
+       </li>
+       <li>
+        We make some data by randomly sampling letters of the alphabet.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb19">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a aria-hidden="true" href="#cb19-1" tabindex="-1"></a></span>
+<span id="cb19-2"><a aria-hidden="true" href="#cb19-2" tabindex="-1"></a><span class="kw">def</span> top3(x):</span>
+<span id="cb19-3"><a aria-hidden="true" href="#cb19-3" tabindex="-1"></a>    y <span class="op">=</span> x.value_counts(sort<span class="op">=</span><span class="va">True</span>) <span class="co"># Recall that value_counts makes frequencies, and the sort argument will sort them.</span></span>
+<span id="cb19-4"><a aria-hidden="true" href="#cb19-4" tabindex="-1"></a>    <span class="cf">return</span> y.index[<span class="dv">0</span>], y[<span class="dv">0</span>], y.index[<span class="dv">1</span>], y[<span class="dv">1</span>], y.index[<span class="dv">2</span>], y[<span class="dv">2</span>] <span class="co"># Return multiple values.</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="generate-some-data">
+      <h2>
+       Generate some data
+      </h2>
+      <div class="sourceCode" id="cb20">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-3"><a aria-hidden="true" href="#cb20-3" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
+<span id="cb20-4"><a aria-hidden="true" href="#cb20-4" tabindex="-1"></a>data <span class="op">=</span> np.random.choice([<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>,<span class="st">'d'</span>,<span class="st">'e'</span>,<span class="st">'f'</span>,<span class="st">'g'</span>,<span class="st">'h'</span>,<span class="st">'i'</span>,<span class="st">'j'</span>], size<span class="op">=</span><span class="dv">1000</span>, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Random sampling with replacement.</span></span>
+<span id="cb20-5"><a aria-hidden="true" href="#cb20-5" tabindex="-1"></a>data <span class="op">=</span> pd.Series(data) <span class="co"># Store the data in a pandas Series.</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="returning-multiple-values">
+      <h2>
+       Returning multiple values
+      </h2>
+      <ul>
+       <li>
+        Note how the results come back as a tuple.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb21">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" href="#cb21-1" tabindex="-1"></a>top3(data)</span></code></pre>
+      </div>
+      <pre><code>C:\Users\water\AppData\Local\Temp\ipykernel_27456\4200730798.py:3: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  return y.index[0], y[0], y.index[1], y[1], y.index[2], y[2] # Return multiple values.
+
+
+
+
+
+('j', np.int64(116), 'd', np.int64(108), 'b', np.int64(107))</code></pre>
+     </section>
+     <section class="slide level2" id="lambda-functions">
+      <h2>
+       lambda functions
+      </h2>
+      <ul>
+       <li>
+        These are special functions, with no name (anonymous), that are
+defined in an expression rather than a statement (“Statements are an
+instruction to do something” and “expressions produce a value”.)
+       </li>
+       <li>
+        lambda functions are suitable for very simple functions that are
+used for a short period of time.
+       </li>
+       <li>
+        They are useful in data analysis, because we are often trying
+different transforms of the data, and we can make a function, which
+itself takes another function (the lambda function) as an argument.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb23">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a aria-hidden="true" href="#cb23-1" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb23-2"><a aria-hidden="true" href="#cb23-2" tabindex="-1"></a><span class="kw">def</span> data_transform(x, fn):</span>
+<span id="cb23-3"><a aria-hidden="true" href="#cb23-3" tabindex="-1"></a>    <span class="cf">return</span> [fn(<span class="bu">input</span>) <span class="cf">for</span> <span class="bu">input</span> <span class="kw">in</span> x] <span class="co"># Notice that the function "fn" is being used in the comprehension.</span></span>
+<span id="cb23-4"><a aria-hidden="true" href="#cb23-4" tabindex="-1"></a></span>
+<span id="cb23-5"><a aria-hidden="true" href="#cb23-5" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb23-6"><a aria-hidden="true" href="#cb23-6" tabindex="-1"></a></span>
+<span id="cb23-7"><a aria-hidden="true" href="#cb23-7" tabindex="-1"></a><span class="bu">print</span>(data_transform(data, <span class="kw">lambda</span> y: y<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb23-8"><a aria-hidden="true" href="#cb23-8" tabindex="-1"></a><span class="bu">print</span>(data_transform(data, <span class="kw">lambda</span> y: math.log(y)))</span></code></pre>
+      </div>
+      <pre><code>[1, 4, 25, 36, 4, 1]
+[0.0, 0.6931471805599453, 1.6094379124341003, 1.791759469228055, 0.6931471805599453, 0.0]</code></pre>
+     </section>
+     <section class="slide level2" id="the-map-command">
+      <h2>
+       The ‘map’ command
+      </h2>
+      <ul>
+       <li>
+        Another place you might see lambda functions used is with the “map”
+command.
+       </li>
+       <li>
+        ‘map’ will map a function to the elements of a container.
+       </li>
+       <li>
+        You may see ‘map’ in someone else’s Python code, but many prefer a
+list comprehension instead.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb25">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a aria-hidden="true" href="#cb25-1" tabindex="-1"></a>data <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size<span class="op">=</span><span class="dv">10000</span>) <span class="co"># Make some data, random integers between 0 and 9. </span></span></code></pre>
+      </div>
+      <div class="sourceCode" id="cb26">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" href="#cb26-1" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span> , data))[<span class="dv">0</span>:<span class="dv">5</span>] <span class="co"># Just look at the first 5 elements.</span></span></code></pre>
+      </div>
+      <pre><code>[np.int32(25), np.int32(49), np.int32(0), np.int32(4), np.int32(9)]</code></pre>
+     </section>
+     <section class="slide level2" id="more-about-functions">
+      <h2>
+       More about functions
+      </h2>
+      <ul>
+       <li>
+        There’s more to learn about functions, such as ‘Arbitrary Arguments’
+(*args) and ‘Arbitrary Keyword Arguments’ (**kwargs), but we will
+discuss these as they become necessary.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="common-data-cleaning-activities">
+      <h1>
+       Common data cleaning activities
+      </h1>
+     </section>
+     <section class="slide level2" id="common-data-cleaning-activities-1">
+      <h2>
+       Common data cleaning activities
+      </h2>
+      <ul>
+       <li>
+        Truth be told, what is
+        <strong>
+         <em>
+          common
+         </em>
+        </strong>
+        most likley
+depends on the type of data you work with.
+       </li>
+       <li>
+        Cleaning a time-series could be quite different from cleaning a list
+of words.
+       </li>
+       <li>
+        Examples of cleaning/pre-processing activities include:
+        <ul>
+         <li>
+          There are rows in the data frame that need to be removed.
+         </li>
+         <li>
+          There is missing data that needs to be addressed.
+         </li>
+         <li>
+          There are typos in the data that need to be corrected.
+         </li>
+         <li>
+          Things that should be numeric are held as strings.
+         </li>
+         <li>
+          Dates have not been properly parsed.
+         </li>
+         <li>
+          Levels of a categorical variable need to be collapsed.
+         </li>
+         <li>
+          Sorting data.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="removing-rows-from-the-data-frame">
+      <h2>
+       Removing rows from the data frame
+      </h2>
+      <ul>
+       <li>
+        We will read in a data frame and remove rows.
+        <ul>
+         <li>
+          Remove the first row.
+         </li>
+         <li>
+          Remove the last row.
+         </li>
+         <li>
+          Remove rows using a logical filter.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="importing-the-data">
+      <h2>
+       Importing the data
+      </h2>
+      <div class="sourceCode" id="cb28">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" href="#cb28-1" tabindex="-1"></a><span class="co"># Read in a data frame for illustration.</span></span>
+<span id="cb28-2"><a aria-hidden="true" href="#cb28-2" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb28-3"><a aria-hidden="true" href="#cb28-3" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">7770f2026_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>) </span>
+<span id="cb28-4"><a aria-hidden="true" href="#cb28-4" tabindex="-1"></a>op_data <span class="op">=</span> pd.read_csv(<span class="st">"Outpatient_to_clean.csv"</span>) <span class="co"># Note, no index column.</span></span>
+<span id="cb28-5"><a aria-hidden="true" href="#cb28-5" tabindex="-1"></a><span class="bu">print</span>(op_data.shape) <span class="co"># Track the dimensions.</span></span>
+<span id="cb28-6"><a aria-hidden="true" href="#cb28-6" tabindex="-1"></a>op_data.drop(op_data.index[<span class="dv">0</span>], inplace<span class="op">=</span><span class="va">True</span>) <span class="co"># Drop the first row.</span></span>
+<span id="cb28-7"><a aria-hidden="true" href="#cb28-7" tabindex="-1"></a><span class="bu">print</span>(op_data.shape) <span class="co"># Track the dimensions.</span></span>
+<span id="cb28-8"><a aria-hidden="true" href="#cb28-8" tabindex="-1"></a>op_data.drop(op_data.index[<span class="op">-</span><span class="dv">1</span>], inplace<span class="op">=</span><span class="va">True</span>) <span class="co"># Drop the last row.</span></span>
+<span id="cb28-9"><a aria-hidden="true" href="#cb28-9" tabindex="-1"></a><span class="bu">print</span>(op_data.shape) <span class="co"># Track the dimensions.</span></span></code></pre>
+      </div>
+      <pre><code>(3699, 9)
+(3698, 9)
+(3697, 9)</code></pre>
+     </section>
+     <section class="slide level2" id="remove-rows-using-a-logical-filter">
+      <h2>
+       Remove rows using a logical filter
+      </h2>
+      <div class="sourceCode" id="cb30">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" href="#cb30-1" tabindex="-1"></a><span class="bu">print</span>(op_data[<span class="st">'Status'</span>].value_counts())</span>
+<span id="cb30-2"><a aria-hidden="true" href="#cb30-2" tabindex="-1"></a>temp <span class="op">=</span> op_data[op_data[<span class="st">'Status'</span>] <span class="op">!=</span> <span class="st">"Bumped"</span>] <span class="co"># The logical filter selects all rows, that are not Bumped.</span></span>
+<span id="cb30-3"><a aria-hidden="true" href="#cb30-3" tabindex="-1"></a>temp[<span class="st">'Status'</span>].value_counts() <span class="co"># Note that "Bumped has gone".</span></span></code></pre>
+      </div>
+      <pre><code>Status
+Arrived        2164
+Cancelled       795
+No Show         526
+Bumped          209
+Rescheduled       1
+Name: count, dtype: int64
+
+
+
+
+
+Status
+Arrived        2164
+Cancelled       795
+No Show         526
+Rescheduled       1
+Name: count, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="using-the-read_csv-arguments">
+      <h2>
+       Using the read_csv arguments
+      </h2>
+      <ul>
+       <li>
+        <p>
+         If you know upfront that that certain rows at the beginning or
+end of the data frame need to be dropped, you could use the arguments to
+read_csv:
+        </p>
+       </li>
+       <li>
+        <p>
+         You can specify the specific line numbers to skip, or number of
+lines at the bottom of the file to skip with the arguments:
+        </p>
+        <ul>
+         <li>
+          skiprows
+         </li>
+         <li>
+          skipfooter
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="missing-data">
+      <h2>
+       Missing data
+      </h2>
+      <ul>
+       <li>
+        It’s very common to have missing data in most analyses.
+       </li>
+       <li>
+        The most used approach is to remove rows with missing data (called
+“case-wise” deletion).
+       </li>
+       <li>
+        You may also “fill in” (impute) the missing data.
+       </li>
+       <li>
+        If it is a categorical variable, you could potentially define a new
+category “Missing” for the missing data.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb32">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a><span class="co"># Notice the NaN's in the data frame.</span></span>
+<span id="cb32-2"><a aria-hidden="true" href="#cb32-2" tabindex="-1"></a>op_data <span class="op">=</span> pd.read_csv(<span class="st">"Outpatient_to_clean.csv"</span>,  parse_dates <span class="op">=</span> [<span class="st">'SchedDate'</span>, <span class="st">'ApptDate'</span>]) </span>
+<span id="cb32-3"><a aria-hidden="true" href="#cb32-3" tabindex="-1"></a><span class="bu">print</span>(op_data.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>      PID  SchedDate   ApptDate             Dept Language         Sex  Age  \
+0  P10092 2012-07-27 2012-10-05            DERM   ENGLISH           F  80+   
+1  P10151 2013-11-28 2014-01-03        PULMONARY  SPANISH  Didn't say   32   
+2  P10962 2012-02-02 2012-02-10              NaN  ENGLISH           M   12   
+3  P10896 2011-11-08 2011-12-06  GENERAL SURGERY  SPANISH           F  NaN   
+4  P10320 2012-10-25 2012-12-11       NEPHROLOGY  SPANISH         NaN   45   
+
+               Race     Status  
+0  AFRICAN AMERICAN    Arrived  
+1          HISPANIC  Cancelled  
+2  AFRICAN AMERICAN        NaN  
+3          HISPANIC     Bumped  
+4          HISPANIC    No Show  </code></pre>
+     </section>
+     <section class="slide level2" id="using-.dropna">
+      <h2>
+       Using .dropna()
+      </h2>
+      <ul>
+       <li>
+        The .dropna() would be a common pre-processing step.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb34">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" href="#cb34-1" tabindex="-1"></a>op_data.dropna(inplace<span class="op">=</span><span class="va">True</span>) <span class="co"># '.dropna()' removes all rows with any missing data.</span></span>
+<span id="cb34-2"><a aria-hidden="true" href="#cb34-2" tabindex="-1"></a><span class="bu">print</span>(op_data.head(<span class="dv">5</span>)) <span class="co"># Note that some of the rows have disappeared.</span></span></code></pre>
+      </div>
+      <pre><code>       PID  SchedDate   ApptDate             Dept Language         Sex  Age  \
+0   P10092 2012-07-27 2012-10-05            DERM   ENGLISH           F  80+   
+1   P10151 2013-11-28 2014-01-03        PULMONARY  SPANISH  Didn't say   32   
+6   P10410 2013-10-31 2013-11-03     ORTHOPAEDICS  ENGLISH           M   54   
+10  P10391 2012-12-24 2012-12-27  GENERAL SURGERY  ENGLISH           F   49   
+12  P10138 2011-11-14 2011-11-20             CPO   ENGLISH           F   45   
+
+                    Race     Status  
+0       AFRICAN AMERICAN    Arrived  
+1               HISPANIC  Cancelled  
+6       AFRICAN AMERICAN    No Show  
+10  WHITE (NON-HISPANIC)    Arrived  
+12              HISPANIC    Arrived  </code></pre>
+     </section>
+     <section class="slide level2" id="typos-and-strings">
+      <h2>
+       Typos and strings
+      </h2>
+      <ul>
+       <li>
+        If you have a typo, then there is the possibility to make it
+missing, or to overwrite the bad values if you know what they should
+be.
+       </li>
+       <li>
+        In the outpatient data all values for Sex should be either ‘M’ or
+‘F’
+       </li>
+       <li>
+        We will look through the Sex column, changing elements that are
+neither ‘M’ or ‘F’ to ‘Unknown’.
+       </li>
+       <li>
+        If the .map method doesn’t find a key in the dict structure, for the
+element, then it replaces it with NA.
+       </li>
+       <li>
+        The .fillna, then replaces these NAs with ‘Unknown’.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb36">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a aria-hidden="true" href="#cb36-1" tabindex="-1"></a>op_data[<span class="st">'Sex'</span>] <span class="op">=</span> op_data[<span class="st">'Sex'</span>].<span class="bu">map</span>({<span class="st">'F'</span>: <span class="st">'F'</span>, <span class="st">'M'</span>: <span class="st">'M'</span>}).fillna(<span class="st">'Unknown'</span>)</span>
+<span id="cb36-2"><a aria-hidden="true" href="#cb36-2" tabindex="-1"></a><span class="bu">print</span>(op_data[<span class="dv">0</span>:<span class="dv">7</span>])</span></code></pre>
+      </div>
+      <pre><code>       PID  SchedDate   ApptDate               Dept Language      Sex  Age  \
+0   P10092 2012-07-27 2012-10-05              DERM   ENGLISH        F  80+   
+1   P10151 2013-11-28 2014-01-03          PULMONARY  SPANISH  Unknown   32   
+6   P10410 2013-10-31 2013-11-03       ORTHOPAEDICS  ENGLISH        M   54   
+10  P10391 2012-12-24 2012-12-27    GENERAL SURGERY  ENGLISH        F   49   
+12  P10138 2011-11-14 2011-11-20               CPO   ENGLISH        F   45   
+13  P10677 2011-04-17 2011-05-09   GASTROENTEROLOGY  ENGLISH  Unknown   31   
+14  P10229 2013-10-07 2013-11-18   VASCULAR SURGERY  ENGLISH        F   39   
+
+                    Race     Status  
+0       AFRICAN AMERICAN    Arrived  
+1               HISPANIC  Cancelled  
+6       AFRICAN AMERICAN    No Show  
+10  WHITE (NON-HISPANIC)    Arrived  
+12              HISPANIC    Arrived  
+13              HISPANIC    Arrived  
+14              HISPANIC    No Show  </code></pre>
+     </section>
+     <section class="slide level2" id="removing-white-space">
+      <h2>
+       Removing white space
+      </h2>
+      <ul>
+       <li>
+        In this data frame the elements of the ‘Dept’ column are
+inconsistent.
+       </li>
+       <li>
+        Some of them start/end with blank spaces.
+       </li>
+       <li>
+        We will remove all white space from the strings in ‘Dept’ using a
+method called .str.strip().
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb38">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>op_data[<span class="st">'Dept'</span>] <span class="op">=</span> op_data[<span class="st">'Dept'</span>].<span class="bu">str</span>.strip()</span>
+<span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a><span class="bu">print</span>(op_data[<span class="st">'Dept'</span>]) </span></code></pre>
+      </div>
+      <pre><code>0                   DERM
+1              PULMONARY
+6           ORTHOPAEDICS
+10       GENERAL SURGERY
+12                   CPO
+              ...       
+3694        RHEUMATOLOGY
+3695      OTOLARYNGOLOGY
+3696    VASCULAR SURGERY
+3697        NEUROLOGICAL
+3698                DERM
+Name: Dept, Length: 3688, dtype: object</code></pre>
+     </section>
+     <section class="slide level2" id="data-that-should-be-numeric-are-held-as-strings">
+      <h2>
+       Data that should be numeric are held as strings
+      </h2>
+      <ul>
+       <li>
+        In this dataset there is an Age value recorded as ‘80+’.
+       </li>
+       <li>
+        This is enough for the columns to be read in as a string.
+       </li>
+       <li>
+        The to_numeric function will convert the strings to numbers if
+possible, but if not, replace them with NA.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb40">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a aria-hidden="true" href="#cb40-1" tabindex="-1"></a><span class="bu">print</span>(op_data[<span class="dv">0</span>:<span class="dv">2</span>])</span>
+<span id="cb40-2"><a aria-hidden="true" href="#cb40-2" tabindex="-1"></a>op_data[<span class="st">'Age'</span>].mean() <span class="co"># This fails.</span></span></code></pre>
+      </div>
+      <pre><code>      PID  SchedDate   ApptDate       Dept Language      Sex  Age  \
+0  P10092 2012-07-27 2012-10-05       DERM  ENGLISH        F  80+   
+1  P10151 2013-11-28 2014-01-03  PULMONARY  SPANISH  Unknown   32   
+
+               Race     Status  
+0  AFRICAN AMERICAN    Arrived  
+1          HISPANIC  Cancelled  
+
+
+
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[23], line 2
+      1 print(op_data[0:2])
+----&gt; 2 op_data['Age'].mean() # This fails.
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\series.py:6570, in Series.mean(self, axis, skipna, numeric_only, **kwargs)
+   6562 @doc(make_doc("mean", ndim=1))
+   6563 def mean(
+   6564     self,
+   (...)   6568     **kwargs,
+   6569 ):
+-&gt; 6570     return NDFrame.mean(self, axis, skipna, numeric_only, **kwargs)
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\generic.py:12485, in NDFrame.mean(self, axis, skipna, numeric_only, **kwargs)
+  12478 def mean(
+  12479     self,
+  12480     axis: Axis | None = 0,
+   (...)  12483     **kwargs,
+  12484 ) -&gt; Series | float:
+&gt; 12485     return self._stat_function(
+  12486         "mean", nanops.nanmean, axis, skipna, numeric_only, **kwargs
+  12487     )
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\generic.py:12442, in NDFrame._stat_function(self, name, func, axis, skipna, numeric_only, **kwargs)
+  12438 nv.validate_func(name, (), kwargs)
+  12440 validate_bool_kwarg(skipna, "skipna", none_allowed=False)
+&gt; 12442 return self._reduce(
+  12443     func, name=name, axis=axis, skipna=skipna, numeric_only=numeric_only
+  12444 )
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\series.py:6478, in Series._reduce(self, op, name, axis, skipna, numeric_only, filter_type, **kwds)
+   6473     # GH#47500 - change to TypeError to match other methods
+   6474     raise TypeError(
+   6475         f"Series.{name} does not allow {kwd_name}={numeric_only} "
+   6476         "with non-numeric dtypes."
+   6477     )
+-&gt; 6478 return op(delegate, skipna=skipna, **kwds)
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\nanops.py:147, in bottleneck_switch.__call__.&lt;locals&gt;.f(values, axis, skipna, **kwds)
+    145         result = alt(values, axis=axis, skipna=skipna, **kwds)
+    146 else:
+--&gt; 147     result = alt(values, axis=axis, skipna=skipna, **kwds)
+    149 return result
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\nanops.py:404, in _datetimelike_compat.&lt;locals&gt;.new_func(values, axis, skipna, mask, **kwargs)
+    401 if datetimelike and mask is None:
+    402     mask = isna(values)
+--&gt; 404 result = func(values, axis=axis, skipna=skipna, mask=mask, **kwargs)
+    406 if datetimelike:
+    407     result = _wrap_results(result, orig_values.dtype, fill_value=iNaT)
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\nanops.py:720, in nanmean(values, axis, skipna, mask)
+    718 count = _get_counts(values.shape, mask, axis, dtype=dtype_count)
+    719 the_sum = values.sum(axis, dtype=dtype_sum)
+--&gt; 720 the_sum = _ensure_numeric(the_sum)
+    722 if axis is not None and getattr(the_sum, "ndim", False):
+    723     count = cast(np.ndarray, count)
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\nanops.py:1701, in _ensure_numeric(x)
+   1698 elif not (is_float(x) or is_integer(x) or is_complex(x)):
+   1699     if isinstance(x, str):
+   1700         # GH#44008, GH#36703 avoid casting e.g. strings to numeric
+-&gt; 1701         raise TypeError(f"Could not convert string '{x}' to numeric")
+   1702     try:
+   1703         x = float(x)
+
+
+TypeError: Could not convert string '80+3254494531391163514426253060594742795331586719572630636427107144936651041611935712980+691934714641285741295629405060334657684365917563333621946551042603241505377054487595718225568455174616693166344465421666634324633346303344335464426486814491953607369586237635745514218405210567169444449461031486661446229445669144444864505419566142524249593853626159325637507357123766183680+80+727732434566625115604556593824247826662518344153287232380+746604943425922136259346565585047714180+295525494559505532504935664454392813407132195723055623346565155475307335055284919726645256925364716603520385528435958535419484611155480+45186149433551664780+6666285933315869555533373466842364264724242257349216760166951345467435696537686962536510622649347115546666355346404856313514732633346663295080+575130104662685163404155719574750455768506928592834553346452579724680+192776870464738664646554130382727352542980+1766555966426535382180+4276696543150771032435196731215852577249435562302257574611431535444710656649617463317664652297780+605379184931531280+4755751633316544124550453550624129576580+205518556223556371475125586468564364339547342325233467545321963297765322314605480+263680+2280+723353123315660281240476729607115119116946623970787260264442405046265880+2235443236476480+75867224725465913533371872380+47317843359415571646757493077292380+30714370791380+1851867565044176575265335355855633345826592627605521271749462879265522645748582564634486467186835184815326293142466329524551297159155677051696856471057652356216520771479557666447552246495213836432259245972445062464354283053515563656518385155595573463470191754484754264646320594050193114361968532259575514136065725149276622132066517728464148374845123569554649476780+23472048552638231079522158295780+80+176267363356396554605580+43627143494410173544421950742155880+34725516617654230503080+1836545865656018695529462740435469572029583552384880+564555543557264854766505046345250104813553249494680+6329336280+427424482461164317585842511850674663314254785179682980+5918382680+19515019676849337381955562180+294758345069653737426946768636570321748313080+424851316247525362303755423253317322658707161515530453314504548323263572845223443491055466280+1945547156551583753545155772680+32703665186669226273205240544714593028224777456634493353454652493245155618576252557555412951437980+515433412655615615621562274185580+35485533624543183824537145125760663735545322142232504744580+7569262173736680+101328404744275280+71462950486680+3942556652427725552780+6455297746435652594510686965465226265767432050767245125643424649464866611121745080+4320356660624454624650724662195139572857775986179325539634025713280+7646385833324146644580+275180+46555629775753522538696356453557133725928627877665570334647496546341752464320562757673143503838765465172595942336750294429683641029642758287447596380+284028451655811501480+40476680+44584525584780+4913254951410574266667150724339454762725113234257272175940415145706064137820634230215339879667215566356624913176937495527541973652880+5060427980+704866246477784033264574512543411346512164719222980+869515747425546663935142655694262485880+5732624560325480+6838635112364215666235564240111566577956573317515365175155473435506336327573071443959263356474655645561496179113051704746617250555942376632602954222066694759525937454926347452585757522361606680+2935753123954516047575155592310481852716024701345425235456317295328224070456253586122667245633958464761594362365370275949106231556778625853603756506058657423961580+7412665067625236655754515141506437135235334580+80+6550565954364563774377616957235934192657164165596826705850705425671980+654354562555524266150504828541680+506569506031344265175565472323831646655293259653853736628475064576021573416505055521280+6280+266453143080+554958707564819375926406530367064195237332715326312129432555492259261726123764576951691980+46794968592243344744151826725853196354304369334935506666534095547505068583480+44664771495348222630354866602657627159132831566933784930604662542645364244357543676273745862135833446222407674166457855235212475695052714262366142282980+66381166555244485143404513503446663680+63456159572312592132357541554480+584658432270432610213450483723604855464971386669513880+715830375758676353525580+49555451541880+726071344452237765680+63479584863186516455964795980+579185569526435785572584552474679487210556954316071180+80+5313426980+38559552880+943645579257060184080+425880+5647606715576668527280+65364749273810757880+1380+246340707880+28454652715180+577419624141476847774350726080+692655594629694872313248552526554953306680+55533756684949504955442451125257222373575133675554585248634155254729634838555336473852627450243532474018464262235615680+447980+4258625961755545673464250535080+52476666306463585077406336542571586444176779561780+6731644346504964322912504646514053533326713117736161705243332561426880+262626663571515914505254694750205146183980+7236136646614869711880+80+444767433350515477546248676031435246249724764496428524256262223495231486080+4180+3917793170486962175651516666684050407280+67368695422477980+48504949261045515649415010635465335277472923725063504777480+492680+2973604026067457916721480+18426254226380+5060515849455140563649602643403446625516367646454466316164552947562640224567551502949203141486255546662785323192643495053512310215444156343328342652502924455152465512474862595931712646264225522593313581956554349495342565557463653496080+3180+6262363949472955666357652494237462546050667667715030516326446525767932648146645626425917673516115157521572591270794147423038626823344756295738229616740305480+4579516857633144113480+1942591880+692951562448254180+4949493680+3980+48674577364969749341135325526356625254389115450525644344542106854413380+176156194817424879495280+5555554946245627980+4748557228662658664158395066313341491942315253551740664280+434373663941252544473937325150392439552628595874423263346480+456955705780+6064425644715612564080+62584562452563474355631061491112244279443164663362266225380+70684463355719675746432258507243481929553280+36455717557655114434521664634759523759516069755654850656258554842752226842124571637177424858224544317071716477657264394929626855643269311880+744753739596234715662662063614355225042495780+5633461273132506566164447582034687336386268546548576445475454615155565177596035503647543647191034285862371680+352642104718464956662035251766676917163254421979524841291955504641587844980+285542112972492354616227635280+6142559653530495258427970326180+60353142654173733694439604686515705080+634680+59471235107059127265573685780+7431267131656227980+6656576780+7218635768165259496626226929516235286349623950454846676365595964403869454567704451516269464753663780+685955754655456265034317564658774941136831364669527957421880+654253446477125334566224547176827616069495838206648682348361973466075134629133846507554526740491159365577473071551247615014484673574466501058524765336826215446656406860503146575552706142541762681863562762365146583583365473547656382180+5679486718474443507246516255743417586053483662475325156963414046134880+1880+05080+185169736357627152224635075651636431755635049326705523380+542980+11556444326970337254624250696949475674326368504078654180+47623325585864671266249561371715580+77256265646624564502280+6531706630484857572836194926315280+274253536280+29244677325378684632263628345910565869182559426566752859480+6937356658733235171958692334552942544546606518482464574959334280+627480+795180+673542466448576417666339683654935' to numeric</code></pre>
+     </section>
+     <section class="slide level2" id="converting-from-string-to-numeric">
+      <h2>
+       Converting from string to numeric
+      </h2>
+      <ul>
+       <li>
+        The “errors = ‘coerce’” argument below will replace the
+non-coercible elements with NAs.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb42">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a aria-hidden="true" href="#cb42-1" tabindex="-1"></a>op_data[<span class="st">'Age'</span>] <span class="op">=</span> pd.to_numeric(op_data[<span class="st">'Age'</span>], errors <span class="op">=</span> <span class="st">'coerce'</span>)</span>
+<span id="cb42-2"><a aria-hidden="true" href="#cb42-2" tabindex="-1"></a><span class="bu">print</span>(op_data[<span class="st">'Age'</span>].mean()) <span class="co"># Now we can calculate the mean.</span></span></code></pre>
+      </div>
+      <pre><code>45.64065592309867</code></pre>
+     </section>
+     <section class="slide level2" id="dates-have-not-been-properly-parsed">
+      <h2>
+       Dates have not been properly parsed
+      </h2>
+      <ul>
+       <li>
+        As we saw in the Module 4 notes, there are formatting methods, that
+you can use to control exactly how to parse a string as a date.
+       </li>
+       <li>
+        See Module 4 notes, ‘pd.to_datetime’, slides 6.4 and 6.6.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="levels-of-a-categorical-variable-need-to-be-collapsed">
+      <h2>
+       Levels of a categorical variable need to be collapsed
+      </h2>
+      <ul>
+       <li>
+        This is a very common task and there will be many ways to do
+it.
+       </li>
+       <li>
+        One that we have already seen is to use the .map method.
+       </li>
+       <li>
+        But if there are many levels this could be cumbersome.
+       </li>
+       <li>
+        In this data set the are two ‘Dept’ levels, NEUROLOGICAL and
+NEUROLOGY, that should be the same level.
+       </li>
+       <li>
+        We can search for one, and replace it with the other:
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-original-frequency-distribution">
+      <h2>
+       The original frequency distribution
+      </h2>
+      <div class="sourceCode" id="cb44">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a aria-hidden="true" href="#cb44-1" tabindex="-1"></a><span class="bu">print</span>(op_data[<span class="st">'Dept'</span>].value_counts())</span></code></pre>
+      </div>
+      <pre><code>Dept
+NEUROLOGICAL                 668
+CPO                          657
+ORTHOPAEDICS                 381
+DERM                         236
+PLASTIC SURGERY              221
+GENERAL SURGERY              179
+UROLOGY                      177
+GASTROENTEROLOGY             162
+PODIATRY                     161
+VASCULAR SURGERY             124
+NEPHROLOGY                   122
+RHEUMATOLOGY                 116
+OTOLARYNGOLOGY               114
+PULMONARY                    108
+TRAUMA                        89
+ENDOCRINOLOGY                 55
+CARDIOTHORACIC SURGERY        48
+NEUROLOGY                     43
+PEDIATRIC SURGERY             22
+INF. DISEASE                   4
+PHYSICAL MEDICINE &amp; REHAB      1
+Name: count, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="replacing-a-single-level">
+      <h2>
+       Replacing a single level
+      </h2>
+      <ul>
+       <li>
+        We use the ‘.loc’ method, creating a logical filter for the rows we
+want to change.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb46">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a aria-hidden="true" href="#cb46-1" tabindex="-1"></a>op_data.loc[op_data[<span class="st">'Dept'</span>] <span class="op">==</span> <span class="st">"NEUROLOGICAL"</span>, <span class="st">'Dept'</span>] <span class="op">=</span> <span class="st">"NEUROLOGY"</span>  <span class="co"># The logical replacement filter.</span></span>
+<span id="cb46-2"><a aria-hidden="true" href="#cb46-2" tabindex="-1"></a>op_data[<span class="st">'Dept'</span>].value_counts() <span class="co"># Now there are more rows in the NEUROLOGY column.</span></span></code></pre>
+      </div>
+      <pre><code>Dept
+NEUROLOGY                    711
+CPO                          657
+ORTHOPAEDICS                 381
+DERM                         236
+PLASTIC SURGERY              221
+GENERAL SURGERY              179
+UROLOGY                      177
+GASTROENTEROLOGY             162
+PODIATRY                     161
+VASCULAR SURGERY             124
+NEPHROLOGY                   122
+RHEUMATOLOGY                 116
+OTOLARYNGOLOGY               114
+PULMONARY                    108
+TRAUMA                        89
+ENDOCRINOLOGY                 55
+CARDIOTHORACIC SURGERY        48
+PEDIATRIC SURGERY             22
+INF. DISEASE                   4
+PHYSICAL MEDICINE &amp; REHAB      1
+Name: count, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="sorting-a-data-frame">
+      <h2>
+       Sorting a data frame
+      </h2>
+      <ul>
+       <li>
+        You can sort by the Index (rownames) or by the values in a
+column.
+       </li>
+       <li>
+        You can also sort on multiple columns.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb48">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a aria-hidden="true" href="#cb48-1" tabindex="-1"></a>op_data.sort_values(by<span class="op">=</span><span class="st">'Age'</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb48-2"><a aria-hidden="true" href="#cb48-2" tabindex="-1"></a><span class="bu">print</span>(op_data.head(<span class="dv">3</span>))</span></code></pre>
+      </div>
+      <pre><code>         PID  SchedDate   ApptDate               Dept Language Sex  Age  \
+3294  P10453 2013-05-22 2013-05-22  PEDIATRIC SURGERY  ENGLISH   M  0.0   
+821   P10453 2013-05-20 2013-05-22  PEDIATRIC SURGERY  ENGLISH   M  0.0   
+2546  P10993 2014-01-14 2014-01-20  PEDIATRIC SURGERY  ENGLISH   M  0.0   
+
+                  Race     Status  
+3294  AFRICAN AMERICAN    Arrived  
+821   AFRICAN AMERICAN  Cancelled  
+2546  AFRICAN AMERICAN    Arrived  </code></pre>
+     </section>
+     <section class="slide level2" id="sort-by-patient-pid-then-schedule-date-within-pid">
+      <h2>
+       Sort by patient PID, then Schedule date within PID
+      </h2>
+      <div class="sourceCode" id="cb50">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a aria-hidden="true" href="#cb50-1" tabindex="-1"></a>op_data.sort_values(by <span class="op">=</span> [<span class="st">'PID'</span>, <span class="st">'SchedDate'</span>], inplace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sorting by two columns.</span></span>
+<span id="cb50-2"><a aria-hidden="true" href="#cb50-2" tabindex="-1"></a><span class="bu">print</span>(op_data.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>         PID  SchedDate   ApptDate             Dept Language Sex   Age  \
+2598  P10001 2012-11-23 2012-11-26        NEUROLOGY  ENGLISH   M  45.0   
+499   P10002 2011-12-02 2011-12-21        NEUROLOGY  ENGLISH   M  11.0   
+2733  P10002 2011-12-21 2012-06-20        NEUROLOGY  ENGLISH   M  11.0   
+1618  P10003 2013-10-18 2014-02-16  PLASTIC SURGERY  ENGLISH   M  11.0   
+3043  P10004 2012-09-26 2012-10-08        NEUROLOGY  BENGALI   M  39.0   
+
+                      Race     Status  
+2598  WHITE (NON-HISPANIC)    Arrived  
+499   WHITE (NON-HISPANIC)    Arrived  
+2733  WHITE (NON-HISPANIC)  Cancelled  
+1618      AFRICAN AMERICAN    Arrived  
+3043                 OTHER    Arrived  </code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="the-groupby-command">
+      <h1>
+       The groupby command
+      </h1>
+     </section>
+     <section class="slide level2" id="the-groupby-command-1">
+      <h2>
+       The groupby command
+      </h2>
+      <ul>
+       <li>
+        Summarizing a data set by the levels of a categorical variable is an
+essential activity.
+       </li>
+       <li>
+        We saw ‘groupby’ used with .value_counts() to summarize over the
+day-of-week or month-of-year.
+       </li>
+       <li>
+        But it is very flexible and can be used to summarize in more
+sophisticated ways.
+       </li>
+       <li>
+        In our outpatient dataset we may wish to summarize by patient ID
+(PID) to create a behavioral view of the patient.
+       </li>
+       <li>
+        We will start by counting the number of appointments each patient
+has had.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="transactions-to-behavior">
+      <h2>
+       Transactions to behavior
+      </h2>
+      <ul>
+       <li>
+        Many databases are designed to capture
+        <em>
+         transactions
+        </em>
+        .
+       </li>
+       <li>
+        But many analytic techniques are applied to behavioral
+patterns.
+       </li>
+       <li>
+        This requires individual transactions to be aggregated to behaviors
+via a common ID.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="examples">
+      <h2>
+       Examples
+      </h2>
+      <ul>
+       <li>
+        Hospital:
+        <ul>
+         <li>
+          The patient admissions database shows you who is in the
+hospital.
+         </li>
+         <li>
+          Combining admissions gives you a patient’s history.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Supermarket:
+        <ul>
+         <li>
+          Individual items get aggregated to a customer’s shopping visit.
+         </li>
+         <li>
+          Customer visits get aggregated to a long term behavior.
+         </li>
+        </ul>
+       </li>
+       <li>
+        HR:
+        <ul>
+         <li>
+          A cut of the employee database in any given month, shows you who is
+employed.
+         </li>
+         <li>
+          Combining the months, shows you an employee’s history.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Outpatient clinic:
+        <ul>
+         <li>
+          The visits database tells you about each visit.
+         </li>
+         <li>
+          Combining the visits, shows you a patient’s history.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-commonality">
+      <h2>
+       The commonality
+      </h2>
+      <ul>
+       <li>
+        All of these examples are of the same essential nature.
+       </li>
+       <li>
+        Transactions are recorded.
+       </li>
+       <li>
+        A common ID can be used to link transactions.
+       </li>
+       <li>
+        Histories can be built across common IDs.
+       </li>
+       <li>
+        This translates transactions to
+        <em>
+         customer
+        </em>
+        behavior/history.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="counting-patient-visits">
+      <h2>
+       Counting patient visits
+      </h2>
+      <ul>
+       <li>
+        groupby and using the count method will tell us how many
+appointments each patient had.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb52">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a aria-hidden="true" href="#cb52-1" tabindex="-1"></a>op_data.groupby(<span class="st">'PID'</span>)[<span class="st">'PID'</span>].count()</span></code></pre>
+      </div>
+      <pre><code>PID
+P10001     1
+P10002     2
+P10003     1
+P10004     4
+P10005     1
+          ..
+P10996     4
+P10997    10
+P10998    29
+P10999     2
+P11000     5
+Name: PID, Length: 996, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="prior-visits">
+      <h2>
+       Prior visits
+      </h2>
+      <ul>
+       <li>
+        If we are to use the behavioral history as a predictor of Show/No
+Show, we need to use prior visits, not including the latest one.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb54">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a aria-hidden="true" href="#cb54-1" tabindex="-1"></a>op_data.groupby(<span class="st">'PID'</span>)[<span class="st">'PID'</span>].count() <span class="op">-</span> <span class="dv">1</span> <span class="co"># Remove 1 from the count.</span></span></code></pre>
+      </div>
+      <pre><code>PID
+P10001     0
+P10002     1
+P10003     0
+P10004     3
+P10005     0
+          ..
+P10996     3
+P10997     9
+P10998    28
+P10999     1
+P11000     4
+Name: PID, Length: 996, dtype: int64</code></pre>
+     </section>
+     <section class="slide level2" id="groupby-and-aggregate">
+      <h2>
+       groupby and aggregate
+      </h2>
+      <ul>
+       <li>
+        We can summarize more than one variable at a time.
+       </li>
+       <li>
+        The .agg method lets you create a new set of columns, based on a
+function applied to the groups.
+       </li>
+       <li>
+        You can define this function yourself.
+       </li>
+       <li>
+        Below we count the number of prior visits, and the number of prior
+visits that were of type “Arrived”.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb56">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a aria-hidden="true" href="#cb56-1" tabindex="-1"></a>num_prev <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">len</span> (x) <span class="op">-</span> <span class="dv">1</span> <span class="co"># A lambda function to count previous appointments.</span></span>
+<span id="cb56-2"><a aria-hidden="true" href="#cb56-2" tabindex="-1"></a>prior_arrived <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">sum</span>(x[:<span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> <span class="st">"Arrived"</span>) <span class="cf">if</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>  <span class="co"># Counting the number of prior arrivals.</span></span>
+<span id="cb56-3"><a aria-hidden="true" href="#cb56-3" tabindex="-1"></a>    </span>
+<span id="cb56-4"><a aria-hidden="true" href="#cb56-4" tabindex="-1"></a>op_behave <span class="op">=</span> op_data.groupby(<span class="st">'PID'</span>).agg(PriorVisits<span class="op">=</span>(<span class="st">'PID'</span>, num_prev), </span>
+<span id="cb56-5"><a aria-hidden="true" href="#cb56-5" tabindex="-1"></a>                           PriorArrived<span class="op">=</span>(<span class="st">'Status'</span>, prior_arrived))</span>
+<span id="cb56-6"><a aria-hidden="true" href="#cb56-6" tabindex="-1"></a><span class="bu">print</span>(op_behave.head(<span class="dv">3</span>))</span></code></pre>
+      </div>
+      <pre><code>        PriorVisits  PriorArrived
+PID                              
+P10001            0           NaN
+P10002            1           1.0
+P10003            0           NaN</code></pre>
+     </section>
+     <section class="slide level2" id="keeping-the-features-of-the-most-recent-visit">
+      <h2>
+       Keeping the features of the most recent visit
+      </h2>
+      <ul>
+       <li>
+        We still want to make sure we have the features of the current visit
+too.
+       </li>
+       <li>
+        The ‘.last’ method will pull off the ‘last’ (most recent)
+visit.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb58">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a aria-hidden="true" href="#cb58-1" tabindex="-1"></a><span class="co"># The .last() is being used as a method on a groupby object:</span></span>
+<span id="cb58-2"><a aria-hidden="true" href="#cb58-2" tabindex="-1"></a><span class="co"># https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.GroupBy.last.html</span></span>
+<span id="cb58-3"><a aria-hidden="true" href="#cb58-3" tabindex="-1"></a></span>
+<span id="cb58-4"><a aria-hidden="true" href="#cb58-4" tabindex="-1"></a>op_last_values <span class="op">=</span> op_data.groupby(<span class="st">'PID'</span>).last() <span class="co"># Obtain the last row for each patient</span></span>
+<span id="cb58-5"><a aria-hidden="true" href="#cb58-5" tabindex="-1"></a><span class="bu">print</span>(op_last_values.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>        SchedDate   ApptDate             Dept Language Sex   Age  \
+PID                                                                
+P10001 2012-11-23 2012-11-26        NEUROLOGY  ENGLISH   M  45.0   
+P10002 2011-12-21 2012-06-20        NEUROLOGY  ENGLISH   M  11.0   
+P10003 2013-10-18 2014-02-16  PLASTIC SURGERY  ENGLISH   M  11.0   
+P10004 2013-05-19 2013-05-26         PODIATRY  BENGALI   M  40.0   
+P10005 2013-06-07 2013-07-29             DERM  ENGLISH   F  24.0   
+
+                        Race     Status  
+PID                                      
+P10001  WHITE (NON-HISPANIC)    Arrived  
+P10002  WHITE (NON-HISPANIC)  Cancelled  
+P10003      AFRICAN AMERICAN    Arrived  
+P10004                 OTHER    Arrived  
+P10005  WHITE (NON-HISPANIC)    No Show  </code></pre>
+     </section>
+     <section class="slide level2" id="checking-the-code">
+      <h2>
+       Checking the code
+      </h2>
+      <ul>
+       <li>
+        It is always a good idea to check your work.
+       </li>
+       <li>
+        Here we pull off one patient and can then compare to the original
+sorted .csv file, to make sure it is correct.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb60">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a aria-hidden="true" href="#cb60-1" tabindex="-1"></a>op_last_values.loc[<span class="st">'P10998'</span>]</span></code></pre>
+      </div>
+      <pre><code>SchedDate    2013-02-22 00:00:00
+ApptDate     2013-03-02 00:00:00
+Dept                         CPO
+Language                 ENGLISH
+Sex                            M
+Age                         60.0
+Race            AFRICAN AMERICAN
+Status                   Arrived
+Name: P10998, dtype: object</code></pre>
+     </section>
+     <section class="slide level2" id="merge-the-two-data-frames">
+      <h2>
+       Merge the two data frames
+      </h2>
+      <ul>
+       <li>
+        We finish by merging the two new data frames on the PID, to create a
+single data set for analysis.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb62">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a aria-hidden="true" href="#cb62-1" tabindex="-1"></a>final_op_data <span class="op">=</span> pd.merge(op_last_values, op_behave, on <span class="op">=</span> <span class="st">'PID'</span>)</span>
+<span id="cb62-2"><a aria-hidden="true" href="#cb62-2" tabindex="-1"></a><span class="bu">print</span>(final_op_data.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>        SchedDate   ApptDate             Dept Language Sex   Age  \
+PID                                                                
+P10001 2012-11-23 2012-11-26        NEUROLOGY  ENGLISH   M  45.0   
+P10002 2011-12-21 2012-06-20        NEUROLOGY  ENGLISH   M  11.0   
+P10003 2013-10-18 2014-02-16  PLASTIC SURGERY  ENGLISH   M  11.0   
+P10004 2013-05-19 2013-05-26         PODIATRY  BENGALI   M  40.0   
+P10005 2013-06-07 2013-07-29             DERM  ENGLISH   F  24.0   
+
+                        Race     Status  PriorVisits  PriorArrived  
+PID                                                                 
+P10001  WHITE (NON-HISPANIC)    Arrived            0           NaN  
+P10002  WHITE (NON-HISPANIC)  Cancelled            1           1.0  
+P10003      AFRICAN AMERICAN    Arrived            0           NaN  
+P10004                 OTHER    Arrived            3           2.0  
+P10005  WHITE (NON-HISPANIC)    No Show            0           NaN  </code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="summary">
+      <h1>
+       Summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary-1">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        Writing basic functions.
+       </li>
+       <li>
+        Common data cleaning activities.
+       </li>
+       <li>
+        More on the “groupby” command.
+       </li>
+       <li>
+        From transactional to behavioral data sets.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        Graphics
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
