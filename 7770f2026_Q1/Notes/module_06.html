@@ -986,7 +986,7 @@ a box plot, but we will now do comparison boxplots.
       </ul>
       <div class="sourceCode" id="cb31">
        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a aria-hidden="true" href="#cb31-1" tabindex="-1"></a>sns.set_palette(sns.color_palette(<span class="st">"Set2"</span>)) <span class="co"># Use a different palette.</span></span>
-<span id="cb31-2"><a aria-hidden="true" href="#cb31-2" tabindex="-1"></a>g <span class="op">=</span> sns.catplot(x<span class="op">=</span><span class="st">'Dept'</span>,y<span class="op">=</span><span class="st">"SL"</span>, kind<span class="op">=</span><span class="st">"box"</span>, data<span class="op">=</span>new_dept, height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="dv">2</span>) <span class="co"># The comparison boxplots</span></span>
+<span id="cb31-2"><a aria-hidden="true" href="#cb31-2" tabindex="-1"></a>g <span class="op">=</span> sns.catplot(x<span class="op">=</span><span class="st">'Dept'</span>,y<span class="op">=</span><span class="st">"SL"</span>, kind<span class="op">=</span><span class="st">"box"</span>, data<span class="op">=</span>new_dept, height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="dv">2</span>, hue<span class="op">=</span><span class="st">'Dept'</span>) <span class="co"># The comparison boxplots</span></span>
 <span id="cb31-3"><a aria-hidden="true" href="#cb31-3" tabindex="-1"></a>g.set_xticklabels(rotation<span class="op">=</span><span class="dv">45</span>, horizontalalignment<span class="op">=</span><span class="st">'right'</span>)<span class="op">;</span></span>
 <span id="cb31-4"><a aria-hidden="true" href="#cb31-4" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
       </div>
@@ -1004,7 +1004,7 @@ a box plot, but we will now do comparison boxplots.
        </li>
       </ul>
       <div class="sourceCode" id="cb32">
-       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a>g <span class="op">=</span> sns.catplot(x <span class="op">=</span><span class="st">'Dept'</span>, y<span class="op">=</span><span class="st">"SL"</span>, kind<span class="op">=</span><span class="st">"violin"</span>, data<span class="op">=</span>new_dept, height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="dv">2</span>) <span class="co"># The default "catplot"</span></span>
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a>g <span class="op">=</span> sns.catplot(x <span class="op">=</span><span class="st">'Dept'</span>, y<span class="op">=</span><span class="st">"SL"</span>, kind<span class="op">=</span><span class="st">"violin"</span>, data<span class="op">=</span>new_dept, height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="dv">2</span>, hue <span class="op">=</span><span class="st">'Dept'</span>) <span class="co"># The default "catplot"</span></span>
 <span id="cb32-2"><a aria-hidden="true" href="#cb32-2" tabindex="-1"></a>g.set_xticklabels(rotation<span class="op">=</span><span class="dv">45</span>, horizontalalignment<span class="op">=</span><span class="st">'right'</span>)<span class="op">;</span></span>
 <span id="cb32-3"><a aria-hidden="true" href="#cb32-3" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
       </div>
