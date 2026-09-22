@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 07
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 07
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      September 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        Statistical comparisons
+       </li>
+       <li>
+        Hypothesis testing
+       </li>
+       <li>
+        Seaborn regression plots
+        <ul>
+         <li>
+          Graphing a simple regression model
+         </li>
+         <li>
+          Regression over subgroups
+         </li>
+         <li>
+          Graphically checking model assumptions
+         </li>
+         <li>
+          Smoothing with lowess
+         </li>
+        </ul>
+       </li>
+       <li>
+        Fitting the regression with ‘statsmodels’
+       </li>
+       <li>
+        Prediction from regression
+       </li>
+       <li>
+        Multiple regression
+        <ul>
+         <li>
+          One line fits all
+         </li>
+         <li>
+          Parallel lines
+         </li>
+         <li>
+          Interaction (different slopes)
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="statistical-comparisons-and-a-taste-of-inference">
+      <h1>
+       Statistical comparisons and a taste of “inference”
+      </h1>
+     </section>
+     <section class="slide level2" id="statistical-comparisons">
+      <h2>
+       Statistical comparisons
+      </h2>
+      <ul>
+       <li>
+        Graphics are useful to give us a sense of what is going on in the
+data, but there is often ambiguity in conclusions.
+       </li>
+       <li>
+        Formal statistical comparison procedures allow us to compare groups
+in terms of an outcome of interest.
+       </li>
+       <li>
+        We will illustrate with the PRSM data set, which has data on loan
+performance for loans given to small merchants.
+       </li>
+       <li>
+        We will perform a two-sample t-test on the difference in average
+FICO score between Original and Repeat Loan.Type.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="getting-the-data">
+      <h2>
+       Getting the data
+      </h2>
+      <ul>
+       <li>
+        Start by setting up the libraries and reading in the data.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb1">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">5</span>, suppress<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm <span class="co"># This is the statistical modeling library we will use. </span></span>
+<span id="cb1-8"><a aria-hidden="true" href="#cb1-8" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-9"><a aria-hidden="true" href="#cb1-9" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-10"><a aria-hidden="true" href="#cb1-10" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="fl">4.5</span>,<span class="fl">3.18</span>)}) <span class="co"># A default plot size for axes level plots.</span></span>
+<span id="cb1-11"><a aria-hidden="true" href="#cb1-11" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">4770f2025_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>) </span>
+<span id="cb1-12"><a aria-hidden="true" href="#cb1-12" tabindex="-1"></a>prsm_data <span class="op">=</span> pd.read_csv(<span class="st">"PRSM_data.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-13"><a aria-hidden="true" href="#cb1-13" tabindex="-1"></a>prsm_data.columns</span></code></pre>
+      </div>
+      <pre><code>Index(['PRSM', 'Amt.Repaid.at.6.Months', 'Nominal.Loan.Amount',
+       'Total.Amt.to.be.Repaid', 'Repayment.Percentage', 'Commission.Upfront',
+       'Validated.Monthly.Batch', 'Historical.Monthly.Credit.Card.Receipts',
+       'Months.of.History', 'Loan.Type', 'FICO', 'Years.In.Business',
+       'Num.of.Credit.Lines', 'Satisfied.Accounts',
+       'Num.of.Paid.off.Credit.Lines', 'Current.Delinquent.Credit.Lines',
+       'Previous.Delinquent.Credit.Lines', 'Business.Entity.Type',
+       'Years.in.File', 'Num.of.Legal.Items', 'Num.of.Trade.Lines',
+       'Num.of.Derog.Legal.Item', 'Two.Digit.SIC.Code',
+       'Two.Digit.SIC.Description', 'Population.in.Zip.Code',
+       'Male.Population.in.Zip.Code', 'Female.Population.in.Zip.Code',
+       'Average.House.Value.in.Zip.Code', 'Income.Per.Household.in.Zip....',
+       'Median.Age.in.Zip.Code', 'Time.Zone', 'Bus.Establishments.in.Zip.Code',
+       'Employment.in.Zip.Code', 'Annual.Payroll.in.Zip.Code',
+       'PO.Residential.Count.in.Zip', 'PO.Business.Count.in.Zip',
+       'Delivery.Total', 'State', 'ISO.Name', 'Loan.Size.Class'],
+      dtype='object')</code></pre>
+     </section>
+     <section class="slide level2" id="graph-fico-over-levels-of-loan.type">
+      <h2>
+       Graph FICO over levels of Loan.Type
+      </h2>
+      <ul>
+       <li>
+        Loan type indicates whether the loan to the merchant was an original
+(“O”) or repeat (“R”) loan.
+       </li>
+       <li>
+        FICO score is a measure of an individual’s creditworthiness.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb3">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">'Loan.Type'</span>, y<span class="op">=</span><span class="st">"FICO"</span>, kind<span class="op">=</span><span class="st">"box"</span>, hue<span class="op">=</span><span class="st">'Loan.Type'</span>, data<span class="op">=</span>prsm_data, height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span> <span class="co"># The comparison boxplots</span></span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_8_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="remarks">
+      <h2>
+       Remarks
+      </h2>
+      <ul>
+       <li>
+        It looks like the median FICO sore is higher for the Original loan
+types, but given that these were a sample from a population of loans, it
+is hard to make a definitive statement.
+       </li>
+       <li>
+        There is inherent variability in FICO, due to the sampling
+process.
+       </li>
+       <li>
+        We will focus on comparing
+        <em>
+         mean
+        </em>
+        FICO score across the two
+groups.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb4">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a><span class="co"># Find the two means</span></span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a>prsm_data.groupby(<span class="st">'Loan.Type'</span>)[<span class="st">'FICO'</span>].mean()</span></code></pre>
+      </div>
+      <pre><code>Loan.Type
+O    582.847892
+R    571.373134
+Name: FICO, dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="the-two-sample-t-test">
+      <h2>
+       The two-sample t-test
+      </h2>
+      <ul>
+       <li>
+        Below is the formal output for comparing the two group means.
+       </li>
+       <li>
+        We will review it shortly, but first develop some background for
+hypothesis testing.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb6">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a><span class="co"># The two-sample t-test not assuming unequal variances.</span></span>
+<span id="cb6-2"><a aria-hidden="true" href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a aria-hidden="true" href="#cb6-3" tabindex="-1"></a><span class="co"># Extract the two columns of interest.</span></span>
+<span id="cb6-4"><a aria-hidden="true" href="#cb6-4" tabindex="-1"></a>X1 <span class="op">=</span> sm.stats.DescrStatsW(prsm_data[<span class="st">'FICO'</span>].loc[prsm_data[<span class="st">'Loan.Type'</span>]<span class="op">==</span><span class="st">"O"</span> ])</span>
+<span id="cb6-5"><a aria-hidden="true" href="#cb6-5" tabindex="-1"></a>X2 <span class="op">=</span> sm.stats.DescrStatsW(prsm_data[<span class="st">'FICO'</span>].loc[prsm_data[<span class="st">'Loan.Type'</span>]<span class="op">==</span><span class="st">"R"</span> ])</span>
+<span id="cb6-6"><a aria-hidden="true" href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a aria-hidden="true" href="#cb6-7" tabindex="-1"></a>comp_means <span class="op">=</span> sm.stats.CompareMeans(X1, X2)</span>
+<span id="cb6-8"><a aria-hidden="true" href="#cb6-8" tabindex="-1"></a><span class="bu">print</span>(comp_means.summary(usevar<span class="op">=</span><span class="st">'unequal'</span>))</span></code></pre>
+      </div>
+      <pre><code>                          Test for equality of means                          
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+subset #1     11.4748      4.726      2.428      0.015       2.195      20.754
+==============================================================================</code></pre>
+     </section>
+     <section class="slide level2" id="the-populationsample-paradigm">
+      <h2>
+       The population/sample paradigm
+      </h2>
+      <ul>
+       <li>
+        The graphic displays the idea of the population/sample paradigm that
+we follow in statistical hypothesis testing.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/pop_sample2.jpg" height="199" width="599"/>
+      </p>
+      <ul>
+       <li>
+        We assume that we have a simple random sample of loans from the two
+populations.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-hypothesis-testing-setup">
+      <h2>
+       The hypothesis testing setup
+      </h2>
+      <ul>
+       <li>
+        In English: the population means are the same, versus the population
+means are different.
+       </li>
+      </ul>
+      <p>
+       <span class="math display">
+        \[ H_0: \mu_1 - \mu_2=0 \qquad v. \qquad
+H_1: \mu_1 - \mu_2 \ne 0\]
+       </span>
+      </p>
+      <ul>
+       <li>
+        Though you could write the null hypothesis as
+        <span class="math inline">
+         \(\mu_1 = \mu_2\)
+        </span>
+        , it is more elegant to
+think of
+        <span class="math inline">
+         \(\mu_1 - \mu_2\)
+        </span>
+        as the
+parameter of interest.
+        <br/>
+       </li>
+       <li>
+        To estimate the difference in population means, we use the
+difference in sample means:
+        <span class="math inline">
+         \(\overline{x}_1 -
+\overline{x}_2\)
+        </span>
+        .
+       </li>
+       <li>
+        The intuition is that if the difference in sample means,
+        <span class="math inline">
+         \(\overline{x}_1 - \overline{x}_2\)
+        </span>
+        , is
+        <strong>
+         <em>
+          large
+         </em>
+        </strong>
+        then we have evidence against the null
+hypothesis.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-hypothesis-testing-setup-1">
+      <h2>
+       The hypothesis testing setup
+      </h2>
+      <ul>
+       <li>
+        But what do we mean by
+        <strong>
+         <em>
+          large
+         </em>
+        </strong>
+        ? We need a
+reference to indicate whether the difference in sample means is large or
+small, on a
+        <em>
+         statistical
+        </em>
+        scale.
+       </li>
+       <li>
+        The standard error of an estimate measures the sample to sample
+variability of the estimate.
+       </li>
+       <li>
+        So we divide the difference in means, by the estimated std.
+error.
+       </li>
+       <li>
+        This lets us count how many standard errors the observed difference
+in sample means is away from 0 (the null hypothesis value).
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-hypothesis-testing-setup-2">
+      <h2>
+       The hypothesis testing setup
+      </h2>
+      <ul>
+       <li>
+        If the standard error counter is a “long” way from zero, then the
+event is surprising given the null hypothesis is true.
+       </li>
+       <li>
+        But statisticians aren’t meant to be surprised so we reject the null
+hypothesis when the standard error counter is large.
+       </li>
+       <li>
+        But again, how large is large?
+       </li>
+       <li>
+        That’s where the assumptions and theory come in; if we define
+        <strong>
+         large
+        </strong>
+        as 2 standard errors, then using this cut-off,
+the probability of rejecting the null, when the null is true is
+approximately 0.05.
+       </li>
+       <li>
+        The “0.05” is called the Type 1 error rate of the hypothesis
+test.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="confidence-intervals">
+      <h2>
+       Confidence intervals
+      </h2>
+      <ul>
+       <li>
+        A confidence interval provides a range of feasible values for the
+true population parameter.
+       </li>
+       <li>
+        Here the population parameter is
+        <span class="math inline">
+         \(\mu_1 -
+\mu_2\)
+        </span>
+        .
+       </li>
+       <li>
+        We often work with 95% confidence intervals.
+       </li>
+       <li>
+        Values of the parameter that lie inside the confidence interval are
+consistent with the observed data.
+       </li>
+       <li>
+        Values of the parameter that are outside the confidence interval are
+inconsistent with the observed data.
+       </li>
+       <li>
+        So we take the values inside the confidence interval as a working
+set of possible values for the parameter of interest.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="p-values">
+      <h2>
+       p-values
+      </h2>
+      <ul>
+       <li>
+        p-values provide a measure of the credibility of the null
+hypothesis.
+       </li>
+       <li>
+        They are calculated assuming the null hypothesis is true.
+       </li>
+       <li>
+        They range in value from 0 to 1.
+       </li>
+       <li>
+        The smaller the p-value the more evidence against the null, which
+really says that the data is inconsistent with the null hypothesis.
+       </li>
+       <li>
+        Practitioners often use a cut-off of 0.05 for the p-value, to
+determine if the test is significant.
+       </li>
+       <li>
+        When the p-value is less than 0.05, then we reject
+        <span class="math inline">
+         \(H_0\)
+        </span>
+        .
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="reviewing-the-t-test-output">
+      <h2>
+       Reviewing the t-test output
+      </h2>
+      <div class="sourceCode" id="cb8">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>comp_means.summary(usevar<span class="op">=</span><span class="st">'unequal'</span>)</span></code></pre>
+      </div>
+      <table class="simpletable">
+       <caption>
+        Test for equality of means
+       </caption>
+       <tr>
+        <td>
+        </td>
+        <th>
+         coef
+        </th>
+        <th>
+         std err
+        </th>
+        <th>
+         t
+        </th>
+        <th>
+         P&gt;|t|
+        </th>
+        <th>
+         [0.025]
+        </th>
+       </tr>
+       <tr>
+        <th>
+         subset #1
+        </th>
+        <td>
+         11.4748
+        </td>
+        <td>
+         4.726
+        </td>
+        <td>
+         2.428
+        </td>
+        <td>
+         0.015
+        </td>
+        <td>
+         2.195
+        </td>
+        <td>
+         20.754
+        </td>
+       </tr>
+      </table>
+     </section>
+     <section class="slide level2" id="interpreting-the-output">
+      <h2>
+       Interpreting the output
+      </h2>
+      <ul>
+       <li>
+        ‘coef’ is the difference in sample means, 11.4748. (582.847892
+-571.373134).
+       </li>
+       <li>
+        ‘std err’ is the standard error of the difference in means, here it
+is 4.726.
+       </li>
+       <li>
+        ‘t’ is the standard error counter, 11.4748/4.726 = 2.428. It is
+usually called the ‘t-statistic’.
+       </li>
+       <li>
+        ‘P&gt;|t|’ is the p-value, here it is 0.015.
+       </li>
+       <li>
+        ‘[0.025, 0.975]’ are the end points of the 95% confidence interval,
+(2.195, 20.754).
+       </li>
+       <li>
+        The bottom line is that what we have observed is a rare event if the
+null is true, so we reject the null hypothesis and declare a significant
+difference in populations means.
+       </li>
+       <li>
+        Why is it a ‘rare’ event under the null? Because (and they are
+equivalent):
+        <ul>
+         <li>
+          The confidence interval does not contain 0.
+         </li>
+         <li>
+          The t-statistic is greater than 2.
+         </li>
+         <li>
+          The p-value is less than 0.05.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="review-the-code-for-the-two-sample-t-test">
+      <h2>
+       Review the code for the two-sample t-test
+      </h2>
+      <ul>
+       <li>
+        ‘DescrStatsW’ is a function that summarizes a variable.
+       </li>
+       <li>
+        ‘CompareMeans’ calculates the elements required for the two-sample
+t-test.
+       </li>
+       <li>
+        The summary method ‘.summary’, then provides a display of the
+results.
+       </li>
+       <li>
+        The “usevar=‘unequal’” is an option that says we do not assume the
+population variances are equal.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb9">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a><span class="co"># The two-sample t-test not assuming unequal variances.</span></span>
+<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a><span class="co"># Extract the two columns of interest.</span></span>
+<span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a>X1 <span class="op">=</span> sm.stats.DescrStatsW(prsm_data[<span class="st">'FICO'</span>].loc[prsm_data[<span class="st">'Loan.Type'</span>]<span class="op">==</span><span class="st">"O"</span> ])</span>
+<span id="cb9-4"><a aria-hidden="true" href="#cb9-4" tabindex="-1"></a>X2 <span class="op">=</span> sm.stats.DescrStatsW(prsm_data[<span class="st">'FICO'</span>].loc[prsm_data[<span class="st">'Loan.Type'</span>]<span class="op">==</span><span class="st">"R"</span> ])</span>
+<span id="cb9-5"><a aria-hidden="true" href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a aria-hidden="true" href="#cb9-6" tabindex="-1"></a>comp_means <span class="op">=</span> sm.stats.CompareMeans(X1, X2)</span>
+<span id="cb9-7"><a aria-hidden="true" href="#cb9-7" tabindex="-1"></a><span class="bu">print</span>(comp_means.summary(usevar<span class="op">=</span><span class="st">'unequal'</span>))</span></code></pre>
+      </div>
+      <pre><code>                          Test for equality of means                          
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+subset #1     11.4748      4.726      2.428      0.015       2.195      20.754
+==============================================================================</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="regression">
+      <h1>
+       Regression
+      </h1>
+     </section>
+     <section class="slide level2" id="regression-1">
+      <h2>
+       Regression
+      </h2>
+      <ul>
+       <li>
+        Regression models let us relate a predictor(s) (x-variable) to an
+outcome (y-variable).
+       </li>
+       <li>
+        They can be used both for
+        <em>
+         interpretation
+        </em>
+        and
+        <em>
+         prediction
+        </em>
+        .
+       </li>
+       <li>
+        In the Stats notes on Canvas we introduce regression in more detail.
+Here, we implement the regressions in Python using statsmodels.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="using-seaborn-to-visualize-the-regression">
+      <h1>
+       Using seaborn to visualize the regression
+      </h1>
+     </section>
+     <section class="slide level2" id="using-seaborn-to-visualize-the-regression-1">
+      <h2>
+       Using seaborn to visualize the regression
+      </h2>
+      <ul>
+       <li>
+        We start by using a small dataset that relates the size of a house
+in square feet to its valuation. All the houses are in the same
+neighborhood, sharing the same school district, etc.
+       </li>
+       <li>
+        Note that the outcome variable (Valuation) is continuous.
+       </li>
+       <li>
+        Regular regression is for a continuous y-variable.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb11">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a>house_data <span class="op">=</span> pd.read_csv(<span class="st">"real_housing.csv"</span>)</span>
+<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a><span class="bu">print</span>(house_data.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>   Valuation  Square feet
+0        311         1544
+1        293         1470
+2        311         1650
+3        333         1843
+4        294         1565</code></pre>
+     </section>
+     <section class="slide level2" id="basic-regression-plot">
+      <h2>
+       Basic regression plot
+      </h2>
+      <ul>
+       <li>
+        Seaborn has two regression plotting functions, ‘regplot’ and
+‘lmplot’.
+       </li>
+       <li>
+        ‘regplot’ does simple regression in one graph, whereas ‘lmplot’
+let’s you do faceting, that is using multiple panels to display the
+regression, conditional on other variables.
+       </li>
+       <li>
+        Below is the default regplot visualization, with the points,
+regression line and confidence bands for the regression.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb13">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"Square feet"</span>, y<span class="op">=</span><span class="st">"Valuation"</span>, data<span class="op">=</span>house_data)<span class="op">;</span></span>
+<span id="cb13-2"><a aria-hidden="true" href="#cb13-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_30_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="changing-plotting-characteristics">
+      <h2>
+       Changing plotting characteristics
+      </h2>
+      <ul>
+       <li>
+        You can change features and the style of the plot through arguments,
+and by passing arguments down to the underlying scatter and plot
+functions.
+        <br/>
+       </li>
+       <li>
+        Below the points are made larger and the confidence bands
+removed.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb14">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"Square feet"</span>, y<span class="op">=</span><span class="st">"Valuation"</span>, data<span class="op">=</span>house_data, ci<span class="op">=</span><span class="va">None</span>, scatter_kws<span class="op">=</span>{<span class="st">"s"</span>: <span class="dv">75</span>})<span class="op">;</span></span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_32_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="a-polynomial-fit-to-the-data">
+      <h2>
+       A polynomial fit to the data
+      </h2>
+      <ul>
+       <li>
+        Using the ‘order’ argument, you can fit a polynomial to the
+data.
+       </li>
+       <li>
+        Setting ‘order’ equal to 1 gives a line, order=2 is a quadratic, 3
+is a cubic and so on.
+       </li>
+       <li>
+        The polynomials allow ‘curvature’ to be accommodated in the model,
+but should not be used for extrapolation.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb15">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a></span>
+<span id="cb15-2"><a aria-hidden="true" href="#cb15-2" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"Square feet"</span>, y<span class="op">=</span><span class="st">"Valuation"</span>, order<span class="op">=</span><span class="dv">4</span>, data<span class="op">=</span>house_data, ci<span class="op">=</span><span class="va">None</span>, scatter_kws<span class="op">=</span>{<span class="st">"s"</span>: <span class="dv">75</span>})<span class="op">;</span></span>
+<span id="cb15-3"><a aria-hidden="true" href="#cb15-3" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_34_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="using-a-robust-fit">
+      <h2>
+       Using a “robust” fit
+      </h2>
+      <ul>
+       <li>
+        An alternative to the “least squares” model fitting criteria is to
+use a “robust” fit.
+       </li>
+       <li>
+        This downweights points with large residuals and could be a good
+choice if the underlying data is outlier prone.
+       </li>
+       <li>
+        Here it won’t make much of a difference, because we don’t have
+outliers.
+       </li>
+       <li>
+        The argument to do the robust fit is ‘robust’.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb16">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"Square feet"</span>, y<span class="op">=</span><span class="st">"Valuation"</span>, robust<span class="op">=</span><span class="va">True</span>, data<span class="op">=</span>house_data, ci<span class="op">=</span><span class="dv">95</span>, scatter_kws<span class="op">=</span>{<span class="st">"s"</span>: <span class="dv">75</span>})<span class="op">;</span></span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_36_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="a-lowess-smooth">
+      <h2>
+       A lowess smooth
+      </h2>
+      <ul>
+       <li>
+        The “lowess” technique is an example of a “scatterplot
+smoother”.
+       </li>
+       <li>
+        It is a
+        <strong>
+         <em>
+          data driven
+         </em>
+        </strong>
+        method that seeks to
+capture the relationship between x and the mean of y, regardless of the
+underlying true functional form.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb17">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a>sns.regplot(x<span class="op">=</span><span class="st">"Square feet"</span>, y<span class="op">=</span><span class="st">"Valuation"</span>,  data<span class="op">=</span>house_data, ci<span class="op">=</span><span class="va">None</span>, lowess<span class="op">=</span><span class="va">True</span>, scatter_kws<span class="op">=</span>{<span class="st">"s"</span>: <span class="dv">75</span>})<span class="op">;</span></span>
+<span id="cb17-2"><a aria-hidden="true" href="#cb17-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_38_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="viewing-the-residuals-from-the-regression">
+      <h2>
+       Viewing the residuals from the regression
+      </h2>
+      <ul>
+       <li>
+        Part of standard operating procedure, should be to review the
+residuals from the regression.
+       </li>
+       <li>
+        Ideally there should be no pattern.
+       </li>
+       <li>
+        If there is a pattern, then you may want to change the form of the
+regression function, for example use a log curve.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="viewing-the-residuals-from-the-regression-1">
+      <h2>
+       Viewing the residuals from the regression
+      </h2>
+      <ul>
+       <li>
+        The residual plot below is a “good” one, as there is no discernible
+pattern.
+       </li>
+       <li>
+        Seaborn has a ‘residplot’ function to plot the residuals from the
+linear regression.
+       </li>
+       <li>
+        There are also arguments to use a polynomial fit, or lowess smoother
+for the fit.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb18">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a>sns.residplot(x<span class="op">=</span><span class="st">"Square feet"</span>, y<span class="op">=</span><span class="st">"Valuation"</span>,  data<span class="op">=</span>house_data,  lowess<span class="op">=</span><span class="va">True</span>, scatter_kws<span class="op">=</span>{<span class="st">"s"</span>: <span class="dv">75</span>})<span class="op">;</span></span>
+<span id="cb18-2"><a aria-hidden="true" href="#cb18-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_41_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="plotting-regressions-over-a-grouping-variable">
+      <h2>
+       Plotting regressions over a grouping variable
+      </h2>
+      <ul>
+       <li>
+        When there are categorical variables available, it makes sense to
+explore regression lines for the levels of the categorical
+variable.
+       </li>
+       <li>
+        We will use the “Run5K” dataset, which has the categorical variable
+SEX, either M or F.
+       </li>
+       <li>
+        By using the “hue” argument to “lmplot” you get a regression line
+for each of M and F, on the same graph.
+       </li>
+       <li>
+        This makes it very easy to compare the lines.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="a-regression-line-for-each-group">
+      <h2>
+       A regression line for each group
+      </h2>
+      <ul>
+       <li>
+        Notice that the male line is above the female line, and the slopes
+are different.
+       </li>
+       <li>
+        There maybe a differential impact of aging on race time, according
+to sex.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb19">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a aria-hidden="true" href="#cb19-1" tabindex="-1"></a>race_data <span class="op">=</span> pd.read_csv(<span class="st">"Run5K.csv"</span>)</span>
+<span id="cb19-2"><a aria-hidden="true" href="#cb19-2" tabindex="-1"></a>race_data[<span class="st">'Finish_Time'</span>] <span class="op">=</span> race_data[<span class="st">'Time_mins'</span>] <span class="op">+</span> race_data[<span class="st">'Time_secs'</span>]<span class="op">/</span><span class="dv">60</span> <span class="co"># Calculate the actual race time.</span></span>
+<span id="cb19-3"><a aria-hidden="true" href="#cb19-3" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"AGE"</span>, y<span class="op">=</span><span class="st">"Finish_Time"</span>, hue<span class="op">=</span><span class="st">"SEX"</span>, data<span class="op">=</span>race_data, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span> </span>
+<span id="cb19-4"><a aria-hidden="true" href="#cb19-4" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_44_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="tweaking-the-plot-arguments">
+      <h2>
+       Tweaking the plot arguments
+      </h2>
+      <ul>
+       <li>
+        Note the
+        <em>
+         marker
+        </em>
+        and
+        <em>
+         pallet
+        </em>
+        arguments, with
+additional arguments (scatter_kws, line_kws) being passed down to the
+underlying plot functions.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb20">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"AGE"</span>, y<span class="op">=</span><span class="st">"Finish_Time"</span>, hue<span class="op">=</span><span class="st">"SEX"</span>, data<span class="op">=</span>race_data, markers<span class="op">=</span>[<span class="st">"o"</span>, <span class="st">"x"</span>], </span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a>           palette<span class="op">=</span><span class="st">"Set1"</span>,scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>:<span class="fl">0.7</span>}, line_kws<span class="op">=</span>{<span class="st">'alpha'</span>:<span class="fl">0.9</span>} ,height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb20-3"><a aria-hidden="true" href="#cb20-3" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_46_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="fitting-using-logx">
+      <h2>
+       Fitting using log(x)
+      </h2>
+      <ul>
+       <li>
+        Many relationships are logarithmic rather than linear.
+       </li>
+       <li>
+        Using the ‘logx = True’ options, lets you plot the best fitting log
+curves.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb21">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" href="#cb21-1" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"AGE"</span>, y<span class="op">=</span><span class="st">"Finish_Time"</span>, hue<span class="op">=</span><span class="st">"SEX"</span>, data<span class="op">=</span>race_data, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="dv">2</span>, markers<span class="op">=</span>[<span class="st">"o"</span>, <span class="st">"x"</span>], palette<span class="op">=</span><span class="st">"Set1"</span>, </span>
+<span id="cb21-2"><a aria-hidden="true" href="#cb21-2" tabindex="-1"></a>           scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>:<span class="fl">1.0</span>}, line_kws<span class="op">=</span>{<span class="st">'alpha'</span>:<span class="dv">1</span>, <span class="st">'linestyle'</span>:<span class="st">'dashed'</span>, <span class="st">'linewidth'</span>:<span class="dv">4</span>}, </span>
+<span id="cb21-3"><a aria-hidden="true" href="#cb21-3" tabindex="-1"></a>           logx<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb21-4"><a aria-hidden="true" href="#cb21-4" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_48_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="plotting-two-lowess-smooths">
+      <h2>
+       Plotting two lowess smooths
+      </h2>
+      <ul>
+       <li>
+        You can also view two lowess smooths for a ‘non-parametric’ (no
+model) fit.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb22">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" href="#cb22-1" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"AGE"</span>, y<span class="op">=</span><span class="st">"Finish_Time"</span>, hue<span class="op">=</span><span class="st">"SEX"</span>, data<span class="op">=</span>race_data, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="dv">2</span>, markers<span class="op">=</span>[<span class="st">"o"</span>, <span class="st">"x"</span>], palette<span class="op">=</span><span class="st">"Set1"</span>, </span>
+<span id="cb22-2"><a aria-hidden="true" href="#cb22-2" tabindex="-1"></a>           scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>:<span class="fl">0.7</span>}, lowess<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb22-3"><a aria-hidden="true" href="#cb22-3" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_50_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="side-by-side-plots">
+      <h2>
+       Side by side plots
+      </h2>
+      <ul>
+       <li>
+        By using the ‘col’ and ‘row’ arguments you can create a grid of
+plots.
+       </li>
+       <li>
+        This allows you to look at the regression, conditionally on other
+variables.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb23">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a aria-hidden="true" href="#cb23-1" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"AGE"</span>, y<span class="op">=</span><span class="st">"Finish_Time"</span>, col<span class="op">=</span><span class="st">"SEX"</span>, data<span class="op">=</span>race_data, palette<span class="op">=</span><span class="st">"Set1"</span>, </span>
+<span id="cb23-2"><a aria-hidden="true" href="#cb23-2" tabindex="-1"></a>           lowess<span class="op">=</span><span class="va">True</span>, height<span class="op">=</span><span class="dv">6</span>, aspect<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb23-3"><a aria-hidden="true" href="#cb23-3" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_52_0.png"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="binary-outcome-data">
+      <h1>
+       Binary outcome data
+      </h1>
+     </section>
+     <section class="slide level2" id="binary-outcome-data-1">
+      <h2>
+       Binary outcome data
+      </h2>
+      <ul>
+       <li>
+        When the outcome variable takes on two levels (binary), we use what
+is called a ‘logistic regression’ to model the probability of being in
+each of the two categories.
+       </li>
+       <li>
+        The key feature of a logistic regression is that the predictions
+always lie between 0 and 1.
+       </li>
+       <li>
+        If you used a regular regression line, the line would eventually go
+above 1 and below 0, giving nonsensical predictions for the
+probabilities.
+       </li>
+       <li>
+        On the next slide we subset the outpatient data so that there are
+only two outcomes, ‘Arrived’ and ‘No Show’.
+       </li>
+       <li>
+        We also turn the outcome variable, Status, into a 0/1 variable by
+using the ‘pd.get_dummies’ function.
+       </li>
+       <li>
+        There was also a gross outlier that I dropped as well.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="creating-a-binary-outcome-for-status">
+      <h2>
+       Creating a binary outcome for Status
+      </h2>
+      <div class="sourceCode" id="cb24">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" href="#cb24-1" tabindex="-1"></a>op_data <span class="op">=</span> pd.read_csv(<span class="st">"Outpatient.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">'SchedDate'</span>, <span class="st">'ApptDate'</span>])</span>
+<span id="cb24-2"><a aria-hidden="true" href="#cb24-2" tabindex="-1"></a>op_data[<span class="st">'ScheduleLag'</span>]  <span class="op">=</span> op_data[<span class="st">'ApptDate'</span>] <span class="op">-</span> op_data[<span class="st">'SchedDate'</span>]</span>
+<span id="cb24-3"><a aria-hidden="true" href="#cb24-3" tabindex="-1"></a>op_data[<span class="st">'SL'</span>] <span class="op">=</span> op_data[<span class="st">'ScheduleLag'</span>].dt.days <span class="co"># Create a new variable that has schedule lag in days.</span></span>
+<span id="cb24-4"><a aria-hidden="true" href="#cb24-4" tabindex="-1"></a></span>
+<span id="cb24-5"><a aria-hidden="true" href="#cb24-5" tabindex="-1"></a><span class="co"># Create a dichotomous  Status variable.</span></span>
+<span id="cb24-6"><a aria-hidden="true" href="#cb24-6" tabindex="-1"></a>op_subset <span class="op">=</span> op_data.loc[(op_data[<span class="st">'Status'</span>] <span class="op">==</span> <span class="st">"Arrived"</span>) <span class="op">|</span> (op_data[<span class="st">'Status'</span>] <span class="op">==</span> <span class="st">"No Show"</span>)]</span>
+<span id="cb24-7"><a aria-hidden="true" href="#cb24-7" tabindex="-1"></a>op_subset[<span class="st">'Status'</span>].value_counts()</span>
+<span id="cb24-8"><a aria-hidden="true" href="#cb24-8" tabindex="-1"></a></span>
+<span id="cb24-9"><a aria-hidden="true" href="#cb24-9" tabindex="-1"></a><span class="co"># Create a 0/1 version of the variable with the 'get_dummies' function.</span></span>
+<span id="cb24-10"><a aria-hidden="true" href="#cb24-10" tabindex="-1"></a>op_subset.insert(op_subset.shape[<span class="dv">1</span>], <span class="st">'BinaryStatus'</span>, pd.get_dummies(op_subset[<span class="st">"Status"</span>], drop_first<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb24-11"><a aria-hidden="true" href="#cb24-11" tabindex="-1"></a><span class="bu">print</span>(op_subset.head(<span class="dv">4</span>))</span>
+<span id="cb24-12"><a aria-hidden="true" href="#cb24-12" tabindex="-1"></a><span class="co"># Drop the gross outlier (371 days)</span></span>
+<span id="cb24-13"><a aria-hidden="true" href="#cb24-13" tabindex="-1"></a>op_subset <span class="op">=</span> op_subset[op_subset[<span class="st">'SL'</span>] <span class="op">&lt;</span> <span class="dv">250</span>]</span></code></pre>
+      </div>
+      <pre><code>      PID  SchedDate   ApptDate            Dept Language Sex  Age  \
+0  P10092 2012-07-27 2012-10-05           DERM   ENGLISH   F  80+   
+2  P10962 2012-02-02 2012-02-10  OTOLARYNGOLOGY  ENGLISH   M   12   
+4  P10320 2012-10-25 2012-12-11      NEPHROLOGY  SPANISH   F   45   
+6  P10410 2013-10-31 2013-11-03    ORTHOPAEDICS  ENGLISH   M   54   
+
+               Race   Status ScheduleLag  SL  BinaryStatus  
+0  AFRICAN AMERICAN  Arrived     70 days  70         False  
+2  AFRICAN AMERICAN  Arrived      8 days   8         False  
+4          HISPANIC  No Show     47 days  47          True  
+6  AFRICAN AMERICAN  No Show      3 days   3          True  </code></pre>
+     </section>
+     <section class="slide level2" id="plotting-a-logistic-regression">
+      <h2>
+       Plotting a logistic regression
+      </h2>
+      <ul>
+       <li>
+        The curve models the probability of being a No Show as a function of
+Schedule lag.
+       </li>
+       <li>
+        The key argument is ‘logistic=True’.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb26">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" href="#cb26-1" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"SL"</span>, y<span class="op">=</span><span class="st">"BinaryStatus"</span>, data<span class="op">=</span>op_subset, logistic<span class="op">=</span><span class="va">True</span>, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb26-2"><a aria-hidden="true" href="#cb26-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_58_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="a-logistic-curve-for-each-group">
+      <h2>
+       A logistic curve for each group
+      </h2>
+      <ul>
+       <li>
+        Using the ‘hue’ argument allows us to plot the logistic over the
+levels of SEX.
+       </li>
+       <li>
+        Females seem to have a higher probability of being a No Show, than
+males though there is a lot of overlap in the confidence bands.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb27">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" href="#cb27-1" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"SL"</span>, y<span class="op">=</span><span class="st">"BinaryStatus"</span>, data<span class="op">=</span>op_subset, hue<span class="op">=</span><span class="st">'Sex'</span>, logistic<span class="op">=</span><span class="va">True</span>, height<span class="op">=</span><span class="dv">4</span>, aspect<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb27-2"><a aria-hidden="true" href="#cb27-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_07_files/module_07_60_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="playing-with-the-color-widgets">
+      <h2>
+       Playing with the color widgets
+      </h2>
+      <ul>
+       <li>
+        Just for fun, below is a seaborn color widget, but you need to do
+this in Jupyter to actually use it!
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb28">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" href="#cb28-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb28-2"><a aria-hidden="true" href="#cb28-2" tabindex="-1"></a>sns.choose_colorbrewer_palette(<span class="st">"s"</span>)<span class="op">;</span></span></code></pre>
+      </div>
+      <pre><code>interactive(children=(Dropdown(description='name', options=('Greys', 'Reds', 'Greens', 'Blues', 'Oranges', 'Pu…</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="numerical-regression-results-and-prediction">
+      <h1>
+       Numerical regression results and prediction
+      </h1>
+     </section>
+     <section class="slide level2" id="numerical-regression-results-and-prediction-1">
+      <h2>
+       Numerical regression results and prediction
+      </h2>
+      <ul>
+       <li>
+        All the plots we have being doing are simply illustrative of the
+relationships between the variables.
+       </li>
+       <li>
+        In order to do formal hypothesis testing we need to get at the
+underlying regression lines.
+       </li>
+       <li>
+        Likewise, if we want to do prediction we need the actual formulas
+for the regression lines.
+       </li>
+       <li>
+        To do this, we will switch to the ‘statmodels’ library, where we can
+fit and query these models.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="three-models">
+      <h2>
+       Three models
+      </h2>
+      <ul>
+       <li>
+        We will fit and discuss the following three models:
+        <ul>
+         <li>
+          One line fits all.
+         </li>
+         <li>
+          Parallel lines.
+         </li>
+         <li>
+          Interaction.
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/three_regressions.png" height="190" width="642"/>
+      </p>
+     </section>
+     <section class="slide level2" id="the-simple-regression-model">
+      <h2>
+       The simple regression model
+      </h2>
+      <ul>
+       <li>
+        The models can be specified using a special formula syntax that is
+borrowed from the ‘R’ language.
+       </li>
+       <li>
+        On the next slide we fit the simple regression model (one line fits
+all) with the model syntax:
+       </li>
+      </ul>
+      <p>
+       <code>
+        formula='Finish_Time ~ AGE'
+       </code>
+      </p>
+     </section>
+     <section class="slide level2" id="fitting-a-simple-regression-model">
+      <h2>
+       Fitting a simple regression model
+      </h2>
+      <div class="sourceCode" id="cb30">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" href="#cb30-1" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb30-2"><a aria-hidden="true" href="#cb30-2" tabindex="-1"></a>olsmod1 <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Finish_Time ~ AGE'</span>, data<span class="op">=</span>race_data) <span class="co"># Define the model.</span></span>
+<span id="cb30-3"><a aria-hidden="true" href="#cb30-3" tabindex="-1"></a>olsres1 <span class="op">=</span> olsmod1.fit() <span class="co"># Fit the model.</span></span>
+<span id="cb30-4"><a aria-hidden="true" href="#cb30-4" tabindex="-1"></a><span class="bu">print</span>(olsres1.summary()) <span class="co"># View the results.</span></span></code></pre>
+      </div>
+      <pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            Finish_Time   R-squared:                       0.030
+Model:                            OLS   Adj. R-squared:                  0.028
+Method:                 Least Squares   F-statistic:                     15.53
+Date:                Tue, 22 Sep 2026   Prob (F-statistic):           9.28e-05
+Time:                        13:31:56   Log-Likelihood:                -1579.4
+No. Observations:                 501   AIC:                             3163.
+Df Residuals:                     499   BIC:                             3171.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     24.1633      0.656     36.812      0.000      22.874      25.453
+AGE            0.0688      0.017      3.941      0.000       0.035       0.103
+==============================================================================
+Omnibus:                       36.943   Durbin-Watson:                   0.056
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               43.207
+Skew:                           0.678   Prob(JB):                     4.15e-10
+Kurtosis:                       3.483   Cond. No.                         97.4
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+     </section>
+     <section class="slide level2" id="discussion">
+      <h2>
+       Discussion
+      </h2>
+      <ul>
+       <li>
+        There is a lot of output!
+       </li>
+       <li>
+        But note the coefficient estimates for the Intercept and AGE
+variable, 24.16 and 0.0668 respectively.
+       </li>
+       <li>
+        These two numbers define the fitted regression line.
+       </li>
+       <li>
+        There are also confidence intervals for the estimates.
+       </li>
+       <li>
+        The
+        <span class="math inline">
+         \(R^2\)
+        </span>
+        of only 3%, indicates
+that AGE does not explain much variability in Finish_Time at all.
+       </li>
+       <li>
+        But that does not imply that there isn’t a story to be told about
+the general impact of aging.
+       </li>
+       <li>
+        There is also a big underlying subtlety here, and that is that there
+maybe a lot of self selection in the age groups.
+       </li>
+       <li>
+        Maybe lots of young people run, but only fit and good old people
+enter races!
+       </li>
+       <li>
+        Regression does not address this subtlety in any way.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="prediction">
+      <h2>
+       Prediction
+      </h2>
+      <ul>
+       <li>
+        To do prediction we create a new data frame and pass it in to the
+‘.predict’ method.
+       </li>
+       <li>
+        We get predictions for the three fictional runners.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb32">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a>Xnew <span class="op">=</span> pd.DataFrame({<span class="st">'AGE'</span>: [<span class="dv">32</span>,<span class="dv">43</span>,<span class="dv">16</span>]}) <span class="co"># Create new data to predict at.</span></span>
+<span id="cb32-2"><a aria-hidden="true" href="#cb32-2" tabindex="-1"></a>yprednew <span class="op">=</span> olsres1.predict(Xnew)</span>
+<span id="cb32-3"><a aria-hidden="true" href="#cb32-3" tabindex="-1"></a><span class="bu">print</span>(yprednew)</span></code></pre>
+      </div>
+      <pre><code>0    26.366174
+1    27.123395
+2    25.264760
+dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="adding-the-sex-variable-to-the-regression">
+      <h2>
+       Adding the SEX variable to the regression
+      </h2>
+      <ul>
+       <li>
+        When we add the SEX variable to the model, then we have moved from
+“Simple regression” to “Multiple regression”.
+       </li>
+       <li>
+        But because the SEX variable is categorical, it must be made
+numeric.
+       </li>
+       <li>
+        We could use the ‘pd.get_dummies’ function to do this, as below, but
+the good news is that it will all happen behind the scenes if we use the
+formula interface to specify the model.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb34">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" href="#cb34-1" tabindex="-1"></a><span class="bu">print</span>(pd.get_dummies(data<span class="op">=</span>race_data[<span class="st">'SEX'</span>]))</span></code></pre>
+      </div>
+      <pre><code>         F      M
+0    False   True
+1    False   True
+2    False   True
+3    False   True
+4    False   True
+..     ...    ...
+496  False   True
+497   True  False
+498   True  False
+499   True  False
+500  False   True
+
+[501 rows x 2 columns]</code></pre>
+     </section>
+     <section class="slide level2" id="the-parallel-lines-model-regression-model">
+      <h2>
+       The parallel lines model regression model
+      </h2>
+      <ul>
+       <li>
+        Note the addition of the SEX variable to the formula:
+        <code>
+         formula='Finish_Time ~ AGE + SEX'
+        </code>
+       </li>
+       <li>
+        We add additional variables to the model, simply by using the plus
+sign.
+       </li>
+       <li>
+        A regression for data mining can have hundreds of variables!
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="fitting-the-parallel-lines-model">
+      <h2>
+       Fitting the parallel lines model
+      </h2>
+      <div class="sourceCode" id="cb36">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a aria-hidden="true" href="#cb36-1" tabindex="-1"></a>olsmod2 <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Finish_Time ~ AGE + SEX'</span>, data<span class="op">=</span>race_data) <span class="co"># Specify model.</span></span>
+<span id="cb36-2"><a aria-hidden="true" href="#cb36-2" tabindex="-1"></a>olsres2 <span class="op">=</span> olsmod2.fit() <span class="co"># Fit model.</span></span>
+<span id="cb36-3"><a aria-hidden="true" href="#cb36-3" tabindex="-1"></a><span class="bu">print</span>(olsres2.summary()) <span class="co"># Summarize model.</span></span></code></pre>
+      </div>
+      <pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            Finish_Time   R-squared:                       0.221
+Model:                            OLS   Adj. R-squared:                  0.217
+Method:                 Least Squares   F-statistic:                     70.45
+Date:                Tue, 22 Sep 2026   Prob (F-statistic):           1.14e-27
+Time:                        13:31:56   Log-Likelihood:                -1524.7
+No. Observations:                 501   AIC:                             3055.
+Df Residuals:                     498   BIC:                             3068.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     26.8253      0.637     42.139      0.000      25.575      28.076
+SEX[T.M]      -5.1852      0.470    -11.028      0.000      -6.109      -4.261
+AGE            0.0846      0.016      5.375      0.000       0.054       0.116
+==============================================================================
+Omnibus:                       61.186   Durbin-Watson:                   0.402
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               85.001
+Skew:                           0.864   Prob(JB):                     3.49e-19
+Kurtosis:                       4.041   Cond. No.                         112.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+     </section>
+     <section class="slide level2" id="interpreting-coefficients">
+      <h2>
+       Interpreting coefficients
+      </h2>
+      <ul>
+       <li>
+        The key coefficient is the “SEX[T.M] = -5.1852’ which indicates that
+for a given AGE, men are expected to be about 5 minutes faster than
+women.
+       </li>
+       <li>
+        The regression equation has two cases, one for Men and the other for
+Women:
+        <ul>
+         <li>
+          Men: Finish_Time = 26.8235 - 5.1852 + 0.0846 * Age
+         </li>
+         <li>
+          Women: Finish_Time = 26.8235 + 0.0846 * Age
+         </li>
+        </ul>
+       </li>
+       <li>
+        Women are described as the ‘baseline’ or ‘reference’ category.
+       </li>
+       <li>
+        The categorical variable coefficient gives the difference in height
+between the two lines.
+       </li>
+       <li>
+        Also note that
+        <span class="math inline">
+         \(R^2\)
+        </span>
+        increased
+dramatically from the initial model of 3% to 22% here.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-interaction-model">
+      <h2>
+       The interaction model
+      </h2>
+      <ul>
+       <li>
+        This is the model that allows for a different slope for each
+group.
+       </li>
+       <li>
+        Generically we say “the impact of X1 on Y depends on the level of
+X2”.
+       </li>
+       <li>
+        The formula now contains the colon ‘:’ to specify the interaction
+term:
+        <code>
+         Finish_Time ~ AGE + SEX + AGE:SEX
+        </code>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="fitting-the-interaction-model">
+      <h2>
+       Fitting the interaction model
+      </h2>
+      <div class="sourceCode" id="cb38">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>olsmod3 <span class="op">=</span> smf.ols(formula<span class="op">=</span><span class="st">'Finish_Time ~ AGE + SEX + AGE:SEX'</span>, data<span class="op">=</span>race_data) <span class="co"># Specify model.</span></span>
+<span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a>olsres3 <span class="op">=</span> olsmod3.fit() <span class="co"># Fit model.</span></span>
+<span id="cb38-3"><a aria-hidden="true" href="#cb38-3" tabindex="-1"></a><span class="bu">print</span>(olsres3.summary()) <span class="co"># Summarize model.</span></span></code></pre>
+      </div>
+      <pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            Finish_Time   R-squared:                       0.227
+Model:                            OLS   Adj. R-squared:                  0.222
+Method:                 Least Squares   F-statistic:                     48.65
+Date:                Tue, 22 Sep 2026   Prob (F-statistic):           1.39e-27
+Time:                        13:31:56   Log-Likelihood:                -1522.6
+No. Observations:                 501   AIC:                             3053.
+Df Residuals:                     497   BIC:                             3070.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+Intercept       28.5391      1.053     27.110      0.000      26.471      30.607
+SEX[T.M]        -7.6032      1.274     -5.966      0.000     -10.107      -5.099
+AGE              0.0326      0.030      1.091      0.276      -0.026       0.091
+AGE:SEX[T.M]     0.0717      0.035      2.040      0.042       0.003       0.141
+==============================================================================
+Omnibus:                       57.445   Durbin-Watson:                   0.411
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               77.819
+Skew:                           0.835   Prob(JB):                     1.26e-17
+Kurtosis:                       3.969   Cond. No.                         323.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+     </section>
+     <section class="slide level2" id="interpreting-coefficients-1">
+      <h2>
+       Interpreting coefficients
+      </h2>
+      <ul>
+       <li>
+        In this regression the key term is the interaction term
+‘AGE:SEX[T.M] = 0.0717’.
+       </li>
+       <li>
+        This tells us that the
+        <strong>
+         slope
+        </strong>
+        for the Male line is
+0.0717 higher than the female line.
+       </li>
+       <li>
+        Again we can write down the regression line for each group:
+        <ul>
+         <li>
+          Male: Finish_Time = 28.5391 -7.6032 + 0.0326 * AGE + 0.0717 *
+AGE
+         </li>
+         <li>
+          Female: Finish_Time = 28.5391 + 0.0326 * AGE
+         </li>
+        </ul>
+       </li>
+       <li>
+        With these equations we could do prediction ‘by hand’, but it is
+better to use Python!
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="prediction-in-the-multiple-regression">
+      <h2>
+       Prediction in the multiple regression
+      </h2>
+      <ul>
+       <li>
+        Once again we need to create a prediction data frame of the
+x-variables, which we do below.
+       </li>
+       <li>
+        We then use the predict method for the model of interest.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb40">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a aria-hidden="true" href="#cb40-1" tabindex="-1"></a>Xnew <span class="op">=</span> pd.DataFrame({<span class="st">'AGE'</span>: [<span class="dv">21</span>,<span class="dv">43</span>,<span class="dv">21</span>], <span class="st">'SEX'</span>:[<span class="st">'M'</span>,<span class="st">'M'</span>,<span class="st">'F'</span>]})</span>
+<span id="cb40-2"><a aria-hidden="true" href="#cb40-2" tabindex="-1"></a><span class="co">#Xnew = sm.add_constant(Xnew)</span></span>
+<span id="cb40-3"><a aria-hidden="true" href="#cb40-3" tabindex="-1"></a><span class="bu">print</span>(Xnew, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb40-4"><a aria-hidden="true" href="#cb40-4" tabindex="-1"></a>yprednew <span class="op">=</span> olsres3.predict(Xnew)</span>
+<span id="cb40-5"><a aria-hidden="true" href="#cb40-5" tabindex="-1"></a><span class="bu">print</span>(yprednew)</span></code></pre>
+      </div>
+      <pre><code>   AGE SEX
+0   21   M
+1   43   M
+2   21   F 
+
+0    23.126859
+1    25.422101
+2    29.224650
+dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="the-root-mean-squared-error-rmse">
+      <h2>
+       The root mean squared error (RMSE)
+      </h2>
+      <ul>
+       <li>
+        To create an approximate 95% prediction interval for the
+Finish_Time, so long as the prediction is within the range of the
+x-variables, you can simply add +/-2RMSE to the prediction (assuming the
+residuals are normally distributed).
+       </li>
+       <li>
+        You get the RMSE for the model by extracting the ‘mse_resid’
+attribute and square rooting it.
+       </li>
+       <li>
+        Here, it is about 5, so the prediction intervals will be +/- about
+10 minutes!
+       </li>
+       <li>
+        Not very precise.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb42">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a aria-hidden="true" href="#cb42-1" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb42-2"><a aria-hidden="true" href="#cb42-2" tabindex="-1"></a>math.sqrt(olsres3.mse_resid)</span></code></pre>
+      </div>
+      <pre><code>5.074349067236697</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="summary">
+      <h1>
+       Summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary-1">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        Statistical comparisons.
+       </li>
+       <li>
+        Hypothesis testing.
+       </li>
+       <li>
+        Seaborn regression plots.
+       </li>
+       <li>
+        Fitting the regression with ‘statsmodels’.
+       </li>
+       <li>
+        Prediction from regression.
+       </li>
+       <li>
+        Multiple regression:
+        <ul>
+         <li>
+          One line fits all.
+         </li>
+         <li>
+          Parallel lines.
+         </li>
+         <li>
+          Interaction (different slopes).
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        The machine learning world view
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
