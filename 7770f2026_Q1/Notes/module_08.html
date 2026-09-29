@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 08
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 08
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      September 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        Machine learning introduction.
+       </li>
+       <li>
+        Decision trees.
+        <ul>
+         <li>
+          Regression.
+         </li>
+         <li>
+          Classification
+         </li>
+        </ul>
+       </li>
+       <li>
+        Assessing the accuracy of a classifier.
+       </li>
+       <li>
+        Ensemble learners – the random forest.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="machine-learning">
+      <h1>
+       Machine learning
+      </h1>
+     </section>
+     <section class="slide level2" id="machine-learning-1">
+      <h2>
+       Machine learning
+      </h2>
+      <ul>
+       <li>
+        Statistical modeling and machine learning have huge overlapping
+areas of interest.
+       </li>
+       <li>
+        Oftentimes machine learning focuses on feature engineering and
+        <em>
+         prediction
+        </em>
+        .
+       </li>
+       <li>
+        Statistical modeling, has a focus on interpretation and the
+appropriate measurement of uncertainty (confidence intervals and
+p-values).
+       </li>
+       <li>
+        Problems are split into two types:
+        <ul>
+         <li>
+          Supervised learning is when there is an outcome (y-variable).
+Methods here include regression and tree models.
+         </li>
+         <li>
+          Unsupervised learning is when there’s no outcome variable. Methods
+include clustering and dimension reduction.
+         </li>
+        </ul>
+       </li>
+       <li>
+        We will focus on supervised methods.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="some-notation">
+      <h2>
+       Some notation
+      </h2>
+      <ul>
+       <li>
+        The response variable, the one we are trying to predict is usually
+denoted as the
+        <span class="math inline">
+         \(Y\)
+        </span>
+        -variable.
+       </li>
+       <li>
+        The predictor variables (features) are usually written as
+        <span class="math inline">
+         \(X_1, X_2 \cdots X_k\)
+        </span>
+        .
+       </li>
+       <li>
+        The general idea is to use the features in some optimal way to
+predict the
+        <span class="math inline">
+         \(Y\)
+        </span>
+        -variable.
+       </li>
+       <li>
+        When the response is a continuous variable, a popular measure of
+“optimal” is to minimize
+        <span class="math inline">
+         \(SSE = \sum_{i=1}^n
+(y_i - \hat y_i)^2\)
+        </span>
+        , where
+        <span class="math inline">
+         \(\hat
+y_i\)
+        </span>
+        is the predicted value of the i-th observation and SSE
+stands for the “Sum of the Squares of the Errors”.
+       </li>
+       <li>
+        Sometimes this criterion is called
+        <em>
+         squared error loss
+        </em>
+        or
+the
+        <span class="math inline">
+         \(L_2\)
+        </span>
+        loss function.
+       </li>
+       <li>
+        The
+        <span class="math inline">
+         \(SSE/n\)
+        </span>
+        , where
+        <span class="math inline">
+         \(n\)
+        </span>
+        is the sample size is called the “Mean
+squared error” (MSE).
+       </li>
+       <li>
+        <span class="math inline">
+         \(\sqrt{MSE}\)
+        </span>
+        is called, not
+surprisingly, Root Mean Squared Error (RMSE).
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="categorical-outcomes">
+      <h2>
+       Categorical outcomes
+      </h2>
+      <ul>
+       <li>
+        When the outcome is a dichotomous variable (0/1) a commonly used
+loss function is “logistic”, sometimes called “cross-entropy loss”:
+        <span class="math display">
+         \[ -\frac{1}{n} \sum_{i = 1}^n \left[y_i \log
+\hat y_i + (1 - y_i) \log(1 - \hat y_i)\right].\]
+        </span>
+        Here
+        <span class="math inline">
+         \(y_i\)
+        </span>
+        and
+        <span class="math inline">
+         \(\hat
+y_i\)
+        </span>
+        are the observed, and predicted values of the i-th
+observation respectively.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="decision-trees">
+      <h1>
+       Decision trees
+      </h1>
+     </section>
+     <section class="slide level2" id="decision-trees-1">
+      <h2>
+       Decision trees
+      </h2>
+      <ul>
+       <li>
+        These are a foundational methodology that other techniques are also
+built from.
+       </li>
+       <li>
+        There’s no model, and the tree is built by following an algorithm
+that recursively partitions the feature (X) space, so that the outcome
+is as homogeneous as possible within the partitions.
+       </li>
+       <li>
+        To get some intuition we will start with a continuous y-variable and
+see how a single split is made.
+       </li>
+       <li>
+        If we can understand a single split, then because it is a
+“recursive” algorithm, we can understand all the splits!
+       </li>
+       <li>
+        Trees are explained in more detail in the Stat notes.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="sklearn-implementation-of-decision-trees">
+      <h1>
+       Sklearn implementation of decision trees
+      </h1>
+     </section>
+     <section class="slide level2" id="sklearn-implementation-of-decision-trees-1">
+      <h2>
+       Sklearn implementation of decision trees
+      </h2>
+      <ul>
+       <li>
+        We will use the functionality available in the the sklearn machine
+learning library to build a decision tree.
+       </li>
+       <li>
+        We will start with the same data that was used in the “Decision
+tree” notes, with the true mean following a sine curve, then open up
+some real datasets.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb1">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> tree</span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a aria-hidden="true" href="#cb1-8" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-9"><a aria-hidden="true" href="#cb1-9" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-10"><a aria-hidden="true" href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a aria-hidden="true" href="#cb1-11" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">7770f2026_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>)</span>
+<span id="cb1-12"><a aria-hidden="true" href="#cb1-12" tabindex="-1"></a>example_data <span class="op">=</span> pd.read_csv(<span class="st">"tree_algo.csv"</span>)</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="review-the-data-frame">
+      <h2>
+       Review the data frame
+      </h2>
+      <div class="sourceCode" id="cb2">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="bu">print</span>(example_data.info()) <span class="co"># Summarizing the dataset with the ".info()" method</span></span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="bu">print</span>(example_data.head(<span class="dv">3</span>))</span></code></pre>
+      </div>
+      <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 101 entries, 0 to 100
+Data columns (total 2 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   y       101 non-null    float64
+ 1   x       101 non-null    int64  
+dtypes: float64(1), int64(1)
+memory usage: 1.7 KB
+None
+          y  x
+0  0.296105  0
+1  0.019676  1
+2  0.441736  2</code></pre>
+     </section>
+     <section class="slide level2" id="plotting-the-raw-data">
+      <h2>
+       Plotting the raw data
+      </h2>
+      <ul>
+       <li>
+        Here’s a plot of the raw data for which we want to build a
+predictive model.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb4">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>sns.relplot(x <span class="op">=</span> <span class="st">'x'</span>, y <span class="op">=</span> <span class="st">'y'</span>, data<span class="op">=</span>example_data,height<span class="op">=</span><span class="dv">5</span>,aspect<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb4-2"><a aria-hidden="true" href="#cb4-2" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_15_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="fitting-the-tree">
+      <h2>
+       Fitting the tree
+      </h2>
+      <ul>
+       <li>
+        The key method is “DecisionTreeRegressor” for a continuous y
+variable.
+       </li>
+       <li>
+        The tree is a collection of “if/else” rules.
+       </li>
+       <li>
+        In the terminal nodes the
+        <em>
+         MSE
+        </em>
+        , number of observations and
+the predicted value for that node are reported.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb5">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>X <span class="op">=</span> example_data[[<span class="st">'x'</span>]] <span class="co"># Two brackets [[ ]] is important here because the X-variable needs to be matrix like.</span></span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a>y <span class="op">=</span> example_data[<span class="st">'y'</span>]</span>
+<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a>regtree <span class="op">=</span> tree.DecisionTreeRegressor(max_leaf_nodes <span class="op">=</span> <span class="dv">2</span>) <span class="co"># Make a single split to match the "Decision Tree" notes.</span></span>
+<span id="cb5-4"><a aria-hidden="true" href="#cb5-4" tabindex="-1"></a>regtree.fit(X, y)</span>
+<span id="cb5-5"><a aria-hidden="true" href="#cb5-5" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">3</span>))</span>
+<span id="cb5-6"><a aria-hidden="true" href="#cb5-6" tabindex="-1"></a>tree.plot_tree(regtree, filled<span class="op">=</span><span class="va">True</span>, feature_names<span class="op">=</span><span class="bu">list</span>(X.columns))<span class="op">;</span></span>
+<span id="cb5-7"><a aria-hidden="true" href="#cb5-7" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_17_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="prediction">
+      <h2>
+       Prediction
+      </h2>
+      <ul>
+       <li>
+        Prediction happens with the .predict() method.
+       </li>
+       <li>
+        It expects the X variable(s) to be in a 2D array.
+       </li>
+       <li>
+        The ‘reshape’ method is turning the 1D array into a 2D matrix,
+albeit with one column.
+       </li>
+       <li>
+        But the seaborn line-plot expects a one-dimensional array (vector)
+as input.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb6">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>xpred <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">0</span>,<span class="dv">101</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="co"># The "-1" argument says infer the dimension from the input data. </span></span>
+<span id="cb6-2"><a aria-hidden="true" href="#cb6-2" tabindex="-1"></a>xpred.columns <span class="op">=</span> [<span class="st">'x'</span>] </span>
+<span id="cb6-3"><a aria-hidden="true" href="#cb6-3" tabindex="-1"></a>preds <span class="op">=</span> regtree.predict(X<span class="op">=</span>xpred)  </span>
+<span id="cb6-4"><a aria-hidden="true" href="#cb6-4" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">3</span>))</span>
+<span id="cb6-5"><a aria-hidden="true" href="#cb6-5" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> xpred[<span class="st">'x'</span>], y <span class="op">=</span> preds)<span class="op">;</span></span>
+<span id="cb6-6"><a aria-hidden="true" href="#cb6-6" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_19_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="increasing-the-number-of-leaves">
+      <h2>
+       Increasing the number of leaves
+      </h2>
+      <ul>
+       <li>
+        Complexity of the tree can be managed in a number of ways including
+by setting:
+        <ul>
+         <li>
+          max_depth: the maximum depth of the tree.
+         </li>
+         <li>
+          min_samples_split: the minimum number of samples required to split
+an internal node.
+         </li>
+         <li>
+          max_leaf_nodes: the maximum number of leaf nodes.
+         </li>
+         <li>
+          min_impurity_decrease: the impurity decrease must be greater than
+this value to continue splitting.
+         </li>
+        </ul>
+       </li>
+       <li>
+        We will fit a more complex tree and visualize the predictions.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="increasing-the-number-of-leaves-1">
+      <h2>
+       Increasing the number of leaves
+      </h2>
+      <ul>
+       <li>
+        In the graphic below which plots the value of x against the
+prediction from the tree, you can see the underlying sine curve starting
+to be revealed as the complexity of the tree increases.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb7">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>regtree <span class="op">=</span> tree.DecisionTreeRegressor(max_depth <span class="op">=</span> <span class="dv">4</span>) <span class="co"># Allow a depth of at most 4.</span></span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a>regtree.fit(X, y)</span>
+<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a>preds <span class="op">=</span> regtree.predict(xpred)</span>
+<span id="cb7-4"><a aria-hidden="true" href="#cb7-4" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">3</span>))</span>
+<span id="cb7-5"><a aria-hidden="true" href="#cb7-5" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> xpred[<span class="st">'x'</span>], y <span class="op">=</span> preds)<span class="op">;</span></span>
+<span id="cb7-6"><a aria-hidden="true" href="#cb7-6" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_22_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="predicting-fuel-economy">
+      <h2>
+       Predicting fuel economy
+      </h2>
+      <ul>
+       <li>
+        The car data set has a number of categorical variables.
+       </li>
+       <li>
+        The tree fitting algorithm expects a fully numerical X-matrix as
+input.
+       </li>
+       <li>
+        Therefore we have to encode the categorical variables
+numerically.
+       </li>
+       <li>
+        We will use dummy variable encoding, available via pandas
+“get_dummies” function.
+       </li>
+       <li>
+        In machine learning speak, the dummy variables are often called
+“one-hot encoding”.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb8">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>carTable <span class="op">=</span> pd.read_csv(<span class="st">"Car08_just_499.csv"</span>)</span>
+<span id="cb8-2"><a aria-hidden="true" href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a aria-hidden="true" href="#cb8-3" tabindex="-1"></a><span class="co"># Pull off the continuous variables first.</span></span>
+<span id="cb8-4"><a aria-hidden="true" href="#cb8-4" tabindex="-1"></a>Xcts <span class="op">=</span> carTable[[<span class="st">'Weight(lb)'</span>, <span class="st">'Seating'</span>, <span class="st">'Horsepower'</span>, <span class="st">'HP/Pound'</span>, <span class="st">'Displacement'</span>, <span class="st">'Cylinders'</span>, <span class="st">'Length'</span>]]  </span>
+<span id="cb8-5"><a aria-hidden="true" href="#cb8-5" tabindex="-1"></a><span class="co"># Deal with the categorical predictors by making then into dummy variables using "get_dummies".</span></span>
+<span id="cb8-6"><a aria-hidden="true" href="#cb8-6" tabindex="-1"></a>Xcat <span class="op">=</span> pd.get_dummies(carTable[[<span class="st">'Transmission'</span>, <span class="st">'EPA_Class'</span>,<span class="st">'HEV'</span>, <span class="st">'Turbocharger'</span>]]) <span class="co"># Categorical variables.</span></span>
+<span id="cb8-7"><a aria-hidden="true" href="#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a aria-hidden="true" href="#cb8-8" tabindex="-1"></a><span class="co"># Merge the continuous and categorical variables to a single dataset.</span></span>
+<span id="cb8-9"><a aria-hidden="true" href="#cb8-9" tabindex="-1"></a>X <span class="op">=</span> pd.merge(Xcts, Xcat, left_index<span class="op">=</span><span class="va">True</span>, right_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-10"><a aria-hidden="true" href="#cb8-10" tabindex="-1"></a>y <span class="op">=</span> carTable[<span class="st">'GP1000M_City'</span>]</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="review-the-new-data-frame">
+      <h2>
+       Review the new data frame
+      </h2>
+      <ul>
+       <li>
+        Note the dummy variable encoding visible in the data frame.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb9">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a><span class="bu">print</span>(X.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>   Weight(lb)  Seating  Horsepower  HP/Pound  Displacement  Cylinders  Length  \
+0        4014        5         290  0.072247           3.5          6   193.6   
+1        3674        5         286  0.077844           3.5          6   189.3   
+2        3559        5         286  0.080360           3.5          6   189.3   
+3        3345        5         205  0.061285           2.4          4   186.2   
+4        3257        5         205  0.062941           2.4          4   186.2   
+
+   Transmission_A  Transmission_AS  Transmission_AV  ...  \
+0           False             True            False  ...   
+1           False             True            False  ...   
+2           False            False            False  ...   
+3           False             True            False  ...   
+4           False            False            False  ...   
+
+   EPA_Class_minicompact  EPA_Class_minivan  EPA_Class_smallwagon  \
+0                  False              False                 False   
+1                  False              False                 False   
+2                  False              False                 False   
+3                  False              False                 False   
+4                  False              False                 False   
+
+   EPA_Class_subcompact  EPA_Class_suv2  EPA_Class_suv4  HEV_no  HEV_yes  \
+0                 False           False           False    True    False   
+1                 False           False           False    True    False   
+2                 False           False           False    True    False   
+3                 False           False           False    True    False   
+4                 False           False           False    True    False   
+
+   Turbocharger_no  Turbocharger_yes  
+0             True             False  
+1             True             False  
+2             True             False  
+3             True             False  
+4             True             False  
+
+[5 rows x 26 columns]</code></pre>
+     </section>
+     <section class="slide level2" id="fitting-a-tree">
+      <h2>
+       Fitting a tree
+      </h2>
+      <ul>
+       <li>
+        Below we fit a tree, controlling complexity by the maximum number of
+leaf nodes.
+       </li>
+       <li>
+        The “.plot_tree()” has many more arguments that you can tweak.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb11">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a>regtree <span class="op">=</span> tree.DecisionTreeRegressor(max_leaf_nodes <span class="op">=</span> <span class="dv">10</span>) <span class="co"># Set up the tree structure. </span></span>
+<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a>regtree.fit(X, y) <span class="co"># Fit the tree.</span></span>
+<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(num<span class="op">=</span><span class="va">None</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), dpi<span class="op">=</span><span class="dv">80</span>, facecolor<span class="op">=</span><span class="st">'w'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb11-5"><a aria-hidden="true" href="#cb11-5" tabindex="-1"></a>tree.plot_tree(regtree, filled<span class="op">=</span><span class="va">True</span>, feature_names<span class="op">=</span><span class="bu">list</span>(X.columns))<span class="op">;</span></span>
+<span id="cb11-6"><a aria-hidden="true" href="#cb11-6" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_28_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="choosing-the-best-tree">
+      <h2>
+       Choosing the best tree
+      </h2>
+      <ul>
+       <li>
+        Most modeling involves a trade-off between making things too simple
+(underfit and biased) and too complicated (overfit and high
+variance).
+       </li>
+       <li>
+        This is known as the “bias/variance” trade-off.
+       </li>
+       <li>
+        The problem with overfitting is that the predictions do not
+generalize well to new data.
+       </li>
+       <li>
+        The problem with underfitting is that the predictions are
+biased.
+       </li>
+       <li>
+        When growing a tree it is possible to trade these concerns off
+against one another, by using “cost-complexity” pruning.
+       </li>
+       <li>
+        This type of pruning effectively removes the “weakest link” in the
+tree, recursively, providing a set of trees to explore for the best
+generalizability.
+       </li>
+       <li>
+        The idea is to grow an overly complicated tree (to make sure we
+don’t miss any important splits), then to “prune” it back so that it
+generalizes as well as possible.
+       </li>
+       <li>
+        We measure a tree’s generalizability through “cross-validation” or
+how well it actually predicts when it sees new data.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-train-and-test-paradigm">
+      <h2>
+       The train and test paradigm
+      </h2>
+     </section>
+     <section class="slide level2" id="the-train-and-test-paradigm-1">
+      <h2>
+       The train and test paradigm
+      </h2>
+      <ul>
+       <li>
+        This is a critical idea and involves splitting the data into two
+distinct parts.
+       </li>
+       <li>
+        The portion that the model is fit on is called the
+        <em>
+         training
+data
+        </em>
+        .
+       </li>
+       <li>
+        The portion that the model predictions are evaluated on, is called
+the
+        <em>
+         test data
+        </em>
+        .
+       </li>
+       <li>
+        There is no magic rule for how much data to put into the
+training/test datasets, but anywhere between 80/20 to 50/50 is often
+used.
+       </li>
+       <li>
+        The key idea for the test dataset, is that because it was not used
+to build the model, it provides a legitimate way of assessing the
+model’s accuracy.
+       </li>
+       <li>
+        If you assessed accuracy on the training dataset you would be
+over-optimistic, because the model is fit to minimize the prediction
+error in the first place.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="breaking-the-data-into-two">
+      <h2>
+       Breaking the data into two
+      </h2>
+      <ul>
+       <li>
+        The key command here from sklearn is “train_test_split”.
+       </li>
+       <li>
+        Always make sure you use a random number seed (the random_state
+parameter) for reproducibility.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb12">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a><span class="co"># Break the data in 2 parts randomly</span></span>
+<span id="cb12-2"><a aria-hidden="true" href="#cb12-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb12-3"><a aria-hidden="true" href="#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a aria-hidden="true" href="#cb12-4" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size <span class="op">=</span> <span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">1</span>) <span class="co"># A 50/50 split.</span></span>
+<span id="cb12-5"><a aria-hidden="true" href="#cb12-5" tabindex="-1"></a><span class="co"># Confirm that this has worked.</span></span>
+<span id="cb12-6"><a aria-hidden="true" href="#cb12-6" tabindex="-1"></a><span class="bu">print</span>(X_train.shape)</span>
+<span id="cb12-7"><a aria-hidden="true" href="#cb12-7" tabindex="-1"></a><span class="bu">print</span>(X_test.shape)</span></code></pre>
+      </div>
+      <pre><code>(249, 26)
+(250, 26)</code></pre>
+     </section>
+     <section class="slide level2" id="cost-complexity-pruning">
+      <h2>
+       Cost complexity pruning
+      </h2>
+      <ul>
+       <li>
+        Denote a fitted tree as T and for a regression tree, the quality of
+the tree as R(T), where R is the sums of squared error (low values of
+R(T) mean a high quality tree). We want R(T) to be low, and it will get
+smaller as the tree becomes more complicated.
+        <br/>
+       </li>
+       <li>
+        Define
+        <span class="math inline">
+         \(|T|\)
+        </span>
+        as the number of
+leaves in the tree (terminal nodes). This is a way of defining the
+complexity of the tree.
+       </li>
+       <li>
+        Let
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        be a complexity
+parameter that measures the “cost” of adding another node to the
+tree.
+       </li>
+       <li>
+        Now define the “cost” of a tree as:
+        <span class="math display">
+         \[R_\alpha(T) = R(T) + \alpha |T|. \]
+        </span>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="cost-complexity-pruning-ctd.">
+      <h2>
+       Cost complexity pruning (ctd.)
+      </h2>
+      <ul>
+       <li>
+        This formulation provides a way of penalizing complexity. If
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        is very big, you are reticent to
+add nodes. If
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        is very small,
+adding nodes has a minimal price.
+       </li>
+       <li>
+        For each value of
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        , there
+is a tree that minimizes cost. Call it
+        <span class="math inline">
+         \(T_\alpha\)
+        </span>
+        .
+       </li>
+       <li>
+        Then for each tree,
+        <span class="math inline">
+         \(T_\alpha\)
+        </span>
+        ,
+find its test set prediction error.
+       </li>
+       <li>
+        Choose the
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        that has
+lowest test set prediction error.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="implementation">
+      <h2>
+       Implementation
+      </h2>
+      <ul>
+       <li>
+        To get the set of trees we will explore, use the
+“.cost_complexity_pruning_path()” function.
+       </li>
+       <li>
+        The plot below shows how the nodes’ impurity increases with
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        .
+       </li>
+       <li>
+        Simple trees have a lot of impurity.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb14">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a>dtr <span class="op">=</span> tree.DecisionTreeRegressor(random_state<span class="op">=</span><span class="dv">0</span>) <span class="co"># Set up the tree.</span></span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a>path <span class="op">=</span> dtr.cost_complexity_pruning_path(X_train, y_train) <span class="co"># Create the pruning path.</span></span>
+<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a>ccp_alphas, impurities <span class="op">=</span> path.ccp_alphas, path.impurities <span class="co"># The tree impurities along the pruning path. Note the tuple assignment.</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="implementation-1">
+      <h2>
+       Implementation
+      </h2>
+      <div class="sourceCode" id="cb15">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a><span class="co"># These are matplotlib plotting functions.</span></span>
+<span id="cb15-2"><a aria-hidden="true" href="#cb15-2" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-3"><a aria-hidden="true" href="#cb15-3" tabindex="-1"></a>ax.plot(ccp_alphas[:<span class="op">-</span><span class="dv">1</span>], impurities[:<span class="op">-</span><span class="dv">1</span>], marker<span class="op">=</span><span class="st">'o'</span>, drawstyle<span class="op">=</span><span class="st">"steps-post"</span>)</span>
+<span id="cb15-4"><a aria-hidden="true" href="#cb15-4" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Effective alpha"</span>)</span>
+<span id="cb15-5"><a aria-hidden="true" href="#cb15-5" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Total impurity of leaves"</span>)</span>
+<span id="cb15-6"><a aria-hidden="true" href="#cb15-6" tabindex="-1"></a>ax.set_title(<span class="st">"Total Impurity vs effective alpha for training set"</span>)<span class="op">;</span></span>
+<span id="cb15-7"><a aria-hidden="true" href="#cb15-7" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_39_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="fitting-the-decision-tree-for-each-value-of-alpha">
+      <h2>
+       Fitting the decision tree for each value of alpha
+      </h2>
+      <ul>
+       <li>
+        Recall that for each value of
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        there is a best decision
+tree.
+       </li>
+       <li>
+        We now fit all those trees in a loop and store each tree in the list
+“rgrs”.
+       </li>
+       <li>
+        We then see how well each tree predicts on the test data, and choose
+the tree with the best test data performance.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb16">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a>rgrs <span class="op">=</span> [] <span class="co"># A container for the trees along the pruning path.</span></span>
+<span id="cb16-2"><a aria-hidden="true" href="#cb16-2" tabindex="-1"></a><span class="cf">for</span> ccp_alpha <span class="kw">in</span> ccp_alphas: <span class="co"># A for loop, fitting a tree for each value of alpha</span></span>
+<span id="cb16-3"><a aria-hidden="true" href="#cb16-3" tabindex="-1"></a>    dtr <span class="op">=</span> tree.DecisionTreeRegressor(random_state<span class="op">=</span><span class="dv">0</span>, ccp_alpha<span class="op">=</span>ccp_alpha)</span>
+<span id="cb16-4"><a aria-hidden="true" href="#cb16-4" tabindex="-1"></a>    dtr.fit(X_train, y_train)</span>
+<span id="cb16-5"><a aria-hidden="true" href="#cb16-5" tabindex="-1"></a>    rgrs.append(dtr)</span>
+<span id="cb16-6"><a aria-hidden="true" href="#cb16-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of nodes in the last tree is: </span><span class="sc">{}</span><span class="st"> with ccp_alpha: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb16-7"><a aria-hidden="true" href="#cb16-7" tabindex="-1"></a>      rgrs[<span class="op">-</span><span class="dv">1</span>].tree_.node_count, ccp_alphas[<span class="op">-</span><span class="dv">1</span>]))</span></code></pre>
+      </div>
+      <pre><code>Number of nodes in the last tree is: 1 with ccp_alpha: 107.31669971836459</code></pre>
+     </section>
+     <section class="slide level2" id="the-complexity-versus-alpha-plots">
+      <h2>
+       The complexity versus alpha plots
+      </h2>
+      <ul>
+       <li>
+        Below is the plot of
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        (penalty parameter) against complexity (number of nodes).
+       </li>
+       <li>
+        And,
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        (penalty parameter)
+against complexity (tree depth).
+       </li>
+       <li>
+        The key aspect to note is that as
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        gets larger the tree is less
+complex.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb18">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a>rgrs <span class="op">=</span> rgrs[:<span class="op">-</span><span class="dv">1</span>] <span class="co"># Remove the simplest tree (it has no branches).</span></span>
+<span id="cb18-2"><a aria-hidden="true" href="#cb18-2" tabindex="-1"></a>ccp_alphas <span class="op">=</span> ccp_alphas[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb18-3"><a aria-hidden="true" href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a aria-hidden="true" href="#cb18-4" tabindex="-1"></a>node_counts <span class="op">=</span> [dtr.tree_.node_count <span class="cf">for</span> dtr <span class="kw">in</span> rgrs] <span class="co"># Note the list comprehensions.</span></span>
+<span id="cb18-5"><a aria-hidden="true" href="#cb18-5" tabindex="-1"></a>depth <span class="op">=</span> [dtr.tree_.max_depth <span class="cf">for</span> dtr <span class="kw">in</span> rgrs] <span class="co"># Note the list comprehensions</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="the-complexity-versus-alpha-plots-1">
+      <h2>
+       The complexity versus alpha plots
+      </h2>
+      <div class="sourceCode" id="cb19">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a aria-hidden="true" href="#cb19-1" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">2</span>))</span>
+<span id="cb19-2"><a aria-hidden="true" href="#cb19-2" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(ccp_alphas, node_counts, marker<span class="op">=</span><span class="st">'o'</span>, drawstyle<span class="op">=</span><span class="st">"steps-post"</span>)</span>
+<span id="cb19-3"><a aria-hidden="true" href="#cb19-3" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">"alpha"</span>)</span>
+<span id="cb19-4"><a aria-hidden="true" href="#cb19-4" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"Number of nodes"</span>)</span>
+<span id="cb19-5"><a aria-hidden="true" href="#cb19-5" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Number of nodes vs alpha"</span>)</span>
+<span id="cb19-6"><a aria-hidden="true" href="#cb19-6" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(ccp_alphas, depth, marker<span class="op">=</span><span class="st">'o'</span>, drawstyle<span class="op">=</span><span class="st">"steps-post"</span>)</span>
+<span id="cb19-7"><a aria-hidden="true" href="#cb19-7" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">"alpha"</span>)</span>
+<span id="cb19-8"><a aria-hidden="true" href="#cb19-8" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">"Depth of tree"</span>)</span>
+<span id="cb19-9"><a aria-hidden="true" href="#cb19-9" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Depth vs alpha"</span>)</span>
+<span id="cb19-10"><a aria-hidden="true" href="#cb19-10" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_45_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="training-v.-test-errors-along-the-pruning-path">
+      <h2>
+       Training v. test errors along the pruning path
+      </h2>
+      <ul>
+       <li>
+        As the outcome variable is continuous, the default choice for
+“Accuracy” in the below plot, is
+        <span class="math inline">
+         \(R^2\)
+        </span>
+        .
+       </li>
+       <li>
+        It is obtained by “scoring” the tree.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb20">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a><span class="co"># Obtain the "score" for each tree. It is the test scores we really care about.</span></span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a aria-hidden="true" href="#cb20-3" tabindex="-1"></a>train_scores <span class="op">=</span> [dtr.score(X_train, y_train) <span class="cf">for</span> dtr <span class="kw">in</span> rgrs] <span class="co"># The score function returns the R-squared here.</span></span>
+<span id="cb20-4"><a aria-hidden="true" href="#cb20-4" tabindex="-1"></a>test_scores <span class="op">=</span> [dtr.score(X_test, y_test) <span class="cf">for</span> dtr <span class="kw">in</span> rgrs] <span class="co"># The score function returns the R-squared here.</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="plotting-the-r2-against-alpha">
+      <h2>
+       Plotting the
+       <span class="math inline">
+        \(R^2\)
+       </span>
+       against
+alpha
+      </h2>
+      <div class="sourceCode" id="cb21">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" href="#cb21-1" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span>
+<span id="cb21-2"><a aria-hidden="true" href="#cb21-2" tabindex="-1"></a>ax.set_xlabel(<span class="st">"alpha"</span>)</span>
+<span id="cb21-3"><a aria-hidden="true" href="#cb21-3" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Accuracy: R-squared"</span>)</span>
+<span id="cb21-4"><a aria-hidden="true" href="#cb21-4" tabindex="-1"></a>ax.set_title(<span class="st">"Accuracy vs alpha for training and testing sets"</span>)</span>
+<span id="cb21-5"><a aria-hidden="true" href="#cb21-5" tabindex="-1"></a>ax.plot(ccp_alphas, train_scores, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">"train"</span>,</span>
+<span id="cb21-6"><a aria-hidden="true" href="#cb21-6" tabindex="-1"></a>        drawstyle<span class="op">=</span><span class="st">"steps-post"</span>)</span>
+<span id="cb21-7"><a aria-hidden="true" href="#cb21-7" tabindex="-1"></a>ax.plot(ccp_alphas, test_scores, marker<span class="op">=</span><span class="st">'x'</span>, label<span class="op">=</span><span class="st">"test"</span>,</span>
+<span id="cb21-8"><a aria-hidden="true" href="#cb21-8" tabindex="-1"></a>        drawstyle<span class="op">=</span><span class="st">"steps-post"</span>)</span>
+<span id="cb21-9"><a aria-hidden="true" href="#cb21-9" tabindex="-1"></a>ax.legend()</span>
+<span id="cb21-10"><a aria-hidden="true" href="#cb21-10" tabindex="-1"></a>plt.show()</span>
+<span id="cb21-11"><a aria-hidden="true" href="#cb21-11" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_49_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="looking-at-the-scores">
+      <h2>
+       Looking at the scores
+      </h2>
+      <ul>
+       <li>
+        We are tying to find the top of the orange curve.
+       </li>
+       <li>
+        That’s the value of
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        at
+which the test
+        <span class="math inline">
+         \(R^2\)
+        </span>
+        is
+maximized.
+       </li>
+       <li>
+        Visually it happens at a low value for
+        <span class="math inline">
+         \(\alpha\)
+        </span>
+        on the left-hand-side of the
+plot.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="finding-the-best-value-of-alpha">
+      <h2>
+       Finding the best value of alpha
+      </h2>
+      <ul>
+       <li>
+        Plan:
+        <ul>
+         <li>
+          Find the tree with the best test score.
+         </li>
+         <li>
+          Pull it out of the tree list, and review it.
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb22">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a aria-hidden="true" href="#cb22-1" tabindex="-1"></a>best <span class="op">=</span> pd.Series(test_scores).idxmax() <span class="co"># Find the index of the best tree.</span></span>
+<span id="cb22-2"><a aria-hidden="true" href="#cb22-2" tabindex="-1"></a>ccp_alphas[best] <span class="co"># Here's the best tree's value of "alpha".</span></span>
+<span id="cb22-3"><a aria-hidden="true" href="#cb22-3" tabindex="-1"></a></span></code></pre>
+      </div>
+      <pre><code>np.float64(0.24641228297695494)</code></pre>
+     </section>
+     <section class="slide level2" id="reviewing-the-best-tree">
+      <h2>
+       Reviewing the best tree
+      </h2>
+      <div class="sourceCode" id="cb24">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a aria-hidden="true" href="#cb24-1" tabindex="-1"></a>best_tree <span class="op">=</span> rgrs[best] <span class="co"># Pull out the best tree from the pruning path. </span></span>
+<span id="cb24-2"><a aria-hidden="true" href="#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a aria-hidden="true" href="#cb24-3" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(num<span class="op">=</span><span class="va">None</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">9</span>), dpi<span class="op">=</span><span class="dv">80</span>, facecolor<span class="op">=</span><span class="st">'w'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb24-4"><a aria-hidden="true" href="#cb24-4" tabindex="-1"></a>tree.plot_tree(best_tree, filled<span class="op">=</span><span class="va">True</span>, feature_names<span class="op">=</span><span class="bu">list</span>(X.columns))<span class="op">;</span></span>
+<span id="cb24-5"><a aria-hidden="true" href="#cb24-5" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_54_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="variable-importance">
+      <h2>
+       Variable importance
+      </h2>
+      <ul>
+       <li>
+        The decision tree comes with a variable importance metric.
+       </li>
+       <li>
+        This helps you get a sense of which variables are most helpful in
+prediction.
+       </li>
+       <li>
+        This can be useful if you are later going to build a regression
+model.
+       </li>
+       <li>
+        The method is “.feature_importances_”
+       </li>
+       <li>
+        Formally, the importance of a feature is computed as the
+(normalized) total reduction of the criterion brought by that
+feature.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="obtaining-the-variable-importance-ranking">
+      <h2>
+       Obtaining the variable importance ranking
+      </h2>
+      <div class="sourceCode" id="cb25">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a aria-hidden="true" href="#cb25-1" tabindex="-1"></a>importances <span class="op">=</span> pd.DataFrame({<span class="st">'Feature'</span>:X_train.columns,<span class="st">'Importance'</span>:np.<span class="bu">round</span>(best_tree.feature_importances_,<span class="dv">3</span>)})</span>
+<span id="cb25-2"><a aria-hidden="true" href="#cb25-2" tabindex="-1"></a>importances <span class="op">=</span> importances.sort_values(<span class="st">'Importance'</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-3"><a aria-hidden="true" href="#cb25-3" tabindex="-1"></a><span class="bu">print</span>(importances[:<span class="dv">5</span>]) <span class="co"># Top five variables.</span></span></code></pre>
+      </div>
+      <pre><code>         Feature  Importance
+4   Displacement       0.652
+5      Cylinders       0.144
+0     Weight(lb)       0.067
+3       HP/Pound       0.038
+23       HEV_yes       0.035</code></pre>
+     </section>
+     <section class="slide level2" id="review">
+      <h2>
+       Review
+      </h2>
+      <ul>
+       <li>
+        We now have an automatic means of creating a predictive model, using
+a decision tree and cost/complexity pruning.
+       </li>
+       <li>
+        It is built to do the best job it can in predicting on the test
+data.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="working-with-a-dichotomous-outcome-variable">
+      <h1>
+       Working with a dichotomous outcome variable
+      </h1>
+     </section>
+     <section class="slide level2" id="a-dichotomous-outcome">
+      <h2>
+       A dichotomous outcome
+      </h2>
+      <ul>
+       <li>
+        We will now go back to the outpatient dataset and predict whether a
+patient arrives or is a no show.
+       </li>
+       <li>
+        This is a dichotomous (2-levels) outcome and the tree is often
+called a “classification tree” in this case.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb27">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" href="#cb27-1" tabindex="-1"></a>op_data <span class="op">=</span> pd.read_csv(<span class="st">"no_show_behavioral_20000.csv"</span>) <span class="co"># Read in data.</span></span>
+<span id="cb27-2"><a aria-hidden="true" href="#cb27-2" tabindex="-1"></a>op_data[<span class="st">'Age'</span>] <span class="op">=</span> pd.to_numeric(op_data[<span class="st">'Age'</span>],errors<span class="op">=</span><span class="st">'coerce'</span>) <span class="co"># Clean up Age.</span></span>
+<span id="cb27-3"><a aria-hidden="true" href="#cb27-3" tabindex="-1"></a>op_data <span class="op">=</span> op_data.dropna() <span class="co"># Remove rows with missing values.</span></span>
+<span id="cb27-4"><a aria-hidden="true" href="#cb27-4" tabindex="-1"></a></span>
+<span id="cb27-5"><a aria-hidden="true" href="#cb27-5" tabindex="-1"></a><span class="co"># Get the continous variables.</span></span>
+<span id="cb27-6"><a aria-hidden="true" href="#cb27-6" tabindex="-1"></a>Xcts <span class="op">=</span> op_data[[<span class="st">'Age'</span>, <span class="st">'Schedule lag'</span>, <span class="st">'Minutes'</span>, <span class="st">'Prior no show'</span>, <span class="st">'Prior arrived'</span>]]</span>
+<span id="cb27-7"><a aria-hidden="true" href="#cb27-7" tabindex="-1"></a><span class="co"># "Binarize" the categorical variables.</span></span>
+<span id="cb27-8"><a aria-hidden="true" href="#cb27-8" tabindex="-1"></a>Xcat <span class="op">=</span> pd.get_dummies(op_data[[<span class="st">'Sex'</span>, <span class="st">'Marital status'</span>, <span class="st">'Race'</span>, <span class="st">'LanguageRecode'</span>, </span>
+<span id="cb27-9"><a aria-hidden="true" href="#cb27-9" tabindex="-1"></a>                               <span class="st">'Department'</span>, <span class="st">'Insurance type'</span>]]) <span class="co"># Categorical variables.</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="review-the-finished-prediction-data-frame">
+      <h2>
+       Review the finished prediction data frame
+      </h2>
+      <div class="sourceCode" id="cb28">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" href="#cb28-1" tabindex="-1"></a>X <span class="op">=</span> pd.merge(Xcts, Xcat,left_index<span class="op">=</span><span class="va">True</span>, right_index<span class="op">=</span><span class="va">True</span>) <span class="co"># Join the two data frames.</span></span>
+<span id="cb28-2"><a aria-hidden="true" href="#cb28-2" tabindex="-1"></a>y <span class="op">=</span> op_data[<span class="st">'Status'</span>] <span class="co"># Identify the y-variable.</span></span>
+<span id="cb28-3"><a aria-hidden="true" href="#cb28-3" tabindex="-1"></a><span class="bu">print</span>(X.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>    Age  Schedule lag  Minutes  Prior no show  Prior arrived  Sex_FEMALE  \
+0  52.0            24       45              0              0       False   
+1  49.0            35       10              0              3        True   
+2  37.0            46       45              0              0        True   
+3  31.0             3       20              1              0        True   
+4  62.0            30       15              0              2       False   
+
+   Sex_MALE  Marital status_DIVORCED  Marital status_LIFE PARTNER  \
+0      True                    False                        False   
+1     False                    False                        False   
+2     False                    False                        False   
+3     False                    False                        False   
+4      True                    False                        False   
+
+   Marital status_MARRIED  ...  Insurance type_COMMERCIAL  \
+0                   False  ...                      False   
+1                   False  ...                      False   
+2                   False  ...                      False   
+3                   False  ...                      False   
+4                   False  ...                      False   
+
+   Insurance type_DENTAL  Insurance type_HMO/POS  Insurance type_MANAGED CARE  \
+0                  False                   False                        False   
+1                  False                   False                         True   
+2                  False                    True                        False   
+3                  False                   False                        False   
+4                  False                   False                        False   
+
+   Insurance type_MANAGED MEDICAID  Insurance type_MANAGED MEDICARE  \
+0                            False                             True   
+1                            False                            False   
+2                            False                            False   
+3                             True                            False   
+4                             True                            False   
+
+   Insurance type_MEDICAID  Insurance type_MEDICARE  Insurance type_SELF PAY  \
+0                    False                    False                    False   
+1                    False                    False                    False   
+2                    False                    False                    False   
+3                    False                    False                    False   
+4                    False                    False                    False   
+
+   Insurance type_Unclassified  
+0                        False  
+1                        False  
+2                        False  
+3                        False  
+4                        False  
+
+[5 rows x 72 columns]</code></pre>
+     </section>
+     <section class="slide level2" id="prepare-the-data-partition">
+      <h2>
+       Prepare the data partition
+      </h2>
+      <ul>
+       <li>
+        As before, we need to split the data into the training and testing
+datasets.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb30">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" href="#cb30-1" tabindex="-1"></a><span class="co"># Create the train/test split. Make sure you set a seed.</span></span>
+<span id="cb30-2"><a aria-hidden="true" href="#cb30-2" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.5</span>, random_state<span class="op">=</span><span class="dv">1</span>) <span class="co"># A 50/50 split.</span></span>
+<span id="cb30-3"><a aria-hidden="true" href="#cb30-3" tabindex="-1"></a><span class="bu">print</span>(X_train.shape)</span>
+<span id="cb30-4"><a aria-hidden="true" href="#cb30-4" tabindex="-1"></a><span class="bu">print</span>(X_test.shape)</span></code></pre>
+      </div>
+      <pre><code>(9995, 72)
+(9996, 72)</code></pre>
+     </section>
+     <section class="slide level2" id="fit-the-tree">
+      <h2>
+       Fit the tree
+      </h2>
+      <ul>
+       <li>
+        Notice that the tree is now an instance of
+“DecisionTreeClassifier”.
+       </li>
+       <li>
+        Earlier, with continuous data, is was “DecisionTreeRegressor”.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb32">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a>clf <span class="op">=</span> tree.DecisionTreeClassifier(criterion<span class="op">=</span><span class="st">"entropy"</span>, max_leaf_nodes<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>) <span class="co"># Set up the tree.</span></span>
+<span id="cb32-2"><a aria-hidden="true" href="#cb32-2" tabindex="-1"></a>clf.fit(X_train, y_train) <span class="co"># Fit the tree.</span></span>
+<span id="cb32-3"><a aria-hidden="true" href="#cb32-3" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(num<span class="op">=</span><span class="va">None</span>, figsize<span class="op">=</span>(<span class="dv">30</span>, <span class="dv">15</span>), dpi<span class="op">=</span><span class="dv">160</span>, facecolor<span class="op">=</span><span class="st">'w'</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb32-4"><a aria-hidden="true" href="#cb32-4" tabindex="-1"></a>tree.plot_tree(clf, filled<span class="op">=</span><span class="va">True</span>, feature_names<span class="op">=</span><span class="bu">list</span>(X.columns),proportion<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb32-5"><a aria-hidden="true" href="#cb32-5" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_67_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="variable-importance-1">
+      <h2>
+       Variable importance
+      </h2>
+      <ul>
+       <li>
+        It’s helpful to get a sense of variable importance.
+       </li>
+       <li>
+        Schedule lag is so dominant here, almost nothing else matters.
+       </li>
+       <li>
+        The two “behavioral variables”, do come second and third
+though!
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb33">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a aria-hidden="true" href="#cb33-1" tabindex="-1"></a>importances <span class="op">=</span> pd.DataFrame({<span class="st">'feature'</span>:X_train.columns,<span class="st">'importance'</span>:np.<span class="bu">round</span>(clf.feature_importances_,<span class="dv">3</span>)})</span>
+<span id="cb33-2"><a aria-hidden="true" href="#cb33-2" tabindex="-1"></a>importances <span class="op">=</span> importances.sort_values(<span class="st">'importance'</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb33-3"><a aria-hidden="true" href="#cb33-3" tabindex="-1"></a><span class="bu">print</span>(importances[:<span class="dv">5</span>]) <span class="co"># Top 5 variables.</span></span></code></pre>
+      </div>
+      <pre><code>                         feature  importance
+1                   Schedule lag       0.887
+4                  Prior arrived       0.055
+3                  Prior no show       0.022
+47  Department_INTERNAL MEDICINE       0.019
+2                        Minutes       0.017</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="measures-of-classification-accuracy">
+      <h1>
+       Measures of classification accuracy
+      </h1>
+     </section>
+     <section class="slide level2" id="measures-of-classification-accuracy-1">
+      <h2>
+       Measures of classification accuracy
+      </h2>
+      <ul>
+       <li>
+        When the outcome variable is categorical the natural way to think
+about accuracy is whether the model’s classification of an observation
+is correct.
+       </li>
+       <li>
+        When the model is doing well, those cases that actually are positive
+are classified as positive.
+       </li>
+       <li>
+        And those that are negative, are classified as negative.
+       </li>
+       <li>
+        When the model is hopeless, you might as well be flipping a coin to
+classify.
+       </li>
+       <li>
+        When an observation is incorrectly classified it is either a “False
+Positive”, or a “False Negative”.
+       </li>
+       <li>
+        A “True Positive” is an actual positive that is classified as
+positive.
+       </li>
+       <li>
+        A “True Negative” is an actual negative that is classified as a
+negative.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="false-positives-false-negatives-and-the-confusion-matrix">
+      <h2>
+       False positives, false negatives and the confusion matrix
+      </h2>
+      <ul>
+       <li>
+        A confusion matrix is a 2-by-2 table that cross-classifies the data
+by its true state against its predicted state.
+       </li>
+      </ul>
+      <table>
+       <thead>
+        <tr class="header">
+         <th style="text-align: right;">
+         </th>
+         <th style="text-align: right;">
+         </th>
+         <th>
+          Classify Arrived
+         </th>
+         <th>
+          Classify No show
+         </th>
+         <th>
+          Total
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="odd">
+         <td style="text-align: right;">
+          True state
+         </td>
+         <td style="text-align: right;">
+          Arrived
+         </td>
+         <td>
+          3753
+         </td>
+         <td>
+          1756
+         </td>
+         <td>
+          5509
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: right;">
+         </td>
+         <td style="text-align: right;">
+          No show
+         </td>
+         <td>
+          1918
+         </td>
+         <td>
+          2569
+         </td>
+         <td>
+          4487
+         </td>
+        </tr>
+       </tbody>
+      </table>
+      <ul>
+       <li>
+        If we define No show as a “positive” then the false positive rate is
+1756/5509 = 0.32.
+       </li>
+       <li>
+        The false negative rate is 1918/4487 = 0.43.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="obtaining-the-confusion-matrix">
+      <h2>
+       Obtaining the confusion matrix
+      </h2>
+      <ul>
+       <li>
+        sklearn has commands to obtain and plot the confusion matrix.
+       </li>
+       <li>
+        By default it is calculated using a 50% cut-off rule: if the
+predicted probability of being a no show is greater than 50% then
+classify it as a no show otherwise classify it as an arrived.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb35">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a aria-hidden="true" href="#cb35-1" tabindex="-1"></a><span class="co"># Summarize the fit.</span></span>
+<span id="cb35-2"><a aria-hidden="true" href="#cb35-2" tabindex="-1"></a><span class="co"># Confusion matrix.</span></span>
+<span id="cb35-3"><a aria-hidden="true" href="#cb35-3" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb35-4"><a aria-hidden="true" href="#cb35-4" tabindex="-1"></a>y_pred <span class="op">=</span> clf.predict(X_test) <span class="co"># The predict method will classify the observation</span></span>
+<span id="cb35-5"><a aria-hidden="true" href="#cb35-5" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred) <span class="co"># Cross-classify the "truth" against the "predictions".</span></span>
+<span id="cb35-6"><a aria-hidden="true" href="#cb35-6" tabindex="-1"></a><span class="bu">print</span>(cm)</span></code></pre>
+      </div>
+      <pre><code>[[3753 1756]
+ [1918 2569]]</code></pre>
+     </section>
+     <section class="slide level2" id="plotting-the-confusion-matrix">
+      <h2>
+       Plotting the confusion matrix
+      </h2>
+      <div class="sourceCode" id="cb37">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a aria-hidden="true" href="#cb37-1" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm,</span>
+<span id="cb37-2"><a aria-hidden="true" href="#cb37-2" tabindex="-1"></a>                              display_labels<span class="op">=</span>clf.classes_)</span>
+<span id="cb37-3"><a aria-hidden="true" href="#cb37-3" tabindex="-1"></a>disp.plot()<span class="op">;</span></span>
+<span id="cb37-4"><a aria-hidden="true" href="#cb37-4" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_08_files/module_08_76_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="using-a-probability-cut-off-other-than-0.5">
+      <h2>
+       Using a probability cut-off other than 0.5
+      </h2>
+      <ul>
+       <li>
+        Below we save the predicted probabilities and then create a
+classifier based on whether the predicted probability is greater than
+        <strong>
+         0.25
+        </strong>
+        .
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb38">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>y_prob_pred <span class="op">=</span> clf.predict_proba(X_test) <span class="co"># The predict_proba method will return the predicted probability.</span></span>
+<span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a>y_pred <span class="op">=</span> np.where(y_prob_pred[:,<span class="dv">1</span>] <span class="op">&gt;</span> <span class="fl">0.25</span>, <span class="st">"NS"</span>, <span class="st">"A"</span>) <span class="co"># From numpy, classify according to the predicted probability.</span></span>
+<span id="cb38-3"><a aria-hidden="true" href="#cb38-3" tabindex="-1"></a><span class="co">#y_pred = ["NS" if (x &gt; 0.25)  else "A" for x in y_prob_pred[:,1]] # We could use a list comprehension as well.</span></span>
+<span id="cb38-4"><a aria-hidden="true" href="#cb38-4" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb38-5"><a aria-hidden="true" href="#cb38-5" tabindex="-1"></a><span class="bu">print</span>(cm)</span>
+<span id="cb38-6"><a aria-hidden="true" href="#cb38-6" tabindex="-1"></a></span>
+<span id="cb38-7"><a aria-hidden="true" href="#cb38-7" tabindex="-1"></a></span></code></pre>
+      </div>
+      <pre><code>[[1014 4495]
+ [ 272 4215]]</code></pre>
+     </section>
+     <section class="slide level2" id="an-alternative-confusion-matrix">
+      <h2>
+       An alternative confusion matrix
+      </h2>
+      <ul>
+       <li>
+        This is the result of using 0.25 as the cut-off probability.
+       </li>
+      </ul>
+      <table>
+       <thead>
+        <tr class="header">
+         <th style="text-align: right;">
+         </th>
+         <th style="text-align: right;">
+         </th>
+         <th>
+          Classify Arrived
+         </th>
+         <th>
+          Classify No show
+         </th>
+         <th>
+          Total
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="odd">
+         <td style="text-align: right;">
+          True state
+         </td>
+         <td style="text-align: right;">
+          Arrived
+         </td>
+         <td>
+          1014
+         </td>
+         <td>
+          4495
+         </td>
+         <td>
+          5509
+         </td>
+        </tr>
+        <tr class="even">
+         <td style="text-align: right;">
+         </td>
+         <td style="text-align: right;">
+          No show
+         </td>
+         <td>
+          272
+         </td>
+         <td>
+          4215
+         </td>
+         <td>
+          4487
+         </td>
+        </tr>
+       </tbody>
+      </table>
+      <ul>
+       <li>
+        If we define No show as a “positive” then the false positive rate is
+4495/5509 = 0.82.
+       </li>
+       <li>
+        The false negative rate is 272/4487 = 0.05.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-roc-curve">
+      <h2>
+       The ROC curve
+      </h2>
+      <ul>
+       <li>
+        Rather than deciding to use a single classification cut-off
+probability, we consider all possible cut-offs.
+       </li>
+       <li>
+        For each cut-off there is a two-by-two confusion matrix and
+therefore a false positive and false negative calculation.
+       </li>
+       <li>
+        The entire family of false positive, and false negative values are
+summarized through an ROC curve (Receiver Operating
+Characteristic).
+       </li>
+       <li>
+        Formally the ROC curve plots the True Positive rate against the
+False Positive rate, for every possible probability cut-off value.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="plotting-the-roc-curve">
+      <h2>
+       Plotting the ROC curve
+      </h2>
+      <ul>
+       <li>
+        Below we plot the ROC curve for the
+        <strong>
+         <em>
+          test
+         </em>
+        </strong>
+        data.
+       </li>
+       <li>
+        A good classifier will have many true positives for each false
+positive.
+       </li>
+       <li>
+        This means that a good ROC curves rises steeply, and one way to
+measure this is the Area Under the Curve (AUC).
+       </li>
+       <li>
+        A perfect classifier has an AUC of 1. A useless classifier has an
+AUC of 0.5.
+       </li>
+       <li>
+        AUC is usually used as a model comparison metric, where we prefer
+the model with the highest AUC on the test data.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="code-to-plot-the-roc-curve">
+      <h2>
+       Code to plot the ROC curve
+      </h2>
+      <div class="sourceCode" id="cb40">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a aria-hidden="true" href="#cb40-1" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score, RocCurveDisplay</span>
+<span id="cb40-2"><a aria-hidden="true" href="#cb40-2" tabindex="-1"></a>y_pred <span class="op">=</span> clf.predict_proba(X_test) <span class="co"># Get the predicted probablities.</span></span>
+<span id="cb40-3"><a aria-hidden="true" href="#cb40-3" tabindex="-1"></a><span class="bu">print</span>(roc_auc_score(y_test, y_pred[:, <span class="dv">1</span>])) <span class="co"># Obtain the AUC.</span></span>
+<span id="cb40-4"><a aria-hidden="true" href="#cb40-4" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test, y_pred[:, <span class="dv">1</span>], pos_label<span class="op">=</span><span class="st">'NS'</span>)<span class="op">;</span> <span class="co"># Plot the curve</span></span>
+<span id="cb40-5"><a aria-hidden="true" href="#cb40-5" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <pre><code>0.6747078943656152</code></pre>
+      <p>
+       <img data-src="module_08_files/module_08_83_1.png"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="random-forests">
+      <h1>
+       Random forests
+      </h1>
+     </section>
+     <section class="slide level2" id="random-forests-1">
+      <h2>
+       Random forests
+      </h2>
+      <ul>
+       <li>
+        A general criticism of trees is that their predictions are low bias,
+but unfortunately high variance.
+       </li>
+       <li>
+        The classical way to reduce variability is to form an average.
+       </li>
+       <li>
+        This is motivation for creating lots of trees, and averaging their
+individual predictions to get an
+        <em>
+         overall
+        </em>
+        prediction.
+       </li>
+       <li>
+        This is the key idea in
+        <em>
+         ensemble learning
+        </em>
+        . That is,
+averaging predictions over a set of models.
+       </li>
+       <li>
+        But how do we get different trees, if we only have one data
+set?
+       </li>
+       <li>
+        The natural way to do this is to introduce randomness, and create
+sampled versions (bootstrapped/bagged) of the original data.
+       </li>
+       <li>
+        Hence the name,
+        <em>
+         random forest
+        </em>
+        .
+       </li>
+       <li>
+        Conventional wisdom says that the forest will almost always
+outperform a tree in prediction quality on the test data, but at the
+cost of interpretability.
+        <br/>
+       </li>
+       <li>
+        We tend to grow very deep trees when building a forest.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-random-forest">
+      <h2>
+       The random forest
+      </h2>
+      <ul>
+       <li>
+        The random forest will have all the tuning parameters of a tree plus
+new ones that define the nature of the forest. For example:
+        <ul>
+         <li>
+          How many trees should be in the forest?
+         </li>
+        </ul>
+       </li>
+       <li>
+        Another aspect of the randomness in a tree used in a forest, is that
+when the algorithm considers a split, it doesn’t look at all possible
+variables.
+        <ul>
+         <li>
+          It
+          <strong>
+           <em>
+            randomly samples
+           </em>
+          </strong>
+          the variables, and
+considers a different random sample of variables at each and every
+split.
+         </li>
+         <li>
+          So each new tree is created by randomly sampling rows and repeatedly
+randomly sampling columns.
+         </li>
+         <li>
+          The idea behind using randomly sampled columns, is that the trees
+will be almost independent of one another and averaging is most
+effective at reducing variability, when the averaged elements are closer
+to independent.
+         </li>
+         <li>
+          Equivalently, if all the trees looked like one another, then
+averaging their predictions wouldn’t make a difference, because they
+would all be the same.
+         </li>
+        </ul>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="setting-up-a-random-forest">
+      <h2>
+       Setting up a random forest
+      </h2>
+      <ul>
+       <li>
+        The key command is ‘RandomForestClassifier’ which takes many
+arguments!
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb42">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a aria-hidden="true" href="#cb42-1" tabindex="-1"></a><span class="co"># %%timeit</span></span>
+<span id="cb42-2"><a aria-hidden="true" href="#cb42-2" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb42-3"><a aria-hidden="true" href="#cb42-3" tabindex="-1"></a>rf <span class="op">=</span> RandomForestClassifier(n_estimators <span class="op">=</span> <span class="dv">500</span>, </span>
+<span id="cb42-4"><a aria-hidden="true" href="#cb42-4" tabindex="-1"></a>                            criterion <span class="op">=</span> <span class="st">"entropy"</span>, </span>
+<span id="cb42-5"><a aria-hidden="true" href="#cb42-5" tabindex="-1"></a>                            max_depth<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb42-6"><a aria-hidden="true" href="#cb42-6" tabindex="-1"></a>                            max_features<span class="op">=</span><span class="st">"sqrt"</span>,</span>
+<span id="cb42-7"><a aria-hidden="true" href="#cb42-7" tabindex="-1"></a>                            bootstrap<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb42-8"><a aria-hidden="true" href="#cb42-8" tabindex="-1"></a>                            n_jobs<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb42-9"><a aria-hidden="true" href="#cb42-9" tabindex="-1"></a>                            random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb42-10"><a aria-hidden="true" href="#cb42-10" tabindex="-1"></a>rf.fit(X_train, y_train)<span class="op">;</span> <span class="co"># Fit the forest</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="assess-the-accuracy-of-the-forest">
+      <h2>
+       Assess the accuracy of the forest
+      </h2>
+      <div class="sourceCode" id="cb43">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a aria-hidden="true" href="#cb43-1" tabindex="-1"></a>y_pred <span class="op">=</span> rf.predict_proba(X_test) <span class="co"># Predict the probabilities.</span></span>
+<span id="cb43-2"><a aria-hidden="true" href="#cb43-2" tabindex="-1"></a><span class="bu">print</span>(roc_auc_score(y_test, y_pred[:, <span class="dv">1</span>])) <span class="co"># Print out the AUC.</span></span>
+<span id="cb43-3"><a aria-hidden="true" href="#cb43-3" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test, y_pred[:, <span class="dv">1</span>], pos_label<span class="op">=</span><span class="st">'NS'</span>)<span class="op">;</span></span>
+<span id="cb43-4"><a aria-hidden="true" href="#cb43-4" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <pre><code>0.6689822311145693</code></pre>
+      <p>
+       <img data-src="module_08_files/module_08_90_1.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="tuning-the-forest">
+      <h2>
+       Tuning the forest
+      </h2>
+      <ul>
+       <li>
+        The choice of tuning parameters can sometimes make a big difference
+to the accuracy of a prediction algorithm.
+       </li>
+       <li>
+        There can be many different tuning parameters in an algorithm, so
+changing them on an
+        <em>
+         ad hoc
+        </em>
+        basis is like shooting in the
+dark.
+       </li>
+       <li>
+        We really need to set up a formal design where we search over a grid
+of tuning parameters.
+       </li>
+       <li>
+        The ‘GridSearchCV’ function allows you to do exactly that.
+       </li>
+       <li>
+        It essentially sets up a computer experiment, over a grid of tuning
+parameters, looking for the best combination of parameter values.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="designing-the-experiment">
+      <h2>
+       Designing the experiment
+      </h2>
+      <ul>
+       <li>
+        It is up to you to decide which parameters to tune.
+       </li>
+       <li>
+        Create a dictionary with the keys as parameter names, and lists for
+their values.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb45">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a aria-hidden="true" href="#cb45-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb45-2"><a aria-hidden="true" href="#cb45-2" tabindex="-1"></a>rf <span class="op">=</span> RandomForestClassifier(n_estimators <span class="op">=</span> <span class="dv">150</span>, </span>
+<span id="cb45-3"><a aria-hidden="true" href="#cb45-3" tabindex="-1"></a>                            criterion <span class="op">=</span> <span class="st">"entropy"</span>, </span>
+<span id="cb45-4"><a aria-hidden="true" href="#cb45-4" tabindex="-1"></a>                            max_depth<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb45-5"><a aria-hidden="true" href="#cb45-5" tabindex="-1"></a>                            max_features<span class="op">=</span><span class="st">"auto"</span>,</span>
+<span id="cb45-6"><a aria-hidden="true" href="#cb45-6" tabindex="-1"></a>                            bootstrap<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb45-7"><a aria-hidden="true" href="#cb45-7" tabindex="-1"></a>                            n_jobs<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb45-8"><a aria-hidden="true" href="#cb45-8" tabindex="-1"></a>                            random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb45-9"><a aria-hidden="true" href="#cb45-9" tabindex="-1"></a></span>
+<span id="cb45-10"><a aria-hidden="true" href="#cb45-10" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'n_estimators'</span>:[<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">300</span>],<span class="st">'max_depth'</span>:[<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="va">None</span>], </span>
+<span id="cb45-11"><a aria-hidden="true" href="#cb45-11" tabindex="-1"></a>              <span class="st">'max_features'</span>:[<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>],<span class="st">'criterion'</span>:[<span class="st">'entropy'</span>,<span class="st">'gini'</span>]}</span>
+<span id="cb45-12"><a aria-hidden="true" href="#cb45-12" tabindex="-1"></a></span>
+<span id="cb45-13"><a aria-hidden="true" href="#cb45-13" tabindex="-1"></a><span class="co"># Test the code quickly with the small experiment below.</span></span>
+<span id="cb45-14"><a aria-hidden="true" href="#cb45-14" tabindex="-1"></a><span class="co"># parameters = {'n_estimators':[50,100],'max_depth':[2], 'max_features':[1], 'criterion':['entropy']}</span></span>
+<span id="cb45-15"><a aria-hidden="true" href="#cb45-15" tabindex="-1"></a><span class="bu">print</span>(parameters)</span></code></pre>
+      </div>
+      <pre><code>{'n_estimators': [100, 200, 300], 'max_depth': [5, 10, 15, None], 'max_features': [5, 10, 20], 'criterion': ['entropy', 'gini']}</code></pre>
+     </section>
+     <section class="slide level2" id="run-the-grid-search">
+      <h2>
+       Run the grid search
+      </h2>
+      <ul>
+       <li>
+        Crossvalidation is used to assess the quality of each parameter
+combination.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb47">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a aria-hidden="true" href="#cb47-1" tabindex="-1"></a>clf <span class="op">=</span> GridSearchCV(rf, parameters) <span class="co"># Run the computer experiment on the tuning parameters.</span></span>
+<span id="cb47-2"><a aria-hidden="true" href="#cb47-2" tabindex="-1"></a>clf.fit(X_train, y_train)</span>
+<span id="cb47-3"><a aria-hidden="true" href="#cb47-3" tabindex="-1"></a>clf.best_params_ <span class="co"># Have a look at the best parameter values.</span></span></code></pre>
+      </div>
+      <pre><code>{'criterion': 'entropy',
+ 'max_depth': 10,
+ 'max_features': 20,
+ 'n_estimators': 300}</code></pre>
+     </section>
+     <section class="slide level2" id="getting-at-the-results">
+      <h2>
+       Getting at the results
+      </h2>
+      <ul>
+       <li>
+        The results of the experiment are stored and can be read in to a
+pandas data frame for ease of analysis and graphing.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb49">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a aria-hidden="true" href="#cb49-1" tabindex="-1"></a>exp_results <span class="op">=</span> pd.DataFrame(clf.cv_results_) <span class="co"># This saves all the results into a pandas data frame.</span></span>
+<span id="cb49-2"><a aria-hidden="true" href="#cb49-2" tabindex="-1"></a><span class="bu">print</span>(exp_results.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>   mean_fit_time  std_fit_time  mean_score_time  std_score_time  \
+0       0.215874      0.009267         0.011895        0.000333   
+1       0.420698      0.005760         0.020929        0.000414   
+2       0.662774      0.026920         0.030896        0.002879   
+3       0.299156      0.011698         0.013054        0.000335   
+4       0.589848      0.042379         0.023388        0.002928   
+
+  param_criterion param_max_depth  param_max_features  param_n_estimators  \
+0         entropy               5                   5                 100   
+1         entropy               5                   5                 200   
+2         entropy               5                   5                 300   
+3         entropy               5                  10                 100   
+4         entropy               5                  10                 200   
+
+                                              params  split0_test_score  \
+0  {'criterion': 'entropy', 'max_depth': 5, 'max_...           0.616808   
+1  {'criterion': 'entropy', 'max_depth': 5, 'max_...           0.630315   
+2  {'criterion': 'entropy', 'max_depth': 5, 'max_...           0.624812   
+3  {'criterion': 'entropy', 'max_depth': 5, 'max_...           0.644322   
+4  {'criterion': 'entropy', 'max_depth': 5, 'max_...           0.636818   
+
+   split1_test_score  split2_test_score  split3_test_score  split4_test_score  \
+0           0.618809           0.611306           0.634317           0.602301   
+1           0.619310           0.609305           0.639320           0.615308   
+2           0.623812           0.610305           0.637319           0.622811   
+3           0.659330           0.630315           0.647824           0.636818   
+4           0.657829           0.626313           0.649325           0.636318   
+
+   mean_test_score  std_test_score  rank_test_score  
+0         0.616708        0.010500               72  
+1         0.622711        0.010768               69  
+2         0.623812        0.008566               68  
+3         0.643722        0.009881               35  
+4         0.641321        0.011019               43  </code></pre>
+     </section>
+     <section class="slide level2" id="plotting-the-results-of-the-experiment">
+      <h2>
+       Plotting the results of the experiment
+      </h2>
+      <div class="sourceCode" id="cb51">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a aria-hidden="true" href="#cb51-1" tabindex="-1"></a>sns.catplot(y<span class="op">=</span><span class="st">'mean_test_score'</span>, x<span class="op">=</span><span class="st">'param_max_depth'</span>, data<span class="op">=</span>exp_results, col<span class="op">=</span><span class="st">'param_n_estimators'</span>, </span>
+<span id="cb51-2"><a aria-hidden="true" href="#cb51-2" tabindex="-1"></a>            row<span class="op">=</span><span class="st">'param_max_features'</span>, hue<span class="op">=</span><span class="st">'param_criterion'</span>)<span class="op">;</span></span>
+<span id="cb51-3"><a aria-hidden="true" href="#cb51-3" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
+      </div>
+      <pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+File ~\anaconda3\Lib\site-packages\seaborn\_base.py:1768, in categorical_order(vector, order)
+   1767 try:
+-&gt; 1768     order = vector.cat.categories
+   1769 except (TypeError, AttributeError):
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\generic.py:6321, in NDFrame.__getattr__(self, name)
+   6320     return self[name]
+-&gt; 6321 return object.__getattribute__(self, name)
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\accessor.py:224, in CachedAccessor.__get__(self, obj, cls)
+    223     return self._accessor
+--&gt; 224 accessor_obj = self._accessor(obj)
+    225 # Replace the property with the accessor object. Inspired by:
+    226 # https://www.pydanny.com/cached-property.html
+    227 # We need to use object.__setattr__ because we overwrite __setattr__ on
+    228 # NDFrame
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\arrays\categorical.py:2939, in CategoricalAccessor.__init__(self, data)
+   2938 def __init__(self, data) -&gt; None:
+-&gt; 2939     self._validate(data)
+   2940     self._parent = data.values
+
+
+File ~\anaconda3\Lib\site-packages\pandas\core\arrays\categorical.py:2948, in CategoricalAccessor._validate(data)
+   2947 if not isinstance(data.dtype, CategoricalDtype):
+-&gt; 2948     raise AttributeError("Can only use .cat accessor with a 'category' dtype")
+
+
+AttributeError: Can only use .cat accessor with a 'category' dtype
+
+
+During handling of the above exception, another exception occurred:
+
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[35], line 1
+----&gt; 1 sns.catplot(y='mean_test_score', x='param_max_depth', data=exp_results, col='param_n_estimators', 
+      2             row='param_max_features', hue='param_criterion');
+      3 pass
+
+
+File ~\anaconda3\Lib\site-packages\seaborn\categorical.py:2782, in catplot(data, x, y, hue, row, col, kind, estimator, errorbar, n_boot, seed, units, weights, order, hue_order, row_order, col_order, col_wrap, height, aspect, log_scale, native_scale, formatter, orient, color, palette, hue_norm, legend, legend_out, sharex, sharey, margin_titles, facet_kws, ci, **kwargs)
+   2779     elif x is not None and y is not None:
+   2780         raise ValueError("Cannot pass values for both `x` and `y`.")
+-&gt; 2782 p = Plotter(
+   2783     data=data,
+   2784     variables=dict(
+   2785         x=x, y=y, hue=hue, row=row, col=col, units=units, weight=weights
+   2786     ),
+   2787     order=order,
+   2788     orient=orient,
+   2789     # Handle special backwards compatibility where pointplot originally
+   2790     # did *not* default to multi-colored unless a palette was specified.
+   2791     color="C0" if kind == "point" and palette is None and color is None else color,
+   2792     legend=legend,
+   2793 )
+   2795 for var in ["row", "col"]:
+   2796     # Handle faceting variables that lack name information
+   2797     if var in p.variables and p.variables[var] is None:
+
+
+File ~\anaconda3\Lib\site-packages\seaborn\categorical.py:131, in _CategoricalPlotter.__init__(self, data, variables, order, orient, require_numeric, color, legend)
+    128     self.plot_data[self.orient] = ""
+    130 # Categorical variables have discrete levels that we need to track
+--&gt; 131 cat_levels = categorical_order(self.plot_data[self.orient], order)
+    132 self.var_levels[self.orient] = cat_levels
+
+
+File ~\anaconda3\Lib\site-packages\seaborn\_base.py:1774, in categorical_order(vector, order)
+   1771             order = pd.Series(vector).unique()
+   1773             if variable_type(vector) == "numeric":
+-&gt; 1774                 order = np.sort(order)
+   1776     order = filter(pd.notnull, order)
+   1777 return list(order)
+
+
+File ~\anaconda3\Lib\site-packages\numpy\_core\fromnumeric.py:1121, in sort(a, axis, kind, order, stable)
+   1119 else:
+   1120     a = asanyarray(a).copy(order="K")
+-&gt; 1121 a.sort(axis=axis, kind=kind, order=order, stable=stable)
+   1122 return a
+
+
+TypeError: '&lt;' not supported between instances of 'NoneType' and 'int'</code></pre>
+     </section>
+     <section class="slide level2" id="checking-the-test-auc">
+      <h2>
+       Checking the test AUC
+      </h2>
+      <ul>
+       <li>
+        Just as before we can obtain the test data set AUC.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb53">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a aria-hidden="true" href="#cb53-1" tabindex="-1"></a>y_pred <span class="op">=</span> clf.predict_proba(X_test)</span>
+<span id="cb53-2"><a aria-hidden="true" href="#cb53-2" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test, y_pred[:, <span class="dv">1</span>], pos_label<span class="op">=</span><span class="st">'NS'</span>)</span>
+<span id="cb53-3"><a aria-hidden="true" href="#cb53-3" tabindex="-1"></a><span class="bu">print</span>(roc_auc_score(y_test, y_pred[:, <span class="dv">1</span>]))</span></code></pre>
+      </div>
+      <pre><code>0.6973479343706591</code></pre>
+      <p>
+       <img data-src="module_08_files/module_08_101_1.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="conclusion">
+      <h2>
+       Conclusion
+      </h2>
+      <ul>
+       <li>
+        The tuned random forest did have the best AUC.
+       </li>
+       <li>
+        Practically speaking, there wasn’t much to be gained by the
+tuning.
+       </li>
+       <li>
+        This is probably due to the fact that almost all the predictive
+power is in a single variable, Schedule Lag, and any model that includes
+it will do well.
+       </li>
+       <li>
+        In practice, you never know what is to be gained by tuning the model
+unless you try!
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="summary">
+      <h1>
+       Summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary-1">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        Machine learning introduction.
+       </li>
+       <li>
+        Decision trees:
+        <ul>
+         <li>
+          Regression.
+         </li>
+         <li>
+          Classification
+         </li>
+        </ul>
+       </li>
+       <li>
+        Assessing the accuracy of a classifier, the ROC curve and AUC.
+       </li>
+       <li>
+        Ensemble learners – the random forest.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="next-time">
+      <h1>
+       Next time
+      </h1>
+     </section>
+     <section class="slide level2" id="next-time-1">
+      <h2>
+       Next time
+      </h2>
+      <ul>
+       <li>
+        Enjoy the break or Module 9!
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
