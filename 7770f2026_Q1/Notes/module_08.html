@@ -1833,14 +1833,14 @@ their values.
 <span id="cb45-7"><a aria-hidden="true" href="#cb45-7" tabindex="-1"></a>                            n_jobs<span class="op">=</span><span class="dv">1</span>,</span>
 <span id="cb45-8"><a aria-hidden="true" href="#cb45-8" tabindex="-1"></a>                            random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb45-9"><a aria-hidden="true" href="#cb45-9" tabindex="-1"></a></span>
-<span id="cb45-10"><a aria-hidden="true" href="#cb45-10" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'n_estimators'</span>:[<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">300</span>],<span class="st">'max_depth'</span>:[<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="va">None</span>], </span>
+<span id="cb45-10"><a aria-hidden="true" href="#cb45-10" tabindex="-1"></a>parameters <span class="op">=</span> {<span class="st">'n_estimators'</span>:[<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">300</span>],<span class="st">'max_depth'</span>:[<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>], </span>
 <span id="cb45-11"><a aria-hidden="true" href="#cb45-11" tabindex="-1"></a>              <span class="st">'max_features'</span>:[<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>],<span class="st">'criterion'</span>:[<span class="st">'entropy'</span>,<span class="st">'gini'</span>]}</span>
 <span id="cb45-12"><a aria-hidden="true" href="#cb45-12" tabindex="-1"></a></span>
 <span id="cb45-13"><a aria-hidden="true" href="#cb45-13" tabindex="-1"></a><span class="co"># Test the code quickly with the small experiment below.</span></span>
 <span id="cb45-14"><a aria-hidden="true" href="#cb45-14" tabindex="-1"></a><span class="co"># parameters = {'n_estimators':[50,100],'max_depth':[2], 'max_features':[1], 'criterion':['entropy']}</span></span>
 <span id="cb45-15"><a aria-hidden="true" href="#cb45-15" tabindex="-1"></a><span class="bu">print</span>(parameters)</span></code></pre>
       </div>
-      <pre><code>{'n_estimators': [100, 200, 300], 'max_depth': [5, 10, 15, None], 'max_features': [5, 10, 20], 'criterion': ['entropy', 'gini']}</code></pre>
+      <pre><code>{'n_estimators': [100, 200, 300], 'max_depth': [5, 10, 15], 'max_features': [5, 10, 20], 'criterion': ['entropy', 'gini']}</code></pre>
      </section>
      <section class="slide level2" id="run-the-grid-search">
       <h2>
@@ -1877,18 +1877,18 @@ pandas data frame for ease of analysis and graphing.
 <span id="cb49-2"><a aria-hidden="true" href="#cb49-2" tabindex="-1"></a><span class="bu">print</span>(exp_results.head(<span class="dv">5</span>))</span></code></pre>
       </div>
       <pre><code>   mean_fit_time  std_fit_time  mean_score_time  std_score_time  \
-0       0.215874      0.009267         0.011895        0.000333   
-1       0.420698      0.005760         0.020929        0.000414   
-2       0.662774      0.026920         0.030896        0.002879   
-3       0.299156      0.011698         0.013054        0.000335   
-4       0.589848      0.042379         0.023388        0.002928   
+0       0.216209      0.001490         0.012136        0.000189   
+1       0.415532      0.001928         0.020343        0.000267   
+2       0.623575      0.004016         0.029698        0.000583   
+3       0.285812      0.004695         0.012731        0.000538   
+4       0.570524      0.005986         0.021670        0.000698   
 
-  param_criterion param_max_depth  param_max_features  param_n_estimators  \
-0         entropy               5                   5                 100   
-1         entropy               5                   5                 200   
-2         entropy               5                   5                 300   
-3         entropy               5                  10                 100   
-4         entropy               5                  10                 200   
+  param_criterion  param_max_depth  param_max_features  param_n_estimators  \
+0         entropy                5                   5                 100   
+1         entropy                5                   5                 200   
+2         entropy                5                   5                 300   
+3         entropy                5                  10                 100   
+4         entropy                5                  10                 200   
 
                                               params  split0_test_score  \
 0  {'criterion': 'entropy', 'max_depth': 5, 'max_...           0.616808   
@@ -1905,9 +1905,9 @@ pandas data frame for ease of analysis and graphing.
 4           0.657829           0.626313           0.649325           0.636318   
 
    mean_test_score  std_test_score  rank_test_score  
-0         0.616708        0.010500               72  
-1         0.622711        0.010768               69  
-2         0.623812        0.008566               68  
+0         0.616708        0.010500               54  
+1         0.622711        0.010768               52  
+2         0.623812        0.008566               51  
 3         0.643722        0.009881               35  
 4         0.641321        0.011019               43  </code></pre>
      </section>
@@ -1920,98 +1920,9 @@ pandas data frame for ease of analysis and graphing.
 <span id="cb51-2"><a aria-hidden="true" href="#cb51-2" tabindex="-1"></a>            row<span class="op">=</span><span class="st">'param_max_features'</span>, hue<span class="op">=</span><span class="st">'param_criterion'</span>)<span class="op">;</span></span>
 <span id="cb51-3"><a aria-hidden="true" href="#cb51-3" tabindex="-1"></a><span class="cf">pass</span></span></code></pre>
       </div>
-      <pre><code>---------------------------------------------------------------------------
-
-AttributeError                            Traceback (most recent call last)
-
-File ~\anaconda3\Lib\site-packages\seaborn\_base.py:1768, in categorical_order(vector, order)
-   1767 try:
--&gt; 1768     order = vector.cat.categories
-   1769 except (TypeError, AttributeError):
-
-
-File ~\anaconda3\Lib\site-packages\pandas\core\generic.py:6321, in NDFrame.__getattr__(self, name)
-   6320     return self[name]
--&gt; 6321 return object.__getattribute__(self, name)
-
-
-File ~\anaconda3\Lib\site-packages\pandas\core\accessor.py:224, in CachedAccessor.__get__(self, obj, cls)
-    223     return self._accessor
---&gt; 224 accessor_obj = self._accessor(obj)
-    225 # Replace the property with the accessor object. Inspired by:
-    226 # https://www.pydanny.com/cached-property.html
-    227 # We need to use object.__setattr__ because we overwrite __setattr__ on
-    228 # NDFrame
-
-
-File ~\anaconda3\Lib\site-packages\pandas\core\arrays\categorical.py:2939, in CategoricalAccessor.__init__(self, data)
-   2938 def __init__(self, data) -&gt; None:
--&gt; 2939     self._validate(data)
-   2940     self._parent = data.values
-
-
-File ~\anaconda3\Lib\site-packages\pandas\core\arrays\categorical.py:2948, in CategoricalAccessor._validate(data)
-   2947 if not isinstance(data.dtype, CategoricalDtype):
--&gt; 2948     raise AttributeError("Can only use .cat accessor with a 'category' dtype")
-
-
-AttributeError: Can only use .cat accessor with a 'category' dtype
-
-
-During handling of the above exception, another exception occurred:
-
-
-TypeError                                 Traceback (most recent call last)
-
-Cell In[35], line 1
-----&gt; 1 sns.catplot(y='mean_test_score', x='param_max_depth', data=exp_results, col='param_n_estimators', 
-      2             row='param_max_features', hue='param_criterion');
-      3 pass
-
-
-File ~\anaconda3\Lib\site-packages\seaborn\categorical.py:2782, in catplot(data, x, y, hue, row, col, kind, estimator, errorbar, n_boot, seed, units, weights, order, hue_order, row_order, col_order, col_wrap, height, aspect, log_scale, native_scale, formatter, orient, color, palette, hue_norm, legend, legend_out, sharex, sharey, margin_titles, facet_kws, ci, **kwargs)
-   2779     elif x is not None and y is not None:
-   2780         raise ValueError("Cannot pass values for both `x` and `y`.")
--&gt; 2782 p = Plotter(
-   2783     data=data,
-   2784     variables=dict(
-   2785         x=x, y=y, hue=hue, row=row, col=col, units=units, weight=weights
-   2786     ),
-   2787     order=order,
-   2788     orient=orient,
-   2789     # Handle special backwards compatibility where pointplot originally
-   2790     # did *not* default to multi-colored unless a palette was specified.
-   2791     color="C0" if kind == "point" and palette is None and color is None else color,
-   2792     legend=legend,
-   2793 )
-   2795 for var in ["row", "col"]:
-   2796     # Handle faceting variables that lack name information
-   2797     if var in p.variables and p.variables[var] is None:
-
-
-File ~\anaconda3\Lib\site-packages\seaborn\categorical.py:131, in _CategoricalPlotter.__init__(self, data, variables, order, orient, require_numeric, color, legend)
-    128     self.plot_data[self.orient] = ""
-    130 # Categorical variables have discrete levels that we need to track
---&gt; 131 cat_levels = categorical_order(self.plot_data[self.orient], order)
-    132 self.var_levels[self.orient] = cat_levels
-
-
-File ~\anaconda3\Lib\site-packages\seaborn\_base.py:1774, in categorical_order(vector, order)
-   1771             order = pd.Series(vector).unique()
-   1773             if variable_type(vector) == "numeric":
--&gt; 1774                 order = np.sort(order)
-   1776     order = filter(pd.notnull, order)
-   1777 return list(order)
-
-
-File ~\anaconda3\Lib\site-packages\numpy\_core\fromnumeric.py:1121, in sort(a, axis, kind, order, stable)
-   1119 else:
-   1120     a = asanyarray(a).copy(order="K")
--&gt; 1121 a.sort(axis=axis, kind=kind, order=order, stable=stable)
-   1122 return a
-
-
-TypeError: '&lt;' not supported between instances of 'NoneType' and 'int'</code></pre>
+      <p>
+       <img data-src="module_08_files/module_08_99_0.png"/>
+      </p>
      </section>
      <section class="slide level2" id="checking-the-test-auc">
       <h2>
@@ -2022,10 +1933,10 @@ TypeError: '&lt;' not supported between instances of 'NoneType' and 'int'</code>
         Just as before we can obtain the test data set AUC.
        </li>
       </ul>
-      <div class="sourceCode" id="cb53">
-       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a aria-hidden="true" href="#cb53-1" tabindex="-1"></a>y_pred <span class="op">=</span> clf.predict_proba(X_test)</span>
-<span id="cb53-2"><a aria-hidden="true" href="#cb53-2" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test, y_pred[:, <span class="dv">1</span>], pos_label<span class="op">=</span><span class="st">'NS'</span>)</span>
-<span id="cb53-3"><a aria-hidden="true" href="#cb53-3" tabindex="-1"></a><span class="bu">print</span>(roc_auc_score(y_test, y_pred[:, <span class="dv">1</span>]))</span></code></pre>
+      <div class="sourceCode" id="cb52">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a aria-hidden="true" href="#cb52-1" tabindex="-1"></a>y_pred <span class="op">=</span> clf.predict_proba(X_test)</span>
+<span id="cb52-2"><a aria-hidden="true" href="#cb52-2" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test, y_pred[:, <span class="dv">1</span>], pos_label<span class="op">=</span><span class="st">'NS'</span>)</span>
+<span id="cb52-3"><a aria-hidden="true" href="#cb52-3" tabindex="-1"></a><span class="bu">print</span>(roc_auc_score(y_test, y_pred[:, <span class="dv">1</span>]))</span></code></pre>
       </div>
       <pre><code>0.6973479343706591</code></pre>
       <p>
