@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="pandoc" name="generator"/>
+  <meta content="Richard Waterman" name="author"/>
+  <title>
+   Stat 4770/7770, Module 09
+  </title>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"/>
+  <link href="reveal.js/dist/reset.css" rel="stylesheet"/>
+  <link href="reveal.js/dist/reveal.css" rel="stylesheet"/>
+  <style>
+   .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link href="reveal.js/dist/theme/white.css" id="theme" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="reveal">
+   <div class="slides">
+    <section id="title-slide">
+     <h1 class="title">
+      Stat 4770/7770, Module 09
+     </h1>
+     <p class="author">
+      Richard Waterman
+     </p>
+     <p class="date">
+      October 2026
+     </p>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="objectives">
+      <h1>
+       Objectives
+      </h1>
+     </section>
+     <section class="slide level2" id="objectives-1">
+      <h2>
+       Objectives
+      </h2>
+      <ul>
+       <li>
+        An overview of scientific computing and numpy:
+        <ul>
+         <li>
+          Examples from science.
+         </li>
+        </ul>
+       </li>
+       <li>
+        Vectors, matrices and arrays.
+       </li>
+       <li>
+        Images as numbers.
+       </li>
+       <li>
+        Monte Carlo simulation.
+       </li>
+       <li>
+        Optimization algorithms.
+       </li>
+      </ul>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="scientific-computing">
+      <h1>
+       Scientific computing
+      </h1>
+     </section>
+     <section class="slide level2" id="scientific-computing-1">
+      <h2>
+       Scientific computing
+      </h2>
+      <p>
+       <img data-src="images/cogs.jpg" height="240" width="360"/>
+       <img data-src="images/data-center.jpg" height="240" width="360"/>
+      </p>
+     </section>
+     <section class="slide level2" id="scientific-computing-2">
+      <h2>
+       Scientific computing
+      </h2>
+      <ul>
+       <li>
+        Computational methods for solving real world science problems. Among
+many examples are:
+        <ul>
+         <li>
+          Biology: genomics (an interdisciplinary field of biology focusing on
+the structure, function, evolution, mapping, and editing of
+genomes).
+         </li>
+         <li>
+          Physics: The High-Luminosity Large Hadron Collider.
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <blockquote>
+       <p>
+        The next-generation of HPC technology offers great promise for
+supporting scientific research. Exascale supercomputers – machines
+capable of performing a quintillion, or a billion billion, calculations
+per second – are expected to become a reality in the next few years.
+This change in the power of HPC technology, coupled with growing use of
+        <em>
+         machine learning
+        </em>
+        , will be vital in ensuring the success of big
+science projects …
+       </p>
+      </blockquote>
+     </section>
+     <section class="slide level2" id="scientific-computing-ctd.">
+      <h2>
+       Scientific computing (ctd.)
+      </h2>
+      <ul>
+       <li>
+        Chemistry:
+        <a href="https://deepmind.com/blog/article/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology">
+         protein
+folding
+        </a>
+        and pharmaceutical development.
+       </li>
+       <li>
+        Engineering: computer vision and autonomous vehicles.
+       </li>
+       <li>
+        Astronomy: wide scale sky surveys.
+       </li>
+       <li>
+        What these areas have in common are massive data sets and the need
+for huge computational resources.
+       </li>
+       <li>
+        We will also look at some more Monte Carlo simulations to solve
+probabilistic modeling problems.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="confused-vehicles">
+      <h2>
+       Confused vehicles
+      </h2>
+      <p>
+       <img data-src="images/baidu_auto.jpg" height="283" width="504"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="numpy">
+      <h1>
+       numpy
+      </h1>
+     </section>
+     <section class="slide level2" id="numpy-1">
+      <h2>
+       numpy
+      </h2>
+      <ul>
+       <li>
+        We will use the extremely popular ‘numpy’ library.
+       </li>
+       <li>
+        numpy implements advanced mathematical operations on potentially
+very large data sets more efficiently than could be done with the native
+Python data structures.
+       </li>
+       <li>
+        In particular it supports
+        <em>
+         arrays
+        </em>
+        , as the core data
+structure.
+       </li>
+       <li>
+        An array will be more restrictive than a pandas data frame, but
+consequently can be processed more efficiently.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="one-dimensional-arrays">
+      <h2>
+       One dimensional arrays
+      </h2>
+      <ul>
+       <li>
+        A one dimensional array is called a ‘vector’.
+       </li>
+       <li>
+        An example of a vector is the position of a point in 3-space.
+       </li>
+       <li>
+        There will be x, y and z components to the vector. Below is a
+picture of the point (2, 3, 5) in 3-space.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/point-3space.png" height="357" width="359"/>
+      </p>
+     </section>
+     <section class="slide level2" id="operations-on-1-d-arrays">
+      <h2>
+       Operations on 1-d arrays
+      </h2>
+      <ul>
+       <li>
+        <p>
+         A key operation for vectors is the “dot product”.
+        </p>
+       </li>
+       <li>
+        <p>
+         If we have two vectors x and y, where
+         <span class="math inline">
+          \(x = \begin{pmatrix}x_1 \\ x_2 \\ x_3
+\end{pmatrix}\)
+         </span>
+         and
+         <span class="math inline">
+          \(y =
+\begin{pmatrix}y_1 \\ y_2 \\ y_3 \end{pmatrix}\)
+         </span>
+         , then their dot
+product, written as
+         <span class="math inline">
+          \(x \cdot y\)
+         </span>
+         , is:
+         <span class="math inline">
+          \(x_1 y_1 + x_2 y_2 + x_3
+y_3\)
+         </span>
+         .
+        </p>
+       </li>
+       <li>
+        <p>
+         For an example let’s say
+         <span class="math inline">
+          \(x =
+\begin{pmatrix} 2 \\ 3 \\ 5 \end{pmatrix}\)
+         </span>
+         and
+         <span class="math inline">
+          \(y = \begin{pmatrix} 3 \\ 2 \\ 4
+\end{pmatrix}\)
+         </span>
+         , then their dot product is
+         <span class="math inline">
+          \(2 * 3 + 3 * 2 + 5 * 4 = 6 + 6 + 20 =
+32\)
+         </span>
+         .
+        </p>
+       </li>
+       <li>
+        <p>
+         In numpy these vectors would be called
+         <strong>
+          arrays
+         </strong>
+         .
+        </p>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="implementing-the-dot-product-with-numpy">
+      <h2>
+       Implementing the dot product with numpy
+      </h2>
+      <div class="sourceCode" id="cb1">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>])</span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>])</span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a>np.dot(x,y) <span class="co"># The dot product between two vectors.</span></span></code></pre>
+      </div>
+      <pre><code>np.int64(32)</code></pre>
+     </section>
+     <section class="slide level2" id="vectorized-operations">
+      <h2>
+       Vectorized operations
+      </h2>
+      <ul>
+       <li>
+        One of the key features of numpy is the use of ‘vectorization’ of
+operations on arrays.
+       </li>
+       <li>
+        What vectorization means is that we can apply functions to the array
+as a whole, and not have to write for loops to iterate over the array
+elements.
+       </li>
+       <li>
+        For example, if we have two vectors, with the same number of
+elements we can do elementwise addition simple by using the ‘+’
+operator.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb3">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y) <span class="co"># Addition element wise</span></span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">*</span> y) <span class="co"># Multiplication elementwise</span></span></code></pre>
+      </div>
+      <pre><code>[5 5 9]
+[ 6  6 20]</code></pre>
+     </section>
+     <section class="slide level2" id="adding-two-lists">
+      <h2>
+       Adding two lists?
+      </h2>
+      <ul>
+       <li>
+        Look what happens if we had created two lists in Python and tried to
+add them:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb5">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>x_1 <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>]</span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a>y_1 <span class="op">=</span> [<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>]</span>
+<span id="cb5-3"><a aria-hidden="true" href="#cb5-3" tabindex="-1"></a>x_1 <span class="op">+</span> y_1 <span class="co"># Here, Python concatenated the two lists!</span></span></code></pre>
+      </div>
+      <pre><code>[2, 3, 5, 3, 2, 4]</code></pre>
+     </section>
+     <section class="slide level2" id="non-conforming-dimensions">
+      <h2>
+       Non-conforming dimensions
+      </h2>
+      <ul>
+       <li>
+        If the vectors do not have the same length and we try and add them,
+then:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb7">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>])</span>
+<span id="cb7-2"><a aria-hidden="true" href="#cb7-2" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">8</span>])</span>
+<span id="cb7-3"><a aria-hidden="true" href="#cb7-3" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">+</span> b)</span></code></pre>
+      </div>
+      <pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+Cell In[4], line 3
+      1 a = np.array([2,3,5])
+      2 b = np.array([3,2,4,7,2,8])
+----&gt; 3 print(a + b)
+
+
+ValueError: operands could not be broadcast together with shapes (3,) (6,) </code></pre>
+     </section>
+     <section class="slide level2" id="the-dot-product-of-a-vector-with-itself">
+      <h2>
+       The dot product of a vector with itself
+      </h2>
+      <ul>
+       <li>
+        For the special case of a vector with three elements, the dot
+product
+        <span class="math inline">
+         \(x\cdot x\)
+        </span>
+        is
+        <span class="math inline">
+         \(x_1^2 +x_2^2 + x_3^2\)
+        </span>
+        .
+        <br/>
+       </li>
+       <li>
+        That is, the sum of the squares of the individual elements.
+       </li>
+       <li>
+        For the vector
+        <span class="math inline">
+         \(x = \begin{pmatrix} 2 \\
+3 \\ 5 \end{pmatrix}\)
+        </span>
+        this is
+        <span class="math inline">
+         \(2^2 +
+3^2 + 5^2 = 38\)
+        </span>
+        .
+       </li>
+       <li>
+        The
+        <em>
+         length
+        </em>
+        of the vector is the square root of the dot
+product, here,
+        <span class="math inline">
+         \(\sqrt{38} =
+6.164\)
+        </span>
+        .
+       </li>
+       <li>
+        This is written as
+        <span class="math inline">
+         \(\|x\|\)
+        </span>
+        .
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb9">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>sq_length_x <span class="op">=</span> np.dot(x,x) <span class="co"># The dot product command.</span></span>
+<span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The length of the vector is"</span>, np.sqrt(sq_length_x)) <span class="co"># numpy has its own square root.</span></span></code></pre>
+      </div>
+      <pre><code>The length of the vector is 6.164414002968976</code></pre>
+     </section>
+     <section class="slide level2" id="the-normalized-dot-product">
+      <h2>
+       The normalized dot product
+      </h2>
+      <ul>
+       <li>
+        We will calculate the quantity:
+        <span class="math display">
+         \[
+\frac{x \cdot y}{\|x\| \|y\|}.\]
+        </span>
+       </li>
+       <li>
+        This is in fact the cosine of the angle between the two
+vectors.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb11">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a>length_x <span class="op">=</span> np.sqrt(np.dot(x,x))</span>
+<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a>length_y <span class="op">=</span> np.sqrt(np.dot(y,y))</span>
+<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a>result <span class="op">=</span> np.dot(x,y)<span class="op">/</span>(length_x <span class="op">*</span> length_y)</span>
+<span id="cb11-5"><a aria-hidden="true" href="#cb11-5" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre>
+      </div>
+      <pre><code>0.9639603730060448</code></pre>
+     </section>
+     <section class="slide level2" id="speed-test">
+      <h2>
+       Speed test
+      </h2>
+      <ul>
+       <li>
+        We now create some very large vectors, and see how long numpy takes
+to calculate their inner product, as compared to a ‘for loop’.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb13">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb13-2"><a aria-hidden="true" href="#cb13-2" tabindex="-1"></a>x1 <span class="op">=</span> np.random.randn(<span class="dv">10000000</span>) <span class="co"># A long random vector</span></span>
+<span id="cb13-3"><a aria-hidden="true" href="#cb13-3" tabindex="-1"></a>y1 <span class="op">=</span> np.random.randn(<span class="dv">10000000</span>) <span class="co"># A long random vector</span></span>
+<span id="cb13-4"><a aria-hidden="true" href="#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a aria-hidden="true" href="#cb13-5" tabindex="-1"></a>x2 <span class="op">=</span> <span class="bu">list</span>(x1) <span class="co"># The same numbers as above, but now in a list.</span></span>
+<span id="cb13-6"><a aria-hidden="true" href="#cb13-6" tabindex="-1"></a>y2 <span class="op">=</span> <span class="bu">list</span>(y1)</span>
+<span id="cb13-7"><a aria-hidden="true" href="#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a aria-hidden="true" href="#cb13-8" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(x1)) <span class="co"># Confirming that we have two different data structures.</span></span>
+<span id="cb13-9"><a aria-hidden="true" href="#cb13-9" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(x2))</span></code></pre>
+      </div>
+      <pre><code>&lt;class 'numpy.ndarray'&gt;
+&lt;class 'list'&gt;</code></pre>
+     </section>
+     <section class="slide level2" id="time-the-numpy-dot-product">
+      <h2>
+       Time the numpy dot product
+      </h2>
+      <ul>
+       <li>
+        The %%timeit in the cell is known as a “magic” and times how long
+the cell takes to run.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb15">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a><span class="op">%%</span>timeit</span>
+<span id="cb15-2"><a aria-hidden="true" href="#cb15-2" tabindex="-1"></a>dot_p <span class="op">=</span> np.dot(x1,y1)</span></code></pre>
+      </div>
+      <pre><code>4.51 ms ± 140 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+      <div class="sourceCode" id="cb17">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a>dot_p <span class="op">=</span> np.dot(x1,y1) <span class="co"># We need to run the command again, as the timeit cell output doesn't get remembered.</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="timing-a-for-loop">
+      <h2>
+       Timing a ‘for loop’
+      </h2>
+      <div class="sourceCode" id="cb18">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a><span class="op">%%</span>timeit</span>
+<span id="cb18-2"><a aria-hidden="true" href="#cb18-2" tabindex="-1"></a>counter <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-3"><a aria-hidden="true" href="#cb18-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span> (x2)):</span>
+<span id="cb18-4"><a aria-hidden="true" href="#cb18-4" tabindex="-1"></a>    counter <span class="op">+=</span> x2[i] <span class="op">*</span> y2[i]</span></code></pre>
+      </div>
+      <pre><code>1.24 s ± 71.7 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+      <div class="sourceCode" id="cb20">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a aria-hidden="true" href="#cb20-1" tabindex="-1"></a>counter <span class="op">=</span> <span class="dv">0</span> <span class="co"># We need to run the command again, as the timeit cell output doesn't get remembered.</span></span>
+<span id="cb20-2"><a aria-hidden="true" href="#cb20-2" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span> (x2)):</span>
+<span id="cb20-3"><a aria-hidden="true" href="#cb20-3" tabindex="-1"></a>    counter <span class="op">+=</span> x2[i] <span class="op">*</span> y2[i]</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="check-the-two-answers-agree">
+      <h2>
+       Check the two answers agree
+      </h2>
+      <ul>
+       <li>
+        The conclusion is that by using numpy’s data structures and
+functions you can speed things up dramatically.
+       </li>
+       <li>
+        numpy took about 5 milliseconds, whereas the for loop took about 400
+times longer.
+       </li>
+       <li>
+        We’ll check that the two approaches did infact get the same
+answer:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb21">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a aria-hidden="true" href="#cb21-1" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"With the numpy dot product the answer is"</span>, dot_p)</span>
+<span id="cb21-2"><a aria-hidden="true" href="#cb21-2" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"With the for loop the answer is"</span>, counter)</span></code></pre>
+      </div>
+      <pre><code>With the numpy dot product the answer is -822.279631499945
+With the for loop the answer is -822.2796314999154</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="matrices">
+      <h1>
+       Matrices
+      </h1>
+     </section>
+     <section class="slide level2" id="matrices-1">
+      <h2>
+       Matrices
+      </h2>
+      <ul>
+       <li>
+        A two dimensional array is called a matrix.
+       </li>
+       <li>
+        You can think of it as a vector, where each element is itself a
+vector.
+       </li>
+       <li>
+        Here’s a two row, three column matrix:
+        <span class="math display">
+         \[
+A = \begin{pmatrix} 3 &amp; 2 &amp;  6 \\ 4 &amp; 7 &amp; 5
+\end{pmatrix}.\]
+        </span>
+       </li>
+       <li>
+        One of the most basic operations on a matrix, is to find its
+transpose.
+       </li>
+       <li>
+        A transpose, switches the rows to columns.
+        <span class="math display">
+         \[ A^T = \begin{pmatrix} 3 &amp;  4 \\ 2 &amp;  7
+\\ 6 &amp; 5 \end{pmatrix}.\]
+        </span>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="matrix-transpose">
+      <h2>
+       Matrix transpose
+      </h2>
+      <ul>
+       <li>
+        In numpy the transpose is achieved through the ‘transpose’ function,
+which you can call in different ways, but the easiest is ‘.T’.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb23">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a aria-hidden="true" href="#cb23-1" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span> , <span class="dv">2</span> ,  <span class="dv">6</span>], [ <span class="dv">4</span> , <span class="dv">7</span> , <span class="dv">5</span>]])  <span class="co">#A vector of vectors.</span></span>
+<span id="cb23-2"><a aria-hidden="true" href="#cb23-2" tabindex="-1"></a><span class="bu">print</span>(A)</span>
+<span id="cb23-3"><a aria-hidden="true" href="#cb23-3" tabindex="-1"></a>a_trans <span class="op">=</span> A.T</span>
+<span id="cb23-4"><a aria-hidden="true" href="#cb23-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">The transpose is:</span><span class="ch">\n</span><span class="st">"</span>, a_trans)</span></code></pre>
+      </div>
+      <pre><code>[[3 2 6]
+ [4 7 5]]
+
+The transpose is:
+ [[3 4]
+ [2 7]
+ [6 5]]</code></pre>
+     </section>
+     <section class="slide level2" id="matrix-multiplication">
+      <h2>
+       Matrix multiplication
+      </h2>
+      <ul>
+       <li>
+        A key operation on matrices is their multiplication.
+       </li>
+       <li>
+        It involves finding the dot product of every row with every
+column.
+       </li>
+       <li>
+        Here are two matrices that we will multiply:
+        <span class="math display">
+         \[ A = \begin{pmatrix} 3 &amp; 2 &amp;  6 \\ 4
+&amp; 7 &amp; 5 \end{pmatrix},\]
+        </span>
+        <span class="math display">
+         \[ B
+= \begin{pmatrix} 1 &amp; 4 &amp; 2&amp; 9 \\ 4 &amp; 2 &amp; 1 &amp; 3
+\\ 6 &amp; 2 &amp; 4 &amp; 9 \end{pmatrix}.\]
+        </span>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="matrix-multiplication-1">
+      <h2>
+       Matrix multiplication
+      </h2>
+      <ul>
+       <li>
+        There will be two rows and 4 columns in the matrix product:
+        <span class="math display">
+         \[ A * B = \begin{pmatrix} 3 &amp; 2 &amp;  6 \\ 4
+&amp; 7 &amp; 5 \end{pmatrix} * \begin{pmatrix} 1 &amp; 4 &amp; 2&amp; 9
+\\ 4 &amp; 2 &amp; 1 &amp; 3 \\ 6 &amp; 2 &amp; 4 &amp; 9 \end{pmatrix}
+=
+\begin{pmatrix} 47 &amp; 28 &amp;  32 &amp; 87 \\ 62 &amp; 40 &amp; 35
+&amp; 102 \end{pmatrix}
+.\]
+        </span>
+       </li>
+       <li>
+        For example, the element in the second row and the third column of
+the result, 35, comes from the dot product of the second row in A with
+the third column in B.
+       </li>
+       <li>
+        That is
+        <span class="math inline">
+         \(\begin{pmatrix} 4 \\ 7 \\ 5
+\end{pmatrix} \cdot \begin{pmatrix} 2 \\ 1 \\ 4 \end{pmatrix} = 4*2 +
+7*1 + 5*4 = 35.\)
+        </span>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="implementation-in-numpy">
+      <h2>
+       Implementation in numpy
+      </h2>
+      <ul>
+       <li>
+        Note the ‘@’ sign below to perform matrix multiplication and not the
+usual ’*’.
+       </li>
+       <li>
+        If the two matrices had the same dimensions, the ’*’ would do
+elementwise multiplication.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb25">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a aria-hidden="true" href="#cb25-1" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span> , <span class="dv">2</span> ,  <span class="dv">6</span>], [ <span class="dv">4</span> , <span class="dv">7</span> , <span class="dv">5</span>]])  <span class="co">#A vector of vectors.</span></span>
+<span id="cb25-2"><a aria-hidden="true" href="#cb25-2" tabindex="-1"></a>B <span class="op">=</span> np.array([[<span class="dv">1</span> , <span class="dv">4</span> , <span class="dv">2</span> , <span class="dv">9</span>], [<span class="dv">4</span> , <span class="dv">2</span> , <span class="dv">1</span> , <span class="dv">3</span>], [<span class="dv">6</span> , <span class="dv">2</span> , <span class="dv">4</span> , <span class="dv">9</span>]]) </span>
+<span id="cb25-3"><a aria-hidden="true" href="#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a aria-hidden="true" href="#cb25-4" tabindex="-1"></a><span class="bu">print</span>(A <span class="op">@</span> B) <span class="co"># Note the "@" to multiply two matrices.</span></span></code></pre>
+      </div>
+      <pre><code>[[ 47  28  32  87]
+ [ 62  40  35 102]]</code></pre>
+     </section>
+     <section class="slide level2" id="matrix-inverse">
+      <h2>
+       Matrix inverse
+      </h2>
+      <ul>
+       <li>
+        One of the important operations on
+        <strong>
+         <em>
+          square
+         </em>
+        </strong>
+        matrices (a matrix with the same number of rows as columns) is to find
+their “inverse”.
+       </li>
+       <li>
+        The inverse of a matrix
+        <span class="math inline">
+         \(A\)
+        </span>
+        ,
+written as
+        <span class="math inline">
+         \(A^{-1}\)
+        </span>
+        is matrix such
+that their product, equals the identity matrix.
+       </li>
+       <li>
+        The identity matrix is square matrix with ones on the diagonal and
+zeros everywhere else.
+       </li>
+       <li>
+        For example, the three-by-three identity matrix looks like this:
+        <span class="math display">
+         \[ \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0
+&amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}.\]
+        </span>
+       </li>
+       <li>
+        In numpy the function ‘linalg.inv()’ will find the matrix
+inverse.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="inverting-a-matrix-with-numpy">
+      <h2>
+       Inverting a matrix with numpy
+      </h2>
+      <ul>
+       <li>
+        We will invert the matrix
+        <span class="math inline">
+         \(\begin{pmatrix} 1 &amp; 2 &amp; 1 \\ 1 &amp; 1
+&amp; 0 \\ 1 &amp; 0 &amp; 0 \end{pmatrix}\)
+        </span>
+        .
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb27">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a aria-hidden="true" href="#cb27-1" tabindex="-1"></a>C <span class="op">=</span> np.array([[<span class="dv">1</span> , <span class="dv">2</span> , <span class="dv">1</span>], [<span class="dv">1</span> , <span class="dv">1</span> , <span class="dv">0</span>], [<span class="dv">1</span> , <span class="dv">0</span> , <span class="dv">0</span>]]) <span class="co"># Enter the matrix.</span></span>
+<span id="cb27-2"><a aria-hidden="true" href="#cb27-2" tabindex="-1"></a>C_inv <span class="op">=</span> np.linalg.inv(C) <span class="co"># The matrix inverse function.</span></span>
+<span id="cb27-3"><a aria-hidden="true" href="#cb27-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Here's the inverse:</span><span class="ch">\n</span><span class="st">"</span>,  C_inv)</span>
+<span id="cb27-4"><a aria-hidden="true" href="#cb27-4" tabindex="-1"></a><span class="co"># Confirm it really is the inverse:</span></span>
+<span id="cb27-5"><a aria-hidden="true" href="#cb27-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Here's the identity matrix obtained from their product:</span><span class="ch">\n</span><span class="st">"</span>, C <span class="op">@</span> C_inv)</span></code></pre>
+      </div>
+      <pre><code>Here's the inverse:
+ [[ 0.  0.  1.]
+ [-0.  1. -1.]
+ [ 1. -2.  1.]]
+
+Here's the identity matrix obtained from their product:
+ [[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]</code></pre>
+     </section>
+     <section class="slide level2" id="least-squares">
+      <h2>
+       Least squares
+      </h2>
+      <ul>
+       <li>
+        Returning to regression, if we write the predictor variables in a
+matrix
+        <span class="math inline">
+         \(X\)
+        </span>
+        and the outcome variable
+in a vector
+        <span class="math inline">
+         \(Y\)
+        </span>
+        , then you can show
+that the Least Squares estimates of the regression slopes are given by:
+        <span class="math display">
+         \[ \left(X^T X \right)^{-1} X^T
+Y.\]
+        </span>
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="regression-calculation">
+      <h2>
+       Regression calculation
+      </h2>
+      <ul>
+       <li>
+        We will use the 5K race data to illustrate.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb29">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a aria-hidden="true" href="#cb29-1" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb29-2"><a aria-hidden="true" href="#cb29-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-3"><a aria-hidden="true" href="#cb29-3" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">5</span>, suppress<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb29-4"><a aria-hidden="true" href="#cb29-4" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-5"><a aria-hidden="true" href="#cb29-5" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">4770f2025_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>)</span>
+<span id="cb29-6"><a aria-hidden="true" href="#cb29-6" tabindex="-1"></a>race_data <span class="op">=</span> pd.read_csv(<span class="st">"Run5K.csv"</span>)</span>
+<span id="cb29-7"><a aria-hidden="true" href="#cb29-7" tabindex="-1"></a>race_data[<span class="st">'Finish_Time'</span>] <span class="op">=</span> race_data[<span class="st">'Time_mins'</span>] <span class="op">+</span> race_data[<span class="st">'Time_secs'</span>]<span class="op">/</span><span class="dv">60</span> <span class="co"># Calculate the actual race time.</span></span></code></pre>
+      </div>
+      <div class="sourceCode" id="cb30">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a aria-hidden="true" href="#cb30-1" tabindex="-1"></a>Y <span class="op">=</span> np.array(race_data[<span class="st">'Finish_Time'</span>] ) <span class="co"># The outcome variable.</span></span>
+<span id="cb30-2"><a aria-hidden="true" href="#cb30-2" tabindex="-1"></a>X <span class="op">=</span> np.array(race_data[<span class="st">'AGE'</span>]) <span class="co"># The AGE variable.</span></span>
+<span id="cb30-3"><a aria-hidden="true" href="#cb30-3" tabindex="-1"></a>X <span class="op">=</span> np.stack([np.ones(<span class="bu">len</span>(X)), X]).T  <span class="co"># We prepend a column of 1's to capture the constant term, and transpose the result. </span></span>
+<span id="cb30-4"><a aria-hidden="true" href="#cb30-4" tabindex="-1"></a><span class="bu">print</span>(X[<span class="dv">0</span>:<span class="dv">5</span>]) <span class="co"># Just look at the top 5 rows:</span></span></code></pre>
+      </div>
+      <pre><code>[[ 1. 21.]
+ [ 1. 21.]
+ [ 1. 20.]
+ [ 1. 19.]
+ [ 1. 19.]]</code></pre>
+     </section>
+     <section class="slide level2" id="the-least-squares-calculation">
+      <h2>
+       The least squares calculation
+      </h2>
+      <ul>
+       <li>
+        Back in the class 7 notes we obtained 24.1633 for the intercept and
+0.0688 for the AGE slope.
+       </li>
+       <li>
+        Below we calculate these from the basic linear algebra operations
+and confirm that it works!
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb32">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a aria-hidden="true" href="#cb32-1" tabindex="-1"></a><span class="co"># This is (X^T X)^{-1} X^T Y</span></span>
+<span id="cb32-2"><a aria-hidden="true" href="#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a aria-hidden="true" href="#cb32-3" tabindex="-1"></a>np.linalg.inv(X.T <span class="op">@</span> X) <span class="op">@</span> X.T <span class="op">@</span> Y</span></code></pre>
+      </div>
+      <pre><code>array([24.16335,  0.06884])</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="representing-a-picture-as-a-matrix">
+      <h1>
+       Representing a picture as a matrix
+      </h1>
+     </section>
+     <section class="slide level2" id="representing-a-picture-as-a-matrix-1">
+      <h2>
+       Representing a picture as a matrix
+      </h2>
+      <ul>
+       <li>
+        If you consider a black and white picture as a grid of tiny black or
+white squares (pixels), you can represent it as a numeric matrix of
+zeros and ones.
+       </li>
+       <li>
+        Below is a picture of my dog Sophy, and her reduction to a binary
+matrix.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/sophy.jpg" height="565" width="565"/>
+       <img data-src="images/sophy_bw.png" height="565" width="565"/>
+      </p>
+     </section>
+     <section class="slide level2" id="sophy-as-a-matrix">
+      <h2>
+       Sophy as a matrix
+      </h2>
+      <div class="sourceCode" id="cb34">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" href="#cb34-1" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image <span class="co"># PIL is an image processing library</span></span>
+<span id="cb34-2"><a aria-hidden="true" href="#cb34-2" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">4770f2025_Q1</span><span class="ch">\\</span><span class="st">Notes</span><span class="ch">\\</span><span class="st">images'</span>)</span>
+<span id="cb34-3"><a aria-hidden="true" href="#cb34-3" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">"sophy_bw.bmp"</span>) <span class="co"># Open up Sophy's image.</span></span>
+<span id="cb34-4"><a aria-hidden="true" href="#cb34-4" tabindex="-1"></a>sophy <span class="op">=</span> np.array(im) <span class="co"># Turn Sophy's image into a numpy array.</span></span>
+<span id="cb34-5"><a aria-hidden="true" href="#cb34-5" tabindex="-1"></a><span class="bu">print</span>(sophy.shape) <span class="co"># Confirm her shape.</span></span>
+<span id="cb34-6"><a aria-hidden="true" href="#cb34-6" tabindex="-1"></a>sophy[<span class="dv">128</span>:<span class="dv">160</span>, <span class="dv">128</span>:<span class="dv">160</span>] <span class="co"># Review a small piece of Sophy </span></span></code></pre>
+      </div>
+      <pre><code>(256, 256)
+
+
+
+
+
+array([[False, False, False, ...,  True,  True,  True],
+       [False, False, False, ...,  True,  True,  True],
+       [False, False, False, ...,  True,  True,  True],
+       ...,
+       [ True,  True,  True, ...,  True,  True,  True],
+       [ True,  True,  True, ...,  True,  True,  True],
+       [ True,  True,  True, ...,  True,  True,  True]], shape=(32, 32))</code></pre>
+     </section>
+     <section class="slide level2" id="operating-on-sophy">
+      <h2>
+       Operating on Sophy
+      </h2>
+      <ul>
+       <li>
+        If Sophy is a matrix, we can apply matrix operations to her.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb36">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a aria-hidden="true" href="#cb36-1" tabindex="-1"></a><span class="co"># Negating Sophy</span></span>
+<span id="cb36-2"><a aria-hidden="true" href="#cb36-2" tabindex="-1"></a>not_sophy <span class="op">=</span> np.logical_not(sophy) <span class="co"># Turn True to False, and False to True.</span></span>
+<span id="cb36-3"><a aria-hidden="true" href="#cb36-3" tabindex="-1"></a>img <span class="op">=</span> Image.fromarray(not_sophy) <span class="co"># Make the image from the array.</span></span>
+<span id="cb36-4"><a aria-hidden="true" href="#cb36-4" tabindex="-1"></a><span class="co">#img.show()</span></span>
+<span id="cb36-5"><a aria-hidden="true" href="#cb36-5" tabindex="-1"></a><span class="co">#img.save('sophy_reverse.png')</span></span></code></pre>
+      </div>
+      <div class="sourceCode" id="cb37">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a aria-hidden="true" href="#cb37-1" tabindex="-1"></a><span class="co"># Transposing Sophy</span></span>
+<span id="cb37-2"><a aria-hidden="true" href="#cb37-2" tabindex="-1"></a>t_sophy <span class="op">=</span> sophy.T</span>
+<span id="cb37-3"><a aria-hidden="true" href="#cb37-3" tabindex="-1"></a>img <span class="op">=</span> Image.fromarray(t_sophy)</span>
+<span id="cb37-4"><a aria-hidden="true" href="#cb37-4" tabindex="-1"></a><span class="co">#img.show()</span></span>
+<span id="cb37-5"><a aria-hidden="true" href="#cb37-5" tabindex="-1"></a><span class="co">#img.save('sophy_transpose.png')</span></span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="poor-sophy">
+      <h2>
+       Poor Sophy!
+      </h2>
+      <ul>
+       <li>
+        Below we have Sophy’s logical not (the negative of the image), and
+her transpose.
+       </li>
+      </ul>
+      <p>
+       <img data-src="images/sophy_reverse.png" height="565" width="565"/>
+       <img data-src="images/sophy_transpose.png" height="565" width="565"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="monte-carlo-simulation">
+      <h1>
+       Monte Carlo simulation
+      </h1>
+     </section>
+     <section class="slide level2" id="monte-carlo-simulation-1">
+      <h2>
+       Monte Carlo simulation
+      </h2>
+      <p>
+       <img data-src="images/stocks.png" height="224" width="480"/>
+      </p>
+     </section>
+     <section class="slide level2" id="monte-carlo-simulation-2">
+      <h2>
+       Monte Carlo simulation
+      </h2>
+      <ul>
+       <li>
+        Monte Carlo simulations are probabilistic methods, that explore
+scenarios.
+       </li>
+       <li>
+        The underlying drivers of the process, are drawn at random from
+pre-specified probability distributions.
+       </li>
+       <li>
+        To create a realistic Monte Carlo simulation, you need to both
+understand how the process works, as well as knowing which probability
+distribution is relevant.
+       </li>
+       <li>
+        Not everything is normally distributed!
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="simulating-the-stock-market">
+      <h2>
+       Simulating the stock market
+      </h2>
+      <ul>
+       <li>
+        The goal is to create a feasible range of values for what the
+S&amp;P 500 will close at, at the end of the week.
+       </li>
+       <li>
+        We will obtain historical returns on the market as inputs to the
+model.
+       </li>
+       <li>
+        Based on the assumption that the future looks like the past, we
+randomly sample the historical returns, to simulate future returns.
+       </li>
+       <li>
+        We do the sampling under the assumption that daily returns are
+independent of one another.
+       </li>
+       <li>
+        Then from the closing price today, we will simulate the closing
+price in 5 days, by drawing 5 daily returns at random from the
+historical series.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="program-structure">
+      <h2>
+       Program structure
+      </h2>
+      <ul>
+       <li>
+        Read in the price data.
+       </li>
+       <li>
+        Calculate their returns.
+       </li>
+       <li>
+        Simulate 5 returns.
+       </li>
+       <li>
+        Calculate the resulting price 5 days into the future.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb38">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>os.chdir(<span class="st">'C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">water</span><span class="ch">\\</span><span class="st">Dropbox (Penn)</span><span class="ch">\\</span><span class="st">Richard</span><span class="ch">\\</span><span class="st">Teaching</span><span class="ch">\\</span><span class="st">4770f2025_Q1</span><span class="ch">\\</span><span class="st">DataSets'</span>)</span>
+<span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a>sp_data <span class="op">=</span> pd.read_csv(<span class="st">"S_and_P.csv"</span>) <span class="co"># Read in the prices.</span></span>
+<span id="cb38-3"><a aria-hidden="true" href="#cb38-3" tabindex="-1"></a><span class="bu">print</span>(sp_data.head(<span class="dv">5</span>))</span></code></pre>
+      </div>
+      <pre><code>       Date   ClosePrice
+0  1/2/2020  3257.850098
+1  1/3/2020  3234.850098
+2  1/6/2020  3246.280029
+3  1/7/2020  3237.179932
+4  1/8/2020  3253.050049</code></pre>
+     </section>
+     <section class="slide level2" id="calculating-a-return">
+      <h2>
+       Calculating a return
+      </h2>
+      <ul>
+       <li>
+        The return from 1/2/2020 to 1/3/2020 is defined as:
+        <span class="math display">
+         \[ \frac{3234.850098 - 3257.850098}{3257.850098} =
+-0.00706.\]
+        </span>
+       </li>
+       <li>
+        It is just like the percent change but without the 100 scaling
+factor.
+       </li>
+       <li>
+        In general we write:
+        <span class="math display">
+         \[R_t = \frac{P_t -
+P_{t-1}}{P_{t-1}}.\]
+        </span>
+       </li>
+       <li>
+        Pandas has the built in method ‘.pct_change()’ that will do the
+calculation.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="calculating-the-daily-return">
+      <h2>
+       Calculating the daily return
+      </h2>
+      <div class="sourceCode" id="cb40">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a aria-hidden="true" href="#cb40-1" tabindex="-1"></a>returns <span class="op">=</span> sp_data[<span class="st">'ClosePrice'</span>].pct_change()</span>
+<span id="cb40-2"><a aria-hidden="true" href="#cb40-2" tabindex="-1"></a><span class="bu">print</span>(returns[:<span class="dv">5</span>]) <span class="co"># The first element is missing because it has no prior price.</span></span></code></pre>
+      </div>
+      <pre><code>0         NaN
+1   -0.007060
+2    0.003533
+3   -0.002803
+4    0.004902
+Name: ClosePrice, dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="going-from-a-return-to-a-price">
+      <h2>
+       Going from a return to a price
+      </h2>
+      <ul>
+       <li>
+        Say yesterday’s price was 3000 and today’s return is 0.01, then what
+is the new price?
+       </li>
+       <li>
+        The
+        <strong>
+         increase
+        </strong>
+        in price is 3000 * 0.01 = 30.
+       </li>
+       <li>
+        So the new price is 3000 + 30 = 3030 = 3000 (1 + 0.01).
+       </li>
+       <li>
+        In general if yesterday’s price is
+        <span class="math inline">
+         \(P_{t-1}\)
+        </span>
+        , then today’s price is:
+        <span class="math inline">
+         \(P_t = P_{t-1} * (1 + R_t),\)
+        </span>
+        where
+        <span class="math inline">
+         \(R_t\)
+        </span>
+        is today’s return.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-five-day-return">
+      <h2>
+       The five day return
+      </h2>
+      <ul>
+       <li>
+        Say we had returns of 0.01, 0.02, -0.01, -0.015 and 0.005 over a
+five day period, then their overall effect on the price would be:
+        <span class="math display">
+         \[ P_5 = P_0 * (1 + 0.01) * (1 + 0.02) * (1 - 0.01)
+* (1 - 0.015) * (1 + 0.005) = P_0 * 1.0096.\]
+        </span>
+       </li>
+       <li>
+        We are now ready to simulate a week’s price activity based on
+randomly sampling 5 historical returns.
+       </li>
+       <li>
+        But first we need to drop the NaN in the returns’ series.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb42">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a aria-hidden="true" href="#cb42-1" tabindex="-1"></a>returns.drop([<span class="dv">0</span>], inplace<span class="op">=</span><span class="va">True</span>) <span class="co"># Drop the NaN element from the returns Series</span></span>
+<span id="cb42-2"><a aria-hidden="true" href="#cb42-2" tabindex="-1"></a>returns[:<span class="dv">5</span>]</span></code></pre>
+      </div>
+      <pre><code>1   -0.007060
+2    0.003533
+3   -0.002803
+4    0.004902
+5    0.006655
+Name: ClosePrice, dtype: float64</code></pre>
+     </section>
+     <section class="slide level2" id="calculate-the-price-at-the-end-of-the-week">
+      <h2>
+       Calculate the price at the end of the week
+      </h2>
+      <ul>
+       <li>
+        First we randomly sample 5 returns and calculate the price
+multipliers:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb44">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a aria-hidden="true" href="#cb44-1" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
+<span id="cb44-2"><a aria-hidden="true" href="#cb44-2" tabindex="-1"></a>week_returns <span class="op">=</span> np.random.choice(returns, size<span class="op">=</span><span class="dv">5</span>, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># A random draw of 5 returns.</span></span>
+<span id="cb44-3"><a aria-hidden="true" href="#cb44-3" tabindex="-1"></a><span class="bu">print</span>(week_returns) <span class="co"># Have a look at the sample.</span></span>
+<span id="cb44-4"><a aria-hidden="true" href="#cb44-4" tabindex="-1"></a>price_mults <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> week_returns) <span class="co"># Calculate the price multipliers. </span></span>
+<span id="cb44-5"><a aria-hidden="true" href="#cb44-5" tabindex="-1"></a><span class="bu">print</span>(price_mults)</span></code></pre>
+      </div>
+      <pre><code>[-0.09511 -0.00824 -0.04336 -0.00565  0.01243]
+[0.90489 0.99176 0.95664 0.99435 1.01243]</code></pre>
+     </section>
+     <section class="slide level2" id="the-cumulative-product-function">
+      <h2>
+       The cumulative product function
+      </h2>
+      <ul>
+       <li>
+        numpy has cumulative sum, and cumulative product functions to work
+with vectors.
+       </li>
+       <li>
+        The cumulative sum of (3, 2, 5, 4) is (3, 5, 10, 14).
+       </li>
+       <li>
+        The cumulative product of (3, 2, 5, 4) is (3, 6, 30, 120).
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb46">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a aria-hidden="true" href="#cb46-1" tabindex="-1"></a><span class="co"># The cumulative product of the price multipliers.</span></span>
+<span id="cb46-2"><a aria-hidden="true" href="#cb46-2" tabindex="-1"></a>price_mults.cumprod() <span class="co"># Note the last element is 0.90489 * 0.99176 * 0.95664 * 0.99435 * 1.01243 = 0.86428</span></span></code></pre>
+      </div>
+      <pre><code>array([0.90489, 0.89743, 0.85852, 0.85367, 0.86428])</code></pre>
+      <div class="sourceCode" id="cb48">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a aria-hidden="true" href="#cb48-1" tabindex="-1"></a><span class="co"># If the initial price were 3000 then after 5 days the price would be</span></span>
+<span id="cb48-2"><a aria-hidden="true" href="#cb48-2" tabindex="-1"></a><span class="dv">3000</span> <span class="op">*</span> price_mults.cumprod()[<span class="op">-</span><span class="dv">1</span>] <span class="co"># This is 3000 * 0.86428 = 2592.84.</span></span></code></pre>
+      </div>
+      <pre><code>np.float64(2592.8395299664826)</code></pre>
+     </section>
+     <section class="slide level2" id="create-the-monte-carlo-simulation">
+      <h2>
+       Create the Monte Carlo simulation
+      </h2>
+      <ul>
+       <li>
+        Essentially we just repeat the previous calculations, but now inside
+a ‘for loop’, keeping track of the outcome of each iteration.
+       </li>
+       <li>
+        The results will be in the vector ‘price_vec’.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb50">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a aria-hidden="true" href="#cb50-1" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)</span>
+<span id="cb50-2"><a aria-hidden="true" href="#cb50-2" tabindex="-1"></a>init_price <span class="op">=</span> <span class="fl">3271.12</span></span>
+<span id="cb50-3"><a aria-hidden="true" href="#cb50-3" tabindex="-1"></a>sim_size <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb50-4"><a aria-hidden="true" href="#cb50-4" tabindex="-1"></a>price_vec <span class="op">=</span> np.empty(sim_size)</span>
+<span id="cb50-5"><a aria-hidden="true" href="#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a aria-hidden="true" href="#cb50-6" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sim_size):</span>
+<span id="cb50-7"><a aria-hidden="true" href="#cb50-7" tabindex="-1"></a>    week_returns <span class="op">=</span> np.random.choice(returns, size<span class="op">=</span><span class="dv">5</span>, replace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb50-8"><a aria-hidden="true" href="#cb50-8" tabindex="-1"></a>    price_mults <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> week_returns) </span>
+<span id="cb50-9"><a aria-hidden="true" href="#cb50-9" tabindex="-1"></a>    final_price <span class="op">=</span> init_price <span class="op">*</span> price_mults.cumprod()[<span class="op">-</span><span class="dv">1</span>] </span>
+<span id="cb50-10"><a aria-hidden="true" href="#cb50-10" tabindex="-1"></a>    price_vec[i] <span class="op">=</span>  final_price</span>
+<span id="cb50-11"><a aria-hidden="true" href="#cb50-11" tabindex="-1"></a></span>
+<span id="cb50-12"><a aria-hidden="true" href="#cb50-12" tabindex="-1"></a>price_vec[:<span class="dv">10</span>] <span class="co"># Have a look at just the first ten prices.</span></span></code></pre>
+      </div>
+      <pre><code>array([2827.16308, 3308.59344, 3489.5888 , 3161.87936, 3469.18856,
+       3204.44453, 3285.68698, 3201.19699, 3743.90089, 2916.76575])</code></pre>
+     </section>
+     <section class="slide level2" id="review-the-distribution-of-prices">
+      <h2>
+       Review the distribution of prices
+      </h2>
+      <div class="sourceCode" id="cb52">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a aria-hidden="true" href="#cb52-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb52-2"><a aria-hidden="true" href="#cb52-2" tabindex="-1"></a>sns.displot(price_vec)<span class="op">;</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_09_files/module_09_79_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="calculate-percentiles-of-the-price-distribution">
+      <h2>
+       Calculate percentiles of the price distribution
+      </h2>
+      <ul>
+       <li>
+        Taking advantage of what we know from pandas, below are the 2.5th
+and 97.5th percentiles of the price distribution:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb53">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a aria-hidden="true" href="#cb53-1" tabindex="-1"></a>pd.Series(price_vec).quantile([<span class="fl">0.025</span>,<span class="fl">0.975</span>])</span></code></pre>
+      </div>
+      <pre><code>0.025    2884.708284
+0.975    3694.499557
+dtype: float64</code></pre>
+      <ul>
+       <li>
+        This gives a 95% prediction interval for the price at the end of the
+week.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="working-with-the-whole-5-day-price-history">
+      <h2>
+       Working with the whole 5 day price history
+      </h2>
+      <ul>
+       <li>
+        Rather than just looking at the price on day 5, we could store the
+whole price history,
+        <span class="math inline">
+         \(P_1, P_2, P_3, P_4,
+P_5\)
+        </span>
+        .
+       </li>
+       <li>
+        To acheive this we will use a matrix with 5 columns, where the
+result of each iteration is stored in a row.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb55">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a aria-hidden="true" href="#cb55-1" tabindex="-1"></a>np.random.seed(<span class="dv">12345</span>)</span>
+<span id="cb55-2"><a aria-hidden="true" href="#cb55-2" tabindex="-1"></a>init_price <span class="op">=</span> <span class="fl">3271.12</span></span>
+<span id="cb55-3"><a aria-hidden="true" href="#cb55-3" tabindex="-1"></a>sim_size <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb55-4"><a aria-hidden="true" href="#cb55-4" tabindex="-1"></a>price_mat <span class="op">=</span> np.empty((sim_size, <span class="dv">5</span>)) <span class="co"># Note the matrix container.</span></span>
+<span id="cb55-5"><a aria-hidden="true" href="#cb55-5" tabindex="-1"></a></span>
+<span id="cb55-6"><a aria-hidden="true" href="#cb55-6" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sim_size):</span>
+<span id="cb55-7"><a aria-hidden="true" href="#cb55-7" tabindex="-1"></a>    week_returns <span class="op">=</span> np.random.choice(returns, size<span class="op">=</span><span class="dv">5</span>, replace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb55-8"><a aria-hidden="true" href="#cb55-8" tabindex="-1"></a>    week_mults <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> week_returns) </span>
+<span id="cb55-9"><a aria-hidden="true" href="#cb55-9" tabindex="-1"></a>    prices <span class="op">=</span> init_price <span class="op">*</span> week_mults.cumprod() </span>
+<span id="cb55-10"><a aria-hidden="true" href="#cb55-10" tabindex="-1"></a>    price_mat[i,:] <span class="op">=</span> prices <span class="co"># Store the 5 prices in a single row.</span></span>
+<span id="cb55-11"><a aria-hidden="true" href="#cb55-11" tabindex="-1"></a></span>
+<span id="cb55-12"><a aria-hidden="true" href="#cb55-12" tabindex="-1"></a>price_mat[<span class="dv">0</span>,:] <span class="co"># Have look at the first row.</span></span></code></pre>
+      </div>
+      <pre><code>array([3277.15042, 3258.65547, 3310.40855, 3326.33934, 3214.86165])</code></pre>
+     </section>
+     <section class="slide level2" id="visualize-the-price-path">
+      <h2>
+       Visualize the price path
+      </h2>
+      <ul>
+       <li>
+        Below we plot the 5 prices, for the first three runs of the
+simulation using seaborn’s ‘lineplot’ function.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb57">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a aria-hidden="true" href="#cb57-1" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>), y <span class="op">=</span> price_mat[<span class="dv">0</span>,:])</span>
+<span id="cb57-2"><a aria-hidden="true" href="#cb57-2" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>), y <span class="op">=</span> price_mat[<span class="dv">1</span>,:])</span>
+<span id="cb57-3"><a aria-hidden="true" href="#cb57-3" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>), y <span class="op">=</span> price_mat[<span class="dv">2</span>,:])<span class="op">;</span></span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_09_files/module_09_86_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="viewing-all-the-price-histories">
+      <h2>
+       Viewing all the price histories
+      </h2>
+      <ul>
+       <li>
+        Below we use a for loop to iterate over the rows of the entire
+results matrix.
+       </li>
+       <li>
+        By using transparency in the graph (alpha = 0.1) we can get a sense
+of the density of the prices.
+       </li>
+       <li>
+        But first we will add a column at the beginning of the price matrix,
+to reflect the starting price:
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb58">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a aria-hidden="true" href="#cb58-1" tabindex="-1"></a>price_mat_new <span class="op">=</span> np.insert(price_mat, <span class="dv">0</span>, init_price, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb58-2"><a aria-hidden="true" href="#cb58-2" tabindex="-1"></a>price_mat_new</span></code></pre>
+      </div>
+      <pre><code>array([[3271.12   , 3277.15042, 3258.65547, 3310.40855, 3326.33934,
+        3214.86165],
+       [3271.12   , 3277.15042, 3288.72981, 3302.89575, 3365.52658,
+        3478.3256 ],
+       [3271.12   , 3249.94476, 3238.99666, 3276.32552, 3290.43803,
+        3278.59147],
+       ...,
+       [3271.12   , 3078.30691, 3118.5122 , 3154.4525 , 2776.42117,
+        2797.71772],
+       [3271.12   , 3258.75994, 3304.11555, 3310.2068 , 3329.23083,
+        3374.67143],
+       [3271.12   , 3409.16974, 3486.99886, 3427.5321 , 3485.35984,
+        3496.951  ]], shape=(1000, 6))</code></pre>
+     </section>
+     <section class="slide level2" id="plotting-all-the-price-histories">
+      <h2>
+       Plotting all the price histories
+      </h2>
+      <div class="sourceCode" id="cb60">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a aria-hidden="true" href="#cb60-1" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>, <span class="dv">6</span>)})</span>
+<span id="cb60-2"><a aria-hidden="true" href="#cb60-2" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sim_size):</span>
+<span id="cb60-3"><a aria-hidden="true" href="#cb60-3" tabindex="-1"></a>  sns.lineplot(x<span class="op">=</span><span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">6</span>), y<span class="op">=</span>price_mat_new[i,:], color<span class="op">=</span><span class="st">"red"</span>, alpha<span class="op">=</span><span class="fl">0.10</span>)</span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_09_files/module_09_90_0.png"/>
+      </p>
+     </section>
+     <section class="slide level2" id="sampling-from-a-model">
+      <h2>
+       Sampling from a model
+      </h2>
+      <ul>
+       <li>
+        We have been sampling from the historical returns directly.
+       </li>
+       <li>
+        An alternative would be to fit a model to the historical returns,
+and sample from the model.
+       </li>
+       <li>
+        Below, we sample from a normal model, fit to the historical returns,
+which results in a smoother distribution.
+       </li>
+       <li>
+        We use the mean and standard deviations of the historical returns
+for the parameters of the normal distribution.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb61">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a aria-hidden="true" href="#cb61-1" tabindex="-1"></a>np.random.seed(<span class="dv">12345</span>)</span>
+<span id="cb61-2"><a aria-hidden="true" href="#cb61-2" tabindex="-1"></a>init_price <span class="op">=</span> <span class="fl">3271.12</span></span>
+<span id="cb61-3"><a aria-hidden="true" href="#cb61-3" tabindex="-1"></a>sim_size <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb61-4"><a aria-hidden="true" href="#cb61-4" tabindex="-1"></a>price_mat <span class="op">=</span> np.empty((sim_size, <span class="dv">5</span>))</span>
+<span id="cb61-5"><a aria-hidden="true" href="#cb61-5" tabindex="-1"></a></span>
+<span id="cb61-6"><a aria-hidden="true" href="#cb61-6" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sim_size):</span>
+<span id="cb61-7"><a aria-hidden="true" href="#cb61-7" tabindex="-1"></a>    week_returns <span class="op">=</span> np.random.normal(returns.mean(), returns.std(), size<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb61-8"><a aria-hidden="true" href="#cb61-8" tabindex="-1"></a>    week_mults <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> week_returns) </span>
+<span id="cb61-9"><a aria-hidden="true" href="#cb61-9" tabindex="-1"></a>    prices <span class="op">=</span> init_price <span class="op">*</span> week_mults.cumprod() </span>
+<span id="cb61-10"><a aria-hidden="true" href="#cb61-10" tabindex="-1"></a>    price_mat[i,:] <span class="op">=</span> prices</span></code></pre>
+      </div>
+     </section>
+     <section class="slide level2" id="sampling-from-the-normal-model">
+      <h2>
+       Sampling from the normal model
+      </h2>
+      <div class="sourceCode" id="cb62">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a aria-hidden="true" href="#cb62-1" tabindex="-1"></a>price_mat_new <span class="op">=</span> np.insert(price_mat, <span class="dv">0</span>, init_price, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb62-2"><a aria-hidden="true" href="#cb62-2" tabindex="-1"></a></span>
+<span id="cb62-3"><a aria-hidden="true" href="#cb62-3" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">10</span>, <span class="dv">6</span>)})</span>
+<span id="cb62-4"><a aria-hidden="true" href="#cb62-4" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sim_size):</span>
+<span id="cb62-5"><a aria-hidden="true" href="#cb62-5" tabindex="-1"></a>  sns.lineplot(x<span class="op">=</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">6</span>), y <span class="op">=</span> price_mat_new[i,:],color<span class="op">=</span><span class="st">"red"</span>,alpha <span class="op">=</span> <span class="fl">0.105</span>)</span></code></pre>
+      </div>
+      <p>
+       <img data-src="module_09_files/module_09_94_0.png"/>
+      </p>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="card-counting">
+      <h1>
+       Card counting
+      </h1>
+     </section>
+     <section class="slide level2" id="card-counting-1">
+      <h2>
+       Card counting
+      </h2>
+      <p>
+       <img data-src="images/cards.jpg" height="333" width="500"/>
+      </p>
+     </section>
+     <section class="slide level2" id="card-counting-2">
+      <h2>
+       Card counting
+      </h2>
+      <ul>
+       <li>
+        In some card games of chance, it is possible for a player to gain an
+advantage if they can remember all the cards dealt so far.
+       </li>
+       <li>
+        It isn’t necessary to remember the suit and value of every card
+dealt, but rather assign a ‘count’ to it.
+       </li>
+       <li>
+        When the player keeps a cumulative sum of the ‘count’ they can track
+the state of the card deck, so if for example the count is low, which
+means few picture cards have been dealt, the probability of the next
+card being a picture card, is higher than when the cumulative count is
+high.
+       </li>
+       <li>
+        The player can exploit this change in probability to their advantage
+as they gamble.
+       </li>
+       <li>
+        Essentially they are using the fact that successive draws of a card
+from a deck are not statistically independent.
+       </li>
+       <li>
+        For example, the probability that the second card dealt is the ace
+of hearts, given that the first card dealt was the ace of hearts, is 0
+not 1/52!
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="a-card-counting-system">
+      <h2>
+       A card counting system
+      </h2>
+      <ul>
+       <li>
+        One card counting system assigns the following points to each
+card:
+       </li>
+      </ul>
+      <table>
+       <thead>
+        <tr class="header">
+         <th>
+          cardvalues
+         </th>
+         <th>
+          ACE
+         </th>
+         <th>
+          2
+         </th>
+         <th>
+          3
+         </th>
+         <th>
+          4
+         </th>
+         <th>
+          5
+         </th>
+         <th>
+          6
+         </th>
+         <th>
+          7
+         </th>
+         <th>
+          8
+         </th>
+         <th>
+          9
+         </th>
+         <th>
+          10
+         </th>
+         <th>
+          J
+         </th>
+         <th>
+          Q
+         </th>
+         <th>
+          K
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="odd">
+         <td>
+          cardcounts
+         </td>
+         <td>
+          -1
+         </td>
+         <td>
+          0.5
+         </td>
+         <td>
+          1
+         </td>
+         <td>
+          1
+         </td>
+         <td>
+          1.5
+         </td>
+         <td>
+          1
+         </td>
+         <td>
+          0.5
+         </td>
+         <td>
+          0
+         </td>
+         <td>
+          -0.5
+         </td>
+         <td>
+          -1
+         </td>
+         <td>
+          -1
+         </td>
+         <td>
+          -1
+         </td>
+         <td>
+          -1
+         </td>
+        </tr>
+       </tbody>
+      </table>
+      <ul>
+       <li>
+        Example: say the first 5 cards dealt were the 5D, 9H, QC, 4D, 10S,
+then their counts would be 1.5, -0.5, -1, 1, -1.
+       </li>
+       <li>
+        The cumulative count is 1.5, 1, 0, 1, 0.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="an-advantage-signal">
+      <h2>
+       An advantage signal
+      </h2>
+      <ul>
+       <li>
+        We need to define a cut-off for the cumulative card count, so that
+if it rises above a certain level, a “signal” is generated, and the
+player should then change their strategy.
+       </li>
+       <li>
+        The issue is that if we make the cut-off too high, then the
+advantage will be large, but it will very rarely be triggered.
+       </li>
+       <li>
+        On the other hand, if we make it too low, it will be triggered
+frequently, but the advantage will be small.
+       </li>
+       <li>
+        So a first step in any strategy is, for a given advantage cut-off to
+find the probability that it gets triggered.
+       </li>
+       <li>
+        Our specific question: given the card counting system on the
+previous slide, what is the probability that the cumulative count rises
+strictly about 5, within the first 30 cards dealt (including the
+30th)?
+       </li>
+       <li>
+        We will set up a Monte Carlo simulation to empirically estimate this
+probability.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="approach">
+      <h2>
+       Approach
+      </h2>
+      <ul>
+       <li>
+        Shuffle a deck of cards.
+       </li>
+       <li>
+        Replace the card values with their respective counts.
+       </li>
+       <li>
+        Create a cumulative sum of the counts.
+       </li>
+       <li>
+        Look to see if the cumulative count rises above 5 within the first
+30 cards.
+       </li>
+       <li>
+        First code one iteration for understanding, then put the code in a
+loop.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="checking-the-card-count-condition">
+      <h2>
+       Checking the card count condition
+      </h2>
+      <div class="sourceCode" id="cb63">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a aria-hidden="true" href="#cb63-1" tabindex="-1"></a><span class="co"># Create the deck (we can simply use the counts vector to simplify the program)</span></span>
+<span id="cb63-2"><a aria-hidden="true" href="#cb63-2" tabindex="-1"></a>card_counts <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>,  <span class="fl">0.5</span>,  <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb63-3"><a aria-hidden="true" href="#cb63-3" tabindex="-1"></a>card_counts <span class="op">=</span> np.repeat(card_counts, <span class="dv">4</span>)</span>
+<span id="cb63-4"><a aria-hidden="true" href="#cb63-4" tabindex="-1"></a><span class="bu">print</span>(card_counts)</span>
+<span id="cb63-5"><a aria-hidden="true" href="#cb63-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The length of the vector is"</span>, card_counts.shape)</span>
+<span id="cb63-6"><a aria-hidden="true" href="#cb63-6" tabindex="-1"></a>np.random.shuffle(card_counts)</span>
+<span id="cb63-7"><a aria-hidden="true" href="#cb63-7" tabindex="-1"></a><span class="bu">print</span>(card_counts)</span>
+<span id="cb63-8"><a aria-hidden="true" href="#cb63-8" tabindex="-1"></a>card_counts.cumsum()</span>
+<span id="cb63-9"><a aria-hidden="true" href="#cb63-9" tabindex="-1"></a><span class="cf">if</span> <span class="bu">max</span>(card_counts.cumsum()[:<span class="dv">30</span>] <span class="op">&gt;</span> <span class="dv">5</span>):</span>
+<span id="cb63-10"><a aria-hidden="true" href="#cb63-10" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Signal generated"</span>)</span>
+<span id="cb63-11"><a aria-hidden="true" href="#cb63-11" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb63-12"><a aria-hidden="true" href="#cb63-12" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No signal"</span>)  </span></code></pre>
+      </div>
+      <pre><code>[-1.  -1.  -1.  -1.   0.5  0.5  0.5  0.5  1.   1.   1.   1.   1.   1.
+  1.   1.   1.5  1.5  1.5  1.5  1.   1.   1.   1.   0.5  0.5  0.5  0.5
+  0.   0.   0.   0.  -0.5 -0.5 -0.5 -0.5 -1.  -1.  -1.  -1.  -1.  -1.
+ -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1.  -1. ]
+The length of the vector is (52,)
+[ 0.5 -1.  -1.  -1.   1.5  1.   1.   1.   1.  -1.   1.  -1.  -0.5 -1.
+  1.   1.  -1.  -1.   0.  -1.   0.   0.5 -1.   0.  -1.  -1.  -0.5  1.
+ -1.   1.   0.5 -1.   1.5  0.5 -1.  -1.   0.5 -1.   1.5 -1.  -0.5  1.
+  1.  -1.   0.5  0.   0.5 -1.   1.  -0.5  1.5  0.5]
+No signal</code></pre>
+     </section>
+     <section class="slide level2" id="the-monte-carlo-loop">
+      <h2>
+       The Monte Carlo loop
+      </h2>
+      <div class="sourceCode" id="cb65">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a aria-hidden="true" href="#cb65-1" tabindex="-1"></a>np.random.seed() <span class="co"># Set the random number seed.</span></span>
+<span id="cb65-2"><a aria-hidden="true" href="#cb65-2" tabindex="-1"></a>sim_size <span class="op">=</span> <span class="dv">1000</span> <span class="co"># Decide on the size of the simulation.</span></span>
+<span id="cb65-3"><a aria-hidden="true" href="#cb65-3" tabindex="-1"></a>results_vec <span class="op">=</span> np.empty(sim_size) <span class="co"># Create an empty container for the results.</span></span>
+<span id="cb65-4"><a aria-hidden="true" href="#cb65-4" tabindex="-1"></a>card_counts <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>,  <span class="fl">0.5</span>,  <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb65-5"><a aria-hidden="true" href="#cb65-5" tabindex="-1"></a>card_counts <span class="op">=</span> np.repeat(card_counts,<span class="dv">4</span>) <span class="co"># Make the card counts vector.</span></span>
+<span id="cb65-6"><a aria-hidden="true" href="#cb65-6" tabindex="-1"></a></span>
+<span id="cb65-7"><a aria-hidden="true" href="#cb65-7" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(sim_size): <span class="co"># Start the Monte Carlo loop.</span></span>
+<span id="cb65-8"><a aria-hidden="true" href="#cb65-8" tabindex="-1"></a>    np.random.shuffle(card_counts) <span class="co"># Shuffle the card deck.</span></span>
+<span id="cb65-9"><a aria-hidden="true" href="#cb65-9" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">max</span>(card_counts.cumsum()[:<span class="dv">30</span>]) <span class="op">&gt;</span> <span class="dv">5</span>: <span class="co"># Look to see if the max of the cumsum is greater than 5.</span></span>
+<span id="cb65-10"><a aria-hidden="true" href="#cb65-10" tabindex="-1"></a>        results_vec[i] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb65-11"><a aria-hidden="true" href="#cb65-11" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb65-12"><a aria-hidden="true" href="#cb65-12" tabindex="-1"></a>        results_vec[i] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb65-13"><a aria-hidden="true" href="#cb65-13" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The estimated  probability of an advantage signal is"</span>, <span class="bu">sum</span>(results_vec)<span class="op">/</span>sim_size) <span class="co"># Calculate the proportion.</span></span></code></pre>
+      </div>
+      <pre><code>The estimated  probability of an advantage signal is 0.177</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="optimization">
+      <h1>
+       Optimization
+      </h1>
+     </section>
+     <section class="slide level2" id="optimization-1">
+      <h2>
+       Optimization
+      </h2>
+      <p>
+       <img data-src="images/bicyle_delivery.jpg" height="328" width="492"/>
+      </p>
+     </section>
+     <section class="slide level2" id="optimally-routing-bikes-to-orders">
+      <h2>
+       Optimally routing bikes to orders
+      </h2>
+      <ul>
+       <li>
+        We have 4 bicyclists and 4 orders to be picked up.
+       </li>
+       <li>
+        How should we assign bikes to orders to minimize the average waiting
+time?
+       </li>
+       <li>
+        The example below has 4 cyclists randomly located in a 9 by 9 grid
+with 4 orders.
+       </li>
+       <li>
+        The bottom left hand corner of the grid is (1,1) and the top right,
+(9,9).
+       </li>
+       <li>
+        The cyclists are at [1,2], [4,6], [8,4] and [8,8]
+       </li>
+       <li>
+        The orders are at [6,4], [8,2], [4,3], [1,7].
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-city-grid">
+      <h2>
+       The city grid
+      </h2>
+      <p>
+       <img data-src="images/grid.png" height="513" width="513"/>
+      </p>
+     </section>
+     <section class="slide level2" id="the-distance-matrix">
+      <h2>
+       The distance matrix
+      </h2>
+      <ul>
+       <li>
+        The key component of the solution is the distance matrix, which
+finds the distance between each cyclist and each order.
+       </li>
+       <li>
+        We will use the “city block” distance which counts the number of
+streets from one location to another.
+       </li>
+       <li>
+        For example, the distance between cyclist 1, [1,2], and order 1,
+[6,4], is 5 + 2 = 7.
+       </li>
+       <li>
+        Below is the complete distance matrix:
+       </li>
+      </ul>
+      <pre><code>[[ 7.  7.  4.  5.]
+ [ 4.  8.  3.  4.]
+ [ 2.  2.  5. 10.]
+ [ 6.  6.  9.  8.]]</code></pre>
+     </section>
+     <section class="slide level2" id="the-assignment-of-cyclists-to-orders">
+      <h2>
+       The assignment of cyclists to orders
+      </h2>
+      <ul>
+       <li>
+        An assignment of cyclists to orders, assigns each and every cyclist
+to exactly one order.
+       </li>
+       <li>
+        For example, if cyclist 1 went to order 2, cyclist 2 to order 4,
+cyclist 3 to order 1 and cyclist 4 to order 3, we could write this as
+the matrix:
+       </li>
+      </ul>
+      <pre><code>[[ 0  1  0  0]
+ [ 0  0  0  1]
+ [ 1  0  0  0]
+ [ 0  0  1  0]]</code></pre>
+      <ul>
+       <li>
+        Note that every row has exactly one 1, and every column has exactly
+one 1.
+       </li>
+       <li>
+        The cost of the above assignment would be 7 + 4 + 2 + 9 = 22.
+       </li>
+       <li>
+        The goal is to find the assignment that minimizes the cost.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="optimization-library">
+      <h2>
+       Optimization library
+      </h2>
+      <ul>
+       <li>
+        We will use the scipy.optimize library which includes the solution
+to this problem.
+       </li>
+       <li>
+        The relevant function is called ‘linear_sum_assignment’ and it takes
+as input the distance matrix.
+       </li>
+       <li>
+        It returns the optimal assignment of rows to columns.
+       </li>
+       <li>
+        In the above example the optimal assignment is:
+       </li>
+      </ul>
+      <pre><code>rows    = [1 2 3 4]
+columns = [3 4 2 1]</code></pre>
+      <ul>
+       <li>
+        This means row 1 goes to column 3, row 2 to column 4, row 3 to
+column 2 and row 4 to column 1.
+       </li>
+      </ul>
+      <pre><code>[[ 0  0  1  0]
+ [ 0  0  0  1]
+ [ 0  1  0  0]
+ [ 1  0  0  0]]</code></pre>
+      <ul>
+       <li>
+        The cost of the assignment is 4 + 4 + 2 + 6 = 16.
+       </li>
+      </ul>
+     </section>
+     <section class="slide level2" id="the-optimal-assignment-solution">
+      <h2>
+       The optimal assignment solution
+      </h2>
+      <p>
+       <img data-src="images/grid_opt.png" height="513" width="513"/>
+      </p>
+     </section>
+     <section class="slide level2" id="set-up-the-inputs">
+      <h2>
+       Set up the inputs
+      </h2>
+      <div class="sourceCode" id="cb71">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a aria-hidden="true" href="#cb71-1" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> linear_sum_assignment</span>
+<span id="cb71-2"><a aria-hidden="true" href="#cb71-2" tabindex="-1"></a><span class="co"># Make  a distance function that calculates grid distance between points.</span></span>
+<span id="cb71-3"><a aria-hidden="true" href="#cb71-3" tabindex="-1"></a><span class="kw">def</span> distance (x,y):</span>
+<span id="cb71-4"><a aria-hidden="true" href="#cb71-4" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(np.<span class="bu">abs</span>(x <span class="op">-</span> y))</span>
+<span id="cb71-5"><a aria-hidden="true" href="#cb71-5" tabindex="-1"></a><span class="co"># Create arrays to hold bike and order locations.</span></span>
+<span id="cb71-6"><a aria-hidden="true" href="#cb71-6" tabindex="-1"></a>bicycle_location    <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>], [<span class="dv">4</span>,<span class="dv">6</span>], [<span class="dv">8</span>,<span class="dv">4</span>], [<span class="dv">8</span>,<span class="dv">8</span>]])</span>
+<span id="cb71-7"><a aria-hidden="true" href="#cb71-7" tabindex="-1"></a>restaurant_location <span class="op">=</span> np.array([[<span class="dv">6</span>,<span class="dv">4</span>], [<span class="dv">8</span>,<span class="dv">2</span>], [<span class="dv">4</span>,<span class="dv">3</span>], [<span class="dv">1</span>,<span class="dv">7</span>]])</span>
+<span id="cb71-8"><a aria-hidden="true" href="#cb71-8" tabindex="-1"></a></span>
+<span id="cb71-9"><a aria-hidden="true" href="#cb71-9" tabindex="-1"></a>dist_mat <span class="op">=</span> np.zeros([<span class="dv">4</span>,<span class="dv">4</span>]) <span class="co"># Start with an empty matrix.</span></span>
+<span id="cb71-10"><a aria-hidden="true" href="#cb71-10" tabindex="-1"></a>dims <span class="op">=</span> dist_mat.shape</span>
+<span id="cb71-11"><a aria-hidden="true" href="#cb71-11" tabindex="-1"></a><span class="bu">print</span> (dist_mat)</span></code></pre>
+      </div>
+      <pre><code>[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]</code></pre>
+     </section>
+     <section class="slide level2" id="calculate-the-distance-matrix">
+      <h2>
+       Calculate the distance matrix
+      </h2>
+      <ul>
+       <li>
+        Nested for loops are being used to calculate the elements of the
+distance matrix.
+       </li>
+      </ul>
+      <div class="sourceCode" id="cb73">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a aria-hidden="true" href="#cb73-1" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(dims[<span class="dv">0</span>]):</span>
+<span id="cb73-2"><a aria-hidden="true" href="#cb73-2" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(dims[<span class="dv">1</span>]):</span>
+<span id="cb73-3"><a aria-hidden="true" href="#cb73-3" tabindex="-1"></a>        dist_mat[i,j] <span class="op">=</span> distance(bicycle_location[i,:], restaurant_location[j,:] )</span>
+<span id="cb73-4"><a aria-hidden="true" href="#cb73-4" tabindex="-1"></a><span class="bu">print</span>(dist_mat)</span></code></pre>
+      </div>
+      <pre><code>[[ 7.  7.  4.  5.]
+ [ 4.  8.  3.  4.]
+ [ 2.  2.  5. 10.]
+ [ 6.  6.  9.  8.]]</code></pre>
+     </section>
+     <section class="slide level2" id="run-the-assignment-algorithm">
+      <h2>
+       Run the assignment algorithm
+      </h2>
+      <div class="sourceCode" id="cb75">
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a aria-hidden="true" href="#cb75-1" tabindex="-1"></a>row_ind, col_ind <span class="op">=</span> linear_sum_assignment(dist_mat) <span class="co"># The critical line, where the optimization happens.</span></span>
+<span id="cb75-2"><a aria-hidden="true" href="#cb75-2" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Optimal assignment is:"</span>)</span>
+<span id="cb75-3"><a aria-hidden="true" href="#cb75-3" tabindex="-1"></a><span class="bu">print</span>(row_ind) <span class="co"># Don't forget Python starts counting from 0, </span></span>
+<span id="cb75-4"><a aria-hidden="true" href="#cb75-4" tabindex="-1"></a><span class="bu">print</span>(col_ind) <span class="co"># but in the grid, I started counting from 1.</span></span>
+<span id="cb75-5"><a aria-hidden="true" href="#cb75-5" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Minimum cost is:"</span>)</span>
+<span id="cb75-6"><a aria-hidden="true" href="#cb75-6" tabindex="-1"></a><span class="bu">print</span>(dist_mat[row_ind, col_ind].<span class="bu">sum</span>()) <span class="co"># This adds up the elements in the distance matrix</span></span>
+<span id="cb75-7"><a aria-hidden="true" href="#cb75-7" tabindex="-1"></a>                                        <span class="co"># corresponding to the optimal assignment. </span></span></code></pre>
+      </div>
+      <pre><code>Optimal assignment is:
+[0 1 2 3]
+[2 3 1 0]
+Minimum cost is:
+16.0</code></pre>
+     </section>
+    </section>
+    <section>
+     <section class="title-slide slide level1" id="summary">
+      <h1>
+       Summary
+      </h1>
+     </section>
+     <section class="slide level2" id="summary-1">
+      <h2>
+       Summary
+      </h2>
+      <ul>
+       <li>
+        An overview of scientific computing and numpy:
+       </li>
+       <li>
+        Vectors, matrices and arrays.
+       </li>
+       <li>
+        Images as numbers.
+       </li>
+       <li>
+        Monte Carlo simulation.
+       </li>
+       <li>
+        Optimization algorithms.
+       </li>
+      </ul>
+     </section>
+    </section>
+   </div>
+  </div>
+  <script src="reveal.js/dist/reveal.js">
+  </script>
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js">
+  </script>
+  <script src="reveal.js/plugin/search/search.js">
+  </script>
+  <script src="reveal.js/plugin/zoom/zoom.js">
+  </script>
+  <script src="reveal.js/plugin/math/math.js">
+  </script>
+  <script>
+   // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+	   // Slide size
+		width: 1600,
+		height: 900,
+		
+        // Display the page number of the current slide
+//        slideNumber: 1,
+		slideNumber: slide => {
+		// Ignore numbering of vertical slides
+		tmph = Reveal.getIndices( slide ).h;
+		tmpv = Reveal.getIndices( slide ).v;
+        tmp = tmph + "." + tmpv;
+		if (typeof(tmpv) == "undefined"){
+			return [ tmph ];
+			}
+		else{ return [ tmp ];}
+		},
+		
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+  </script>
+  <style type="text/css">
+   /* 1. Style header/footer <div> so they are positioned as desired. */
+    #header-left {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:left;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #header-right {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+		width:5%;
+		background-color:#004785;
+		text-align:right;
+		padding: 10px;
+		color:white;
+		font-size: 50%;
+    }
+    #footer-left {
+        position: absolute;
+        bottom: 0%;
+        left: 0%;
+		width:100%;
+		background-color:#004785;
+		text-align:left;
+    }
+  </style>
+  <!-- 2. Create hidden header/footer <div> -->
+  <div id="hidden" style="display:none;">
+   <div id="header">
+    <div id="header-left">
+     STAT 4770/7770
+    </div>
+    <div id="header-right">
+     FALL 2026
+    </div>
+   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+  </script>
+  <script type="text/javascript">
+   // 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    var header = $('#header').html();
+    if ( window.location.search.match( /print-pdf/gi ) ) {
+        Reveal.addEventListener( 'ready', function( event ) {
+            $('.slide-background').append(header);
+        });
+    }
+    else {
+        $('div.reveal').append(header);
+   }
+  </script>
+ </body>
+</html>
