@@ -1,0 +1,43 @@
+
+Death penalty example of Simpson's paradox.
+Data from Radelet (1981)
+
+
+
+
+Defendants         Victims          Death Penalty   Percentage yes
+Race               Race
+                                    YES      NO 
+__________________________________________________________________
+
+White              White            19       132     12.6
+                   Black             0         9      0.0
+
+
+
+Black              White            11        52     17.5 
+                   Black            6         97      5.8 
+
+__________________________________________________________________
+
+Note.
+
+1. If victim is white, blacks get death penalty more often
+   (17.5 vs 12.6%)
+ 
+2. If victim is black, blacks get death penalty more often
+   (5.8 vs 0.0%)
+
+3. Ignoring victims race, 19/160 white defendents got the
+   death penalty, whereas 17/166 black defendants got the
+   death penalty. Whit's got the death penalty more frequently 
+   than blacks.
+
+4. Conclusion (among others) partial association is not the same
+as marginal association.
+
+5. Practical conclusion, when someone presents you with results always
+ask if there were other important variables that were ommitted 
+from the analysis. Their inclusion could change the conclusions.
+
+
