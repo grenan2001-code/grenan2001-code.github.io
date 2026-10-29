@@ -315,7 +315,7 @@ parentheses after them.)
       </div>
       <pre><code>Index(['Collindale', 'Downingtown', 'Falls Town', 'Hatboro', 'Lansdale',
        'Norwood', 'Sharon Hill', 'Springfield', 'Upper Darby', 'Yardley'],
-      dtype='object')</code></pre>
+      dtype='str')</code></pre>
      </section>
      <section class="slide level2" id="accessing-elements-in-the-series">
       <h2>
@@ -344,20 +344,14 @@ parentheses after them.)
       </h2>
       <ul>
        <li>
-        You can identify arbitrary elements in the Series by position:
+        You can identify arbitrary elements in the Series by position using
+the .iloc indexer:
        </li>
       </ul>
       <div class="sourceCode" id="cb8">
-       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>house_data[[<span class="dv">0</span>,<span class="dv">7</span>,<span class="dv">3</span>]] <span class="co"># Identify elements in positions 0, 7 and 3 (note the [[]] brackets).</span></span></code></pre>
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>house_data.iloc[[<span class="dv">0</span>,<span class="dv">7</span>,<span class="dv">3</span>]] <span class="co"># Identify elements in positions 0, 7 and 3 (note the [[]] brackets).</span></span></code></pre>
       </div>
-      <pre><code>C:\Users\water\AppData\Local\Temp\ipykernel_960\4251852872.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  house_data[[0,7,3]] # Identify elements in positions 0, 7 and 3 (note the [[]] brackets).
-
-
-
-
-
-Collindale      66803
+      <pre><code>Collindale      66803
 Springfield    147176
 Hatboro        114572
 dtype: int64</code></pre>
@@ -519,7 +513,7 @@ dtype: bool</code></pre>
       <div class="sourceCode" id="cb26">
        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a aria-hidden="true" href="#cb26-1" tabindex="-1"></a><span class="bu">type</span>(expensive)</span></code></pre>
       </div>
-      <pre><code>pandas.core.series.Series</code></pre>
+      <pre><code>pandas.Series</code></pre>
       <div class="sourceCode" id="cb28">
        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a aria-hidden="true" href="#cb28-1" tabindex="-1"></a>house_data[expensive] <span class="co"># Just those rows where the price is greater than $110,000.</span></span></code></pre>
       </div>
@@ -568,7 +562,7 @@ mean and median (to be discussed).
       <div class="sourceCode" id="cb34">
        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a aria-hidden="true" href="#cb34-1" tabindex="-1"></a>house_data.median() <span class="co"># The median of the prices.</span></span></code></pre>
       </div>
-      <pre><code>113352.0</code></pre>
+      <pre><code>np.float64(113352.0)</code></pre>
       <div class="sourceCode" id="cb36">
        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a aria-hidden="true" href="#cb36-1" tabindex="-1"></a>house_data.quantile([<span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>]) <span class="co"># The 25th, 50th and 75 percentiles.</span></span></code></pre>
       </div>
@@ -588,7 +582,7 @@ them using the assignment operator.
        </li>
       </ul>
       <div class="sourceCode" id="cb38">
-       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>house_data[<span class="dv">2</span>] <span class="op">=</span> <span class="dv">123456</span> <span class="co"># Overwrite a single element.</span></span>
+       <pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a aria-hidden="true" href="#cb38-1" tabindex="-1"></a>house_data.iloc[<span class="dv">2</span>] <span class="op">=</span> <span class="dv">123456</span> <span class="co"># Overwrite a single element.</span></span>
 <span id="cb38-2"><a aria-hidden="true" href="#cb38-2" tabindex="-1"></a><span class="bu">print</span>(house_data)</span></code></pre>
       </div>
       <pre><code>Collindale      66803
@@ -601,11 +595,7 @@ Sharon Hill     74308
 Springfield    147176
 Upper Darby    199065
 Yardley        130953
-dtype: int64
-
-
-C:\Users\water\AppData\Local\Temp\ipykernel_960\2138629545.py:1: FutureWarning: Series.__setitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To set a value by position, use `ser.iloc[pos] = value`
-  house_data[2] = 123456 # Overwrite a single element.</code></pre>
+dtype: int64</code></pre>
      </section>
      <section class="slide level2" id="overwriting-elements-of-the-series-ctd.">
       <h2>
@@ -831,11 +821,11 @@ included
       <div class="sourceCode" id="cb49">
        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a aria-hidden="true" href="#cb49-1" tabindex="-1"></a>patient_data.dtypes <span class="co"># The data types in the data frame (.dtypes).</span></span></code></pre>
       </div>
-      <pre><code>Sex                 object
-Age                  int64
-Schedule lag         int64
-Schedule minutes     int64
-Status              object
+      <pre><code>Sex                   str
+Age                 int64
+Schedule lag        int64
+Schedule minutes    int64
+Status                str
 dtype: object</code></pre>
       <ul>
        <li>
@@ -868,7 +858,7 @@ names.
        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a aria-hidden="true" href="#cb51-1" tabindex="-1"></a><span class="co">## Get just the names of the columns in the data frame with the .columns attribute.</span></span>
 <span id="cb51-2"><a aria-hidden="true" href="#cb51-2" tabindex="-1"></a><span class="bu">print</span>( patient_data.columns) </span></code></pre>
       </div>
-      <pre><code>Index(['Sex', 'Age', 'Schedule lag', 'Schedule minutes', 'Status'], dtype='object')</code></pre>
+      <pre><code>Index(['Sex', 'Age', 'Schedule lag', 'Schedule minutes', 'Status'], dtype='str')</code></pre>
      </section>
      <section class="slide level2" id="selecting-pieces-of-the-data-frame">
       <h2>
